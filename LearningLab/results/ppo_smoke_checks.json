@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "reviewed_on": "2026-10-05",
+  "scope": "Historical local PPO smoke-check logs; not new training or evidence of convergence. Battle logs use the pre-defense battle-v1 schema.",
+  "source_logs_not_committed": true,
+  "runs": [
+    {
+      "run": "verification",
+      "config_hash": "f265c644d4e8f2a35bd5d27142d3800e27d3287cc15fc1e20977923f05ed530c",
+      "environment_schema": {
+        "schema_id": "navigation-demo-v1",
+        "observation_size": 3,
+        "action_count": 3
+      },
+      "ppo_settings": {
+        "rollout_steps": 256,
+        "epochs": 4,
+        "minibatch_size": 64,
+        "hidden_size": 64,
+        "learning_rate": 0.0003,
+        "gamma": 0.99,
+        "gae_lambda": 0.95,
+        "clip_range": 0.2,
+        "entropy_coefficient": 0.01,
+        "value_coefficient": 0.5,
+        "max_grad_norm": 0.5,
+        "epsilon": 1e-08,
+        "torch_threads": 1
+      },
+      "last_logged_update": {
+        "policy_loss": -0.002924539032392204,
+        "value_loss": 0.0008774122252361849,
+        "entropy": 0.5549186132848263,
+        "decisions": 8448,
+        "updates": 33,
+        "episodes": 1431
+      },
+      "saved_validation": {
+        "config_hash": "f265c644d4e8f2a35bd5d27142d3800e27d3287cc15fc1e20977923f05ed530c",
+        "split": "validation",
+        "policy": "policy",
+        "episode_count": 8,
+        "outcomes": {
+          "success": 8
+        },
+        "mean_return": 1.0,
+        "mean_length": 2.375,
+        "truncation_rate": 0.0
+      },
+      "source_sha256": {
+        "LearningLab/runs/verification/manifest.json": "cead0dac092a9a62126c4b915f97ca06efe5cb8a496bcae2e9815b56fdcd17c3",
+        "LearningLab/runs/verification/metrics.jsonl": "28850cf97a327f7153faafe6a289949be9d1a46d63681368d6d50c640fcc2e11",
+        "LearningLab/runs/verification/validation.json": "f63c57990571c9871eee885d09dc736b066518b4284c56f433a115ddab399ad4"
+      }
+    },
+    {
+      "run": "battle-integration",
+      "config_hash": "325db0ed32e80e1482f93b74742acd6f00e99b5270a27d126081297088943783",
+      "environment_schema": {
+        "schema_id": "battle-v1-15-9-64-8-8-5-55B4529B6B058E3C34C367C3677B601E71B2B5BCB2C672DD7B0E34660937BC8D",
+        "observation_size": 2222,
+        "action_count": 160
+      },
+      "ppo_settings": {
+        "rollout_steps": 256,
+        "epochs": 4,
+        "minibatch_size": 64,
+        "hidden_size": 64,
+        "learning_rate": 0.0003,
+        "gamma": 0.99,
+        "gae_lambda": 0.95,
+        "clip_range": 0.2,
+        "entropy_coefficient": 0.01,
+        "value_coefficient": 0.5,
+        "max_grad_norm": 0.5,
+        "epsilon": 1e-08,
+        "torch_threads": 1
+      },
+      "last_logged_update": {
+        "policy_loss": -0.006266819895245135,
+        "value_loss": 0.13892901502549648,
+        "entropy": 4.437089145183563,
+        "decisions": 512,
+        "updates": 2,
+        "episodes": 1
+      },
+      "saved_validation": {
+        "config_hash": "325db0ed32e80e1482f93b74742acd6f00e99b5270a27d126081297088943783",
+        "split": "validation",
+        "policy": "policy",
+        "episode_count": 2,
+        "outcomes": {
+          "defeat": 2
+        },
+        "mean_return": -1.0,
+        "mean_length": 1764.0,
+        "truncation_rate": 0.0,
+        "checkpoint_sha256": "17de2fd732533c7058b47a434ae3b47fb3a33f751d145938e1971024a5fc4660",
+        "checkpoint_decisions": 512
+      },
+      "source_sha256": {
+        "LearningLab/runs/battle-integration/manifest.json": "2e43e7afb2f2e335c339a551fa44d6669a2c5649e44ac9df07a2dcae521211a4",
+        "LearningLab/runs/battle-integration/metrics.jsonl": "6564c581dbead911c2bf28d820159c02af1061740dc3a93a6553826b06c30bcc",
+        "LearningLab/runs/battle-evaluation.json": "1b60bbe9c08d482700c74c9c4fcb356b20959737f2a5913e8e6efdc56a5ad420"
+      }
+    },
+    {
+      "run": "battle-v2",
+      "config_hash": "c0466de8707cbe11e2721c0b31b2b0322481e3842b1d3607aee4fa1806ce7f7b",
+      "environment_schema": {
+        "schema_id": "battle-v1-15-9-64-8-8-5-D24ACE4394C5D5FD55156DC7179B61609FDFA43068466919B64D90DE8349F4F3",
+        "observation_size": 2222,
+        "action_count": 160
+      },
+      "ppo_settings": {
+        "rollout_steps": 256,
+        "epochs": 4,
+        "minibatch_size": 64,
+        "hidden_size": 64,
+        "learning_rate": 0.0003,
+        "gamma": 0.99,
+        "gae_lambda": 0.95,
+        "clip_range": 0.2,
+        "entropy_coefficient": 0.01,
+        "value_coefficient": 0.5,
+        "max_grad_norm": 0.5,
+        "epsilon": 1e-08,
+        "torch_threads": 1
+      },
+      "last_logged_update": {
+        "policy_loss": -0.006118648452684283,
+        "value_loss": 0.1339756443630904,
+        "entropy": 4.434761196374893,
+        "decisions": 512,
+        "updates": 2,
+        "episodes": 1
+      },
+      "saved_validation": {
+        "config_hash": "c0466de8707cbe11e2721c0b31b2b0322481e3842b1d3607aee4fa1806ce7f7b",
+        "split": "validation",
+        "policy": "policy",
+        "episode_count": 2,
+        "outcomes": {
+          "defeat": 2
+        },
+        "mean_return": -1.0,
+        "mean_length": 1743.0,
+        "truncation_rate": 0.0,
+        "checkpoint_sha256": "c0403332c0ebedbf4ba3a6f03097e8e0fc202f01d4a64466634c94ade5e51367",
+        "checkpoint_decisions": 512
+      },
+      "source_sha256": {
+        "LearningLab/runs/battle-v2/manifest.json": "ae8a288d26b9ca63329105456359ddf16c585e0fcb853f35d0f68aeafc4c0cc7",
+        "LearningLab/runs/battle-v2/metrics.jsonl": "20f2a3e052376a2ba36b201a37a079d95cd9242c39a679651e2e036762baf337",
+        "LearningLab/runs/battle-v2-evaluation.json": "5829934cdc45dd5f8afb1149e27170180846e8ee6ec5a893fed11296a9796e5d"
+      }
+    }
+  ]
+}
