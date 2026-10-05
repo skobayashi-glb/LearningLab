@@ -1,0 +1,11 @@
+{
+  "name": "LearningLab",
+  "kind": "learning",
+  "primary": "LearningLab",
+  "port": null,
+  "requirements": [
+    "numpy==2.2.6",
+    "torch==2.7.0",
+    "PyYAML==6.0.2"
+  ]
+}

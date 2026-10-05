@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26926a4d85eae9c4f9e148be61e8d4f5, type: 3}
+  m_Name: whale-shark
+  m_EditorClassIdentifier: Assembly-CSharp::AllyData
+  modelName: whale-shark
+  moveType: 0
+  maxHp: 520
+  attackPower: 30
+  moveSpeed: 0.5
+  deployCost: 10
+  role: 18
+  costTier: 2
+  attackTime: 1.45
+  attackDuration: 2.95
+  attackRange: 10.8
+  attackApproach: 0
+  attackLineOfSight: 0
+  attackLunge: 0
+  useEngagementRangeOverride: 0
+  engagementRange:
+    circleRadius: 1.1
+    sectorRadius: 4
+    sectorAngle: 90
+  attackShape:
+    type: 2
+    areaRadius: 1.2
+    lineLength: 3.6
+    lineWidth: 0.6
+    coneDistance: 6
+    coneAngleDegrees: 52
+  positionEffect:
+    kind: 1
+    origin: 0
+    centerOffset: {x: 0, y: 0, z: 0}
+    distance: 2.4
+    durationSeconds: 0.5
+  maxTargets: 7
+  targetSelection: 0
+  generatedBodyBox:
+    size: {x: 5.12325, y: 3.26025, z: 9.0045}
+    offset: {x: 0, y: 2.251125, z: 0.15525}
+  generatedFieldLocks: 82
+  useBodyBoxOverride: 0
+  overrideBodyBox:
+    size: {x: 3.2, y: 3.2, z: 3.2}
+    offset: {x: 0, y: 1.6, z: 0}
+  knockbackHpRatios: []
+  appliedStatuses: 09000000
+  allyName: whale-shark
+  maxConcurrentSorties: 4
+  deployCooldown: 5

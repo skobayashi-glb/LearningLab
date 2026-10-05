@@ -1,0 +1,1561 @@
+{
+  "version": 1,
+  "model": "sea-slug",
+  "effects": [
+    "poison_lob",
+    "starfall_burst",
+    "poison_mist"
+  ],
+  "preview": {
+    "targetDistance": 91,
+    "targetAngleDeg": 0
+  },
+  "clips": {
+    "attack": {
+      "duration": 2.2,
+      "loop": false,
+      "keys": [
+        {
+          "t": 0,
+          "bones": {
+            "body": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "head": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.14,
+          "bones": {
+            "body": {
+              "rot": [
+                -3,
+                0,
+                -2
+              ],
+              "pos": [
+                0,
+                0,
+                -1
+              ]
+            },
+            "head": {
+              "rot": [
+                -12,
+                4,
+                -5
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                8,
+                -9,
+                7
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                11,
+                -5,
+                8
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                8,
+                7,
+                -6
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.3,
+          "bones": {
+            "body": {
+              "rot": [
+                -6,
+                0,
+                -5
+              ],
+              "pos": [
+                0,
+                -1,
+                -4
+              ]
+            },
+            "head": {
+              "rot": [
+                -27,
+                9,
+                -12
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                19,
+                -18,
+                14
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                24,
+                -12,
+                17
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                18,
+                15,
+                -14
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.4,
+          "bones": {
+            "body": {
+              "rot": [
+                -3,
+                0,
+                -3
+              ],
+              "pos": [
+                0,
+                0,
+                -1
+              ]
+            },
+            "head": {
+              "rot": [
+                -17,
+                5,
+                -8
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                24,
+                -23,
+                18
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                31,
+                -17,
+                22
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                25,
+                20,
+                -19
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.48,
+          "bones": {
+            "body": {
+              "rot": [
+                6,
+                0,
+                5
+              ],
+              "pos": [
+                0,
+                0,
+                4
+              ]
+            },
+            "head": {
+              "rot": [
+                31,
+                -10,
+                15
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                -13,
+                20,
+                -15
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                -8,
+                14,
+                -10
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                -5,
+                -17,
+                12
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.89,
+          "bones": {
+            "body": {
+              "rot": [
+                8,
+                0,
+                7
+              ],
+              "pos": [
+                0,
+                0,
+                5
+              ]
+            },
+            "head": {
+              "rot": [
+                38,
+                -14,
+                21
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                -25,
+                28,
+                -22
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                -24,
+                21,
+                -18
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                -18,
+                -25,
+                20
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 1.22,
+          "bones": {
+            "body": {
+              "rot": [
+                -3,
+                0,
+                -2
+              ],
+              "pos": [
+                0,
+                0,
+                -1
+              ]
+            },
+            "head": {
+              "rot": [
+                -14,
+                5,
+                -7
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                12,
+                -16,
+                13
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                17,
+                -11,
+                13
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                12,
+                14,
+                -11
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 1.69,
+          "bones": {
+            "body": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "head": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        }
+      ],
+      "events": [
+        {
+          "t": 0.48,
+          "effect": "poison_lob",
+          "anchor": "bone",
+          "bone": "head",
+          "offset": [
+            0,
+            1,
+            4
+          ],
+          "aim": true,
+          "scale": 1,
+          "speed": 1,
+          "effectParams": {
+            "lobRangeVoxels": 70,
+            "lobArcHeightVoxels": 20,
+            "lobGlobRadiusVoxels": 3,
+            "lobPuddleRadiusVoxels": 11
+          }
+        },
+        {
+          "t": 0.89,
+          "effect": "poison_mist",
+          "anchor": "target",
+          "bone": "body",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "aim": false,
+          "mirror": false,
+          "scale": 1,
+          "speed": 1,
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "effectParams": {
+            "mistBlobCount": 25,
+            "mistRadiusVoxels": 20,
+            "mistRiseVoxels": 8
+          }
+        }
+      ]
+    },
+    "move": {
+      "duration": 1,
+      "loop": true,
+      "keys": [
+        {
+          "t": 0,
+          "bones": {
+            "body": {
+              "rot": [
+                0,
+                -5,
+                -4
+              ],
+              "pos": [
+                -1,
+                0,
+                0
+              ]
+            },
+            "head": {
+              "rot": [
+                2,
+                9,
+                5
+              ],
+              "pos": [
+                0,
+                0,
+                1
+              ]
+            },
+            "gills": {
+              "rot": [
+                -3,
+                12,
+                8
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                5,
+                8,
+                7
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                -2,
+                14,
+                5
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.25,
+          "bones": {
+            "body": {
+              "rot": [
+                2,
+                1,
+                1
+              ],
+              "pos": [
+                0,
+                1,
+                2
+              ]
+            },
+            "head": {
+              "rot": [
+                -3,
+                4,
+                -2
+              ],
+              "pos": [
+                0,
+                1,
+                1
+              ]
+            },
+            "gills": {
+              "rot": [
+                5,
+                -4,
+                -5
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                -4,
+                2,
+                -3
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                4,
+                -7,
+                -2
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.5,
+          "bones": {
+            "body": {
+              "rot": [
+                0,
+                5,
+                4
+              ],
+              "pos": [
+                1,
+                0,
+                0
+              ]
+            },
+            "head": {
+              "rot": [
+                2,
+                -9,
+                -5
+              ],
+              "pos": [
+                0,
+                0,
+                1
+              ]
+            },
+            "gills": {
+              "rot": [
+                -3,
+                -12,
+                -8
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                -2,
+                -14,
+                -5
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                5,
+                -8,
+                -7
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.75,
+          "bones": {
+            "body": {
+              "rot": [
+                -2,
+                -1,
+                -1
+              ],
+              "pos": [
+                0,
+                1,
+                -1
+              ]
+            },
+            "head": {
+              "rot": [
+                -3,
+                -4,
+                2
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                5,
+                4,
+                5
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                4,
+                7,
+                2
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                -4,
+                -2,
+                3
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            }
+          }
+        }
+      ],
+      "events": [],
+      "movementStyle": "walk"
+    },
+    "idle": {
+      "duration": 2,
+      "loop": true,
+      "keys": [
+        {
+          "t": 0,
+          "bones": {
+            "body": {
+              "rot": [
+                0,
+                -2,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "head": {
+              "rot": [
+                -2,
+                3,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                0,
+                5,
+                2
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                2,
+                3,
+                2
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                -1,
+                5,
+                -2
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.5,
+          "bones": {
+            "body": {
+              "rot": [
+                1,
+                0,
+                1
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            },
+            "head": {
+              "rot": [
+                2,
+                1,
+                2
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                4,
+                -2,
+                5
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                5,
+                -1,
+                4
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                3,
+                2,
+                -3
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 1,
+          "bones": {
+            "body": {
+              "rot": [
+                0,
+                2,
+                0
+              ],
+              "pos": [
+                0,
+                2,
+                0
+              ]
+            },
+            "head": {
+              "rot": [
+                3,
+                -3,
+                0
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                0,
+                -5,
+                -2
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                -1,
+                -5,
+                2
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                2,
+                -3,
+                -2
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 1.5,
+          "bones": {
+            "body": {
+              "rot": [
+                -1,
+                0,
+                -1
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            },
+            "head": {
+              "rot": [
+                -2,
+                -1,
+                -2
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                -4,
+                2,
+                -5
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                -3,
+                -2,
+                3
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                -5,
+                1,
+                -4
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        }
+      ],
+      "events": []
+    },
+    "knockback": {
+      "duration": 1.2,
+      "loop": false,
+      "keys": [
+        {
+          "t": 0,
+          "bones": {
+            "body": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "head": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.12,
+          "bones": {
+            "body": {
+              "rot": [
+                -15,
+                -6,
+                -11
+              ],
+              "pos": [
+                -3,
+                2,
+                -5
+              ]
+            },
+            "head": {
+              "rot": [
+                -24,
+                11,
+                -16
+              ],
+              "pos": [
+                -1,
+                1,
+                -3
+              ]
+            },
+            "gills": {
+              "rot": [
+                18,
+                -20,
+                17
+              ],
+              "pos": [
+                0,
+                1,
+                1
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                25,
+                -16,
+                20
+              ],
+              "pos": [
+                0,
+                1,
+                1
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                20,
+                21,
+                -18
+              ],
+              "pos": [
+                0,
+                1,
+                1
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.28,
+          "bones": {
+            "body": {
+              "rot": [
+                -22,
+                -9,
+                -16
+              ],
+              "pos": [
+                -6,
+                3,
+                -8
+              ]
+            },
+            "head": {
+              "rot": [
+                -36,
+                16,
+                -24
+              ],
+              "pos": [
+                -2,
+                2,
+                -5
+              ]
+            },
+            "gills": {
+              "rot": [
+                29,
+                -30,
+                25
+              ],
+              "pos": [
+                0,
+                2,
+                2
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                38,
+                -24,
+                29
+              ],
+              "pos": [
+                0,
+                2,
+                2
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                31,
+                29,
+                -27
+              ],
+              "pos": [
+                0,
+                2,
+                2
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.5,
+          "bones": {
+            "body": {
+              "rot": [
+                8,
+                4,
+                6
+              ],
+              "pos": [
+                2,
+                -1,
+                3
+              ]
+            },
+            "head": {
+              "rot": [
+                15,
+                -7,
+                10
+              ],
+              "pos": [
+                1,
+                -1,
+                2
+              ]
+            },
+            "gills": {
+              "rot": [
+                -14,
+                16,
+                -12
+              ],
+              "pos": [
+                0,
+                0,
+                -1
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                -20,
+                12,
+                -15
+              ],
+              "pos": [
+                0,
+                0,
+                -1
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                -16,
+                -15,
+                14
+              ],
+              "pos": [
+                0,
+                0,
+                -1
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.76,
+          "bones": {
+            "body": {
+              "rot": [
+                -5,
+                -2,
+                -4
+              ],
+              "pos": [
+                -1,
+                0,
+                -2
+              ]
+            },
+            "head": {
+              "rot": [
+                -9,
+                4,
+                -6
+              ],
+              "pos": [
+                0,
+                0,
+                -1
+              ]
+            },
+            "gills": {
+              "rot": [
+                8,
+                -9,
+                7
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                11,
+                -7,
+                9
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                9,
+                8,
+                -8
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 1.2,
+          "bones": {
+            "body": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "head": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "gills": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_R": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "rhinophore_L": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        }
+      ],
+      "events": []
+    }
+  },
+  "effectRoles": {
+    "main": "poison_lob",
+    "sub": "starfall_burst"
+  },
+  "profile": {
+    "attackStyle": "normal",
+    "attackDurationSeconds": 1
+  },
+  "combat": {
+    "maximumAttackRangeVoxels": 91
+  },
+  "technique": {
+    "purpose": "damage",
+    "target": "enemy",
+    "includeSelf": false,
+    "targetSelection": "nearest",
+    "origin": "target",
+    "originBone": "body",
+    "direction": "target",
+    "range": "ranged",
+    "delivery": "tracking",
+    "area": "circle",
+    "duration": "persistent",
+    "effectTriggerSeconds": [
+      0.88
+    ],
+    "effectDurationSeconds": 1.2,
+    "areaParameters": {
+      "lineLength": 24,
+      "lineWidth": 4,
+      "coneDistance": 12,
+      "coneAngleDegrees": 60,
+      "circleRadius": 8
+    },
+    "activationIntervalSeconds": 1,
+    "additionalEffects": [],
+    "statusEffects": [
+      "poison"
+    ],
+    "buffEffects": []
+  }
+}

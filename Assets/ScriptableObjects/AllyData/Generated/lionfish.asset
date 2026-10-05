@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26926a4d85eae9c4f9e148be61e8d4f5, type: 3}
+  m_Name: lionfish
+  m_EditorClassIdentifier: Assembly-CSharp::AllyData
+  modelName: lionfish
+  moveType: 0
+  maxHp: 112
+  attackPower: 27
+  moveSpeed: 0.85
+  deployCost: 6
+  role: 17
+  costTier: 1
+  attackTime: 0.6
+  attackDuration: 1.85
+  attackRange: 4.5
+  attackApproach: 0
+  attackLineOfSight: 0
+  attackLunge: 0
+  useEngagementRangeOverride: 0
+  engagementRange:
+    circleRadius: 1.1
+    sectorRadius: 4
+    sectorAngle: 90
+  attackShape:
+    type: 0
+    areaRadius: 3.9
+    lineLength: 3.6
+    lineWidth: 0.6
+    coneDistance: 1.8
+    coneAngleDegrees: 60
+  positionEffect:
+    kind: 0
+    origin: 0
+    centerOffset: {x: 0, y: 0, z: 0}
+    distance: 0
+    durationSeconds: 0.3
+  maxTargets: 5
+  targetSelection: 0
+  generatedBodyBox:
+    size: {x: 4.65, y: 4.2, z: 6}
+    offset: {x: 0, y: 2.7, z: -0.15}
+  generatedFieldLocks: 114
+  useBodyBoxOverride: 0
+  overrideBodyBox:
+    size: {x: 3.2, y: 3.2, z: 3.2}
+    offset: {x: 0, y: 1.6, z: 0}
+  knockbackHpRatios: []
+  appliedStatuses: 02000000
+  allyName: lionfish
+  maxConcurrentSorties: 4
+  deployCooldown: 5

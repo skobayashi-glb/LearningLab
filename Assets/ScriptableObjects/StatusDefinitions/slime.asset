@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66bef5baf8ee6e46b298f12fc134ad5, type: 3}
+  m_Name: slime
+  m_EditorClassIdentifier: Assembly-CSharp::StatusDefinition
+  statusId: 8
+  displayName: SLIME
+  statusColor: {r: 0.1843137, g: 0.8509804, b: 0.7529412, a: 1}
+  durationSeconds: 6
+  displayPriority: 6
+  surfaceMotifEffectName: status_slime
+  damagePerTick: 0
+  rimGlowStrength: 0.35

@@ -1,0 +1,970 @@
+{
+  "version": 1,
+  "model": "ammonite",
+  "effects": [
+    "spiral_shot",
+    "shield_dome",
+    "shockwave"
+  ],
+  "preview": {
+    "targetDistance": 22,
+    "targetAngleDeg": 0
+  },
+  "clips": {
+    "attack": {
+      "duration": 1.65,
+      "loop": false,
+      "keys": [
+        {
+          "t": 0,
+          "bones": {
+            "shell": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "body": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.16,
+          "bones": {
+            "shell": {
+              "rot": [
+                -8,
+                0,
+                -24
+              ],
+              "pos": [
+                0,
+                -1.5,
+                -3
+              ]
+            },
+            "body": {
+              "rot": [
+                28,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                -2
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                62,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                -4
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.32,
+          "bones": {
+            "shell": {
+              "rot": [
+                -18,
+                0,
+                -92
+              ],
+              "pos": [
+                -2,
+                3,
+                1
+              ]
+            },
+            "body": {
+              "rot": [
+                55,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                -5
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                85,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                -7
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.48,
+          "bones": {
+            "shell": {
+              "rot": [
+                -28,
+                0,
+                -178
+              ],
+              "pos": [
+                2,
+                8,
+                7
+              ]
+            },
+            "body": {
+              "rot": [
+                75,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                -7
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                105,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                -9
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.64,
+          "bones": {
+            "shell": {
+              "rot": [
+                12,
+                0,
+                -272
+              ],
+              "pos": [
+                -1,
+                10,
+                14
+              ]
+            },
+            "body": {
+              "rot": [
+                82,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                -8
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                118,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                -10
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.78,
+          "bones": {
+            "shell": {
+              "rot": [
+                36,
+                0,
+                -360
+              ],
+              "pos": [
+                0,
+                1,
+                23
+              ]
+            },
+            "body": {
+              "rot": [
+                70,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                -6
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                95,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                -8
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.92,
+          "bones": {
+            "shell": {
+              "rot": [
+                -22,
+                0,
+                -432
+              ],
+              "pos": [
+                2,
+                5,
+                17
+              ]
+            },
+            "body": {
+              "rot": [
+                42,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                -3
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                60,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                -4
+              ]
+            }
+          }
+        },
+        {
+          "t": 1.2,
+          "bones": {
+            "shell": {
+              "rot": [
+                10,
+                0,
+                -470
+              ],
+              "pos": [
+                -1,
+                1,
+                6
+              ]
+            },
+            "body": {
+              "rot": [
+                12,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                20,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 1.65,
+          "bones": {
+            "shell": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "body": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        }
+      ],
+      "events": [
+        {
+          "t": 0.78,
+          "effect": "shockwave",
+          "anchor": "target",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "aim": false,
+          "mirror": false,
+          "scale": 0.8,
+          "speed": 1.5,
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "effectParams": {
+            "maxRadiusVoxels": 13,
+            "debrisCount": 28
+          }
+        }
+      ]
+    },
+    "move": {
+      "duration": 1.1,
+      "loop": true,
+      "keys": [
+        {
+          "t": 0,
+          "bones": {
+            "shell": {
+              "rot": [
+                -3,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0.5,
+                0
+              ]
+            },
+            "body": {
+              "rot": [
+                3,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                -8,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.25,
+          "bones": {
+            "shell": {
+              "rot": [
+                5,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                1.5,
+                1.5
+              ]
+            },
+            "body": {
+              "rot": [
+                -4,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                18,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.55,
+          "bones": {
+            "shell": {
+              "rot": [
+                -1,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                2,
+                0.5
+              ]
+            },
+            "body": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                6,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.85,
+          "bones": {
+            "shell": {
+              "rot": [
+                -5,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                -0.6
+              ]
+            },
+            "body": {
+              "rot": [
+                4,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                -12,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        }
+      ],
+      "events": [],
+      "movementStyle": "swim"
+    },
+    "idle": {
+      "duration": 2.2,
+      "loop": true,
+      "keys": [
+        {
+          "t": 0,
+          "bones": {
+            "shell": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                -0.8,
+                0
+              ]
+            },
+            "body": {
+              "rot": [
+                2,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                4,
+                -4,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.55,
+          "bones": {
+            "shell": {
+              "rot": [
+                -2,
+                0,
+                1.5
+              ],
+              "pos": [
+                0,
+                0.4,
+                0
+              ]
+            },
+            "body": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                -4,
+                5,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 1.1,
+          "bones": {
+            "shell": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                1,
+                0
+              ]
+            },
+            "body": {
+              "rot": [
+                -2,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                6,
+                4,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 1.65,
+          "bones": {
+            "shell": {
+              "rot": [
+                2,
+                0,
+                -1.5
+              ],
+              "pos": [
+                0,
+                0.2,
+                0
+              ]
+            },
+            "body": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                -2,
+                -5,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        }
+      ],
+      "events": []
+    },
+    "knockback": {
+      "duration": 1.2,
+      "loop": false,
+      "keys": [
+        {
+          "t": 0,
+          "bones": {
+            "shell": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "body": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.25,
+          "bones": {
+            "shell": {
+              "rot": [
+                -18,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                1,
+                -3.5
+              ]
+            },
+            "body": {
+              "rot": [
+                -8,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                -25,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 0.55,
+          "bones": {
+            "shell": {
+              "rot": [
+                -8,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0.3,
+                -2
+              ]
+            },
+            "body": {
+              "rot": [
+                -3,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                10,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        {
+          "t": 1.2,
+          "bones": {
+            "shell": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "body": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            },
+            "tentacles": {
+              "rot": [
+                0,
+                0,
+                0
+              ],
+              "pos": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        }
+      ],
+      "events": []
+    }
+  },
+  "effectRoles": {
+    "main": "spiral_shot",
+    "sub": "shockwave"
+  },
+  "profile": {
+    "attackStyle": "normal",
+    "attackDurationSeconds": 1.65
+  },
+  "technique": {
+    "purpose": "damage",
+    "target": "enemy",
+    "includeSelf": false,
+    "targetSelection": "nearest",
+    "origin": "target",
+    "originBone": "shell",
+    "direction": "target",
+    "range": "close",
+    "delivery": "contact",
+    "area": "single",
+    "duration": "instant",
+    "effectTriggerSeconds": [
+      0.78
+    ],
+    "effectDurationSeconds": 0,
+    "areaParameters": {
+      "lineLength": 24,
+      "lineWidth": 4,
+      "coneDistance": 12,
+      "coneAngleDegrees": 60,
+      "circleRadius": 8
+    },
+    "activationIntervalSeconds": 1,
+    "additionalEffects": [],
+    "statusEffects": [
+      "dazed"
+    ],
+    "buffEffects": []
+  },
+  "combat": {
+    "maximumAttackRangeVoxels": 22
+  }
+}

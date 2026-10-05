@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+runs/
+BattleHost/bin/
+BattleHost/obj/
+!BattleHost/BattleHost.csproj

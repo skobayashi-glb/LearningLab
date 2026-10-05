@@ -1,0 +1,717 @@
+{
+  "version": 1,
+  "policy": "first-affordable-card-to-boss-v2-with-optional-target-first",
+  "config_hash": "5c165b244232ed3eeb387d5b86f2637a1b64082541a83c91f350e9b06a5dd2ed",
+  "candidate_count": 8,
+  "selected_train_candidate": {
+    "abyssal-sea-dragon": {
+      "power": 108,
+      "hp": 189
+    },
+    "coelacanth": {
+      "power": 30,
+      "hp": 139
+    },
+    "sea-slug": {
+      "hp": 24
+    },
+    "angelfish": {
+      "hp": 27
+    },
+    "shark": {
+      "power": 10,
+      "hp": 66
+    },
+    "ammonite": {
+      "hp": 120
+    },
+    "goblin": {
+      "power": 6,
+      "hp": 22
+    },
+    "amago": {
+      "hp": 20
+    }
+  },
+  "baseline_train_score": 10.18352312678876,
+  "selected_train_score": 10.107294134775808,
+  "passed_validation_gate": false,
+  "recommended_overrides": {
+    "amago": {
+      "hp": 22
+    },
+    "goblin": {
+      "hp": 20,
+      "power": 6
+    },
+    "ammonite": {
+      "hp": 120
+    },
+    "shark": {
+      "hp": 60,
+      "power": 12
+    },
+    "angelfish": {
+      "hp": 30
+    },
+    "sea-slug": {
+      "hp": 24
+    },
+    "coelacanth": {
+      "hp": 154,
+      "power": 30
+    },
+    "abyssal-sea-dragon": {
+      "hp": 210,
+      "power": 108
+    }
+  },
+  "applied_to_game": false,
+  "baseline_validation": {
+    "loss": 13.984798491457285,
+    "cases": [
+      {
+        "case": "amago-solo",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 2.3756834867411794,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 7.4423076923076925,
+          "win_rate": 0.6666666666666666,
+          "survival_fraction": 0.4198717948717949
+        }
+      },
+      {
+        "case": "amago-mixed",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 1.3577870370370377,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 6.6000000000000005,
+          "win_rate": 1.0,
+          "survival_fraction": 0.4666666666666666
+        }
+      },
+      {
+        "case": "goblin-solo",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 0.007804370447450575,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 9.65151515151515,
+          "win_rate": 1.0,
+          "survival_fraction": 0.6376262626262627
+        }
+      },
+      {
+        "case": "goblin-mixed",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 0.007804370447450575,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 9.5,
+          "win_rate": 1.0,
+          "survival_fraction": 0.75
+        }
+      },
+      {
+        "case": "ammonite-solo",
+        "role": "tank",
+        "reference_cost": 2,
+        "loss": 0.7623500631313135,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 8.8125,
+          "win_rate": 1.0,
+          "survival_fraction": 0.6944444444444445
+        }
+      },
+      {
+        "case": "ammonite-mixed",
+        "role": "tank",
+        "reference_cost": 2,
+        "loss": 0.0,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 3.1666666666666665,
+          "win_rate": 1.0,
+          "survival_fraction": 0.8333333333333334
+        }
+      },
+      {
+        "case": "shark-solo",
+        "role": "attacker",
+        "reference_cost": 3,
+        "loss": 0.01867466579005041,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 5.0,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "shark-mixed",
+        "role": "attacker",
+        "reference_cost": 3,
+        "loss": 0.07244695659937837,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 7.777777777777779,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "angelfish-solo",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 1.2827909724132638,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 0.15,
+          "damage_per_energy": 9.51981351981352,
+          "win_rate": 0.0,
+          "survival_fraction": 0.030303030303030304
+        }
+      },
+      {
+        "case": "angelfish-mixed",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 2.5088537768068337,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 12.32962962962963,
+          "win_rate": 0.0,
+          "survival_fraction": 0.4777777777777778
+        }
+      },
+      {
+        "case": "sea-slug-solo",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 31.49137300955259,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 0.0,
+          "damage_per_energy": 14.154320987654321,
+          "win_rate": 0.0,
+          "survival_fraction": 0.027777777777777776
+        }
+      },
+      {
+        "case": "sea-slug-mixed",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 142.6439087311668,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 28.129629629629633,
+          "win_rate": 0.3333333333333333,
+          "survival_fraction": 0.75
+        }
+      },
+      {
+        "case": "coelacanth-solo",
+        "role": "attacker",
+        "reference_cost": 6,
+        "loss": 10.771129099934921,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 11.333333333333334,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "coelacanth-mixed",
+        "role": "attacker",
+        "reference_cost": 6,
+        "loss": 28.815573544379365,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 16.0,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "abyssal-sea-dragon-solo",
+        "role": "attacker",
+        "reference_cost": 9,
+        "loss": 0.820297889434476,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 18.0,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "abyssal-sea-dragon-mixed",
+        "role": "attacker",
+        "reference_cost": 9,
+        "loss": 0.820297889434476,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 18.0,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      }
+    ]
+  },
+  "selected_validation": {
+    "loss": 13.915082139523332,
+    "cases": [
+      {
+        "case": "amago-solo",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 1.8258425925925925,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 7.016666666666667,
+          "win_rate": 0.6666666666666666,
+          "survival_fraction": 0.40277777777777773
+        }
+      },
+      {
+        "case": "amago-mixed",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 1.1577870370370364,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 6.3999999999999995,
+          "win_rate": 1.0,
+          "survival_fraction": 0.4666666666666666
+        }
+      },
+      {
+        "case": "goblin-solo",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 0.048985532374533194,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 13.36130536130536,
+          "win_rate": 1.0,
+          "survival_fraction": 0.6130536130536131
+        }
+      },
+      {
+        "case": "goblin-mixed",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 0.007804370447450575,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 9.5,
+          "win_rate": 1.0,
+          "survival_fraction": 0.75
+        }
+      },
+      {
+        "case": "ammonite-solo",
+        "role": "tank",
+        "reference_cost": 2,
+        "loss": 0.7623500631313135,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 8.8125,
+          "win_rate": 1.0,
+          "survival_fraction": 0.6944444444444445
+        }
+      },
+      {
+        "case": "ammonite-mixed",
+        "role": "tank",
+        "reference_cost": 2,
+        "loss": 0.0,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 3.1666666666666665,
+          "win_rate": 1.0,
+          "survival_fraction": 0.8333333333333334
+        }
+      },
+      {
+        "case": "shark-solo",
+        "role": "attacker",
+        "reference_cost": 3,
+        "loss": 0.01867466579005041,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 5.0,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "shark-mixed",
+        "role": "attacker",
+        "reference_cost": 3,
+        "loss": 0.01867466579005041,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 6.666666666666667,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "angelfish-solo",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 0.8004043897849477,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 0.17222222222222225,
+          "damage_per_energy": 8.17890442890443,
+          "win_rate": 0.0,
+          "survival_fraction": 0.025641025641025644
+        }
+      },
+      {
+        "case": "angelfish-mixed",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 2.638210751522746,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 12.55185185185185,
+          "win_rate": 0.0,
+          "survival_fraction": 0.41111111111111115
+        }
+      },
+      {
+        "case": "sea-slug-solo",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 31.49137300955259,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 0.0,
+          "damage_per_energy": 14.154320987654321,
+          "win_rate": 0.0,
+          "survival_fraction": 0.027777777777777776
+        }
+      },
+      {
+        "case": "sea-slug-mixed",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 142.6439087311668,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 28.129629629629633,
+          "win_rate": 0.3333333333333333,
+          "survival_fraction": 0.75
+        }
+      },
+      {
+        "case": "coelacanth-solo",
+        "role": "attacker",
+        "reference_cost": 6,
+        "loss": 10.771129099934921,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 11.333333333333334,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "coelacanth-mixed",
+        "role": "attacker",
+        "reference_cost": 6,
+        "loss": 28.815573544379365,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 16.0,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "abyssal-sea-dragon-solo",
+        "role": "attacker",
+        "reference_cost": 9,
+        "loss": 0.820297889434476,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 18.0,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "abyssal-sea-dragon-mixed",
+        "role": "attacker",
+        "reference_cost": 9,
+        "loss": 0.820297889434476,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 18.0,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      }
+    ]
+  },
+  "holdout": {
+    "loss": 7.541053709144903,
+    "cases": [
+      {
+        "case": "amago-solo",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 1.821057382212144,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 7.012698412698413,
+          "win_rate": 0.6666666666666666,
+          "survival_fraction": 0.43253968253968256
+        }
+      },
+      {
+        "case": "amago-mixed",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 12.912675925925926,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 12.033333333333333,
+          "win_rate": 0.3333333333333333,
+          "survival_fraction": 0.4444444444444445
+        }
+      },
+      {
+        "case": "goblin-solo",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 0.13110752545430915,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 14.355555555555554,
+          "win_rate": 1.0,
+          "survival_fraction": 0.3611111111111111
+        }
+      },
+      {
+        "case": "goblin-mixed",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 0.020297889434476055,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 8.0,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "ammonite-solo",
+        "role": "tank",
+        "reference_cost": 2,
+        "loss": 0.22348311648723174,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 6.422222222222222,
+          "win_rate": 0.3333333333333333,
+          "survival_fraction": 0.6296296296296297
+        }
+      },
+      {
+        "case": "ammonite-mixed",
+        "role": "tank",
+        "reference_cost": 2,
+        "loss": 0.0,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 2.5,
+          "win_rate": 1.0,
+          "survival_fraction": 0.8095238095238096
+        }
+      },
+      {
+        "case": "shark-solo",
+        "role": "attacker",
+        "reference_cost": 3,
+        "loss": 0.01867466579005041,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 5.0,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "shark-mixed",
+        "role": "attacker",
+        "reference_cost": 3,
+        "loss": 0.01867466579005041,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 6.666666666666667,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "angelfish-solo",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 0.6174153687095917,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 0.6666666666666666,
+          "damage_per_energy": 7.93058793058793,
+          "win_rate": 0.0,
+          "survival_fraction": 0.27972027972027974
+        }
+      },
+      {
+        "case": "angelfish-mixed",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 5.454949956815529,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 16.472222222222225,
+          "win_rate": 0.0,
+          "survival_fraction": 0.5833333333333334
+        }
+      },
+      {
+        "case": "sea-slug-solo",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 29.691273602416896,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 0.0,
+          "damage_per_energy": 13.795454545454545,
+          "win_rate": 0.0,
+          "survival_fraction": 0.06060606060606061
+        }
+      },
+      {
+        "case": "sea-slug-mixed",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 9.965698423550315,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 8.75925925925926,
+          "win_rate": 0.6666666666666666,
+          "survival_fraction": 0.8333333333333334
+        }
+      },
+      {
+        "case": "coelacanth-solo",
+        "role": "attacker",
+        "reference_cost": 6,
+        "loss": 45.349524161663304,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 19.055555555555554,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "coelacanth-mixed",
+        "role": "attacker",
+        "reference_cost": 6,
+        "loss": 8.904462433268252,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 10.666666666666666,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "abyssal-sea-dragon-solo",
+        "role": "attacker",
+        "reference_cost": 9,
+        "loss": 2.763782114400184,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 23.111111111111114,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      },
+      {
+        "case": "abyssal-sea-dragon-mixed",
+        "role": "attacker",
+        "reference_cost": 9,
+        "loss": 2.763782114400184,
+        "weight": 1,
+        "means": {
+          "main_hp_ratio": 1.0,
+          "damage_per_energy": 23.111111111111114,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        }
+      }
+    ]
+  },
+  "character_plan_hash": "8dcceb1839ef9b9139505905789157b48422e164e9ea6cd996f820f08a63cd28",
+  "search_code_sha256": "293d876714190fb61df9a81312d588570500dfdeabe5ca3d06387415ff1aedef",
+  "experiment_directory": "runs/identity-campaign-v2",
+  "episode_counts": {
+    "train": 384,
+    "validation": 96,
+    "holdout": 48
+  }
+}

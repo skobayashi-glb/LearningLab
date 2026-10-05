@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../Assets/Scripts/Battle/CombatDamageCalculator.cs" Link="Shared/CombatDamageCalculator.cs" />
+    <!-- Compile the actual game's deterministic geometry and reaction rules.
+         The compatibility types are numeric-only and never ship in Unity. -->
+    <Compile Include="../../Assets/Scripts/Battle/BodyBox.cs" Link="Shared/BodyBox.cs" />
+    <Compile Include="../../Assets/Scripts/Battle/AttackShape.cs" Link="Shared/AttackShape.cs" />
+    <Compile Include="../../Assets/Scripts/Battle/AttackAim.cs" Link="Shared/AttackAim.cs" />
+    <Compile Include="../../Assets/Scripts/Battle/EngagementRange.cs" Link="Shared/EngagementRange.cs" />
+    <Compile Include="../../Assets/Scripts/Battle/Status/StatusEffectId.cs" Link="Shared/StatusEffectId.cs" />
+    <Compile Include="../../Assets/Scripts/Battle/Status/StatusReactionId.cs" Link="Shared/StatusReactionId.cs" />
+    <Compile Include="../../Assets/Scripts/Battle/Status/StatusDefinition.cs" Link="Shared/StatusDefinition.cs" />
+    <Compile Include="../../Assets/Scripts/Battle/Status/StatusReactionDefinition.cs" Link="Shared/StatusReactionDefinition.cs" />
+    <Compile Include="../../Assets/Scripts/Battle/Status/StatusReactionCatalog.cs" Link="Shared/StatusReactionCatalog.cs" />
+    <Compile Include="../../Assets/Scripts/Battle/Status/UnitStatusState.cs" Link="Shared/UnitStatusState.cs" />
+    <Compile Include="../../Assets/Scripts/Battle/Status/UnitStatusReactionState.cs" Link="Shared/UnitStatusReactionState.cs" />
+    <Compile Include="../../Assets/Scripts/Battle/Status/StatusReactionResolver.cs" Link="Shared/StatusReactionResolver.cs" />
+  </ItemGroup>
+</Project>

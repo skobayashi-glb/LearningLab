@@ -1,0 +1,6553 @@
+{
+  "version": 1,
+  "status": "baseline_retained_joint_regression",
+  "supersedes": "individual-report.json",
+  "config_hash": "30d557e502c1d37a7e954af7466bf212eb3b9eb8eeaa6d64c291fc52424440f4",
+  "search_code_sha256": "eca5de5e824977500cc245283e527d54a1898e7b933e2da52870301c9ee4bd15",
+  "review_code_sha256": "73a329ddecb4fe77f7d97ec395a993ff819effdc77b6d98eafeec78e95db7c72",
+  "candidate_count": 24,
+  "episode_counts": {
+    "search": 1536,
+    "individual_validation": 128,
+    "early_candidate_holdout_not_used_for_selection": 64,
+    "joint_validation": 128,
+    "final_holdout": 64
+  },
+  "total_episodes": 1920,
+  "baseline_train_score": 8.49575224166319,
+  "selected_train_score": 8.007153236150755,
+  "passed_individual_validation": true,
+  "passed_joint_validation": false,
+  "passed_validation_gate": false,
+  "rejected_candidate": {
+    "abyssal-sea-dragon": {
+      "defense": 20,
+      "power": 124,
+      "hp": 189
+    },
+    "coelacanth": {
+      "defense": 10,
+      "power": 30,
+      "hp": 169
+    },
+    "sea-slug": {
+      "defense": 0,
+      "hp": 22
+    },
+    "angelfish": {
+      "defense": 0,
+      "hp": 30
+    },
+    "shark": {
+      "defense": 20,
+      "power": 12,
+      "hp": 60
+    },
+    "ammonite": {
+      "defense": 0,
+      "hp": 132
+    },
+    "goblin": {
+      "defense": 0,
+      "power": 6,
+      "hp": 18
+    },
+    "amago": {
+      "defense": 0,
+      "hp": 20
+    }
+  },
+  "recommended_overrides": {
+    "amago": {
+      "hp": 22,
+      "defense": 0
+    },
+    "goblin": {
+      "hp": 20,
+      "power": 6,
+      "defense": 0
+    },
+    "ammonite": {
+      "hp": 120,
+      "defense": 0
+    },
+    "shark": {
+      "hp": 60,
+      "power": 12,
+      "defense": 0
+    },
+    "angelfish": {
+      "hp": 30,
+      "defense": 0
+    },
+    "sea-slug": {
+      "hp": 24,
+      "defense": 0
+    },
+    "coelacanth": {
+      "hp": 154,
+      "power": 30,
+      "defense": 0
+    },
+    "abyssal-sea-dragon": {
+      "hp": 210,
+      "power": 108,
+      "defense": 0
+    }
+  },
+  "joint_regressions": [
+    {
+      "case": "angelfish-mixed",
+      "baseline": 3.654766867347457,
+      "selected": 4.062389117512575
+    }
+  ],
+  "joint_validation": {
+    "config_hash": "30d557e502c1d37a7e954af7466bf212eb3b9eb8eeaa6d64c291fc52424440f4",
+    "settings": {
+      "version": 1,
+      "candidate_budget": 24,
+      "search_seed": 23092302,
+      "change_weight": 0.08,
+      "seeds": {
+        "train": [
+          10101,
+          10102,
+          10103,
+          10104
+        ],
+        "validation": [
+          11101,
+          11102,
+          11103,
+          11104
+        ],
+        "holdout": [
+          12101,
+          12102,
+          12103,
+          12104
+        ]
+      },
+      "parameters": [
+        {
+          "character": "amago",
+          "field": "hp",
+          "values": [
+            20,
+            22,
+            24
+          ]
+        },
+        {
+          "character": "amago",
+          "field": "defense",
+          "values": [
+            0,
+            10,
+            20
+          ]
+        },
+        {
+          "character": "goblin",
+          "field": "hp",
+          "values": [
+            18,
+            20,
+            22
+          ]
+        },
+        {
+          "character": "goblin",
+          "field": "power",
+          "values": [
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "character": "goblin",
+          "field": "defense",
+          "values": [
+            0,
+            10,
+            20
+          ]
+        },
+        {
+          "character": "ammonite",
+          "field": "hp",
+          "values": [
+            108,
+            120,
+            132
+          ]
+        },
+        {
+          "character": "ammonite",
+          "field": "defense",
+          "values": [
+            0,
+            25,
+            50
+          ]
+        },
+        {
+          "character": "shark",
+          "field": "hp",
+          "values": [
+            54,
+            60,
+            66
+          ]
+        },
+        {
+          "character": "shark",
+          "field": "power",
+          "values": [
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "character": "shark",
+          "field": "defense",
+          "values": [
+            0,
+            10,
+            20
+          ]
+        },
+        {
+          "character": "angelfish",
+          "field": "hp",
+          "values": [
+            27,
+            30,
+            33
+          ]
+        },
+        {
+          "character": "angelfish",
+          "field": "defense",
+          "values": [
+            0,
+            10,
+            20
+          ]
+        },
+        {
+          "character": "sea-slug",
+          "field": "hp",
+          "values": [
+            22,
+            24,
+            26
+          ]
+        },
+        {
+          "character": "sea-slug",
+          "field": "defense",
+          "values": [
+            0,
+            10,
+            20
+          ]
+        },
+        {
+          "character": "coelacanth",
+          "field": "hp",
+          "values": [
+            139,
+            154,
+            169
+          ]
+        },
+        {
+          "character": "coelacanth",
+          "field": "power",
+          "values": [
+            26,
+            30,
+            34
+          ]
+        },
+        {
+          "character": "coelacanth",
+          "field": "defense",
+          "values": [
+            0,
+            10,
+            20
+          ]
+        },
+        {
+          "character": "abyssal-sea-dragon",
+          "field": "hp",
+          "values": [
+            189,
+            210,
+            231
+          ]
+        },
+        {
+          "character": "abyssal-sea-dragon",
+          "field": "power",
+          "values": [
+            92,
+            108,
+            124
+          ]
+        },
+        {
+          "character": "abyssal-sea-dragon",
+          "field": "defense",
+          "values": [
+            0,
+            10,
+            20
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "id": "amago-solo",
+          "character": "amago",
+          "role": "attacker",
+          "strength": "weak",
+          "reference_cost": 1,
+          "weight": 1,
+          "roster": [
+            "amago",
+            "amago",
+            "amago",
+            "amago",
+            "amago",
+            "amago",
+            "amago",
+            "amago"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 2,
+              "max": 4,
+              "scale": 2,
+              "weight": 3
+            },
+            "survival_fraction": {
+              "min": 0.0975,
+              "max": 0.75,
+              "scale": 0.6525,
+              "weight": 0.25
+            },
+            "main_hp_ratio": {
+              "min": 0.13,
+              "max": 0.85,
+              "scale": 0.72,
+              "weight": 0.5
+            }
+          }
+        },
+        {
+          "id": "amago-mixed",
+          "character": "amago",
+          "role": "attacker",
+          "strength": "weak",
+          "reference_cost": 1,
+          "weight": 1,
+          "roster": [
+            "amago",
+            "amago",
+            "amago",
+            "amago",
+            "shark",
+            "shark",
+            "ammonite",
+            "ammonite"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 2,
+              "max": 4,
+              "scale": 2,
+              "weight": 3
+            },
+            "survival_fraction": {
+              "min": 0.0975,
+              "max": 0.75,
+              "scale": 0.6525,
+              "weight": 0.25
+            },
+            "main_hp_ratio": {
+              "min": 0.13,
+              "max": 0.85,
+              "scale": 0.72,
+              "weight": 0.5
+            }
+          }
+        },
+        {
+          "id": "goblin-solo",
+          "character": "goblin",
+          "role": "attacker",
+          "strength": "strong",
+          "reference_cost": 1,
+          "weight": 1,
+          "roster": [
+            "goblin",
+            "goblin",
+            "goblin",
+            "goblin",
+            "goblin",
+            "goblin",
+            "goblin",
+            "goblin"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 6,
+              "max": 12,
+              "scale": 6,
+              "weight": 3
+            },
+            "survival_fraction": {
+              "min": 0.1725,
+              "max": 0.75,
+              "scale": 0.5775,
+              "weight": 0.25
+            },
+            "main_hp_ratio": {
+              "min": 0.22999999999999998,
+              "max": 0.85,
+              "scale": 0.62,
+              "weight": 0.5
+            }
+          }
+        },
+        {
+          "id": "goblin-mixed",
+          "character": "goblin",
+          "role": "attacker",
+          "strength": "strong",
+          "reference_cost": 1,
+          "weight": 1,
+          "roster": [
+            "goblin",
+            "goblin",
+            "goblin",
+            "goblin",
+            "shark",
+            "shark",
+            "ammonite",
+            "ammonite"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 6,
+              "max": 12,
+              "scale": 6,
+              "weight": 3
+            },
+            "survival_fraction": {
+              "min": 0.1725,
+              "max": 0.75,
+              "scale": 0.5775,
+              "weight": 0.25
+            },
+            "main_hp_ratio": {
+              "min": 0.22999999999999998,
+              "max": 0.85,
+              "scale": 0.62,
+              "weight": 0.5
+            }
+          }
+        },
+        {
+          "id": "ammonite-solo",
+          "character": "ammonite",
+          "role": "tank",
+          "strength": "strong",
+          "reference_cost": 2,
+          "weight": 1,
+          "roster": [
+            "ammonite",
+            "ammonite",
+            "ammonite",
+            "ammonite",
+            "ammonite",
+            "ammonite",
+            "ammonite",
+            "ammonite"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 1.7999999999999998,
+              "max": 3.5999999999999996,
+              "scale": 1.7999999999999998,
+              "weight": 0.5
+            },
+            "survival_fraction": {
+              "min": 0.5175,
+              "max": 0.9,
+              "scale": 0.38250000000000006,
+              "weight": 2
+            },
+            "main_hp_ratio": {
+              "min": 0.575,
+              "max": 1,
+              "scale": 0.42500000000000004,
+              "weight": 3
+            }
+          }
+        },
+        {
+          "id": "ammonite-mixed",
+          "character": "ammonite",
+          "role": "tank",
+          "strength": "strong",
+          "reference_cost": 2,
+          "weight": 1,
+          "roster": [
+            "ammonite",
+            "ammonite",
+            "ammonite",
+            "ammonite",
+            "shark",
+            "shark",
+            "ammonite",
+            "ammonite"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 1.7999999999999998,
+              "max": 3.5999999999999996,
+              "scale": 1.7999999999999998,
+              "weight": 0.5
+            },
+            "survival_fraction": {
+              "min": 0.5175,
+              "max": 0.9,
+              "scale": 0.38250000000000006,
+              "weight": 2
+            },
+            "main_hp_ratio": {
+              "min": 0.575,
+              "max": 1,
+              "scale": 0.42500000000000004,
+              "weight": 3
+            }
+          }
+        },
+        {
+          "id": "shark-solo",
+          "character": "shark",
+          "role": "attacker",
+          "strength": "standard",
+          "reference_cost": 3,
+          "weight": 1,
+          "roster": [
+            "shark",
+            "shark",
+            "shark",
+            "shark",
+            "shark",
+            "shark",
+            "shark",
+            "shark"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 4,
+              "max": 7,
+              "scale": 3,
+              "weight": 3
+            },
+            "survival_fraction": {
+              "min": 0.15,
+              "max": 0.75,
+              "scale": 0.6,
+              "weight": 0.25
+            },
+            "main_hp_ratio": {
+              "min": 0.2,
+              "max": 0.85,
+              "scale": 0.6499999999999999,
+              "weight": 0.5
+            }
+          }
+        },
+        {
+          "id": "shark-mixed",
+          "character": "shark",
+          "role": "attacker",
+          "strength": "standard",
+          "reference_cost": 3,
+          "weight": 1,
+          "roster": [
+            "shark",
+            "shark",
+            "shark",
+            "shark",
+            "shark",
+            "shark",
+            "ammonite",
+            "ammonite"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 4,
+              "max": 7,
+              "scale": 3,
+              "weight": 3
+            },
+            "survival_fraction": {
+              "min": 0.15,
+              "max": 0.75,
+              "scale": 0.6,
+              "weight": 0.25
+            },
+            "main_hp_ratio": {
+              "min": 0.2,
+              "max": 0.85,
+              "scale": 0.6499999999999999,
+              "weight": 0.5
+            }
+          }
+        },
+        {
+          "id": "angelfish-solo",
+          "character": "angelfish",
+          "role": "status",
+          "strength": "conditional",
+          "reference_cost": 3,
+          "weight": 1,
+          "roster": [
+            "angelfish",
+            "angelfish",
+            "angelfish",
+            "angelfish",
+            "angelfish",
+            "angelfish",
+            "angelfish",
+            "angelfish"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 1.35,
+              "max": 3.6,
+              "scale": 2.25,
+              "weight": 0.5
+            },
+            "survival_fraction": {
+              "min": 0.2,
+              "max": 0.8,
+              "scale": 0.6000000000000001,
+              "weight": 0.5
+            },
+            "main_hp_ratio": {
+              "min": 0.4,
+              "max": 1,
+              "scale": 0.6,
+              "weight": 2
+            }
+          }
+        },
+        {
+          "id": "angelfish-mixed",
+          "character": "angelfish",
+          "role": "status",
+          "strength": "conditional",
+          "reference_cost": 3,
+          "weight": 1,
+          "roster": [
+            "angelfish",
+            "angelfish",
+            "angelfish",
+            "angelfish",
+            "shark",
+            "shark",
+            "ammonite",
+            "ammonite"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 1.35,
+              "max": 3.6,
+              "scale": 2.25,
+              "weight": 0.5
+            },
+            "survival_fraction": {
+              "min": 0.2,
+              "max": 0.8,
+              "scale": 0.6000000000000001,
+              "weight": 0.5
+            },
+            "main_hp_ratio": {
+              "min": 0.4,
+              "max": 1,
+              "scale": 0.6,
+              "weight": 2
+            }
+          }
+        },
+        {
+          "id": "sea-slug-solo",
+          "character": "sea-slug",
+          "role": "status",
+          "strength": "weak",
+          "reference_cost": 3,
+          "weight": 1,
+          "roster": [
+            "sea-slug",
+            "sea-slug",
+            "sea-slug",
+            "sea-slug",
+            "sea-slug",
+            "sea-slug",
+            "sea-slug",
+            "sea-slug"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 0.9,
+              "max": 1.8,
+              "scale": 0.9,
+              "weight": 0.5
+            },
+            "survival_fraction": {
+              "min": 0.13,
+              "max": 0.8,
+              "scale": 0.67,
+              "weight": 0.5
+            },
+            "main_hp_ratio": {
+              "min": 0.26,
+              "max": 1,
+              "scale": 0.74,
+              "weight": 2
+            }
+          }
+        },
+        {
+          "id": "sea-slug-mixed",
+          "character": "sea-slug",
+          "role": "status",
+          "strength": "weak",
+          "reference_cost": 3,
+          "weight": 1,
+          "roster": [
+            "sea-slug",
+            "sea-slug",
+            "sea-slug",
+            "sea-slug",
+            "shark",
+            "shark",
+            "ammonite",
+            "ammonite"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 0.9,
+              "max": 1.8,
+              "scale": 0.9,
+              "weight": 0.5
+            },
+            "survival_fraction": {
+              "min": 0.13,
+              "max": 0.8,
+              "scale": 0.67,
+              "weight": 0.5
+            },
+            "main_hp_ratio": {
+              "min": 0.26,
+              "max": 1,
+              "scale": 0.74,
+              "weight": 2
+            }
+          }
+        },
+        {
+          "id": "coelacanth-solo",
+          "character": "coelacanth",
+          "role": "attacker",
+          "strength": "weak",
+          "reference_cost": 6,
+          "weight": 1,
+          "roster": [
+            "coelacanth",
+            "coelacanth",
+            "coelacanth",
+            "coelacanth",
+            "coelacanth",
+            "coelacanth",
+            "coelacanth",
+            "coelacanth"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 2,
+              "max": 4,
+              "scale": 2,
+              "weight": 3
+            },
+            "survival_fraction": {
+              "min": 0.0975,
+              "max": 0.75,
+              "scale": 0.6525,
+              "weight": 0.25
+            },
+            "main_hp_ratio": {
+              "min": 0.13,
+              "max": 0.85,
+              "scale": 0.72,
+              "weight": 0.5
+            }
+          }
+        },
+        {
+          "id": "coelacanth-mixed",
+          "character": "coelacanth",
+          "role": "attacker",
+          "strength": "weak",
+          "reference_cost": 6,
+          "weight": 1,
+          "roster": [
+            "coelacanth",
+            "coelacanth",
+            "coelacanth",
+            "coelacanth",
+            "shark",
+            "shark",
+            "ammonite",
+            "ammonite"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 2,
+              "max": 4,
+              "scale": 2,
+              "weight": 3
+            },
+            "survival_fraction": {
+              "min": 0.0975,
+              "max": 0.75,
+              "scale": 0.6525,
+              "weight": 0.25
+            },
+            "main_hp_ratio": {
+              "min": 0.13,
+              "max": 0.85,
+              "scale": 0.72,
+              "weight": 0.5
+            }
+          }
+        },
+        {
+          "id": "abyssal-sea-dragon-solo",
+          "character": "abyssal-sea-dragon",
+          "role": "attacker",
+          "strength": "strong",
+          "reference_cost": 9,
+          "weight": 1,
+          "roster": [
+            "abyssal-sea-dragon",
+            "abyssal-sea-dragon",
+            "abyssal-sea-dragon",
+            "abyssal-sea-dragon",
+            "abyssal-sea-dragon",
+            "abyssal-sea-dragon",
+            "abyssal-sea-dragon",
+            "abyssal-sea-dragon"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 6,
+              "max": 12,
+              "scale": 6,
+              "weight": 3
+            },
+            "survival_fraction": {
+              "min": 0.1725,
+              "max": 0.75,
+              "scale": 0.5775,
+              "weight": 0.25
+            },
+            "main_hp_ratio": {
+              "min": 0.22999999999999998,
+              "max": 0.85,
+              "scale": 0.62,
+              "weight": 0.5
+            }
+          }
+        },
+        {
+          "id": "abyssal-sea-dragon-mixed",
+          "character": "abyssal-sea-dragon",
+          "role": "attacker",
+          "strength": "strong",
+          "reference_cost": 9,
+          "weight": 1,
+          "roster": [
+            "abyssal-sea-dragon",
+            "abyssal-sea-dragon",
+            "abyssal-sea-dragon",
+            "abyssal-sea-dragon",
+            "shark",
+            "shark",
+            "ammonite",
+            "ammonite"
+          ],
+          "freeze_others": false,
+          "target_first": true,
+          "targets": {
+            "damage_per_energy": {
+              "min": 6,
+              "max": 12,
+              "scale": 6,
+              "weight": 3
+            },
+            "survival_fraction": {
+              "min": 0.1725,
+              "max": 0.75,
+              "scale": 0.5775,
+              "weight": 0.25
+            },
+            "main_hp_ratio": {
+              "min": 0.22999999999999998,
+              "max": 0.85,
+              "scale": 0.62,
+              "weight": 0.5
+            }
+          }
+        }
+      ],
+      "character_plan_hash": "d18bae218e0467bdcc2c93837e82e6736888732cb5ed9f17076037fc73a19cf6",
+      "strength_assignments": {
+        "version": 1,
+        "assignments": {
+          "abyssal-sea-dragon": "strong",
+          "amago": "weak",
+          "ammonite": "strong",
+          "anchovy": "weak",
+          "angel-shark": "conditional",
+          "angelfish": "conditional",
+          "arowana": "strong",
+          "atlantic-tarpon": "strong",
+          "basking-shark": "weak",
+          "bigfin-reef-squid": "conditional",
+          "blacktip-reef-shark": "strong",
+          "blue-shark": "conditional",
+          "blue-surgeonfish": "strong",
+          "blue-whale": "standard",
+          "bluefin-tuna": "conditional",
+          "bonito": "strong",
+          "bowmouth-guitarfish": "conditional",
+          "bull-shark": "strong",
+          "cameroceras": "conditional",
+          "catfish": "weak",
+          "clione": "conditional",
+          "coconut-octopus": "strong",
+          "coelacanth": "weak",
+          "cownose-ray": "standard",
+          "crocodile": "strong",
+          "dolphin": "strong",
+          "dugong": "standard",
+          "electric-ray": "conditional",
+          "flounder": "weak",
+          "goblin": "strong",
+          "lionfish": "standard",
+          "rockfish": "standard",
+          "sea-slug": "weak",
+          "sea-urchin": "weak",
+          "seahorse": "weak",
+          "shark": "standard",
+          "skeleton_pirate": "standard",
+          "stonefish": "strong",
+          "sunfish": "conditional",
+          "viperfish": "weak",
+          "wahoo": "strong",
+          "whale-shark": "strong"
+        }
+      }
+    },
+    "baseline_validation": {
+      "split": "validation",
+      "loss": 11.143220992191567,
+      "cases": [
+        {
+          "case": "amago-solo",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 1.3190682870370372,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 6.5625,
+            "survival_fraction": 0.4375,
+            "win_rate": 0.75,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 20,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.75,
+                "survival_fraction": 0.25
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 20,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 3.0,
+                "survival_fraction": 0.25
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.25,
+                "survival_fraction": 0.625
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.25,
+                "survival_fraction": 0.625
+              }
+            }
+          ]
+        },
+        {
+          "case": "amago-mixed",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 4.759523693745932,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 8.875,
+            "survival_fraction": 0.8125,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 7.5,
+                "survival_fraction": 0.25
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 18.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "goblin-solo",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 0.007804370447450575,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 9.738636363636363,
+            "survival_fraction": 0.6865530303030304,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 7.5,
+                "survival_fraction": 0.625
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 11,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.454545454545455,
+                "survival_fraction": 0.45454545454545453
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 0.8333333333333334
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 0.8333333333333334
+              }
+            }
+          ]
+        },
+        {
+          "case": "goblin-mixed",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 0.020297889434476055,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 6.75,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 9.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "ammonite-solo",
+          "role": "tank",
+          "reference_cost": 2,
+          "loss": 1.6145640074211511,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 11.185714285714287,
+            "survival_fraction": 0.8869047619047619,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 7,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.142857142857142,
+                "survival_fraction": 0.7142857142857143
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 0.8333333333333334
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.8,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 13.8,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "ammonite-mixed",
+          "role": "tank",
+          "reference_cost": 2,
+          "loss": 0.0745802388128206,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 0.46875,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 1.875,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "shark-solo",
+          "role": "attacker",
+          "reference_cost": 3,
+          "loss": 0.01867466579005041,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 5.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "shark-mixed",
+          "role": "attacker",
+          "reference_cost": 3,
+          "loss": 0.17669935714807525,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 8.333333333333334,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.666666666666667,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.666666666666667,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "angelfish-solo",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 4.184124265296672,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.873543123543122,
+            "survival_fraction": 0.2867132867132867,
+            "win_rate": 0.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 13,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.897435897435898,
+                "survival_fraction": 0.23076923076923078
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 13,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 9.897435897435898,
+                "survival_fraction": 0.23076923076923078
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 11,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 21.21212121212121,
+                "survival_fraction": 0.45454545454545453
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 13,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 17.487179487179485,
+                "survival_fraction": 0.23076923076923078
+              }
+            }
+          ]
+        },
+        {
+          "case": "angelfish-mixed",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 3.654766867347457,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.136111111111111,
+            "survival_fraction": 0.8166666666666667,
+            "win_rate": 0.25,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.666666666666666,
+                "survival_fraction": 0.6666666666666666
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.933333333333334,
+                "survival_fraction": 0.6
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 33.44444444444444,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 2.5,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "sea-slug-solo",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 57.19415339504409,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 18.47222222222222,
+            "survival_fraction": 0.1527777777777778,
+            "win_rate": 0.0,
+            "main_hp_ratio": 0.25
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "defeat",
+              "deployed": 9,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 0.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 0.1111111111111111
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "defeat",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 0.0,
+                "damage_per_energy": 8.166666666666666,
+                "survival_fraction": 0.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 12,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 28.77777777777778,
+                "survival_fraction": 0.4166666666666667
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "defeat",
+              "deployed": 12,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 0.0,
+                "damage_per_energy": 20.944444444444443,
+                "survival_fraction": 0.08333333333333333
+              }
+            }
+          ]
+        },
+        {
+          "case": "sea-slug-mixed",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 90.7052581921344,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 22.795833333333334,
+            "survival_fraction": 0.8375,
+            "win_rate": 0.5,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.3333333333333333,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 41.6,
+                "survival_fraction": 0.6
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.3333333333333333,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 48.916666666666664,
+                "survival_fraction": 0.75
+              }
+            }
+          ]
+        },
+        {
+          "case": "coelacanth-solo",
+          "role": "attacker",
+          "reference_cost": 6,
+          "loss": 9.815573544379363,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 11.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 9.5,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.5,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "coelacanth-mixed",
+          "role": "attacker",
+          "reference_cost": 6,
+          "loss": 4.528073544379365,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 8.75,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 23.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "abyssal-sea-dragon-solo",
+          "role": "attacker",
+          "reference_cost": 9,
+          "loss": 0.10918677832336494,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "abyssal-sea-dragon-mixed",
+          "role": "attacker",
+          "reference_cost": 9,
+          "loss": 0.10918677832336494,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "selected_validation": {
+      "split": "validation",
+      "loss": 10.092420351829547,
+      "cases": [
+        {
+          "case": "amago-solo",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 1.1044198495370372,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 6.34375,
+            "survival_fraction": 0.42708333333333337,
+            "win_rate": 0.75,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 24,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.875,
+                "survival_fraction": 0.20833333333333334
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 20,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 3.0,
+                "survival_fraction": 0.25
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.25,
+                "survival_fraction": 0.625
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.25,
+                "survival_fraction": 0.625
+              }
+            }
+          ]
+        },
+        {
+          "case": "amago-mixed",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 4.759523693745932,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 8.875,
+            "survival_fraction": 0.8125,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 7.5,
+                "survival_fraction": 0.25
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 18.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "goblin-solo",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 0.007804370447450575,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 9.738636363636363,
+            "survival_fraction": 0.6865530303030304,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 7.5,
+                "survival_fraction": 0.625
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 11,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.454545454545455,
+                "survival_fraction": 0.45454545454545453
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 0.8333333333333334
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 0.8333333333333334
+              }
+            }
+          ]
+        },
+        {
+          "case": "goblin-mixed",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 0.020297889434476055,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 6.75,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 9.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "ammonite-solo",
+          "role": "tank",
+          "reference_cost": 2,
+          "loss": 1.6145640074211511,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 11.185714285714287,
+            "survival_fraction": 0.8869047619047619,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 7,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.142857142857142,
+                "survival_fraction": 0.7142857142857143
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 0.8333333333333334
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.8,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 13.8,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "ammonite-mixed",
+          "role": "tank",
+          "reference_cost": 2,
+          "loss": 0.0745802388128206,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 0.46875,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 1.875,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "shark-solo",
+          "role": "attacker",
+          "reference_cost": 3,
+          "loss": 0.01867466579005041,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 5.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "shark-mixed",
+          "role": "attacker",
+          "reference_cost": 3,
+          "loss": 0.17669935714807525,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 8.333333333333334,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.666666666666667,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.666666666666667,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "angelfish-solo",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 4.184124265296672,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.873543123543122,
+            "survival_fraction": 0.2867132867132867,
+            "win_rate": 0.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 13,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.897435897435898,
+                "survival_fraction": 0.23076923076923078
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 13,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 9.897435897435898,
+                "survival_fraction": 0.23076923076923078
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 11,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 21.21212121212121,
+                "survival_fraction": 0.45454545454545453
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 13,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 17.487179487179485,
+                "survival_fraction": 0.23076923076923078
+              }
+            }
+          ]
+        },
+        {
+          "case": "angelfish-mixed",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 4.062389117512575,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.708333333333334,
+            "survival_fraction": 0.8,
+            "win_rate": 0.25,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 9.133333333333333,
+                "survival_fraction": 0.6
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.866666666666667,
+                "survival_fraction": 0.6
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 35.333333333333336,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 2.5,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "sea-slug-solo",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 46.34121433209622,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 16.807255244755247,
+            "survival_fraction": 0.15013111888111888,
+            "win_rate": 0.0,
+            "main_hp_ratio": 0.25
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "defeat",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 0.0,
+                "damage_per_energy": 14.083333333333334,
+                "survival_fraction": 0.125
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "defeat",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 0.0,
+                "damage_per_energy": 8.166666666666666,
+                "survival_fraction": 0.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 13,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 25.28205128205128,
+                "survival_fraction": 0.38461538461538464
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "defeat",
+              "deployed": 11,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 0.0,
+                "damage_per_energy": 19.696969696969695,
+                "survival_fraction": 0.09090909090909091
+              }
+            }
+          ]
+        },
+        {
+          "case": "sea-slug-mixed",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 84.55241319662485,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 22.070833333333333,
+            "survival_fraction": 0.9,
+            "win_rate": 0.5,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.3333333333333333,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 40.53333333333333,
+                "survival_fraction": 0.6
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.3333333333333333,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 47.083333333333336,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "coelacanth-solo",
+          "role": "attacker",
+          "reference_cost": 6,
+          "loss": 9.815573544379363,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 11.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 9.5,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.5,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "coelacanth-mixed",
+          "role": "attacker",
+          "reference_cost": 6,
+          "loss": 4.528073544379365,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 8.75,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 23.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "abyssal-sea-dragon-solo",
+          "role": "attacker",
+          "reference_cost": 9,
+          "loss": 0.10918677832336494,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "abyssal-sea-dragon-mixed",
+          "role": "attacker",
+          "reference_cost": 9,
+          "loss": 0.10918677832336494,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "regressions": [
+      {
+        "case": "angelfish-mixed",
+        "baseline": 3.654766867347457,
+        "selected": 4.062389117512575
+      }
+    ],
+    "passed": false
+  },
+  "individual_validation": {
+    "baseline": {
+      "split": "validation",
+      "loss": 11.143220992191567,
+      "cases": [
+        {
+          "case": "amago-solo",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 1.3190682870370372,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 6.5625,
+            "survival_fraction": 0.4375,
+            "win_rate": 0.75,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 20,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.75,
+                "survival_fraction": 0.25
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 20,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 3.0,
+                "survival_fraction": 0.25
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.25,
+                "survival_fraction": 0.625
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.25,
+                "survival_fraction": 0.625
+              }
+            }
+          ]
+        },
+        {
+          "case": "amago-mixed",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 4.759523693745932,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 8.875,
+            "survival_fraction": 0.8125,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 7.5,
+                "survival_fraction": 0.25
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 18.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "goblin-solo",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 0.007804370447450575,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 9.738636363636363,
+            "survival_fraction": 0.6865530303030304,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 7.5,
+                "survival_fraction": 0.625
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 11,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.454545454545455,
+                "survival_fraction": 0.45454545454545453
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 0.8333333333333334
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 0.8333333333333334
+              }
+            }
+          ]
+        },
+        {
+          "case": "goblin-mixed",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 0.020297889434476055,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 6.75,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 9.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "ammonite-solo",
+          "role": "tank",
+          "reference_cost": 2,
+          "loss": 1.6145640074211511,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 11.185714285714287,
+            "survival_fraction": 0.8869047619047619,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 7,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.142857142857142,
+                "survival_fraction": 0.7142857142857143
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 0.8333333333333334
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.8,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 13.8,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "ammonite-mixed",
+          "role": "tank",
+          "reference_cost": 2,
+          "loss": 0.0745802388128206,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 0.46875,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 1.875,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "shark-solo",
+          "role": "attacker",
+          "reference_cost": 3,
+          "loss": 0.01867466579005041,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 5.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "shark-mixed",
+          "role": "attacker",
+          "reference_cost": 3,
+          "loss": 0.17669935714807525,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 8.333333333333334,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.666666666666667,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.666666666666667,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "angelfish-solo",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 4.184124265296672,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.873543123543122,
+            "survival_fraction": 0.2867132867132867,
+            "win_rate": 0.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 13,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.897435897435898,
+                "survival_fraction": 0.23076923076923078
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 13,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 9.897435897435898,
+                "survival_fraction": 0.23076923076923078
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 11,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 21.21212121212121,
+                "survival_fraction": 0.45454545454545453
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 13,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 17.487179487179485,
+                "survival_fraction": 0.23076923076923078
+              }
+            }
+          ]
+        },
+        {
+          "case": "angelfish-mixed",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 3.654766867347457,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.136111111111111,
+            "survival_fraction": 0.8166666666666667,
+            "win_rate": 0.25,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.666666666666666,
+                "survival_fraction": 0.6666666666666666
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.933333333333334,
+                "survival_fraction": 0.6
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 33.44444444444444,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 2.5,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "sea-slug-solo",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 57.19415339504409,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 18.47222222222222,
+            "survival_fraction": 0.1527777777777778,
+            "win_rate": 0.0,
+            "main_hp_ratio": 0.25
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "defeat",
+              "deployed": 9,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 0.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 0.1111111111111111
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "defeat",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 0.0,
+                "damage_per_energy": 8.166666666666666,
+                "survival_fraction": 0.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 12,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 28.77777777777778,
+                "survival_fraction": 0.4166666666666667
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "defeat",
+              "deployed": 12,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 0.0,
+                "damage_per_energy": 20.944444444444443,
+                "survival_fraction": 0.08333333333333333
+              }
+            }
+          ]
+        },
+        {
+          "case": "sea-slug-mixed",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 90.7052581921344,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 22.795833333333334,
+            "survival_fraction": 0.8375,
+            "win_rate": 0.5,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.3333333333333333,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 41.6,
+                "survival_fraction": 0.6
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.3333333333333333,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 48.916666666666664,
+                "survival_fraction": 0.75
+              }
+            }
+          ]
+        },
+        {
+          "case": "coelacanth-solo",
+          "role": "attacker",
+          "reference_cost": 6,
+          "loss": 9.815573544379363,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 11.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 9.5,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.5,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "coelacanth-mixed",
+          "role": "attacker",
+          "reference_cost": 6,
+          "loss": 4.528073544379365,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 8.75,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 23.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "abyssal-sea-dragon-solo",
+          "role": "attacker",
+          "reference_cost": 9,
+          "loss": 0.10918677832336494,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "abyssal-sea-dragon-mixed",
+          "role": "attacker",
+          "reference_cost": 9,
+          "loss": 0.10918677832336494,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "selected": {
+      "split": "validation",
+      "loss": 10.264066432192722,
+      "cases": [
+        {
+          "case": "amago-solo",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 1.1044198495370372,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 6.34375,
+            "survival_fraction": 0.42708333333333337,
+            "win_rate": 0.75,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 24,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.875,
+                "survival_fraction": 0.20833333333333334
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 20,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 3.0,
+                "survival_fraction": 0.25
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.25,
+                "survival_fraction": 0.625
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.25,
+                "survival_fraction": 0.625
+              }
+            }
+          ]
+        },
+        {
+          "case": "amago-mixed",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 4.759523693745932,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 8.875,
+            "survival_fraction": 0.8125,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 7.5,
+                "survival_fraction": 0.25
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 18.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "goblin-solo",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 0.007804370447450575,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 9.738636363636363,
+            "survival_fraction": 0.6865530303030304,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 7.5,
+                "survival_fraction": 0.625
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 11,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.454545454545455,
+                "survival_fraction": 0.45454545454545453
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 0.8333333333333334
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 0.8333333333333334
+              }
+            }
+          ]
+        },
+        {
+          "case": "goblin-mixed",
+          "role": "attacker",
+          "reference_cost": 1,
+          "loss": 0.020297889434476055,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 6.75,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 9.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "ammonite-solo",
+          "role": "tank",
+          "reference_cost": 2,
+          "loss": 1.6145640074211511,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 11.185714285714287,
+            "survival_fraction": 0.8869047619047619,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 7,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.142857142857142,
+                "survival_fraction": 0.7142857142857143
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 0.8333333333333334
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.8,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 13.8,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "ammonite-mixed",
+          "role": "tank",
+          "reference_cost": 2,
+          "loss": 0.0745802388128206,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 0.46875,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 1.875,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "shark-solo",
+          "role": "attacker",
+          "reference_cost": 3,
+          "loss": 0.01867466579005041,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 5.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 5.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "shark-mixed",
+          "role": "attacker",
+          "reference_cost": 3,
+          "loss": 0.17669935714807525,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 8.333333333333334,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.666666666666667,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 6.666666666666667,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "angelfish-solo",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 4.184124265296672,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.873543123543122,
+            "survival_fraction": 0.2867132867132867,
+            "win_rate": 0.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 13,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 10.897435897435898,
+                "survival_fraction": 0.23076923076923078
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 13,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 9.897435897435898,
+                "survival_fraction": 0.23076923076923078
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 11,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 21.21212121212121,
+                "survival_fraction": 0.45454545454545453
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 13,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 17.487179487179485,
+                "survival_fraction": 0.23076923076923078
+              }
+            }
+          ]
+        },
+        {
+          "case": "angelfish-mixed",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 3.654766867347457,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.136111111111111,
+            "survival_fraction": 0.8166666666666667,
+            "win_rate": 0.25,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 6,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 8.666666666666666,
+                "survival_fraction": 0.6666666666666666
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.933333333333334,
+                "survival_fraction": 0.6
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 3,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 33.44444444444444,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 2.5,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "sea-slug-solo",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 46.34121433209622,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 16.807255244755247,
+            "survival_fraction": 0.15013111888111888,
+            "win_rate": 0.0,
+            "main_hp_ratio": 0.25
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "defeat",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 0.0,
+                "damage_per_energy": 14.083333333333334,
+                "survival_fraction": 0.125
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "defeat",
+              "deployed": 8,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 0.0,
+                "damage_per_energy": 8.166666666666666,
+                "survival_fraction": 0.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 13,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 25.28205128205128,
+                "survival_fraction": 0.38461538461538464
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "defeat",
+              "deployed": 11,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 0.0,
+                "damage_per_energy": 19.696969696969695,
+                "survival_fraction": 0.09090909090909091
+              }
+            }
+          ]
+        },
+        {
+          "case": "sea-slug-mixed",
+          "role": "status",
+          "reference_cost": 3,
+          "loss": 87.70637273260077,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 22.445833333333333,
+            "survival_fraction": 0.8375,
+            "win_rate": 0.5,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.3333333333333333,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 5,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 40.2,
+                "survival_fraction": 0.6
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 0.3333333333333333,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "timeout",
+              "deployed": 4,
+              "metrics": {
+                "win_rate": 0.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 48.916666666666664,
+                "survival_fraction": 0.75
+              }
+            }
+          ]
+        },
+        {
+          "case": "coelacanth-solo",
+          "role": "attacker",
+          "reference_cost": 6,
+          "loss": 9.815573544379363,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 11.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 9.5,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 2,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 11.5,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "coelacanth-mixed",
+          "role": "attacker",
+          "reference_cost": 6,
+          "loss": 4.528073544379365,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 8.75,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 4.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 23.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "abyssal-sea-dragon-solo",
+          "role": "attacker",
+          "reference_cost": 9,
+          "loss": 0.10918677832336494,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "case": "abyssal-sea-dragon-mixed",
+          "role": "attacker",
+          "reference_cost": 9,
+          "loss": 0.10918677832336494,
+          "weight": 1,
+          "means": {
+            "damage_per_energy": 14.0,
+            "survival_fraction": 1.0,
+            "win_rate": 1.0,
+            "main_hp_ratio": 1.0
+          },
+          "episodes": [
+            {
+              "scenario": "chokepoint",
+              "seed": 11101,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11102,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 16.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11103,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            },
+            {
+              "scenario": "chokepoint",
+              "seed": 11104,
+              "weight": 1,
+              "outcome": "victory",
+              "deployed": 1,
+              "metrics": {
+                "win_rate": 1.0,
+                "main_hp_ratio": 1.0,
+                "damage_per_energy": 12.0,
+                "survival_fraction": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "holdout": {
+    "split": "holdout",
+    "loss": 3.546470938847059,
+    "cases": [
+      {
+        "case": "amago-solo",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 5.012189913835241,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 9.0,
+          "main_hp_ratio": 0.03333333333333333,
+          "win_rate": 0.5,
+          "survival_fraction": 1.0
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 5,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 5.4,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 5,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 0.06666666666666667,
+              "damage_per_energy": 12.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 5,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 6.6,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 5,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 0.06666666666666667,
+              "damage_per_energy": 12.0,
+              "survival_fraction": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "case": "amago-mixed",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 12.016849558818812,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 11.75,
+          "main_hp_ratio": 0.7333333333333334,
+          "win_rate": 0.75,
+          "survival_fraction": 0.9166666666666666
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 6.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 3,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 0.9333333333333333,
+              "damage_per_energy": 20.0,
+              "survival_fraction": 0.6666666666666666
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 3,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 15.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 6.0,
+              "survival_fraction": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "case": "goblin-solo",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 0.012493518987025479,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 11.7,
+          "main_hp_ratio": 0.5375000000000001,
+          "win_rate": 0.75,
+          "survival_fraction": 1.0
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 5,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 10.8,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 5,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 0.8,
+              "damage_per_energy": 12.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 5,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 0.55,
+              "damage_per_energy": 12.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 5,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 0.8,
+              "damage_per_energy": 12.0,
+              "survival_fraction": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "case": "goblin-mixed",
+        "role": "attacker",
+        "reference_cost": 1,
+        "loss": 0.020297889434476055,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 8.75,
+          "main_hp_ratio": 1.0,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 6.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 3,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 8.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 18.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 3.0,
+              "survival_fraction": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "case": "ammonite-solo",
+        "role": "tank",
+        "reference_cost": 2,
+        "loss": 0.5974083235988004,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 8.214285714285715,
+          "main_hp_ratio": 0.6,
+          "win_rate": 0.75,
+          "survival_fraction": 0.7738095238095238
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 7,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 0.4,
+              "damage_per_energy": 7.714285714285714,
+              "survival_fraction": 0.7142857142857143
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 6,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 10.0,
+              "survival_fraction": 0.8333333333333334
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 7,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 5.142857142857143,
+              "survival_fraction": 0.7142857142857143
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 6,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 10.0,
+              "survival_fraction": 0.8333333333333334
+            }
+          }
+        ]
+      },
+      {
+        "case": "ammonite-mixed",
+        "role": "tank",
+        "reference_cost": 2,
+        "loss": 0.000690401818173183,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 2.625,
+          "main_hp_ratio": 0.75,
+          "win_rate": 0.75,
+          "survival_fraction": 0.9166666666666666
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 4,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 3.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 4,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 1.5,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 6,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 6.0,
+              "survival_fraction": 0.6666666666666666
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 3,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 0.0,
+              "survival_fraction": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "case": "shark-solo",
+        "role": "attacker",
+        "reference_cost": 3,
+        "loss": 0.01867466579005041,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 5.0,
+          "main_hp_ratio": 1.0,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 4,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 5.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 4,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 5.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 4,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 5.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 4,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 5.0,
+              "survival_fraction": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "case": "shark-mixed",
+        "role": "attacker",
+        "reference_cost": 3,
+        "loss": 0.17669935714807525,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 8.333333333333334,
+          "main_hp_ratio": 1.0,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 10.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 3,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 6.666666666666667,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 3,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 6.666666666666667,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 10.0,
+              "survival_fraction": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "case": "angelfish-solo",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 0.3148148148148148,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 2.55,
+          "main_hp_ratio": 0.0,
+          "win_rate": 0.0,
+          "survival_fraction": 1.0
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 5,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 0.8,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 5,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 4.066666666666666,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 5,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 1.7333333333333334,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 5,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 3.6,
+              "survival_fraction": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "case": "angelfish-mixed",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 0.04771147690900771,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 4.541666666666666,
+          "main_hp_ratio": 0.41250000000000003,
+          "win_rate": 0.75,
+          "survival_fraction": 1.0
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 1.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 0.4666666666666667,
+              "damage_per_energy": 3.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 3,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 3.6666666666666665,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 0.18333333333333332,
+              "damage_per_energy": 10.5,
+              "survival_fraction": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "case": "sea-slug-solo",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 6.45656650420078,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 7.365873015873016,
+          "main_hp_ratio": 0.0,
+          "win_rate": 0.0,
+          "survival_fraction": 0.7952380952380953
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 5,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 6.4,
+              "survival_fraction": 0.8
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 7,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 5.619047619047619,
+              "survival_fraction": 0.7142857142857143
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 6,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 6.666666666666667,
+              "survival_fraction": 0.8333333333333334
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 6,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 10.777777777777779,
+              "survival_fraction": 0.8333333333333334
+            }
+          }
+        ]
+      },
+      {
+        "case": "sea-slug-mixed",
+        "role": "status",
+        "reference_cost": 3,
+        "loss": 21.20890049569949,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 11.951388888888891,
+          "main_hp_ratio": 0.5,
+          "win_rate": 0.5,
+          "survival_fraction": 0.9166666666666666
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 4,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 15.583333333333334,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 1.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 3,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 27.88888888888889,
+              "survival_fraction": 0.6666666666666666
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 1,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 3.3333333333333335,
+              "survival_fraction": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "case": "coelacanth-solo",
+        "role": "attacker",
+        "reference_cost": 6,
+        "loss": 2.8255417156756604,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 7.75,
+          "main_hp_ratio": 0.9625,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 11.5,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 5.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 0.85,
+              "damage_per_energy": 9.5,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 2,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 5.0,
+              "survival_fraction": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "case": "coelacanth-mixed",
+        "role": "attacker",
+        "reference_cost": 6,
+        "loss": 6.2502957666015835,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 9.583333333333332,
+          "main_hp_ratio": 1.0,
+          "win_rate": 1.0,
+          "survival_fraction": 1.0
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 1,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 24.333333333333332,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 1,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 2.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 1,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 10.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 1,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 1.0,
+              "damage_per_energy": 2.0,
+              "survival_fraction": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "case": "abyssal-sea-dragon-solo",
+        "role": "attacker",
+        "reference_cost": 9,
+        "loss": 0.9038515436783833,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 18.333333333333332,
+          "main_hp_ratio": 0.4166666666666667,
+          "win_rate": 0.5,
+          "survival_fraction": 1.0
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 1,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 21.333333333333332,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 1,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 0.8666666666666667,
+              "damage_per_energy": 24.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 1,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 0.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 1,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 0.8,
+              "damage_per_energy": 28.0,
+              "survival_fraction": 1.0
+            }
+          }
+        ]
+      },
+      {
+        "case": "abyssal-sea-dragon-mixed",
+        "role": "attacker",
+        "reference_cost": 9,
+        "loss": 0.8805490745425811,
+        "weight": 1,
+        "means": {
+          "damage_per_energy": 18.25,
+          "main_hp_ratio": 0.4166666666666667,
+          "win_rate": 0.5,
+          "survival_fraction": 1.0
+        },
+        "episodes": [
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12101,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 1,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 21.333333333333332,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12102,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 1,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 0.8666666666666667,
+              "damage_per_energy": 24.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12103,
+            "weight": 1,
+            "outcome": "defeat",
+            "deployed": 1,
+            "metrics": {
+              "win_rate": 0.0,
+              "main_hp_ratio": 0.0,
+              "damage_per_energy": 0.0,
+              "survival_fraction": 1.0
+            }
+          },
+          {
+            "scenario": "defense-holdout-20260923",
+            "seed": 12104,
+            "weight": 1,
+            "outcome": "victory",
+            "deployed": 1,
+            "metrics": {
+              "win_rate": 1.0,
+              "main_hp_ratio": 0.8,
+              "damage_per_energy": 27.666666666666668,
+              "survival_fraction": 1.0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "strength_assignments": {
+    "version": 1,
+    "assignments": {
+      "abyssal-sea-dragon": "strong",
+      "amago": "weak",
+      "ammonite": "strong",
+      "anchovy": "weak",
+      "angel-shark": "conditional",
+      "angelfish": "conditional",
+      "arowana": "strong",
+      "atlantic-tarpon": "strong",
+      "basking-shark": "weak",
+      "bigfin-reef-squid": "conditional",
+      "blacktip-reef-shark": "strong",
+      "blue-shark": "conditional",
+      "blue-surgeonfish": "strong",
+      "blue-whale": "standard",
+      "bluefin-tuna": "conditional",
+      "bonito": "strong",
+      "bowmouth-guitarfish": "conditional",
+      "bull-shark": "strong",
+      "cameroceras": "conditional",
+      "catfish": "weak",
+      "clione": "conditional",
+      "coconut-octopus": "strong",
+      "coelacanth": "weak",
+      "cownose-ray": "standard",
+      "crocodile": "strong",
+      "dolphin": "strong",
+      "dugong": "standard",
+      "electric-ray": "conditional",
+      "flounder": "weak",
+      "goblin": "strong",
+      "lionfish": "standard",
+      "rockfish": "standard",
+      "sea-slug": "weak",
+      "sea-urchin": "weak",
+      "seahorse": "weak",
+      "shark": "standard",
+      "skeleton_pirate": "standard",
+      "stonefish": "strong",
+      "sunfish": "conditional",
+      "viperfish": "weak",
+      "wahoo": "strong",
+      "whale-shark": "strong"
+    }
+  },
+  "strength_file_unchanged": true,
+  "applied_to_game": false,
+  "trial_scores": [
+    {
+      "index": 0,
+      "score": 8.49575224166319
+    },
+    {
+      "index": 1,
+      "score": 14.450874354193575
+    },
+    {
+      "index": 2,
+      "score": 10.305613268837755
+    },
+    {
+      "index": 3,
+      "score": 10.68107033917406
+    },
+    {
+      "index": 4,
+      "score": 9.872019426781714
+    },
+    {
+      "index": 5,
+      "score": 10.054459083319564
+    },
+    {
+      "index": 6,
+      "score": 14.596263871254326
+    },
+    {
+      "index": 7,
+      "score": 8.088603782548324
+    },
+    {
+      "index": 8,
+      "score": 8.007153236150755
+    },
+    {
+      "index": 9,
+      "score": 10.09744374636307
+    },
+    {
+      "index": 10,
+      "score": 9.960802883955106
+    },
+    {
+      "index": 11,
+      "score": 9.542117044944822
+    },
+    {
+      "index": 12,
+      "score": 15.608729769489646
+    },
+    {
+      "index": 13,
+      "score": 9.571320802878434
+    },
+    {
+      "index": 14,
+      "score": 9.123835322567198
+    },
+    {
+      "index": 15,
+      "score": 10.090002389181416
+    },
+    {
+      "index": 16,
+      "score": 13.919321469100725
+    },
+    {
+      "index": 17,
+      "score": 9.404198185859173
+    },
+    {
+      "index": 18,
+      "score": 10.362968774680791
+    },
+    {
+      "index": 19,
+      "score": 15.4521734383764
+    },
+    {
+      "index": 20,
+      "score": 9.126773076529965
+    },
+    {
+      "index": 21,
+      "score": 9.631759093364591
+    },
+    {
+      "index": 22,
+      "score": 9.591864882872027
+    },
+    {
+      "index": 23,
+      "score": 10.53956290818748
+    }
+  ]
+}

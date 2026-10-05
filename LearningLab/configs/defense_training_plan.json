@@ -1,0 +1,694 @@
+{
+  "version": 1,
+  "description": "Authored experimental identities; strength is intentional efficiency, independent of cost. Mechanics stay as authored in game assets.",
+  "active_characters": [
+    "amago",
+    "goblin",
+    "ammonite",
+    "shark",
+    "angelfish",
+    "sea-slug",
+    "coelacanth",
+    "abyssal-sea-dragon"
+  ],
+  "candidate_budget": 24,
+  "search_seed": 23092302,
+  "change_weight": 0.08,
+  "seeds": {
+    "train": [
+      10101,
+      10102,
+      10103,
+      10104
+    ],
+    "validation": [
+      11101,
+      11102,
+      11103,
+      11104
+    ],
+    "holdout": [
+      12101,
+      12102,
+      12103,
+      12104
+    ]
+  },
+  "enemy_pool": [
+    "shark",
+    "amago",
+    "ammonite",
+    "blue-surgeonfish"
+  ],
+  "mixed_anchors": [
+    "shark",
+    "ammonite"
+  ],
+  "solo_copies": 8,
+  "mixed_target_copies": 4,
+  "mixed_anchor_copies": 2,
+  "rules_overrides": {
+    "initial_energy": 10,
+    "enemy_initial_energy": 8,
+    "enemy_decision_seconds": 6,
+    "episode_seconds": 90
+  },
+  "strength_bands": {
+    "weak": [
+      2,
+      4
+    ],
+    "standard": [
+      4,
+      7
+    ],
+    "strong": [
+      6,
+      12
+    ],
+    "conditional": [
+      3,
+      8
+    ]
+  },
+  "role_targets": {
+    "attacker": {
+      "damage_multiplier": 1,
+      "damage_weight": 3,
+      "survival": [
+        0.15,
+        0.75
+      ],
+      "survival_weight": 0.25,
+      "main_hp": [
+        0.2,
+        0.85
+      ],
+      "main_hp_weight": 0.5,
+      "hp_factors": [
+        0.9,
+        1,
+        1.1
+      ],
+      "power_factors": [
+        0.85,
+        1,
+        1.15
+      ]
+    },
+    "tank": {
+      "damage_multiplier": 0.3,
+      "damage_weight": 0.5,
+      "survival": [
+        0.45,
+        0.9
+      ],
+      "survival_weight": 2,
+      "main_hp": [
+        0.5,
+        1
+      ],
+      "main_hp_weight": 3,
+      "hp_factors": [
+        0.9,
+        1,
+        1.1
+      ],
+      "power_factors": [
+        1
+      ]
+    },
+    "status": {
+      "damage_multiplier": 0.45,
+      "damage_weight": 0.5,
+      "survival": [
+        0.2,
+        0.8
+      ],
+      "survival_weight": 0.5,
+      "main_hp": [
+        0.4,
+        1
+      ],
+      "main_hp_weight": 2,
+      "hp_factors": [
+        0.9,
+        1,
+        1.1
+      ],
+      "power_factors": [
+        0.9,
+        1,
+        1.1
+      ]
+    },
+    "positioning": {
+      "damage_multiplier": 0.4,
+      "damage_weight": 0.5,
+      "survival": [
+        0.3,
+        0.85
+      ],
+      "survival_weight": 1,
+      "main_hp": [
+        0.4,
+        1
+      ],
+      "main_hp_weight": 2,
+      "hp_factors": [
+        0.9,
+        1,
+        1.1
+      ],
+      "power_factors": [
+        1
+      ]
+    },
+    "support": {
+      "damage_multiplier": 0.1,
+      "damage_weight": 0.1,
+      "survival": [
+        0.5,
+        1
+      ],
+      "survival_weight": 1,
+      "main_hp": [
+        0.6,
+        1
+      ],
+      "main_hp_weight": 3,
+      "hp_factors": [
+        0.9,
+        1,
+        1.1
+      ],
+      "power_factors": [
+        1
+      ]
+    }
+  },
+  "profiles": [
+    {
+      "id": "abyssal-sea-dragon",
+      "role": "attacker",
+      "cost": 9,
+      "hp": 210,
+      "power": 108,
+      "speed": 0.58,
+      "identity": "炎の扇状制圧・高価な決戦火力",
+      "weakness": "到着が遅く、少数相手では投資を回収しにくい",
+      "defense": 0,
+      "defense_candidates": [
+        0,
+        10,
+        20
+      ]
+    },
+    {
+      "id": "amago",
+      "role": "attacker",
+      "cost": 1,
+      "hp": 22,
+      "power": 3,
+      "speed": 1.8,
+      "identity": "最安の速い先遣・短時間のDazed付与",
+      "weakness": "正面の火力勝負と継戦に弱い",
+      "defense": 0,
+      "defense_candidates": [
+        0,
+        10,
+        20
+      ]
+    },
+    {
+      "id": "ammonite",
+      "role": "tank",
+      "cost": 2,
+      "hp": 120,
+      "power": 3,
+      "speed": 0.6,
+      "identity": "低コスト高耐久の足止め壁",
+      "weakness": "追撃と拠点破壊が遅い",
+      "defense": 0,
+      "defense_candidates": [
+        0,
+        25,
+        50
+      ]
+    },
+    {
+      "id": "anchovy",
+      "role": "positioning",
+      "cost": 2,
+      "hp": 34,
+      "power": 3,
+      "speed": 1.6,
+      "identity": "軽快な位置操作の補助役",
+      "weakness": "単独撃破能力が低い。既存の位置効果が前提",
+      "defense": 0
+    },
+    {
+      "id": "angel-shark",
+      "role": "status",
+      "cost": 4,
+      "hp": 100,
+      "power": 22,
+      "speed": 0.72,
+      "identity": "低速で砂付与を担う近接補助",
+      "weakness": "砂反応を利用しない編成では割高",
+      "defense": 0
+    },
+    {
+      "id": "angelfish",
+      "role": "status",
+      "cost": 3,
+      "hp": 30,
+      "power": 3,
+      "speed": 1.05,
+      "identity": "単体Lumenによる集中攻撃の準備",
+      "weakness": "味方の追撃がないと低火力",
+      "defense": 0,
+      "defense_candidates": [
+        0,
+        10,
+        20
+      ]
+    },
+    {
+      "id": "arowana",
+      "role": "attacker",
+      "cost": 5,
+      "hp": 68,
+      "power": 58,
+      "speed": 0.95,
+      "identity": "Chill付きの重い一撃",
+      "weakness": "攻撃間隔が長く、小敵の連続処理が苦手",
+      "defense": 0
+    },
+    {
+      "id": "atlantic-tarpon",
+      "role": "status",
+      "cost": 4,
+      "hp": 54,
+      "power": 8,
+      "speed": 1.55,
+      "identity": "扇状Lumenで複数相手の集中攻撃を補助",
+      "weakness": "本人の耐久と単体火力は控えめ",
+      "defense": 0
+    },
+    {
+      "id": "basking-shark",
+      "role": "positioning",
+      "cost": 8,
+      "hp": 370,
+      "power": 16,
+      "speed": 0.5,
+      "identity": "高価で鈍重な大型位置操作役",
+      "weakness": "位置操作が不要な戦場では明確に割高",
+      "defense": 0
+    },
+    {
+      "id": "bigfin-reef-squid",
+      "role": "status",
+      "cost": 4,
+      "hp": 88,
+      "power": 4,
+      "speed": 0.9,
+      "identity": "近距離Slimeを維持する補助前衛",
+      "weakness": "直接火力が低く、反応相方に依存",
+      "defense": 0
+    },
+    {
+      "id": "blacktip-reef-shark",
+      "role": "attacker",
+      "cost": 5,
+      "hp": 86,
+      "power": 32,
+      "speed": 1.6,
+      "identity": "Bleedを重ねる高速単体処理",
+      "weakness": "集団攻撃と壁役を兼ねない",
+      "defense": 0
+    },
+    {
+      "id": "blue-shark",
+      "role": "attacker",
+      "cost": 3,
+      "hp": 44,
+      "power": 11,
+      "speed": 1.65,
+      "identity": "Electric起点の素早い連携攻撃",
+      "weakness": "反応を起こせないとサメより正面戦が弱い",
+      "defense": 0
+    },
+    {
+      "id": "blue-surgeonfish",
+      "role": "attacker",
+      "cost": 2,
+      "hp": 26,
+      "power": 9,
+      "speed": 1.55,
+      "identity": "安価で脆いPoisonアタッカー",
+      "weakness": "短期決戦と被集中攻撃に弱い",
+      "defense": 0
+    },
+    {
+      "id": "blue-whale",
+      "role": "tank",
+      "cost": 6,
+      "hp": 340,
+      "power": 10,
+      "speed": 0.44,
+      "identity": "広いChillと巨大HPで戦線を維持",
+      "weakness": "展開と攻撃周期が極端に遅い",
+      "defense": 0
+    },
+    {
+      "id": "bluefin-tuna",
+      "role": "attacker",
+      "cost": 6,
+      "hp": 68,
+      "power": 21,
+      "speed": 2.3,
+      "identity": "高速突入とDazed・位置効果の突破役",
+      "weakness": "前線維持が不得意。既存の位置効果が前提",
+      "defense": 0
+    },
+    {
+      "id": "bonito",
+      "role": "attacker",
+      "cost": 2,
+      "hp": 22,
+      "power": 10,
+      "speed": 2.05,
+      "identity": "低耐久の高速Lumen遊撃",
+      "weakness": "一度捕まると倒されやすい",
+      "defense": 0
+    },
+    {
+      "id": "bowmouth-guitarfish",
+      "role": "attacker",
+      "cost": 5,
+      "hp": 132,
+      "power": 25,
+      "speed": 0.82,
+      "identity": "砂を扇状に撒く中量級前衛",
+      "weakness": "長距離移動と単体集中火力が不得意",
+      "defense": 0
+    },
+    {
+      "id": "bull-shark",
+      "role": "attacker",
+      "cost": 6,
+      "hp": 136,
+      "power": 64,
+      "speed": 1.05,
+      "identity": "直線Bleedによる複数撃破",
+      "weakness": "敵が横に散ると効率が落ちる",
+      "defense": 0
+    },
+    {
+      "id": "cameroceras",
+      "role": "tank",
+      "cost": 3,
+      "hp": 130,
+      "power": 12,
+      "speed": 0.58,
+      "identity": "直線の砂付与を持つ細長い壁",
+      "weakness": "攻撃準備が長く、側面と迂回に弱い",
+      "defense": 0
+    },
+    {
+      "id": "catfish",
+      "role": "attacker",
+      "cost": 5,
+      "hp": 125,
+      "power": 36,
+      "speed": 0.62,
+      "identity": "鈍足の砂付き重撃",
+      "weakness": "高めの投資に対して即応力が低い",
+      "defense": 0
+    },
+    {
+      "id": "clione",
+      "role": "attacker",
+      "cost": 2,
+      "hp": 18,
+      "power": 14,
+      "speed": 1.1,
+      "identity": "脆いCurse近接・反応火力の相方",
+      "weakness": "単独では耐久と攻撃周期が弱点",
+      "defense": 0
+    },
+    {
+      "id": "coconut-octopus",
+      "role": "support",
+      "cost": 5,
+      "hp": 265,
+      "power": 3,
+      "speed": 0.55,
+      "identity": "タンク兼バフの耐久支援拠点",
+      "weakness": "味方が離れる展開で価値が落ちる",
+      "defense": 0
+    },
+    {
+      "id": "coelacanth",
+      "role": "attacker",
+      "cost": 6,
+      "hp": 154,
+      "power": 30,
+      "speed": 0.62,
+      "identity": "生き残りやすいが割高なChill重撃",
+      "weakness": "高コストでも火力効率を低めに残す",
+      "defense": 0,
+      "defense_candidates": [
+        0,
+        10,
+        20
+      ]
+    },
+    {
+      "id": "cownose-ray",
+      "role": "attacker",
+      "cost": 2,
+      "hp": 46,
+      "power": 6,
+      "speed": 1.1,
+      "identity": "耐久寄りの単体Poison継戦",
+      "weakness": "高速毒役より瞬間火力が低い",
+      "defense": 0
+    },
+    {
+      "id": "crocodile",
+      "role": "attacker",
+      "cost": 7,
+      "hp": 190,
+      "power": 84,
+      "speed": 0.76,
+      "identity": "接近後の単体Bleed処刑役",
+      "weakness": "接近に時間がかかり、群れへの処理力が低い",
+      "defense": 0
+    },
+    {
+      "id": "dolphin",
+      "role": "status",
+      "cost": 4,
+      "hp": 60,
+      "power": 7,
+      "speed": 1.95,
+      "identity": "速い直線Dazedによる前線支援",
+      "weakness": "正面で受け続けると脆い",
+      "defense": 0
+    },
+    {
+      "id": "dugong",
+      "role": "tank",
+      "cost": 4,
+      "hp": 260,
+      "power": 5,
+      "speed": 0.58,
+      "identity": "砂を付与する安定した中量壁",
+      "weakness": "ダメージと展開速度を捨てる",
+      "defense": 0
+    },
+    {
+      "id": "electric-ray",
+      "role": "status",
+      "cost": 5,
+      "hp": 112,
+      "power": 7,
+      "speed": 0.66,
+      "identity": "耐久寄りElectric供給役",
+      "weakness": "反応なしではコストに見合わない",
+      "defense": 0
+    },
+    {
+      "id": "flounder",
+      "role": "tank",
+      "cost": 1,
+      "hp": 58,
+      "power": 2,
+      "speed": 0.46,
+      "identity": "最安の短射程・砂の使い捨て壁",
+      "weakness": "耐久の絶対量が小さく、追従が遅い",
+      "defense": 0
+    },
+    {
+      "id": "goblin",
+      "role": "attacker",
+      "cost": 1,
+      "hp": 20,
+      "power": 6,
+      "speed": 1.15,
+      "identity": "安価で高効率なSlime近接",
+      "weakness": "HPと射程が短く、集団に巻き込まれると弱い",
+      "defense": 0,
+      "defense_candidates": [
+        0,
+        10,
+        20
+      ]
+    },
+    {
+      "id": "lionfish",
+      "role": "attacker",
+      "cost": 6,
+      "hp": 108,
+      "power": 29,
+      "speed": 0.8,
+      "identity": "近距離Burn継続圧力",
+      "weakness": "高コストだが射程と展開速度は控えめ",
+      "defense": 0
+    },
+    {
+      "id": "rockfish",
+      "role": "attacker",
+      "cost": 4,
+      "hp": 90,
+      "power": 22,
+      "speed": 0.64,
+      "identity": "耐久寄りの単体Burn中距離攻撃",
+      "weakness": "連射と機動力を持たない",
+      "defense": 0
+    },
+    {
+      "id": "sea-slug",
+      "role": "status",
+      "cost": 3,
+      "hp": 24,
+      "power": 2,
+      "speed": 0.42,
+      "identity": "非常に遅い長射程Poison供給",
+      "weakness": "単独性能は低く、保護と長期戦が必要",
+      "defense": 0,
+      "defense_candidates": [
+        0,
+        10,
+        20
+      ]
+    },
+    {
+      "id": "sea-urchin",
+      "role": "tank",
+      "cost": 2,
+      "hp": 88,
+      "power": 3,
+      "speed": 0.5,
+      "identity": "Poisonを持つ安価な局地防衛壁",
+      "weakness": "純粋な壁効率はアンモナイトに劣る",
+      "defense": 0
+    },
+    {
+      "id": "seahorse",
+      "role": "status",
+      "cost": 4,
+      "hp": 54,
+      "power": 2,
+      "speed": 1.2,
+      "identity": "移動について行けるSlime補助",
+      "weakness": "高めの補助コストと低い直接性能",
+      "defense": 0
+    },
+    {
+      "id": "shark",
+      "role": "attacker",
+      "cost": 3,
+      "hp": 60,
+      "power": 12,
+      "speed": 1.7,
+      "identity": "状態に依存しない高速単体の基準役",
+      "weakness": "範囲処理と反応火力を持たない",
+      "defense": 0,
+      "defense_candidates": [
+        0,
+        10,
+        20
+      ]
+    },
+    {
+      "id": "skeleton_pirate",
+      "role": "attacker",
+      "cost": 2,
+      "hp": 42,
+      "power": 6,
+      "speed": 0.9,
+      "identity": "耐久寄りの安定したCurse近接",
+      "weakness": "クリオネより瞬間火力と機動力が低い",
+      "defense": 0
+    },
+    {
+      "id": "stonefish",
+      "role": "attacker",
+      "cost": 3,
+      "hp": 34,
+      "power": 20,
+      "speed": 0.35,
+      "identity": "極端な鈍足・高効率Burn火力",
+      "weakness": "長い移動が必要な戦場では間に合わない",
+      "defense": 0
+    },
+    {
+      "id": "sunfish",
+      "role": "tank",
+      "cost": 5,
+      "hp": 250,
+      "power": 8,
+      "speed": 0.5,
+      "identity": "Lumenを供給する高HPの連携壁",
+      "weakness": "単独撃破力を抑え、追撃役が必要",
+      "defense": 0
+    },
+    {
+      "id": "viperfish",
+      "role": "status",
+      "cost": 2,
+      "hp": 22,
+      "power": 2,
+      "speed": 1.15,
+      "identity": "長めの射程からCurseだけを供給",
+      "weakness": "安価だが直接火力と耐久は非常に低い",
+      "defense": 0
+    },
+    {
+      "id": "wahoo",
+      "role": "attacker",
+      "cost": 6,
+      "hp": 82,
+      "power": 31,
+      "speed": 2.1,
+      "identity": "高速の扇状Bleed掃討",
+      "weakness": "速度に対して耐久が低く、孤立に弱い",
+      "defense": 0
+    },
+    {
+      "id": "whale-shark",
+      "role": "tank",
+      "cost": 10,
+      "hp": 560,
+      "power": 24,
+      "speed": 0.44,
+      "identity": "最大コストのLumen付き超大型壁",
+      "weakness": "展開の遅さと資源拘束が最大",
+      "defense": 0
+    }
+  ]
+}

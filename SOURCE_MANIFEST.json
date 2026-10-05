@@ -1,0 +1,1172 @@
+{
+  "version": 1,
+  "repository": "LearningLab",
+  "source_commit": "fbca3b54ca5722eece2ac208d813f83cb508b572",
+  "snapshot": "current working tree, including uncommitted files; fresh Git history",
+  "files": [
+    {
+      "source": "Assets/Editor/LearningDebugStages/RL_ChokePoint.asset",
+      "sha256": "6ffe02bc549a539ab3a539bc8678eda14dc4f7b23236780727dfb50ebaa1f76d"
+    },
+    {
+      "source": "Assets/Editor/LearningDebugStages/RL_ChokePoint.asset.meta",
+      "sha256": "fc05a7f8de28e0d4c673ce2ac7252f8ceed2acbfb38e988bb8cc136b21f2ba52"
+    },
+    {
+      "source": "Assets/Editor/LearningDebugStages/RL_DefenseHoldout.asset",
+      "sha256": "a233d0df3fc0b27ebb3c35405f6d10cd0dcaf968c0b993382dfb608be246d804"
+    },
+    {
+      "source": "Assets/Editor/LearningDebugStages/RL_DefenseHoldout.asset.meta",
+      "sha256": "682d4d309033bcafa33d08d824cbb48dc1120713ca8000064d5d29e81c4e8c63"
+    },
+    {
+      "source": "Assets/Editor/LearningDebugStages/RL_Detour.asset",
+      "sha256": "743c1f582112600c9d8eaeab1233b84bd86bd9bf729fb161327ae6b9afb49ae1"
+    },
+    {
+      "source": "Assets/Editor/LearningDebugStages/RL_Detour.asset.meta",
+      "sha256": "063a4e3d41799132d2fddded6fa6af06328bec427aa0b9367956f4c6aa0edf52"
+    },
+    {
+      "source": "Assets/Editor/LearningDebugStages/RL_OpenField.asset",
+      "sha256": "55c2e4d4c4aa3d507e0c2e1171f333b0a2ac5bf25501f89a1d5ee6ea817d4f4c"
+    },
+    {
+      "source": "Assets/Editor/LearningDebugStages/RL_OpenField.asset.meta",
+      "sha256": "ebbcc7bd26d94b15d9a41641f98307bebf220616534553a53e0ee8befeb980cf"
+    },
+    {
+      "source": "Assets/Editor/LearningDebugStages.meta",
+      "sha256": "266225b2fd859543dcce531cd569bbc8e2909cdac7556858c18dd74a61395017"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/abyssal-sea-dragon.json",
+      "sha256": "d7aaea002d40704786ca172e1ceb72caade690337ed46b05d993d35a2f2be88d"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/abyssal-sea-dragon.json.meta",
+      "sha256": "7c370ee4382522991c10cc32157eaf4c66a07af1c7803ff06026cf7b50b68d93"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/amago.json",
+      "sha256": "1dd264d48f8545d91aab0c215eb52a9278a5a05ab2276f1e7003d4d2e2449327"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/amago.json.meta",
+      "sha256": "893289f897b64983147ff49230c4ab5a0a77bca1d3168cfac91714f58a1e193e"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/ammonite.json",
+      "sha256": "e45aabfb5dcec648cb4846642d10c4316c372ac80827773f7e0de59688ffe431"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/ammonite.json.meta",
+      "sha256": "db44b02f1f6cffdbe8964070fb7c4520124f3d4c15b4a6dc320e3c9fb98f110d"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/anchovy.json",
+      "sha256": "0b82f30d02b1dab5e8ee19dda17dd97c4bd45ed24a134552f00fe6a37a9a74da"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/anchovy.json.meta",
+      "sha256": "eed72fb6513818aef823eb75e77ad04540536870653c1063b82da4be94b707c7"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/angel-shark.json",
+      "sha256": "7914ab933ffbfeb7745b22fdfefb65c500c6b981ba32a64d6f7eff8f4d4ea332"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/angel-shark.json.meta",
+      "sha256": "c86da76deb63c05560acff6c42e023586a4d0e014d439da9a85069f4752bac9b"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/angelfish.json",
+      "sha256": "08665e8ec2f5436260ab5db8c224981d30ca1d919c273726e2d3d41e223ae1ff"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/angelfish.json.meta",
+      "sha256": "909e82f389aff8461ef40ac507f5b498863392cf94e6430e74856466358e4944"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/arowana.json",
+      "sha256": "25ce992a2e75ed569687d9c47c1a108c9f028722050715b33a0502fa47dd3c17"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/arowana.json.meta",
+      "sha256": "73e484a293f35dccc4033769bbd8f88abd1357c6184b8ee928015b85cd3ec7f2"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/atlantic-tarpon.json",
+      "sha256": "b48053c30c563136a614034682f8a7e0277fa42eb80303119500ba47b92ed9e3"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/atlantic-tarpon.json.meta",
+      "sha256": "1b1c41d8ea5db4c93e9b9e0d3d0ecf11cb02f24ddd1b2d0535455f9234dcd9ec"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/basking-shark.json",
+      "sha256": "b3795690a76b4b1c745149cbcd1345d598812a6233873541d7ef29c30d6647f3"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/basking-shark.json.meta",
+      "sha256": "506c0c7ea14195afbe2c8925b0afb96eebeb90e3eb848c314a416d9bb6a97ee9"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/bigfin-reef-squid.json",
+      "sha256": "9d1545e2b521e1ba2bccfdc94548bdabb6eab71725acca5e39878ef543362ef6"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/bigfin-reef-squid.json.meta",
+      "sha256": "7113eb2432e042fa5e3667818a194d3a660bbf31699e1c3f87837c6ff777036f"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/blacktip-reef-shark.json",
+      "sha256": "e2837183aa4b7f8619489b09b701ce254ce7a1bcccc578f9cdef7f270ba9f71c"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/blacktip-reef-shark.json.meta",
+      "sha256": "cc9c09a6ce98f8ec8d0489f24a049bc6bd569c1f65afc93b85027cbf29e04f17"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/blue-shark.json",
+      "sha256": "4da943bbf5e168a36e330bbcac648f258cf5dd7f1c1610302ad081b0773aebbe"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/blue-shark.json.meta",
+      "sha256": "3333cfa8f6f60140fd07df9bf29a4dd8cd051b786469452485f6ef1074f4760f"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/blue-surgeonfish.json",
+      "sha256": "cf7af99a72841c57c5c9c37ec8f447e482a82bdeca62e88340d94ab5ffbc268a"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/blue-surgeonfish.json.meta",
+      "sha256": "112046f984c9daeeba98cbd4a1f402b61b4cbdc10db445fd424732ff8a99de48"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/blue-whale.json",
+      "sha256": "26cc51f89a02bc3f864490a6ce20cd8a96fa53db3945d27642b922c8192478e7"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/blue-whale.json.meta",
+      "sha256": "fd2c52ebc4c2c92f380a62b9982056d47a8040c4dc56761cb26c96c50cc7712b"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/bluefin-tuna.json",
+      "sha256": "403027913d899e816d5d75fb9863174fa5363b3d8cd547c744a67d339bf02d9e"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/bluefin-tuna.json.meta",
+      "sha256": "88407d50e86df2fea281b9e45104c57622df3021f734c350b889e0f6367b55ca"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/bonito.json",
+      "sha256": "86b3556714554f2536e1cef98c874d052def487ded8fb354b938e6078c3ce443"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/bonito.json.meta",
+      "sha256": "7842e857e572f8db8a80a2ecf76ddfb5d8085d32665a1a15bd6b99234ff5e151"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/bowmouth-guitarfish.json",
+      "sha256": "c6f51b5ab52aa92594de4419a30d747932b3c82a48529539bb2bbd9a0daa565d"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/bowmouth-guitarfish.json.meta",
+      "sha256": "13312a388ddfe97e712eb1857eb7f2f3fbb8f51dc703e664aa7e4efc8dcbbffe"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/bull-shark.json",
+      "sha256": "6db18af9a82403d6dd6e39c8e61baf4df50ffac6422d93bf26ae1c05d8662fe6"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/bull-shark.json.meta",
+      "sha256": "5a0ed2babd9c8491de2766f421af30a56db727f8af8499d0e574e8bc94330ec0"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/cameroceras.json",
+      "sha256": "c8d1a038472d57aac107f9d021c40e0d38c66ab2017e8b04227e6b548ea3fffe"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/cameroceras.json.meta",
+      "sha256": "92230c382993c167df23e8106033f085c2d1126ee155443ee62d476610a405b3"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/catfish.json",
+      "sha256": "3d06b867abc7e1b949b6f9c839dc60f3be0b6bc002ebd6243bc1a3315c315d71"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/catfish.json.meta",
+      "sha256": "e4d01c7b7e7961dd5f9e7c4d0c088782a63c8a1c3ec8e3d54fc5dea47fdff58f"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/clione.json",
+      "sha256": "f61ce9a112e27720a3f87149780d7d6168b3c2cddf41bd77cbb167604df674a5"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/clione.json.meta",
+      "sha256": "c717269da0cc82f5c361e4fd077496ea18a8d5d31be92410f9c1ba4a3c4911bb"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/coconut-octopus.json",
+      "sha256": "55fbd77e42fc43c3b9c5561cabeae832bc84ce3edd5826094d287badfc45ac20"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/coconut-octopus.json.meta",
+      "sha256": "5861c5925cbf9cf10bf02dba63a634e2c122abe4a93399c99713f091d0131697"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/coelacanth.json",
+      "sha256": "a711d8eca5d3a9d63b7271f665e186f408ed489e9e77145c330b358ffb02b0c9"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/coelacanth.json.meta",
+      "sha256": "314cecbbb6c0056802af34826acb82f0f6b8b28b52380c11cd3a7513bae634ec"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/cownose-ray.json",
+      "sha256": "a22d350acf997b02a4e7c951a66876b5a253152e4e47f203451640fb20cebe8a"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/cownose-ray.json.meta",
+      "sha256": "8f39f9fcc1e78d3f7670fcd8ce6f7f57c539e1512d0ef64998362f07a032f6c1"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/crocodile.json",
+      "sha256": "e6e7720fa76cdcd9f9601ddca4167c9a8134a339d8b3d67e5ba210279bebf383"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/crocodile.json.meta",
+      "sha256": "d96892db3f954ae3292cb4b2b9e0c82def50bea41a665da5c1fe63ce672fc9f0"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/dolphin.json",
+      "sha256": "99c40897ddc55ce2a23ad29659c0f4363da1f240914e956c3001842c2ec881f0"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/dolphin.json.meta",
+      "sha256": "4455f911207abc7426eca45fcc81f5bb9b573e457898871cc3c9acc2e589b78e"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/dugong.json",
+      "sha256": "d72632d2c7fe61c7b6e573238c99163a44eaa07d74414dd2496532c3ffb154fa"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/dugong.json.meta",
+      "sha256": "f0e3785bdf9cb8f9f64dd1295a0ccfa20ccd93cdd3746a6176ae2fa9c9d22888"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/electric-ray.json",
+      "sha256": "69c237a12f22d5d1883ed5cfa3afbb3dbfbabf5a8272e6b287957c2d2006a2a4"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/electric-ray.json.meta",
+      "sha256": "062c50e34b2854d911da8a8d942dbcefe2486ff9d1515a79441defb421ad91fe"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/flounder.json",
+      "sha256": "16ff63ee913e3d0c71b2452f970e30fb7c38772d60a87f50dfe04911121372cf"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/flounder.json.meta",
+      "sha256": "f0c60ae8fbd2d570bdb885e7e1b86e2db9fe2a5451db359c2f08c475550a62f2"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/goblin.json",
+      "sha256": "08e1cb18372440e803c40d0ad1e3ccd2914bad40e6a7e3d7548101f4f4e45d1c"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/goblin.json.meta",
+      "sha256": "586197ae17fde48ddb2c53e84e9009bb31e384e471902d4c10bc6ba2ddc1484a"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/lionfish.json",
+      "sha256": "1381a1484994d83a916337ff4921745abbb3db83c49099c70e2f7e837efa94fc"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/lionfish.json.meta",
+      "sha256": "39eeeb7c055899be85d61da61606311e7472f97fb4ca9074f5ba07680ea509f5"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/rockfish.json",
+      "sha256": "2514e1d17d2cae4445b28a339526de83162ab32278127b61081d69fa0028e8d9"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/rockfish.json.meta",
+      "sha256": "636fb28ae8f20ed280e247d40e29b8910a7bd570734b24f1f47a008f03ef9852"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/sea-slug.json",
+      "sha256": "04fe117991c3eae928a8bc80cf8b99339f573c18e2d6a234ef6cd2eeb1b9b1c0"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/sea-slug.json.meta",
+      "sha256": "a46660c89fd90512166f5c1f5a7147fdc3fbe3c445f48986b1a75af84754838f"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/sea-urchin.json",
+      "sha256": "e23a44fa04229370ae86b53fd4c69c367c6c83cb32cd05176509790d6f335c53"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/sea-urchin.json.meta",
+      "sha256": "aa7ce07188d1067a1cf921191fc7c261cdc502ba6dd76755b7d9b4343c5366c7"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/seahorse.json",
+      "sha256": "09ab100eb175c9b43425d6e8c41ddcd10c656c298a0560e08b891e9255a768bc"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/seahorse.json.meta",
+      "sha256": "29d0a1c056a7d4fb9d874bef2b9e5dfa2b87e6ca5eddf96743c5020bf12bac08"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/shark.json",
+      "sha256": "198225134f102125f3c8b2550de1c6fb5a2aa74a5d0230bc6d7305686707f412"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/shark.json.meta",
+      "sha256": "c69c174606a728555e261d1df6bb1c6d6f3c411bc7cb5e2e2e1800e8c74ffa57"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/skeleton_pirate.json",
+      "sha256": "7ac332f3e225be72339f2d7468e1333d670aaff1133bc5378ede9c0f47d5ff8d"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/skeleton_pirate.json.meta",
+      "sha256": "ea99249e5e066706cc7e536c982b1cc421db712521ce9f8b5743b09512c97cf0"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/stonefish.json",
+      "sha256": "23adf1da541da4cde6f111ea931843bb934037057d34efc73c8f019a7eebf2c3"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/stonefish.json.meta",
+      "sha256": "1fcd9ad6a53e6f05478c4b60497a62263e0bf6f2d0c9420efde97c03fc3b6b01"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/sunfish.json",
+      "sha256": "1ad7bb9377b9bc6d941db713d10935692994a1b8eb47fc92a99b48cc632ab9ee"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/sunfish.json.meta",
+      "sha256": "812e8d6611b54f8a5a3110880218ccf50b02de85ec2f34fbaa778d60d96c14e0"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/viperfish.json",
+      "sha256": "5e3b71c81aa37df627123520082b48749cd430d4550dfd3d62bd61ff4a231bd8"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/viperfish.json.meta",
+      "sha256": "7fa6f8360d44bb0a9d1eed5f5f71fccffeb1a2b9e83ca2a359f2818ac876c329"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/wahoo.json",
+      "sha256": "b6d5c08e2a72190645a89fa284fc80eac4110a058931fcef97fdc7ce9eb30caa"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/wahoo.json.meta",
+      "sha256": "fb1de29c0dcd83e03993f93b30edfc6f3d070a61965e4f70f3bf207d24064636"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/whale-shark.json",
+      "sha256": "fd838dfd014e8a74753583bbd94b5db7e3854335d544dca0c25bcc8f7df5d195"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions/whale-shark.json.meta",
+      "sha256": "caf2d3d041f59de870dad4182ee4b3d9b77c6c909fea35d7ec94cab1f1af714b"
+    },
+    {
+      "source": "Assets/Resources/CharacterMotions.meta",
+      "sha256": "020dd3d542d35cd7fcabde0fc11d55b30b17d5e41d3b371e3e1b292aea86acd9"
+    },
+    {
+      "source": "Assets/Resources/StatusCatalog.asset",
+      "sha256": "83d5b9315f10a83e0d0e6b78dfe5f3313fdfc1f290c2fe94bd0ed76aa0ab4020"
+    },
+    {
+      "source": "Assets/Resources/StatusCatalog.asset.meta",
+      "sha256": "587e1372d2c49bdc7ec0f98c98b6449693d06d8a90e6b0da8e1b190dce7226d2"
+    },
+    {
+      "source": "Assets/Resources/StatusReactionCatalog.asset",
+      "sha256": "ec71adc5cd03642410041768897f97c5d803cb3b1c386d9744824492cf78367a"
+    },
+    {
+      "source": "Assets/Resources/StatusReactionCatalog.asset.meta",
+      "sha256": "bd4adb944c8b860a4fb5eda4a0fd89d12538e9890b689b0e32923692ae8275f1"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/AllyData0.asset",
+      "sha256": "cfba53aeb1950312f9d7450f54c80ccda05584db6cbe95d4e35c1d33efae788c"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/AllyData0.asset.meta",
+      "sha256": "5ba1ea976e0f05ee7520103d9fa2b3a983f37b7f4d8e6728094fdcf6c6a78ee8"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/AnchovyAllyData.asset",
+      "sha256": "43b91ac1f94714b9197d4a8ead933ed27be92d987534570276c1a895de45505a"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/AnchovyAllyData.asset.meta",
+      "sha256": "35870292b8bae9ed490da376bc08a6fb3faa968054c57c22d40e8b9a16b12fc2"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/abyssal-sea-dragon.asset",
+      "sha256": "07252a7a5a7c41d88d6572a9bf738e3b77d29767f9f1384764e6475c2586d096"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/abyssal-sea-dragon.asset.meta",
+      "sha256": "fe0f393fe2490698e2318ea399bada2133cd5bc187faaeb70a818a89cee07362"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/amago.asset",
+      "sha256": "2d953d9212f07f2400caf1da329e398c1f4014e0f4902d6e584606e09f6d2553"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/amago.asset.meta",
+      "sha256": "cca4c93fa27fe3f2a14537455ba148c38ee274528347254111f7a169a2f3035a"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/ammonite.asset",
+      "sha256": "31f3feedd56e96fcb4e4b7b71945f28031f121ea6f601de225174aae92bc61cf"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/ammonite.asset.meta",
+      "sha256": "db4a47442218ba3288f333c6be79ed66100d51cc1201af07dc5c1ff5a85e4b00"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/angel-shark.asset",
+      "sha256": "5dbb719590c9c644f2caad62fba68ff41c26fdcc41b649e179203d84cd1e388c"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/angel-shark.asset.meta",
+      "sha256": "11ee51d2fe76c1cb29908f1bdfe838c81147d9a4a1593d1ebdde03628f8512ca"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/angelfish.asset",
+      "sha256": "7e6abfc6f31fe288e5fe5e2d1fe93931620fafc523abc93888a627544736a7f3"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/angelfish.asset.meta",
+      "sha256": "a10e7bafe768c9133599016e07cc6f0b8a19b56656335643d5603e4a5c4c24a5"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/arowana.asset",
+      "sha256": "f4c04359484ec1629f427303ffaee21d638af29ec8597e17eb229f6ae8c2010f"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/arowana.asset.meta",
+      "sha256": "158baa423f84d91a56bd44673cd99dbc4ac5d549895bcde07921599ab4cebb86"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/atlantic-tarpon.asset",
+      "sha256": "76b140ff1c5175ec33bd245652914b143eb88adec4e9358820c279f7fce4d2ae"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/atlantic-tarpon.asset.meta",
+      "sha256": "c0e807c9e7a53778d668619a92bca8c3e1f1ea7cf919d0cad011ff777be259f7"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/basking-shark.asset",
+      "sha256": "0be9f4d191f144cfe98b708f9c130b9568400f2cdf454b5ec06b344c25bc3400"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/basking-shark.asset.meta",
+      "sha256": "2bdf028c130575b7e01632662c930888a5ad29e379b770410a676935125ed7f3"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/bigfin-reef-squid.asset",
+      "sha256": "efca5c345b2669c36f5a8dd2d6d13e9f2fd33019d0f228ed7209f36de46d8735"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/bigfin-reef-squid.asset.meta",
+      "sha256": "43271f5e16b36a875def31e4346b81e3d7341f473a955d26e80cc1d2e25292f8"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/blacktip-reef-shark.asset",
+      "sha256": "07dad30c0b96bca92cc67c1318e6cd90d71d4c506cc40f6e4aeb382ebdc5353f"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/blacktip-reef-shark.asset.meta",
+      "sha256": "5facae01ea6e87db2e721569a81d36b0a3f4cb2bb26971993f498bbfe72d4a53"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/blue-shark.asset",
+      "sha256": "fcd37b0daeecc2c33084fa4c7ae19cf36feb28799c7c804d428ae7e9925fb63a"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/blue-shark.asset.meta",
+      "sha256": "484682922556931b86791d046f784a5c00dc0f00918bf515fd57409425438308"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/blue-surgeonfish.asset",
+      "sha256": "8c7a618d74ca0f53fe73fea14276354a9eb781ba2a5a32c841fa405f0de16955"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/blue-surgeonfish.asset.meta",
+      "sha256": "676d41986370f30f1db1b51747d14bfee25b54018171c9ece8ad9ad0f93e8923"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/blue-whale.asset",
+      "sha256": "579914c6e7458426b069f65440abd22f117aebe4d1013c32998f2d99e7949b19"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/blue-whale.asset.meta",
+      "sha256": "1e76093581f965900804470142a9c12f735294ced62b5eed1cb6385bd4682e9c"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/bluefin-tuna.asset",
+      "sha256": "e6084556f2ffea664dba075dfd3a79c6930c35382764040ffac69b31809e0621"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/bluefin-tuna.asset.meta",
+      "sha256": "88a946bff1d233da7e77164c1fa27fc6dd146a753f4455382789ebcb7a363536"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/bonito.asset",
+      "sha256": "b94febabe93ce07c8b044c8fe0b406c1cb5ddd9b352fac62da66e7865d142f44"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/bonito.asset.meta",
+      "sha256": "e44d2c798aafefdf814d2cfbb6d49b56c1df33c7e331f1f32615ad393369c6f6"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/bowmouth-guitarfish.asset",
+      "sha256": "fcec5bf9bef1b950542da2ddcf13573b823ec920d58fd44bac5b3995cdbd451b"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/bowmouth-guitarfish.asset.meta",
+      "sha256": "91abc0964bd9c64f811be3b3d45254742ab0858b6fce42cfab367e46bafd2297"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/bull-shark.asset",
+      "sha256": "8232400421eee77e1c2703aad614a10f11a2d01b3bbfa798c101f9f065246f7f"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/bull-shark.asset.meta",
+      "sha256": "85d71403b69e0b097e6b053cfd5d1aaa5916f91eb5dc6743fd4f0370658a448d"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/cameroceras.asset",
+      "sha256": "8435d7dff9a48ce2cb99ffe3f5ca373a50bdadbf4eea963f2e92bc0448650846"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/cameroceras.asset.meta",
+      "sha256": "d018dc8da3f7f3ba1dd19e7dbed74bd14c5dfe0e14feee5eac00d33c06c9404a"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/catfish.asset",
+      "sha256": "f484d29c87efe6ac8b70f46d7a19f0b483d16ade544e1dd6dee0082456d23c5b"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/catfish.asset.meta",
+      "sha256": "ba060249312f97219b64ee90ea6f0648018c466c22d246d924404ff6be80c162"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/clione.asset",
+      "sha256": "498d6ccc4dc69470e985ecf45a69e0d2276fab11d391a02097aeebbd10280b46"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/clione.asset.meta",
+      "sha256": "ed4917f2a7d5e8945cde2ae55c3453820fd603110430388f6accee56993916e6"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/coconut-octopus.asset",
+      "sha256": "937d14563ca09cb7f5aafc782268b3b22fb2d525ad5ac05c21d7fcbfa3b59882"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/coconut-octopus.asset.meta",
+      "sha256": "8085efd82147431cd5936edfd31fe4f9f3290852423c4335d1ce803407a694f9"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/coelacanth.asset",
+      "sha256": "3ba0eb99a269534a85f9a11746be559cb1aa604899876986f86fff9d26d32e00"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/coelacanth.asset.meta",
+      "sha256": "ea7fb0c5be7e853c88a2e5c68375d74fe93a8b4ea25314d6335f94d229e2a412"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/cownose-ray.asset",
+      "sha256": "4eab680f2377d13a1943a2dca11fd5cf3b046fd880f81fcd61d11900669bd63b"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/cownose-ray.asset.meta",
+      "sha256": "0e5374a3964ce051d83eb775e3c71078ce50bd50a0a02f17e85dcb5f9be3436c"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/crocodile.asset",
+      "sha256": "c9c7f4229ff1e65f43fdd2cca286f6e353f64121a657d31ea78c0041fa7731ad"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/crocodile.asset.meta",
+      "sha256": "88d2907e745a442ea019b47a507d940565a9f00e905af9edecfde8f651650efc"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/dolphin.asset",
+      "sha256": "971c78bdc4f3fd5ce6002a0401d37e46fe5e034d1acdba42fd9e345479055551"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/dolphin.asset.meta",
+      "sha256": "7e6a785a96027dfa143a462dec9f4d6bd337b414cdf1125889d9bff4b83caee0"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/dugong.asset",
+      "sha256": "a283cc51dd1d075af4fddbd8701b657fe0597732bacfb4413bfff076138fbe02"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/dugong.asset.meta",
+      "sha256": "3d09f6196447081576c16137b347d6e3b4ec1b81006475f36ada1ed9349b5154"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/electric-ray.asset",
+      "sha256": "409df01f7845b72fc3394ea7feb3d5629e348778a0e010d38dec0236222e0184"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/electric-ray.asset.meta",
+      "sha256": "1f923b99bc029844567fcde06cf1263a96ff7f29f5e0dc84da9574c2e3984d8c"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/flounder.asset",
+      "sha256": "f880b5728a2d2f473ad09d382e5c73498d37cbb77ea0952beead6ed0fc38bd89"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/flounder.asset.meta",
+      "sha256": "0e0a686f3e29506fe7b1a5e9dc9196b0e6c0194332a4d0d392fae3c025fb3fdd"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/goblin.asset",
+      "sha256": "566f361a5f988edf553e4ce25f0938bf40342011d65858b0b7b09fbd7b10c2d4"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/goblin.asset.meta",
+      "sha256": "90192935a7d9290721e121277e3ff6a0a0f94e79c00cf5dcba4f1d65ccd4a823"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/lionfish.asset",
+      "sha256": "30f46a797a01263c4e745db9f6c8b9e16913dadddd9a9de051b19385f71642dc"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/lionfish.asset.meta",
+      "sha256": "0c33b0b3648764d6bbe84bb1cd8717cda851604b14d4dc2aa9a61774bccda11e"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/rockfish.asset",
+      "sha256": "020c45c803eca4683e1adf41b6c4feeb3d19bfee26e6015a2bf534ce0baed39c"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/rockfish.asset.meta",
+      "sha256": "2eb35efd27b9ad051b0d32018056bc2a6cc3a33c047538ceb860e2c8e92075ed"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/sea-slug.asset",
+      "sha256": "ae77b6cc61d07dc6cc4b20e666545b469c17072dae36e55dff5b221210109b7a"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/sea-slug.asset.meta",
+      "sha256": "a152c5b582018c0ba70c97f55d9b080483ca58c2dcd1f4e541bd2c0d06e84690"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/sea-urchin.asset",
+      "sha256": "eee42232323f86432ed8425eca0a65147859332d495436211a847ffdc0f56f1a"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/sea-urchin.asset.meta",
+      "sha256": "1a8644641221b0e62857af640d1162ac833017658d18cbdce5e09ec32bf10aaa"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/seahorse.asset",
+      "sha256": "401069332c3566336dcb9b949fd18fc2aa956b69aea85198ddf96856c493ca13"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/seahorse.asset.meta",
+      "sha256": "6788e493d4bcc5edf53bed8bc20b9707f5985fe566efc7fed563904cbb114b71"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/shark.asset",
+      "sha256": "f8a7711c8e194ce52cbbc4fc7e64ddb3c6896475978fc8558052fec5c3882439"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/shark.asset.meta",
+      "sha256": "1eec7c1a911fa885b7b0338d195971a3012b9d68254c66868eadc988aa32e9d1"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/skeleton_pirate.asset",
+      "sha256": "df914ae13dc14dbab5f7a32da72533a887fc06edd0f8f26be0f53ed5ce27ceeb"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/skeleton_pirate.asset.meta",
+      "sha256": "c96fc31ac1854302770ccf99eff7b5797610faf6a682776f7f329c74fd550a0f"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/stonefish.asset",
+      "sha256": "ead15829f49d4673669ec255fc6a7364354c2090f9874fafee7a25d0808ffb4f"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/stonefish.asset.meta",
+      "sha256": "74624b165829efa34d52e130f48c25f01445924b245e1d6758b4fcf6531f3adf"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/sunfish.asset",
+      "sha256": "e8d11105b083c8587f2c293db4d7d6292597a72878356fdd9ac82c680f0755bc"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/sunfish.asset.meta",
+      "sha256": "a132f71f58fcdbfc9261bc949ca28c2bb1200bba5a66d34b4dbcb20be6ce7ddd"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/viperfish.asset",
+      "sha256": "fd20599c8277f90da6e72c9fa3174576b02efb50a071d342e80beb38bad8df1f"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/viperfish.asset.meta",
+      "sha256": "36884dcd988ee5df434262d1bc615e6a48948521cf96edb4386f1b8e3f76217a"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/wahoo.asset",
+      "sha256": "f1390179e0dcc47eeaaf573c4a6e75f933c3b0fd79246d424d06fba55867d202"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/wahoo.asset.meta",
+      "sha256": "c79fb4c073a9c30b0eb294a9e8d880ae8f5068e4a41de80e664dfc28721de575"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/whale-shark.asset",
+      "sha256": "d6c4bc0d72ca2335bd1e83d03916870033a9fc7bd0404aaf0c7c1bc93577b0cb"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated/whale-shark.asset.meta",
+      "sha256": "4d7c05662d4fa71b034deb814f0d6b98bc981c2ab4117da2c72b975bb780489b"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData/Generated.meta",
+      "sha256": "47487f1a7380ce94576e98f344472a80a6ef91f5b1ac9a0b1aaff601fb443846"
+    },
+    {
+      "source": "Assets/ScriptableObjects/AllyData.meta",
+      "sha256": "cdbf0b6789b0453559632c81340473efb1d3c3abb27e8cee04818b9eca0b7e0c"
+    },
+    {
+      "source": "Assets/ScriptableObjects/EnamyBaseData/EliteBaseData.asset",
+      "sha256": "5b0d373db7406b0322f2c2f06c35b7e31c8c082fa7ba0b18008d6ca7e32766bf"
+    },
+    {
+      "source": "Assets/ScriptableObjects/EnamyBaseData/EliteBaseData.asset.meta",
+      "sha256": "2517193f051a5e87940147224bd928a5af402b068461167ae705f0e11fa37923"
+    },
+    {
+      "source": "Assets/ScriptableObjects/EnamyBaseData/MainBaseData.asset",
+      "sha256": "439b9819cb662c6434f4f06b96690eac69ff4e51a61caab14c74f55c47d7e54c"
+    },
+    {
+      "source": "Assets/ScriptableObjects/EnamyBaseData/MainBaseData.asset.meta",
+      "sha256": "61d74487d0ce447e997d2299626338dd96602c7cb931f57162bf625ac011887f"
+    },
+    {
+      "source": "Assets/ScriptableObjects/EnamyBaseData/SubBaseData.asset",
+      "sha256": "1d84288393de00b254be80b13d65ec10ecab042139e5a4ba69981cee794bd7cd"
+    },
+    {
+      "source": "Assets/ScriptableObjects/EnamyBaseData/SubBaseData.asset.meta",
+      "sha256": "f7455beb1212bcb6a3de0108ac6e9454881c01d44ce591119169d5aa33cb7731"
+    },
+    {
+      "source": "Assets/ScriptableObjects/EnamyBaseData.meta",
+      "sha256": "01c94860d17bda6fbb6b976b53a6cad51e4fe2b1dbe7ec2f7b684ea1e52fdedb"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/bleed.asset",
+      "sha256": "4abdff3dd4708c1219e6cd563919855714f7349bda1969cfa84c55768e057c6e"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/bleed.asset.meta",
+      "sha256": "d27fe78f6c836656d0a9c1b2bc3e13408ba81580f2939b0cec8dfac6807565c6"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/burn.asset",
+      "sha256": "21910103acefe832cb8114985310f7cc5002f1a0dfd06d404033a77ae1a63431"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/burn.asset.meta",
+      "sha256": "128cfc6290bd05a02612a947c6406f11e099f2a523e0f44e3780a10878cf9c6e"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/chill.asset",
+      "sha256": "98565edd24fe8b122160f3d34851ff9aa16514d14ebe315d5aa056923c92b03e"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/chill.asset.meta",
+      "sha256": "37af7402bf07f1644f4e10067d33bdd7d7208780a44420502f2ca36151601e1a"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/curse.asset",
+      "sha256": "95f0fec47b5ed494053d808a25c176136d8539971ad0b22297b75a4b306f30a0"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/curse.asset.meta",
+      "sha256": "4b564bd41c0aebb14cd6021a84092e999bb4f2d51de18b7473210b4ec3eb08a9"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/dazed.asset",
+      "sha256": "6bd3907b8c0fed26d9f172e53550d03f389ac13993950fd8ed131608128073b0"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/dazed.asset.meta",
+      "sha256": "c06abffca0c3926a0b770bbd8a0d4c92c02e41eda7eeda9caf9b62a71344d0d8"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/electric.asset",
+      "sha256": "fb316c5d19c88c30a97f1c89d0601895177470c6292a79da7b16b76e8c94e45d"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/electric.asset.meta",
+      "sha256": "41c49ec3c006cc0c515d5dab46af60740741b8621782be68a03934ec07beb6c1"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/grass.asset",
+      "sha256": "bf03c397750cff1d13e22302ebbb37a3f2e8a4aad35f580588b45ba9006184ed"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/grass.asset.meta",
+      "sha256": "540690e4d08e024a64489ec6be6edd3eab0eef632cd8e645f09caf13144b344b"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/lumen.asset",
+      "sha256": "7445b398563a3b86c8a6cd08f6f286ec1de89c79eaaf7fba4a28b143ed086115"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/lumen.asset.meta",
+      "sha256": "78bc051dad2bb6bc126198267afd3fb931ad179ba6931ed5daed1c0d75aa7771"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/poison.asset",
+      "sha256": "1492492c6ccee39648123c0352976be6814cf28df8f6ad4b80c4b739ef7f78c6"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/poison.asset.meta",
+      "sha256": "5f6a8660e84b8d2edab02557d38c1e4850e84e41a64d212d3106eab25f7a11b1"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/sanded.asset",
+      "sha256": "a27be9d80743c659b6a401fcda6bdfda7e256e122541ed2f0b785cf6ac01d3f6"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/sanded.asset.meta",
+      "sha256": "05bc6222e104c9d4be6b7b24c9e2a6e9b08cf72bb7e3d91bfa7f7a7b6b7c4e0a"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/slime.asset",
+      "sha256": "0e0dd5d611062b3b170b064ae35d12973c04fc2a1f17ae0040eb6be297125665"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions/slime.asset.meta",
+      "sha256": "bd9fd8bab92e589d99a4ec87e44c837fcada9490b6a3dfa13a71c302a10d82d9"
+    },
+    {
+      "source": "Assets/ScriptableObjects/StatusDefinitions.meta",
+      "sha256": "d2b6d4c938450f16c890198246802ffe73736f7a81f3a6c221f3c54908729b20"
+    },
+    {
+      "source": "Assets/Scripts/Battle/AttackAim.cs",
+      "sha256": "888efaca9a8305558d96b813a5f34306f8d1db4b86a0b8d7c4ff077662fb781a"
+    },
+    {
+      "source": "Assets/Scripts/Battle/AttackAim.cs.meta",
+      "sha256": "00bac5f3bdaf8ce7c417f3ecbeb52375ff6a0ba84b98be014d43da0050deb548"
+    },
+    {
+      "source": "Assets/Scripts/Battle/AttackShape.cs",
+      "sha256": "44d9c20608ffa2f24753a00b61dd970d151fcb62b6b2f33a46ec350080591e05"
+    },
+    {
+      "source": "Assets/Scripts/Battle/AttackShape.cs.meta",
+      "sha256": "c7b3bcedda409700d0636782b0202e2e3dab9fbf8b2833e2a806ec65602ffda8"
+    },
+    {
+      "source": "Assets/Scripts/Battle/BodyBox.cs",
+      "sha256": "4cad917b718308e65b3f5d7f0ceb6379af8d7c2a06a744c3afcae8d6c97e65f5"
+    },
+    {
+      "source": "Assets/Scripts/Battle/BodyBox.cs.meta",
+      "sha256": "099c97bc7368bafcf68eb567f3a09ef2ca1bd286e7ddabe51e599c908f921987"
+    },
+    {
+      "source": "Assets/Scripts/Battle/CombatDamageCalculator.cs",
+      "sha256": "2c6e28e164e1c1394c9c9477a9e9d5710afbc5dd989fdbaecfe8fd855905663a"
+    },
+    {
+      "source": "Assets/Scripts/Battle/CombatDamageCalculator.cs.meta",
+      "sha256": "d1eee05473b92a9cacc2de754a55556e2f331be937f8376cba3d1d770d6103d1"
+    },
+    {
+      "source": "Assets/Scripts/Battle/EngagementRange.cs",
+      "sha256": "c44c65869c9a1ab8a64386b0fbd52256914e863161a86cd2e5e1829720647e4c"
+    },
+    {
+      "source": "Assets/Scripts/Battle/EngagementRange.cs.meta",
+      "sha256": "89bbebbad53411077629ba34565f0bab64d4a36b31c45c8f8478225cb68b8d83"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/StatusDefinition.cs",
+      "sha256": "3408dc4118b9ba13a0b64c49e9dbdc972454c18ede343838ad434ffa246ced04"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/StatusDefinition.cs.meta",
+      "sha256": "3267be94e41da97a1382cebe5fc705a65e5a100b5231c8d71187b81e8f35016d"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/StatusEffectId.cs",
+      "sha256": "9e2374457700fb74ec4fd2f0debf8d10eeac84fddb6849e2cb37ce21226cd642"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/StatusEffectId.cs.meta",
+      "sha256": "7c330ceb04114b3444c4d94106a7f8ace534d6120eec4ad74980f81a326fb222"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/StatusReactionCatalog.cs",
+      "sha256": "90288a731b47c8f075a196944dff395d14e2b9e1087ebe7a5f495bd822a972f1"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/StatusReactionCatalog.cs.meta",
+      "sha256": "a601767234a2863b20fd82ffbb27242dbb821cd881f122a609b2c547eb209c4b"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/StatusReactionDefinition.cs",
+      "sha256": "782711262f7d31bf01c91b1b04cdc9327c320565a8c2d9b8791e11be6a7d04f5"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/StatusReactionDefinition.cs.meta",
+      "sha256": "4e60142a5ee14de7703ed44e32c05595c4fd1b4763082ac8e4a7fe3134761e50"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/StatusReactionId.cs",
+      "sha256": "8f9cb5afbace4c21831f7f6b2e8fad69868643ec42b94e6fe57a0a2c5d4858d4"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/StatusReactionId.cs.meta",
+      "sha256": "2cd4fc891a339f8e4c56dbda77a886dae571b887cf5e2a96b0cd4e0ed281095e"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/StatusReactionResolver.cs",
+      "sha256": "582026cde74221a1eed23df5a6894daaf40606f21b06a303027a2373ac14337b"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/StatusReactionResolver.cs.meta",
+      "sha256": "6d48a5b9a544bf425d0e47b7d619a609aa727509e35b0a56b7eb63fac514ab50"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/UnitStatusReactionState.cs",
+      "sha256": "c24ba2b9aa6c549a103c34dad690e77e7d37f18d2f0ae5bd3ed1dd1909f978da"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/UnitStatusReactionState.cs.meta",
+      "sha256": "2564d32bd43fffb0f31d624e879b8fc75ce480b462fa332c78ce76046a4b46a9"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/UnitStatusState.cs",
+      "sha256": "f11e2836338487a45afdd5452b42e1c493abe99b4e983920e236c7b4cbe2f7ad"
+    },
+    {
+      "source": "Assets/Scripts/Battle/Status/UnitStatusState.cs.meta",
+      "sha256": "1e3e232d930d89673cf0815c1a9d0fa784f317ae0b241b229ba27896bf1f553e"
+    },
+    {
+      "source": "Assets/Scripts/Battle/UnitRole.cs",
+      "sha256": "8e7ad9cef34662555fc47ab1f8c7d02ccb97d299486d7c45ec27724944f14dd4"
+    },
+    {
+      "source": "Assets/Scripts/Battle/UnitRole.cs.meta",
+      "sha256": "1302bd42619a8195374cc0811d0878d6c00efacdab76848deb576dcb4c2f9363"
+    },
+    {
+      "source": "Docs/rl_defense_training_run.md",
+      "sha256": "30e67de1c4500e5bd350655c57bf9a65d62ab83bf30222b56deadabc0eaffe45"
+    },
+    {
+      "source": "LearningLab/.gitignore",
+      "sha256": "20fabf63487cc1c7999c864566328515f4197f662e47fdb71c21020a6a09ab22"
+    },
+    {
+      "source": "LearningLab/BALANCE.md",
+      "sha256": "3a422b312964f327838f0bad6cdc85af441f58e7c4151298ae6133dcdb014499"
+    },
+    {
+      "source": "LearningLab/BATTLE.md",
+      "sha256": "325fb408d91d736068bd46ec121a626af4611eb1730fc84a6c5f41ea6d8553c0"
+    },
+    {
+      "source": "LearningLab/BattleHost/BattleEnvironment.cs",
+      "sha256": "aa804135e2978b1116d1875ee7c84c7c3483181d79e4f2a7a9a6b7fc225cb073"
+    },
+    {
+      "source": "LearningLab/BattleHost/BattleHost.csproj",
+      "sha256": "bd1d1575069cdcd722dc9630703b90eca012e17843e9c2d4b2ef868e1d17262a"
+    },
+    {
+      "source": "LearningLab/BattleHost/BattleSimulation.cs",
+      "sha256": "6331ac3948369afe73b1f93bedcaf4fb1e896107989f2b6adeb07fb1d3926176"
+    },
+    {
+      "source": "LearningLab/BattleHost/Data.cs",
+      "sha256": "94c28e8ccb4e1ad76de74cd47def8f6a33a8ac592dc8aeca39690d2bb8dfce7f"
+    },
+    {
+      "source": "LearningLab/BattleHost/Entities.cs",
+      "sha256": "3438f5d989ed946aafe3401f3ca8dd1ef6bd246a523962f03579391d2c51f933"
+    },
+    {
+      "source": "LearningLab/BattleHost/Grid.cs",
+      "sha256": "880cb420cbdbb5a1e415061339126b0614f517ada28fd03e066d63a50ea9d1fe"
+    },
+    {
+      "source": "LearningLab/BattleHost/NumericCompatibility.cs",
+      "sha256": "ac14d666a2d0c184807abb474848858c1c48343548f9e88cf33ca20045cdc2f7"
+    },
+    {
+      "source": "LearningLab/BattleHost/Program.cs",
+      "sha256": "85c74e7f2c89310cd5a1b257cd9a0710a086b299598d87a39ec3386f111533a3"
+    },
+    {
+      "source": "LearningLab/BattleHost/StatusEngine.cs",
+      "sha256": "af233be1a3fd816cc644ad16556e3aa90270b9e73c40700d955f9c4ee7188569"
+    },
+    {
+      "source": "LearningLab/check_release_boundary.py",
+      "sha256": "39aa8eae683bc588f877b93a9eb212e529935ad8312c0a48ecc03b6ded05cfa4"
+    },
+    {
+      "source": "LearningLab/configs/balance_targets.json",
+      "sha256": "b6df14e076cff399d77f4d6057be2c5e674adce726765af0b1a828efdeaea308"
+    },
+    {
+      "source": "LearningLab/configs/battle_setup.json",
+      "sha256": "4502e585e57780247b34e1c289144d7619bbb65679568f921a534d83d5db0483"
+    },
+    {
+      "source": "LearningLab/configs/character_balance_plan.json",
+      "sha256": "c5624a172ca1eb47d2e06d808d840e5f887909134fb5b8d9cfc4ec330be35109"
+    },
+    {
+      "source": "LearningLab/configs/defense_training_plan.json",
+      "sha256": "e7147bc705cab07075e5f398a0a5a8b026457866dc2055e7276eeecdbb07b056"
+    },
+    {
+      "source": "LearningLab/configs/defense_training_stages.json",
+      "sha256": "91ec89e75097cc3e52e9d7a1713a20880325bc86a24cd215039e113d4a00d597"
+    },
+    {
+      "source": "LearningLab/configs/demo.json",
+      "sha256": "aa56a8d0d1fa601f34de36a52d3e8b4584ddc50b4b2c613b68b78aedbbaab573"
+    },
+    {
+      "source": "LearningLab/configs/strength_assignments.json",
+      "sha256": "d290e5f009ea4f3cdaf49ab5eb2dee94b79a57df6e334742cc32cb7a1ef49af9"
+    },
+    {
+      "source": "LearningLab/learning_lab/__init__.py",
+      "sha256": "a1d0ef29fbebb95af4adf64afe57fdb4291eebca70033bab6b275865236d53ab"
+    },
+    {
+      "source": "LearningLab/learning_lab/__main__.py",
+      "sha256": "de46e591649d1d629b71044c63062d3a868f6e7adddd96eefd9e7ef0bb07d357"
+    },
+    {
+      "source": "LearningLab/learning_lab/artifacts.py",
+      "sha256": "0f2641a4b4f093be53786abf45d30db5bccb6d2e1a7e1d135a3c76095621b315"
+    },
+    {
+      "source": "LearningLab/learning_lab/balance.py",
+      "sha256": "73a329ddecb4fe77f7d97ec395a993ff819effdc77b6d98eafeec78e95db7c72"
+    },
+    {
+      "source": "LearningLab/learning_lab/battle.py",
+      "sha256": "5551809c500d14927d5c578edebe82c35424bd75716710463091d57f930b54a5"
+    },
+    {
+      "source": "LearningLab/learning_lab/campaign.py",
+      "sha256": "ac2711eeb214f6659b6bf4b4182d59509ca9e0e9ae8ce309c3219d4bbe249367"
+    },
+    {
+      "source": "LearningLab/learning_lab/config.py",
+      "sha256": "9b58602b9f34f823e6cacefc46849a208ff2f60d179e2c698784e49126c24130"
+    },
+    {
+      "source": "LearningLab/learning_lab/contracts.py",
+      "sha256": "bc84ccc5a433e7871c32a7c253596bacb69bee5b52dfba7a76373fefbd4f1055"
+    },
+    {
+      "source": "LearningLab/learning_lab/demo.py",
+      "sha256": "de0b8f05a34891028b8c8456903543a4d06a8bc553e74b9961c35d1e7efc2a09"
+    },
+    {
+      "source": "LearningLab/learning_lab/demo_server.py",
+      "sha256": "cbe5e1f4448366a6a5f06fb7e2b40e4889de19a187904b24e94793ae7b5ce215"
+    },
+    {
+      "source": "LearningLab/learning_lab/evaluation.py",
+      "sha256": "8e2934d9b16c99c49b0d8e83bcc4679fc79fcbde0828bfad798426df77725cb3"
+    },
+    {
+      "source": "LearningLab/learning_lab/export_battle.py",
+      "sha256": "17b13732cf58e6a65dc41096f4aba59c6fd64e92c45a15bff543dafd5d2a005c"
+    },
+    {
+      "source": "LearningLab/learning_lab/policy.py",
+      "sha256": "d8706f2d28fbe3d269ecd30cd20ab20b6f3c78042942fa653999ed9473330416"
+    },
+    {
+      "source": "LearningLab/learning_lab/ppo.py",
+      "sha256": "2387c73d9ef08f7308921fa184a12c58091e27b5d83bc9b438f7d4933221130b"
+    },
+    {
+      "source": "LearningLab/learning_lab/rpc.py",
+      "sha256": "3d16cc4eba613c55fb58f690eb838b73744e8f4fd92a873ff9d463f4f66216fe"
+    },
+    {
+      "source": "LearningLab/learning_lab/trainer.py",
+      "sha256": "3d33bd7330cc7a8b5ee13c67b5f7beaba039f26f2952bb42f0bc3e111962f75f"
+    },
+    {
+      "source": "LearningLab/README.md",
+      "sha256": "0675ea7ca3024fcc39830338472ae1839ddbe9d30d132776d7aedf1caac77459"
+    },
+    {
+      "source": "LearningLab/requirements.txt",
+      "sha256": "b034acf97beb28e81a342f7152f8436f525ea441e9370e5191baaa005b72129b"
+    },
+    {
+      "source": "LearningLab/results/defense_training_20260923.json",
+      "sha256": "d42b0a51edbd52d4b2bf543c4d83360e1df2b14d23d170294f09831a04f3dc55"
+    },
+    {
+      "source": "LearningLab/results/identity-first-run.json",
+      "sha256": "f45fbe95946c3165e64d61b1047904cc08f8d3966f58f1d611ba025a8f92aff3"
+    },
+    {
+      "source": "LearningLab/tests/test_balance.py",
+      "sha256": "727ec901dd35bc92a1241f43788d976d08b630325eb3cb293967043f1a214a48"
+    },
+    {
+      "source": "LearningLab/tests/test_battle.py",
+      "sha256": "d42097c243705249718fdf7c4d9a168bc3ed1c424c247ca1dd4bf9cb5580a36b"
+    },
+    {
+      "source": "LearningLab/tests/test_battle_export.py",
+      "sha256": "f5ee83a811c373dcd872b48f05b182b0817e21d4edc8d372cc576edb215df648"
+    },
+    {
+      "source": "LearningLab/tests/test_campaign.py",
+      "sha256": "d25169bca0b8463b3e0dcbf7bb9f1c5d0df20d72f5ab8285baeaa36b6de2f34a"
+    },
+    {
+      "source": "LearningLab/tests/test_defense.py",
+      "sha256": "089a1b0dd06af33bbbcc2fab55c6f357e7645c28f995f5aba885cd185f677753"
+    },
+    {
+      "source": "LearningLab/tests/test_learning.py",
+      "sha256": "91f580e9a71f101b870a76521375a3dad1f708fb9fc8655e66cdd501e5186402"
+    }
+  ]
+}

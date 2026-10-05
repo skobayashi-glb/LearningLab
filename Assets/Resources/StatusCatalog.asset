@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7495f848e3965640acdcb0a7b0d3479, type: 3}
+  m_Name: StatusCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::StatusCatalog
+  definitions:
+  - {fileID: 11400000, guid: 2c20df937a660c44e9598173f012b183, type: 2}
+  - {fileID: 11400000, guid: 620b7111ae829a74b882270805f34704, type: 2}
+  - {fileID: 11400000, guid: 4308783a40567ca459e77cce0592d7e6, type: 2}
+  - {fileID: 11400000, guid: 1731319679a55ee42b1e7b0646913b77, type: 2}
+  - {fileID: 11400000, guid: aea303cde00f1164bbd49176b8fd2592, type: 2}
+  - {fileID: 11400000, guid: 8c4bb1c6453f6c8478514e9d5a85f778, type: 2}
+  - {fileID: 11400000, guid: 8be1cbcac9d481343a3f01c1e69a71fc, type: 2}
+  - {fileID: 11400000, guid: b2d8e236cc1f7cf46a8ba81a7f95936d, type: 2}
+  - {fileID: 11400000, guid: 79d7e89f7422f634280811d5766e4e41, type: 2}
+  - {fileID: 11400000, guid: 46700ce7ef211004caac49d9f696cee5, type: 2}
+  - {fileID: 11400000, guid: 8d704b348750b174c8ff55b873af55e9, type: 2}
+  baseApplicationChance: 1
+  maximumApplicationChance: 1
+  damageIntervalSeconds: 1
+  chillMovementMultiplier: 0.9
+  dazedRecoveryMultiplier: 1.1
+  lumenDamageMultiplier: 1.25
+  sandedSpreadRadius: 2.5
+  sandedSpreadTargets: 3
+  curseDamage: 5
+  curseCooldownSeconds: 1

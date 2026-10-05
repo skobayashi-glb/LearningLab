@@ -1,0 +1,198 @@
+{
+  "training": {
+    "version": 1,
+    "seed": 31415,
+    "ppo": {
+      "rollout_steps": 256,
+      "epochs": 4,
+      "minibatch_size": 64,
+      "hidden_size": 64,
+      "learning_rate": 0.0003,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "entropy_coefficient": 0.01,
+      "value_coefficient": 0.5,
+      "max_grad_norm": 0.5,
+      "epsilon": 1e-08,
+      "torch_threads": 1
+    },
+    "evaluation": {
+      "seeds": [
+        2001,
+        2002
+      ],
+      "max_decisions": 5000
+    }
+  },
+  "envelope": {
+    "width": 15,
+    "height": 11,
+    "units": 64,
+    "bases": 8,
+    "hand": 8,
+    "squads": 5
+  },
+  "cell_size": 3.2,
+  "scenarios": [
+    {
+      "id": "openfield",
+      "family": "openfield",
+      "split": "train",
+      "stage_asset": "Assets/Editor/LearningDebugStages/RL_OpenField.asset",
+      "main_base": {
+        "hp": 60,
+        "footprint": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "spawn_slots": [
+          {
+            "x": 1,
+            "y": 0
+          },
+          {
+            "x": 0,
+            "y": -1
+          }
+        ]
+      },
+      "roster": [
+        "shark",
+        "amago",
+        "amago",
+        "shark",
+        "amago",
+        "amago",
+        "shark",
+        "amago"
+      ],
+      "enemy_pool": [
+        "shark",
+        "amago"
+      ],
+      "rules": {
+        "hand_size": 8,
+        "squad_limit": 5,
+        "episode_seconds": 90,
+        "initial_energy": 5,
+        "enemy_initial_energy": 5,
+        "max_energy": 20,
+        "enemy_decision_seconds": 8,
+        "enemy_forecast_seconds": 3,
+        "enemy_duplicate_limit": 3,
+        "enemy_enabled": true,
+        "energy_recovery_seconds": 3
+      },
+      "ally_overrides": {}
+    },
+    {
+      "id": "chokepoint",
+      "family": "chokepoint",
+      "split": "validation",
+      "stage_asset": "Assets/Editor/LearningDebugStages/RL_ChokePoint.asset",
+      "main_base": {
+        "hp": 60,
+        "footprint": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "spawn_slots": [
+          {
+            "x": 1,
+            "y": 0
+          },
+          {
+            "x": 0,
+            "y": -1
+          }
+        ]
+      },
+      "roster": [
+        "shark",
+        "amago",
+        "amago",
+        "shark",
+        "amago",
+        "amago",
+        "shark",
+        "amago"
+      ],
+      "enemy_pool": [
+        "shark",
+        "amago"
+      ],
+      "rules": {
+        "hand_size": 8,
+        "squad_limit": 5,
+        "episode_seconds": 90,
+        "initial_energy": 5,
+        "enemy_initial_energy": 5,
+        "max_energy": 20,
+        "enemy_decision_seconds": 8,
+        "enemy_forecast_seconds": 3,
+        "enemy_duplicate_limit": 3,
+        "enemy_enabled": true,
+        "energy_recovery_seconds": 3
+      },
+      "ally_overrides": {}
+    },
+    {
+      "id": "defense-holdout-20260923",
+      "family": "double-passage-defense-20260923",
+      "split": "holdout",
+      "stage_asset": "Assets/Editor/LearningDebugStages/RL_DefenseHoldout.asset",
+      "main_base": {
+        "hp": 60,
+        "footprint": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "spawn_slots": [
+          {
+            "x": 1,
+            "y": 0
+          },
+          {
+            "x": 0,
+            "y": -1
+          }
+        ]
+      },
+      "roster": [
+        "shark",
+        "amago",
+        "amago",
+        "shark",
+        "amago",
+        "amago",
+        "shark",
+        "amago"
+      ],
+      "enemy_pool": [
+        "shark",
+        "amago"
+      ],
+      "rules": {
+        "hand_size": 8,
+        "squad_limit": 5,
+        "episode_seconds": 90,
+        "initial_energy": 5,
+        "enemy_initial_energy": 5,
+        "max_energy": 20,
+        "enemy_decision_seconds": 8,
+        "enemy_forecast_seconds": 3,
+        "enemy_duplicate_limit": 3,
+        "enemy_enabled": true,
+        "energy_recovery_seconds": 3
+      },
+      "ally_overrides": {}
+    }
+  ]
+}

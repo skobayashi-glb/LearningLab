@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "environment_factory": "learning_lab.demo:NavigationDemo",
+  "environment_options": {},
+  "seed": 31415,
+  "ppo": {
+    "rollout_steps": 256,
+    "epochs": 4,
+    "minibatch_size": 64,
+    "hidden_size": 64,
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "entropy_coefficient": 0.01,
+    "value_coefficient": 0.5,
+    "max_grad_norm": 0.5,
+    "epsilon": 0.00000001,
+    "torch_threads": 1
+  },
+  "evaluation": {
+    "seeds": [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008],
+    "max_decisions": 100
+  },
+  "scenarios": [
+    {"id": "demo-short", "family": "line-5", "split": "train", "weight": 1,
+     "parameters": {"length": 5, "max_steps": 12}},
+    {"id": "demo-long", "family": "line-7", "split": "train", "weight": 1,
+     "parameters": {"length": 7, "max_steps": 18}},
+    {"id": "demo-validation", "family": "line-6", "split": "validation", "weight": 1,
+     "parameters": {"length": 6, "max_steps": 15}},
+    {"id": "demo-holdout", "family": "line-8", "split": "holdout", "weight": 1,
+     "parameters": {"length": 8, "max_steps": 21}}
+  ]
+}

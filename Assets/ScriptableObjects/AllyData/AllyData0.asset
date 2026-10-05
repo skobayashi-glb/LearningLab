@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26926a4d85eae9c4f9e148be61e8d4f5, type: 3}
+  m_Name: AllyData0
+  m_EditorClassIdentifier: Assembly-CSharp::AllyData
+  allyName: harisenbon
+  maxHp: 20
+  attackPower: 4
+  moveSpeed: 1
+  attackTime: 0.3
+  attackDuration: 0.5
+  attackRange: 3.2
+  engagementRange:
+    circleRadius: 4
+    sectorRadius: 4
+    sectorAngle: 90
+  attackShape:
+    type: 0
+    areaRadius: 0
+  knockbackHpRatios: []
+  maxConcurrentSorties: 4
+  deployCooldown: 5

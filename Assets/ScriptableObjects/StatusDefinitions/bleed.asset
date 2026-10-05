@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66bef5baf8ee6e46b298f12fc134ad5, type: 3}
+  m_Name: bleed
+  m_EditorClassIdentifier: Assembly-CSharp::StatusDefinition
+  statusId: 3
+  displayName: BLEED
+  statusColor: {r: 0.8509804, g: 0.2901961, b: 0.2901961, a: 1}
+  durationSeconds: 6
+  displayPriority: 5
+  surfaceMotifEffectName: status_bleed
+  damagePerTick: 1
+  rimGlowStrength: 0.35

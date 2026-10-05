@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "description": "Illustrative attacker targets only; not approved game balance. Cost and speed remain fixed.",
+  "candidate_budget": 6,
+  "search_seed": 7391,
+  "change_weight": 0.05,
+  "seeds": {
+    "train": [3101, 3102],
+    "validation": [4101, 4102],
+    "holdout": [5101, 5102]
+  },
+  "parameters": [
+    {"character": "shark", "field": "hp", "values": [54, 60, 66]},
+    {"character": "shark", "field": "power", "values": [11, 12, 13]},
+    {"character": "amago", "field": "hp", "values": [22, 24, 26]},
+    {"character": "amago", "field": "power", "values": [3, 4, 5]}
+  ],
+  "cases": [
+    {
+      "id": "shark-attacker-cost3",
+      "character": "shark",
+      "role": "attacker",
+      "reference_cost": 3,
+      "weight": 1,
+      "roster": ["shark", "shark", "shark", "shark", "shark", "shark", "shark", "shark"],
+      "targets": {
+        "damage_per_energy": {"min": 4, "max": 8, "scale": 4, "weight": 2},
+        "win_rate": {"min": 0.4, "max": 0.8, "scale": 1, "weight": 1}
+      }
+    },
+    {
+      "id": "amago-attacker-cost1",
+      "character": "amago",
+      "role": "attacker",
+      "reference_cost": 1,
+      "weight": 1,
+      "roster": ["amago", "amago", "amago", "amago", "amago", "amago", "amago", "amago"],
+      "targets": {
+        "damage_per_energy": {"min": 3, "max": 6, "scale": 3, "weight": 2},
+        "win_rate": {"min": 0.3, "max": 0.7, "scale": 1, "weight": 1}
+      }
+    }
+  ]
+}
