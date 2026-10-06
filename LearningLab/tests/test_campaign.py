@@ -6,7 +6,7 @@ import unittest
 
 import numpy as np
 
-from learning_lab.balance import ScriptedSortiePolicy, GLOBAL_FEATURES, CARD_FEATURES, prepare_case, apply_candidate
+from learning_lab.balance import ScriptedSortiePolicy, GLOBAL_FEATURES, PARTY_FEATURES, prepare_case, apply_candidate
 from learning_lab.battle import HOST_DLL
 from learning_lab.campaign import build_campaign, design_markdown, apply_strength_assignments, DEFAULT_STRENGTH_ASSIGNMENTS
 from learning_lab.config import ExperimentConfig
@@ -31,17 +31,17 @@ class CampaignPolicyTests(unittest.TestCase):
             apply_strength_assignments(plan, strengths)
 
     def test_target_first_saves_energy_and_then_reverts_to_fixed_order(self):
-        spec = SimpleNamespace(action_names=("wait", "commit", "card:0", "card:1"))
-        values = np.zeros(GLOBAL_FEATURES + CARD_FEATURES * 2, dtype=np.float32)
+        spec = SimpleNamespace(action_names=("wait", "deploy:0", "deploy:1"))
+        values = np.zeros(GLOBAL_FEATURES + PARTY_FEATURES * 2, dtype=np.float32)
         values[1] = 0.1
         values[GLOBAL_FEATURES:GLOBAL_FEATURES + 3] = [1, 0.5, 0.1]
-        values[GLOBAL_FEATURES + CARD_FEATURES:GLOBAL_FEATURES + CARD_FEATURES + 3] = [1, 1, 0.2]
-        obs = SimpleNamespace(values=values, action_mask=np.array([True, False, True, True]))
+        values[GLOBAL_FEATURES + PARTY_FEATURES:GLOBAL_FEATURES + PARTY_FEATURES + 3] = [1, 1, 0.2]
+        obs = SimpleNamespace(values=values, action_mask=np.array([True, True, False]))
         policy = ScriptedSortiePolicy(spec, 2, required_first_character=1)
         self.assertEqual(policy.choose(obs), 0)  # preserve energy for target, not cheap anchor
         values[1] = 0.3
-        self.assertEqual(policy.choose(obs), 3)
-        obs.action_mask[1] = True
+        obs.action_mask[2] = True
+        self.assertEqual(policy.choose(obs), 2)
         self.assertEqual(policy.choose(obs), 1)
         self.assertEqual(policy.choose(obs), 2)
 
@@ -65,6 +65,11 @@ class CampaignTests(unittest.TestCase):
 
     def test_cases_freeze_other_characters_and_do_not_optimize_speed_cost(self):
         self.assertEqual(len(self.settings["cases"]), 16)
+        self.assertEqual(self.settings["version"], 2)
+        for case in self.settings["cases"]:
+            self.assertEqual(len(case["roster"]), len(set(case["roster"])))
+            if case["id"].endswith("-solo"):
+                self.assertEqual(case["roster"], [case["character"]])
         self.assertTrue(all(c["freeze_others"] and c["target_first"] for c in self.settings["cases"]))
         self.assertTrue(all(p["field"] in {"hp", "power"} for p in self.settings["parameters"]))
         self.assertFalse(any(p["character"] == "ammonite" and p["field"] == "power" for p in self.settings["parameters"]))

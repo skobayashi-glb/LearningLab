@@ -178,7 +178,10 @@ class BattleExporter:
         config = copy.deepcopy(setup["training"])
         scenarios = []
         for entry in setup["scenarios"]:
-            battle = {"version": 1, "cell_size": setup.get("cell_size", DEFAULT_CELL_SIZE),
+            roster = entry["roster"]
+            if not roster or len(roster) != len(set(roster)) or len(roster) > setup["envelope"]["party"]:
+                raise ValueError("Use a unique fixed party; legacy repeated-card rosters must be migrated")
+            battle = {"version": 2, "cell_size": setup.get("cell_size", DEFAULT_CELL_SIZE),
                       "stage": self.stage(entry), "rules": entry["rules"],
                       "roster": entry["roster"], "enemy_pool": entry["enemy_pool"],
                       "initial_units": entry.get("initial_units", [])}

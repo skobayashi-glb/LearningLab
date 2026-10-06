@@ -28,10 +28,11 @@ public sealed class Rules
     public float EpisodeSeconds { get; set; } = 180;
     public int InitialEnergy { get; set; } = 5;
     public int MaxEnergy { get; set; } = 20;
-    public float EnergyRecoverySeconds { get; set; } = 3;
-    public int HandSize { get; set; } = 8;
-    public int SquadLimit { get; set; } = 5;
-    public int DiscardCost { get; set; } = 1;
+    public float EnergyRecoverySeconds { get; set; } = PartyControls.EnergyRecoverySeconds;
+    public int PartySize { get; set; } = PartyControls.PartySize;
+    public int RouteCount { get; set; } = PartyControls.RouteCount;
+    public int MaximumWaypoints { get; set; } = PartyControls.MaximumWaypoints;
+    public int EnemySquadLimit { get; set; } = PartyControls.EnemySquadLimit;
     public float EnemyDecisionSeconds { get; set; } = 4;
     public float EnemyForecastSeconds { get; set; } = 3;
     public float EnemySpendMinimum { get; set; } = 0.3f;
@@ -39,7 +40,6 @@ public sealed class Rules
     public int EnemyDuplicateLimit { get; set; } = 3;
     public int EnemyInitialEnergy { get; set; } = 5;
     public bool EnemyEnabled { get; set; } = true;
-    public bool ShuffleDeck { get; set; } = true;
     public float ContactMarginCells { get; set; } = 0.02f;
     public float SeparationCells { get; set; } = 0.35f;
     public float ChainMaximumCells { get; set; } = 1.5f;
@@ -104,7 +104,8 @@ public sealed class InitialUnit
 }
 public sealed class BattleData
 {
-    public int Version { get; set; } = 1;
+    public const int CurrentVersion = 2;
+    public int Version { get; set; } = CurrentVersion;
     public float CellSize { get; set; } = 3.2f;
     public StageData Stage { get; set; }
     public Rules Rules { get; set; } = new();
@@ -119,16 +120,18 @@ public sealed class BattleData
 }
 public sealed class EnergyWallet(int initial, int maximum, float interval)
 {
+    const double RecoveryTolerance = 0.000001;
+    double recoveryProgress;
     public int Current { get; private set; } = initial;
-    public float Progress { get; private set; }
+    public float Progress => (float)recoveryProgress;
     public int Spent { get; private set; }
     public void Tick(float seconds, float multiplier = 1)
     {
-        if (Current >= maximum) { Progress = 0; return; }
-        Progress += seconds * multiplier / interval;
-        int recovered = (int)Progress;
+        if (Current >= maximum) { recoveryProgress = 0; return; }
+        recoveryProgress += (double)seconds * multiplier / interval;
+        int recovered = (int)(recoveryProgress + RecoveryTolerance);
         Current = Math.Min(maximum, Current + recovered);
-        Progress = Current == maximum ? 0 : Progress - recovered;
+        recoveryProgress = Current == maximum ? 0 : Math.Max(0, recoveryProgress - recovered);
     }
     public void Spend(int amount)
     {
@@ -137,25 +140,19 @@ public sealed class EnergyWallet(int initial, int maximum, float interval)
         Spent += amount;
     }
 }
-public sealed class SortieDeck
+public static class PartyControls
 {
-    public List<int> Hand { get; } = [];
-    public List<int> Pool { get; } = [];
-    public string[] Characters { get; }
-    readonly int handSize;
-    public SortieDeck(string[] characters, int size, Random random, bool shuffle)
+    public const int PartySize = 12, RouteCount = 3, MaximumWaypoints = 2, EnemySquadLimit = 5;
+    public const float EnergyRecoverySeconds = 1;
+}
+public sealed class FixedPartyRoster
+{
+    public IReadOnlyList<string> Characters { get; }
+    public FixedPartyRoster(string[] characters, int capacity)
     {
-        Characters = characters;
-        handSize = size;
-        Pool.AddRange(Enumerable.Range(0, characters.Length));
-        if (shuffle)
-            for (int i = Pool.Count - 1; i > 0; i--)
-            { int j = random.Next(i + 1); (Pool[i], Pool[j]) = (Pool[j], Pool[i]); }
-        Refill();
+        if (characters == null || characters.Length == 0 || characters.Length > capacity ||
+            characters.Distinct().Count() != characters.Length)
+            throw new ArgumentException("Fixed party must contain unique characters within party_size; re-export legacy decks");
+        Characters = Array.AsReadOnly((string[])characters.Clone());
     }
-    public void Remove(IEnumerable<int> cards)
-    { foreach (int card in cards) if (!Hand.Remove(card)) throw new InvalidOperationException("Card not in hand"); }
-    public void Return(int card) { Pool.Add(card); Refill(); }
-    public void Refill()
-    { while (Hand.Count < handSize && Pool.Count > 0) { Hand.Add(Pool[0]); Pool.RemoveAt(0); } }
 }

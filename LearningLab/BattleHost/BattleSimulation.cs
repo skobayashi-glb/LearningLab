@@ -18,7 +18,8 @@ public sealed class BattleSimulation
     public List<BattleUnit> Units { get; } = [];
     public List<Squad> Squads { get; } = [];
     public List<BattleEvent> Events { get; } = [];
-    public SortieDeck Deck { get; }
+    public FixedPartyRoster Party { get; }
+    public PartyRouteBoard Routes { get; }
     public EnergyWallet[] Energy { get; }
     public EnemyForecast Forecast { get; private set; }
     public int Tick { get; private set; }
@@ -39,7 +40,7 @@ public sealed class BattleSimulation
         statuses = new(data);
         enemyRandom = new Random(unchecked(seed ^ 0x5A17));
         var r = data.Rules;
-        Deck = new(data.Roster, r.HandSize, new Random(seed), r.ShuffleDeck);
+        Party = new(data.Roster, r.PartySize);
         Energy = [new(r.InitialEnergy, r.MaxEnergy, r.EnergyRecoverySeconds),
                   new(r.EnemyInitialEnergy, r.MaxEnergy, r.EnergyRecoverySeconds)];
         foreach (var definition in data.Stage.Bases)
@@ -61,7 +62,7 @@ public sealed class BattleSimulation
                         !Units.Any(u => u.Spawned && Grid.Index(u.Transform.position) == c)).ToArray();
                 if (perimeter.Length == 0) throw new ArgumentException("No free garrison cell outside spawn ports");
                 int cell = perimeter[0];
-                var u = Create(character, b.Team, -1, b.Id, cell, -1, 0);
+                var u = Create(character, b.Team, -1, b.Id, cell, 0);
                 u.Spawned = true;
                 u.Transform.position = Grid.World(cell);
             }
@@ -70,31 +71,26 @@ public sealed class BattleSimulation
             Grid.RequireCell(initial.Cell); Grid.RequireCell(initial.Destination);
             int cell = Grid.Index(initial.Cell);
             if (!Grid.Walkable(cell)) throw new ArgumentException("Initial unit on blocked cell");
-            int card = -1;
-            if (initial.Team == Ally)
-            {
-                card = Deck.Hand.Concat(Deck.Pool).FirstOrDefault(c => Deck.Characters[c] == initial.Character, -1);
-                if (card < 0) throw new ArgumentException("Predeployed ally must be in roster");
-                Deck.Hand.Remove(card); Deck.Pool.Remove(card);
-            }
+            if (initial.Team == Ally && !Party.Characters.Contains(initial.Character))
+                throw new ArgumentException("Predeployed ally must be in party");
             var squad = new Squad { Id = nextSquad++, Team = initial.Team,
                 Destination = Grid.Index(initial.Destination), Origin = -1 };
             Squads.Add(squad);
-            var u = Create(initial.Character, initial.Team, squad.Id, -1, squad.Destination, card, 0);
+            var u = Create(initial.Character, initial.Team, squad.Id, -1, squad.Destination, 0);
             u.Transform.position = Grid.World(cell); u.Spawned = true;
         }
-        Deck.Refill();
-        if (Squads.GroupBy(s => s.Team).Any(g => g.Count() > r.SquadLimit))
+        Routes = new(this, r.RouteCount, r.MaximumWaypoints);
+        if (Squads.Count(s => s.Team == Enemy) > r.EnemySquadLimit)
             throw new ArgumentException("Initial squad count exceeds limit");
     }
     void ValidateData()
     {
         var r = Data.Rules;
-        if (Data.Version != Wire.Version || Data.CellSize <= 0 || r.TickSeconds <= 0 ||
+        if (Data.Version != BattleData.CurrentVersion || Data.CellSize <= 0 || r.TickSeconds <= 0 ||
             r.DecisionSeconds < r.TickSeconds || r.EpisodeSeconds <= 0 ||
             r.EnergyRecoverySeconds <= 0 || r.MaxEnergy <= 0 || r.InitialEnergy < 0 ||
             r.InitialEnergy > r.MaxEnergy || r.EnemyInitialEnergy < 0 || r.EnemyInitialEnergy > r.MaxEnergy ||
-            r.HandSize <= 0 || r.SquadLimit <= 0 || r.DiscardCost <= 0 ||
+            r.PartySize <= 0 || r.RouteCount <= 0 || r.MaximumWaypoints < 0 || r.EnemySquadLimit <= 0 ||
             r.EnemyDecisionSeconds <= 0 || r.EnemyForecastSeconds < 0 || r.EnemyDuplicateLimit <= 0 ||
             r.EnemySpendMinimum <= 0 || r.EnemySpendMinimum > 1 ||
             r.SeparationCells <= 0 || r.ChainMaximumCells <= 0 || r.TurnDegreesPerSecond <= 0)
@@ -114,61 +110,37 @@ public sealed class BattleSimulation
         }
     }
     public UnitDefinition Definition(string id, int team) => definitions[team][id];
-    public int Cost(IEnumerable<int> cards) => cards.Sum(c => Definition(Deck.Characters[c], Ally).Cost);
-    public bool CanDeploy(IReadOnlyList<int> cards, int origin, int destination)
+    public bool CanDeploy(int slot)
     {
-        var b = Bases.FirstOrDefault(b => b.Id == origin && b.Team == Ally && b.Alive);
-        return !Finished && b != null && cards.Count > 0 && cards.Distinct().Count() == cards.Count &&
-            cards.All(c => Deck.Hand.Contains(c)) && Cost(cards) <= Energy[Ally].Current &&
-            Squads.Count(s => s.Team == Ally) < Data.Rules.SquadLimit &&
-            Units.Count + cards.Count <= MaxUnits &&
-            b.SpawnIndices.Any(c => Grid.Reachable(c, destination));
+        var route = Routes.Current;
+        return !Finished && slot >= 0 && slot < Party.Characters.Count && route != null &&
+            Definition(Party.Characters[slot], Ally).Cost <= Energy[Ally].Current && Routes.Path(route).Length > 0;
     }
-    public void Deploy(IReadOnlyList<int> cards, int origin, int destination)
+    public void Deploy(int slot)
     {
-        if (!CanDeploy(cards, origin, destination)) throw new InvalidOperationException("Illegal deployment");
-        Energy[Ally].Spend(Cost(cards));
-        Deck.Remove(cards);
-        SpawnSquad(Ally, origin, destination, cards.Select(c => Deck.Characters[c]).ToArray(), cards);
-        Deck.Refill();
+        if (!CanDeploy(slot)) throw new InvalidOperationException("Illegal deployment");
+        if (Units.Count >= MaxUnits) throw new InvalidOperationException("Unit capacity exceeded; enlarge observation envelope (not a gameplay limit)");
+        var route = Routes.Current;
+        var origin = Routes.Origin(route);
+        string character = Party.Characters[slot];
+        Energy[Ally].Spend(Definition(character, Ally).Cost);
+        SpawnSquad(Ally, origin.Id, route.Destination, [character]);
+        Routes.Assign(Units[^1], route, Routes.Path(route), rejoin: false);
     }
-    public void Discard(IReadOnlyList<int> cards)
-    {
-        int cost = cards.Count * Data.Rules.DiscardCost;
-        if (cards.Count == 0 || cards.Distinct().Count() != cards.Count ||
-            cards.Any(c => !Deck.Hand.Contains(c)) || cost > Energy[Ally].Current)
-            throw new InvalidOperationException("Illegal discard");
-        Energy[Ally].Spend(cost); Deck.Remove(cards);
-        foreach (int card in cards) Deck.Pool.Add(card);
-        Deck.Refill();
-        Log("discard", -1, -1, cost);
-    }
-    public bool CanRetarget(int squadId, int destination)
-    {
-        var members = Units.Where(u => u.Squad == squadId && u.Team == Ally).ToArray();
-        return members.Length > 0 && members.All(u => Grid.Reachable(
-            u.Spawned ? Grid.Index(u.Transform.position) : Bases.First(b => b.Id == u.Home).SpawnIndices[0], destination));
-    }
-    public void Retarget(int squadId, int destination)
-    {
-        if (!CanRetarget(squadId, destination)) throw new InvalidOperationException("Unreachable destination");
-        Squads.First(s => s.Id == squadId).Destination = destination;
-        foreach (var u in Units.Where(u => u.Squad == squadId)) u.Destination = destination;
-    }
-    void SpawnSquad(int team, int origin, int destination, IReadOnlyList<string> characters, IReadOnlyList<int> cards = null)
+    void SpawnSquad(int team, int origin, int destination, IReadOnlyList<string> characters)
     {
         var squad = new Squad { Id = nextSquad++, Team = team, Destination = destination, Origin = origin };
         Squads.Add(squad);
-        for (int i = 0; i < characters.Count; i++) Create(characters[i], team, squad.Id, origin, destination, cards?[i] ?? -1, i);
+        for (int i = 0; i < characters.Count; i++) Create(characters[i], team, squad.Id, origin, destination, i);
         Log("deploy", origin, squad.Id, characters.Count, string.Join(",", characters));
     }
-    BattleUnit Create(string character, int team, int squad, int origin, int destination, int card, int order)
+    BattleUnit Create(string character, int team, int squad, int origin, int destination, int order)
     {
         if (Units.Count >= MaxUnits) throw new InvalidOperationException("Unit capacity exceeded; enlarge envelope");
         var d = Definition(character, team);
         var u = new BattleUnit { Id = nextId++, Team = team, Definition = d,
             Hp = d.Hp, MaximumHp = d.Hp, Squad = squad, Home = origin, Destination = destination,
-            Card = card, Order = order };
+            Order = order };
         Units.Add(u); archive.Add(u);
         return u;
     }
@@ -243,16 +215,19 @@ public sealed class BattleSimulation
             if (Forecast.Remaining <= 0)
             {
                 var f = Forecast; Forecast = null;
-                if (Bases.Any(b => b.Id == f.Origin && b.Team == Enemy) &&
-                    Units.Count + f.Characters.Count <= MaxUnits)
+                if (Bases.Any(b => b.Id == f.Origin && b.Team == Enemy))
+                {
+                    if (Units.Count + f.Characters.Count > MaxUnits)
+                        throw new InvalidOperationException("Unit capacity exceeded; enlarge observation envelope");
                     SpawnSquad(Enemy, f.Origin, f.Destination, f.Characters);
+                }
                 else Log("forecast_cancelled", f.Origin, -1);
             }
         }
         enemyTimer += r.TickSeconds;
         if (enemyTimer + Epsilon < r.EnemyDecisionSeconds) return;
         enemyTimer -= r.EnemyDecisionSeconds;
-        if (Forecast != null || Squads.Count(s => s.Team == Enemy) >= r.SquadLimit) return;
+        if (Forecast != null || Squads.Count(s => s.Team == Enemy) >= r.EnemySquadLimit) return;
         var origins = Bases.Where(b => b.Team == Enemy && b.Alive).ToArray();
         var goals = Bases.Where(b => b.Team == Ally && b.Alive).ToArray();
         var pairs = (from b in origins from g in goals
@@ -264,7 +239,7 @@ public sealed class BattleSimulation
         int budget = Math.Max(0, (int)MathF.Floor(Energy[Enemy].Current *
             (r.EnemySpendMinimum + (1 - r.EnemySpendMinimum) * (float)enemyRandom.NextDouble())));
         var selected = new List<string>();
-        while (Units.Count + selected.Count < MaxUnits)
+        while (budget > 0)
         {
             var choices = Data.EnemyPool.Where(id => Definition(id, Enemy).Cost <= budget &&
                 Units.Count(u => u.Team == Enemy && u.Definition.Id == id) + selected.Count(s => s == id) < r.EnemyDuplicateLimit).ToArray();
@@ -289,7 +264,8 @@ public sealed class BattleSimulation
         var reachable = enemies.FirstOrDefault(v => Grid.Reachable(Grid.Index(u.Transform.position), Grid.Index(v.Transform.position)));
         if (reachable != null) return reachable;
         return Bases.Where(b => b.Alive && b.Team != u.Team &&
-            (b.OccupiedCells.Any(c => Grid.Index([c.x, c.y]) == u.Destination) || CanAttack(u, b)))
+            (b.OccupiedCells.Any(c => Grid.Index([c.x, c.y]) == u.Destination) ||
+                u.Definition.Engagement.ContainsBase(u.Transform.position, u.Transform.forward, b.OccupiedCells) || CanAttack(u, b)))
             .OrderBy(b => Distance(u, b)).ThenBy(b => b.Id).FirstOrDefault();
     }
     static Vector3 TargetPoint(BattleUnit u, BattleTarget target)
@@ -347,7 +323,8 @@ public sealed class BattleSimulation
     void Move(BattleUnit u, BattleTarget target)
     {
         int current = Grid.Index(u.Transform.position);
-        int goal = target is BattleUnit other ? Grid.Index(other.Transform.position) : u.Destination;
+        int goal = target is BattleUnit other ? Grid.Index(other.Transform.position) :
+            u.Team == Ally ? Routes.MovementGoal(u) : u.Destination;
         if (target is BattleBase b) goal = Grid.Index(b.Definition.Cell);
         Vector3 desired;
         if (target != null && Sight(u, target))
@@ -403,7 +380,6 @@ public sealed class BattleSimulation
         foreach (var u in Units.Where(u => !u.Alive).ToArray())
         {
             Units.Remove(u);
-            if (u.Team == Ally && u.Card >= 0) Deck.Return(u.Card);
             Log("death", -1, u.Id, 0, u.Definition.Id);
         }
         Squads.RemoveAll(s => !Units.Any(u => u.Squad == s.Id));

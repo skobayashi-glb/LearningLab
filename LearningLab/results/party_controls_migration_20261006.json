@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "date": "2026-10-06",
+  "scope": "Functional migration smoke checks, not full learning or game balance evidence",
+  "verification_location": "standalone LearningLab repository with bundled Assets only",
+  "control_model": "fixed party, immediate single-unit sortie, persistent invasion routes, one-second energy recovery",
+  "engine_sha256": "fe02e545fd9bea13bdc82543e052c18045c790213dcf14354800486c38e94269",
+  "source_sha256": {
+    "BattleHost/BattleEnvironment.cs": "d5e5bb5af7d7e9b7707d8a3d4928fd1597019b537e1d8c9f0a73a8b55c01db28",
+    "BattleHost/BattleSimulation.cs": "6a62cafc0c1b5da1f6028141863169a66f55a7598408bf9b685ac441d7d7f4a3",
+    "BattleHost/Data.cs": "47acb82ace915ebf729b432662d71e3be380376178ce9962cfd189a2022856d9",
+    "BattleHost/Entities.cs": "a085b6cf666cc9ae01948cb1f24c2e1f7b232d528b19957cbf460ade0fae1d42",
+    "BattleHost/Grid.cs": "880cb420cbdbb5a1e415061339126b0614f517ada28fd03e066d63a50ea9d1fe",
+    "BattleHost/NumericCompatibility.cs": "ac14d666a2d0c184807abb474848858c1c48343548f9e88cf33ca20045cdc2f7",
+    "BattleHost/PartyRouteBoard.cs": "e922e71970d7cf81c12a5c5718608425587bd1fbf7848abe3ca16e57df5d62d9",
+    "BattleHost/Program.cs": "1ccf027baeaf4c5fadc40583f4c021ca0773b8473ff97ebffb6bd0ccb90ca823",
+    "BattleHost/StatusEngine.cs": "af233be1a3fd816cc644ad16556e3aa90270b9e73c40700d955f9c4ee7188569",
+    "configs/balance_targets.json": "fbd0ae55e76d36d73411cb49e6e0e21b424a912f5426028e0d924fd6e98719cf",
+    "configs/battle_setup.json": "0443bcc1e6e2ebf228f1c413422e7f65784bbb1f81de5d5475e6cfdc3e567305",
+    "configs/character_balance_plan.json": "4c052ba96648c3358da9201c44c18281b76222ec8bec24d2695642242417435f",
+    "configs/defense_training_plan.json": "0540844e1f2e4611c3cea8334024877020335c329691ac9fc5d168dda388cdad",
+    "configs/defense_training_stages.json": "6cd0cc3143d5abf85f97c784550a4b27d2cde41c0b6f03d489cd9766a3382db1",
+    "configs/demo.json": "aa56a8d0d1fa601f34de36a52d3e8b4584ddc50b4b2c613b68b78aedbbaab573",
+    "configs/strength_assignments.json": "d290e5f009ea4f3cdaf49ab5eb2dee94b79a57df6e334742cc32cb7a1ef49af9",
+    "learning_lab/__init__.py": "f599c7d1e18892332887c9c0a0b5cc737f3ba2c49bef1ded7673ba619a6c9ec8",
+    "learning_lab/__main__.py": "de46e591649d1d629b71044c63062d3a868f6e7adddd96eefd9e7ef0bb07d357",
+    "learning_lab/artifacts.py": "0f2641a4b4f093be53786abf45d30db5bccb6d2e1a7e1d135a3c76095621b315",
+    "learning_lab/balance.py": "50d128121bf8231da8e47fd0232ab5a671fcc12ba87a8acd0484ae16f2501d75",
+    "learning_lab/battle.py": "4824e3ea91a641d13687a6ec51b0393699ef7fa1e85983177f16f1819e9b0fee",
+    "learning_lab/campaign.py": "eecf913bbce2b2256a97b8ffe884f0a42b2b352aeb244c6369f41aef412c1e4a",
+    "learning_lab/config.py": "9b58602b9f34f823e6cacefc46849a208ff2f60d179e2c698784e49126c24130",
+    "learning_lab/contracts.py": "bc84ccc5a433e7871c32a7c253596bacb69bee5b52dfba7a76373fefbd4f1055",
+    "learning_lab/demo.py": "de0b8f05a34891028b8c8456903543a4d06a8bc553e74b9961c35d1e7efc2a09",
+    "learning_lab/demo_server.py": "cbe5e1f4448366a6a5f06fb7e2b40e4889de19a187904b24e94793ae7b5ce215",
+    "learning_lab/evaluation.py": "8e2934d9b16c99c49b0d8e83bcc4679fc79fcbde0828bfad798426df77725cb3",
+    "learning_lab/export_battle.py": "032227bd8146b624556ea9f863a638a725eab8b94c99b7967cce3cd15027d436",
+    "learning_lab/policy.py": "d8706f2d28fbe3d269ecd30cd20ab20b6f3c78042942fa653999ed9473330416",
+    "learning_lab/ppo.py": "2387c73d9ef08f7308921fa184a12c58091e27b5d83bc9b438f7d4933221130b",
+    "learning_lab/rpc.py": "3d16cc4eba613c55fb58f690eb838b73744e8f4fd92a873ff9d463f4f66216fe",
+    "learning_lab/trainer.py": "3d33bd7330cc7a8b5ee13c67b5f7beaba039f26f2952bb42f0bc3e111962f75f"
+  },
+  "battle_data_version": 2,
+  "schema_id": "battle-v3-party-routes-15-9-256-8-12-3-2-FE02E545FD9BEA13BDC82543E052C18045C790213DCF14354800486C38E94269",
+  "observation_size": 8417,
+  "action_count": 163,
+  "tests": {
+    "count": 54,
+    "passed": true,
+    "skipped": 0,
+    "release_boundary_passed": true
+  },
+  "parameter_search": {
+    "policy": "fixed-party-round-robin-to-default-route-v3-target-first",
+    "candidate_count": 2,
+    "characters": [
+      "abyssal-sea-dragon",
+      "amago"
+    ],
+    "cases": [
+      {
+        "id": "amago-solo",
+        "roster": [
+          "amago"
+        ]
+      },
+      {
+        "id": "amago-mixed",
+        "roster": [
+          "amago",
+          "shark",
+          "ammonite"
+        ]
+      },
+      {
+        "id": "abyssal-sea-dragon-solo",
+        "roster": [
+          "abyssal-sea-dragon"
+        ]
+      },
+      {
+        "id": "abyssal-sea-dragon-mixed",
+        "roster": [
+          "abyssal-sea-dragon",
+          "shark",
+          "ammonite"
+        ]
+      }
+    ],
+    "seeds": {
+      "train": [
+        10101
+      ],
+      "validation": [
+        11101
+      ],
+      "holdout": [
+        12101
+      ]
+    },
+    "scenarios": [
+      {
+        "id": "openfield",
+        "split": "train"
+      },
+      {
+        "id": "chokepoint",
+        "split": "validation"
+      },
+      {
+        "id": "detour",
+        "split": "holdout"
+      }
+    ],
+    "train_episodes": 8,
+    "validation_episodes": 12,
+    "holdout_episodes": 4,
+    "passed_validation_gate": true,
+    "baseline_train_score": 0.663688826216337,
+    "selected_train_score": 0.46951937472715244,
+    "applied_to_game": false
+  },
+  "ppo": {
+    "decisions": 64,
+    "updates": 2,
+    "weights_changed": true,
+    "checkpoint_continuation_equal": true,
+    "last_metrics": {
+      "policy_loss": -0.002735852263867855,
+      "value_loss": 0.08981363102793694,
+      "entropy": 4.554137349128723,
+      "decisions": 64,
+      "updates": 2,
+      "episodes": 1,
+      "completed": [
+        {
+          "return": -1.0,
+          "length": 61,
+          "outcome": "defeat",
+          "scenario_id": "openfield"
+        }
+      ]
+    }
+  },
+  "historical_results_unchanged": true
+}

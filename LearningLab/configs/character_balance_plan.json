@@ -41,9 +41,6 @@
     "shark",
     "ammonite"
   ],
-  "solo_copies": 8,
-  "mixed_target_copies": 4,
-  "mixed_anchor_copies": 2,
   "rules_overrides": {
     "initial_energy": 10,
     "enemy_initial_energy": 8,

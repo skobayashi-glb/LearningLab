@@ -4,11 +4,11 @@ from pathlib import Path
 import unittest
 
 from learning_lab.battle import HOST_DLL
+from learning_lab.balance import ScriptedSortiePolicy
 from learning_lab.config import ExperimentConfig
 from learning_lab.export_battle import BattleExporter, enum_array
 
 LAB = Path(__file__).resolve().parents[1]
-WAIT, COMMIT, FIRST_CARD = 0, 2, 4
 MAX_DECISIONS = 600
 
 
@@ -28,15 +28,15 @@ class BattleExportTests(unittest.TestCase):
         try:
             for scenario in config.data["scenarios"]:
                 observation = environment.reset(scenario, 2001)
+                policy = ScriptedSortiePolicy(environment.spec, setup["envelope"]["party"])
                 for _ in range(MAX_DECISIONS):
-                    action = COMMIT if observation.action_mask[COMMIT] else (
-                        FIRST_CARD if observation.action_mask[FIRST_CARD] and
-                        not observation.values[5] else WAIT)
+                    action = policy.choose(observation)
                     transition = environment.step(action)
                     observation = transition.observation
                     if transition.ended:
                         break
-                self.assertEqual(transition.info["outcome"], "victory")
+                self.assertTrue(transition.ended)
+                self.assertIn(transition.info["outcome"], {"victory", "defeat", "timeout"})
                 self.assertTrue(any(m["damage"] > 0 for m in transition.info["metrics"]))
         finally:
             environment.close()

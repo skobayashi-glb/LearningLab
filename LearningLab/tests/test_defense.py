@@ -1,7 +1,7 @@
 import unittest
 
 from learning_lab.battle import BattleEnvironment, HOST_DLL
-from test_battle import battle_scenario, WIDTH, HEIGHT, UNITS, BASES, HAND, SQUADS, WAIT
+from test_battle import battle_scenario, WIDTH, HEIGHT, UNITS, BASES, PARTY, ROUTES, WAYPOINTS, WAIT
 
 ALLY_UNIT_ID, ENEMY_UNIT_ID = 3, 4
 MAX_STEPS = 40
@@ -11,7 +11,7 @@ POISON, BURN = 0, 2
 @unittest.skipUnless(HOST_DLL.exists(), "Build BattleHost first")
 class DefenseTests(unittest.TestCase):
     def setUp(self):
-        self.environment = BattleEnvironment(WIDTH, HEIGHT, UNITS, BASES, HAND, SQUADS)
+        self.environment = BattleEnvironment(WIDTH, HEIGHT, UNITS, BASES, PARTY, ROUTES, WAYPOINTS)
 
     def tearDown(self):
         self.environment.close()

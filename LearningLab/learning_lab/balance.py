@@ -10,21 +10,21 @@ from pathlib import Path
 from .artifacts import ExperimentRepository, write_json
 from .config import ExperimentConfig, canonical_hash
 
-VERSION = 1
-POLICY_ID = "first-affordable-card-to-boss-v2-with-optional-target-first"
+VERSION = 2
+POLICY_ID = "fixed-party-round-robin-to-default-route-v3-target-first"
 ALLOWED_PARAMETERS = {"hp", "power", "speed", "cost", "defense"}
 INTEGER_PARAMETERS = {"hp", "power", "cost", "defense"}
 DEFENSE_CHANGE_SCALE = 100
 METRICS = {"win_rate", "main_hp_ratio", "damage_per_energy", "survival_fraction"}
 GLOBAL_FEATURES = 15
-CARD_FEATURES = 7
+PARTY_FEATURES = 8
 ENERGY_INDEX = 1
-CARD_PRESENT = 0
-CARD_COST = 2
-CARD_CHARACTER = 1
+PARTY_PRESENT = 0
+PARTY_COST = 2
+PARTY_CHARACTER = 1
 CHARACTER_TOLERANCE = 0.000001
 ALLY = 0
-DEFAULT_HAND_SIZE = 8
+DEFAULT_PARTY_SIZE = 12
 
 
 def finite(value):
@@ -114,38 +114,37 @@ def prepare_case(baseline: ExperimentConfig, candidate_scenario: dict, case: dic
 
 
 class ScriptedSortiePolicy:
-    def __init__(self, spec, hand_size, required_first_character=None):
+    """Deploy the target first, then visit occupied party slots in a fixed cyclic order.
+
+    Save energy for the next slot instead of letting cheap characters starve costly ones.
+    This policy has no learnable parameters and does not select cards or commit drafts.
+    """
+    def __init__(self, spec, party_size, required_first_character=None):
         self.wait = spec.action_names.index("wait")
-        self.commit = spec.action_names.index("commit")
-        self.cards = [spec.action_names.index(f"card:{i}") for i in range(hand_size)]
-        self.pending = False
+        self.deployments = [spec.action_names.index(f"deploy:{i}") for i in range(party_size)]
+        self.next_slot = 0
         self.required_first_character = required_first_character
-        self.pending_required = False
 
     def choose(self, observation):
-        if self.pending:
-            self.pending = False
-            if self.pending_required and observation.action_mask[self.commit]:
-                self.required_first_character = None
-            self.pending_required = False
-            return self.commit if observation.action_mask[self.commit] else self.wait
-        energy = observation.values[ENERGY_INDEX]
-        slots = list(enumerate(self.cards))
+        occupied = [slot for slot in range(len(self.deployments))
+                    if observation.values[GLOBAL_FEATURES + slot * PARTY_FEATURES + PARTY_PRESENT]]
+        if not occupied:
+            return self.wait
         if self.required_first_character is not None:
-            preferred = [(slot, action) for slot, action in slots
-                         if abs(observation.values[GLOBAL_FEATURES + slot * CARD_FEATURES + CARD_CHARACTER]
+            preferred = [slot for slot in occupied
+                         if abs(observation.values[GLOBAL_FEATURES + slot * PARTY_FEATURES + PARTY_CHARACTER]
                                 - self.required_first_character) < CHARACTER_TOLERANCE]
-            if preferred:
-                slots = preferred
-        for slot, action in slots:
-            offset = GLOBAL_FEATURES + slot * CARD_FEATURES
-            if (observation.action_mask[action] and observation.values[offset + CARD_PRESENT] and
-                    observation.values[offset + CARD_COST] <= energy):
-                self.pending = True
-                self.pending_required = (self.required_first_character is not None and
-                    abs(observation.values[offset + CARD_CHARACTER] - self.required_first_character) < CHARACTER_TOLERANCE)
-                return action
-        return self.wait
+            if not preferred:
+                raise ValueError("Required target is missing from the fixed party")
+            slot = preferred[0]
+        else:
+            slot = next((slot for slot in occupied if slot >= self.next_slot), occupied[0])
+        action = self.deployments[slot]
+        if not observation.action_mask[action]:
+            return self.wait
+        self.required_first_character = None
+        self.next_slot = (slot + 1) % len(self.deployments)
+        return action
 
 
 class BalanceEvaluator:
@@ -156,7 +155,7 @@ class BalanceEvaluator:
     def validate(self):
         s = self.settings
         if s.get("version") != VERSION or self.config.data["environment_factory"] != "learning_lab.battle:BattleEnvironment":
-            raise ValueError("Requires balance v1 and BattleEnvironment")
+            raise ValueError("Requires balance v2 and BattleEnvironment")
         if type(s["candidate_budget"]) is not int or s["candidate_budget"] <= 0:
             raise ValueError("candidate_budget must be positive")
         if type(s["search_seed"]) is not int or s["search_seed"] < 0:
@@ -185,7 +184,12 @@ class BalanceEvaluator:
             for scenario in self.config.data["scenarios"]:
                 battle = scenario["parameters"]["battle"]
                 if battle.get("initial_units") or any(b.get("garrison") for b in battle["stage"]["bases"]):
-                    raise ValueError("Balance v1 requires cases without predeployed units or garrisons")
+                    raise ValueError("Balance v2 requires cases without predeployed units or garrisons")
+                if (len(case["roster"]) != len(set(case["roster"])) or
+                        len(case["roster"]) > battle["rules"].get("party_size", DEFAULT_PARTY_SIZE)):
+                    raise ValueError("Case roster must be a unique fixed party within party_size")
+                if battle.get("version") != VERSION:
+                    raise ValueError("Legacy battle snapshot: rebuild the campaign for party controls")
                 definitions = {d["id"]: d for d in battle["ally_definitions"]}
                 if set(case["roster"]) - definitions.keys():
                     raise ValueError("Case roster contains unknown characters")
@@ -210,7 +214,7 @@ class BalanceEvaluator:
                             ids = [d["id"] for d in battle["ally_definitions"]]
                             required_first = (ids.index(case["character"]) + 1) / len(ids)
                         policy = ScriptedSortiePolicy(environment.spec,
-                            battle["rules"].get("hand_size", DEFAULT_HAND_SIZE), required_first)
+                            battle["rules"].get("party_size", DEFAULT_PARTY_SIZE), required_first)
                         for _ in range(config.data["evaluation"]["max_decisions"]):
                             transition = environment.step(policy.choose(obs))
                             obs = transition.observation

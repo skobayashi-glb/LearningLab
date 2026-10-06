@@ -24,7 +24,9 @@ public sealed class BattleUnit : BattleTarget, IDefenseTarget
 {
     public UnitDefinition Definition;
     public int Defense => Definition.Defense;
-    public int Card = -1;
+    public int Route = -1;
+    public int[] Path = [];
+    public int PathProgress;
     public int Squad = -1;
     public int Order;
     public int Home;

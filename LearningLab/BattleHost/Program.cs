@@ -1,12 +1,14 @@
 using System.Text.Json;
 using BattleHost;
 
-const int DefaultWidth = 24, DefaultHeight = 24, DefaultUnits = 64,
-    DefaultBases = 8, DefaultHand = 8, DefaultSquads = 5;
-int[] sizes = args.Length == 0 ? [DefaultWidth, DefaultHeight, DefaultUnits, DefaultBases, DefaultHand, DefaultSquads]
+const int DefaultWidth = 24, DefaultHeight = 24, DefaultUnits = 256,
+    DefaultBases = 8, DefaultParty = PartyControls.PartySize, DefaultRoutes = PartyControls.RouteCount,
+    DefaultWaypoints = PartyControls.MaximumWaypoints;
+const int ArgumentCount = 7, PositiveArgumentCount = ArgumentCount - 1;
+int[] sizes = args.Length == 0 ? [DefaultWidth, DefaultHeight, DefaultUnits, DefaultBases, DefaultParty, DefaultRoutes, DefaultWaypoints]
     : args.Select(int.Parse).ToArray();
-if (sizes.Length != 6 || sizes.Any(s => s <= 0)) throw new ArgumentException("Expected width height units bases hand squads");
-var environment = new BattleEnvironment(sizes[0], sizes[1], sizes[2], sizes[3], sizes[4], sizes[5]);
+if (sizes.Length != ArgumentCount || sizes.Take(PositiveArgumentCount).Any(s => s <= 0) || sizes[^1] < 0) throw new ArgumentException("Expected width height units bases party routes waypoints");
+var environment = new BattleEnvironment(sizes[0], sizes[1], sizes[2], sizes[3], sizes[4], sizes[5], sizes[6]);
 string line;
 while ((line = Console.ReadLine()) != null)
 {

@@ -8,8 +8,8 @@ from learning_lab.battle import BattleEnvironment, HOST_DLL
 from learning_lab.config import canonical_hash
 from learning_lab.ppo import generalized_advantages
 
-WIDTH, HEIGHT, UNITS, BASES, HAND, SQUADS = 12, 7, 32, 6, 8, 5
-WAIT, COMMIT, CARD_FIRST = 0, 2, 4
+WIDTH, HEIGHT, UNITS, BASES, PARTY, ROUTES, WAYPOINTS = 12, 7, 32, 6, 12, 3, 2
+WAIT, FIRST_DEPLOY = 0, 2
 MAX_DECISIONS = 240
 
 
@@ -28,7 +28,7 @@ def battle_scenario():
     ally, enemy = character(), character()
     return {"id": "test-battle", "family": "test", "split": "train", "weight": 1,
             "parameters": {"battle": {
-                "version": 1, "cell_size": 3.2,
+                "version": 2, "cell_size": 3.2,
                 "stage": {"id": "test-map", "width": WIDTH, "height": HEIGHT,
                           "terrain": [0] * (WIDTH * HEIGHT), "generation_seed": 101,
                           "wall_candidate_path_rate": 0,
@@ -38,25 +38,24 @@ def battle_scenario():
                               {"id": "boss", "team": 1, "main": False, "boss": True, "hp": 20,
                                "cell": [10, 3], "footprint": [[10, 3]], "spawn_cells": [[9, 3]], "garrison": []}]},
                 "rules": {"initial_energy": 20, "enemy_initial_energy": 20,
-                          "enemy_enabled": False, "shuffle_deck": False, "episode_seconds": 60},
-                "roster": ["fighter", "fighter"], "enemy_pool": ["fighter"],
+                          "enemy_enabled": False, "episode_seconds": 60},
+                "roster": ["fighter"], "enemy_pool": ["fighter"],
                 "ally_definitions": [ally], "enemy_baseline": [enemy]}}}
 
 
 @unittest.skipUnless(HOST_DLL.exists(), "Build BattleHost first")
 class BattleTests(unittest.TestCase):
     def setUp(self):
-        self.environment = BattleEnvironment(WIDTH, HEIGHT, UNITS, BASES, HAND, SQUADS)
+        self.environment = BattleEnvironment(WIDTH, HEIGHT, UNITS, BASES, PARTY, ROUTES, WAYPOINTS)
 
     def tearDown(self):
         self.environment.close()
 
-    def test_deploy_advances_combat_only_on_commit_and_captures_boss(self):
+    def test_single_click_deploy_advances_combat_and_captures_boss(self):
         observation = self.environment.reset(battle_scenario(), 31)
-        self.assertTrue(observation.action_mask[CARD_FIRST])
-        self.environment.step(CARD_FIRST)
-        self.assertEqual(self.environment.save_state()["debug"]["tick"], 0)
-        transition = self.environment.step(COMMIT)
+        self.assertTrue(observation.action_mask[FIRST_DEPLOY])
+        transition = self.environment.step(FIRST_DEPLOY)
+        self.assertGreater(self.environment.save_state()["debug"]["tick"], 0)
         self.assertEqual(transition.info["discount_steps"], 1)
         self.assertEqual(self.environment.save_state()["debug"]["energy"][0], 18)
         for _ in range(MAX_DECISIONS):
@@ -92,11 +91,10 @@ class BattleTests(unittest.TestCase):
         terrain = scenario["parameters"]["battle"]["stage"]["terrain"]
         for y in range(HEIGHT):
             terrain[y * WIDTH + WIDTH // 2] = 2
-        self.environment.reset(scenario, 31)
-        transition = self.environment.step(CARD_FIRST)
-        self.assertFalse(transition.observation.action_mask[COMMIT])
+        observation = self.environment.reset(scenario, 31)
+        self.assertFalse(observation.action_mask[FIRST_DEPLOY])
 
-    def test_death_returns_card_without_refunding_energy(self):
+    def test_death_preserves_fixed_party_without_refunding_energy(self):
         scenario = battle_scenario()
         data = scenario["parameters"]["battle"]
         data["ally_definitions"][0]["hp"] = 1
@@ -110,7 +108,7 @@ class BattleTests(unittest.TestCase):
             state = self.environment.save_state()["debug"]
             if any(m["team"] == 0 and m["deaths"] for m in state["metrics"]):
                 break
-        self.assertEqual(sorted(state["hand"] + state["pool"]), [0, 1])
+        self.assertEqual(state["party"], ["fighter"])
         self.assertEqual(state["energy"][0], 20)
 
     def test_replay_restores_pending_attacks_and_enemy_random_state(self):
@@ -119,8 +117,7 @@ class BattleTests(unittest.TestCase):
         for base in scenario["parameters"]["battle"]["stage"]["bases"]:
             base["hp"] = 1000
         self.environment.reset(scenario, 12)
-        self.environment.step(CARD_FIRST)
-        self.environment.step(COMMIT)
+        self.environment.step(FIRST_DEPLOY)
         snapshot = self.environment.save_state()
         for _ in range(10):
             self.environment.step(WAIT)
@@ -165,7 +162,7 @@ class BattleTests(unittest.TestCase):
         enemies = [u for u in self.environment.save_state()["debug"]["units"] if u["team"] == 1]
         self.assertTrue(all(not u["statuses"] for u in enemies))
 
-    def test_zero_time_draft_does_not_discount_future_reward(self):
+    def test_generic_gae_supports_zero_duration_contract(self):
         advantages, returns = generalized_advantages(
             torch.tensor([0.0, 1.0]), torch.zeros(2), torch.zeros(2),
             torch.tensor([False, True]), torch.tensor([False, False]), 0.5, 0.5,
@@ -177,8 +174,7 @@ class BattleTests(unittest.TestCase):
         for definitions in ("ally_definitions", "enemy_baseline"):
             scenario["parameters"]["battle"][definitions][0]["body"]["offset"]["y"] = 30
         self.environment.reset(scenario, 31)
-        self.environment.step(CARD_FIRST)
-        self.environment.step(COMMIT)
+        self.environment.step(FIRST_DEPLOY)
         for _ in range(MAX_DECISIONS):
             transition = self.environment.step(WAIT)
             if transition.terminated or transition.truncated:

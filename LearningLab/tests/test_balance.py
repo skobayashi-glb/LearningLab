@@ -14,13 +14,14 @@ LAB = Path(__file__).resolve().parents[1]
 def fixture():
     config = json.loads((LAB / "configs/demo.json").read_text())
     config["environment_factory"] = "learning_lab.battle:BattleEnvironment"
+    config["environment_options"] = {"width": 12, "height": 7}
     config["scenarios"] = []
     for split in ("train", "validation", "holdout"):
         scenario = battle_scenario()
         scenario.update(id=split, family=split, split=split)
         config["scenarios"].append(scenario)
     settings = {
-        "version": 1, "candidate_budget": 3, "search_seed": 12, "change_weight": 0.01,
+        "version": 2, "candidate_budget": 3, "search_seed": 12, "change_weight": 0.01,
         "seeds": {"train": [1], "validation": [2], "holdout": [3]},
         "parameters": [{"character": "fighter", "field": "hp", "values": [10, 20, 30]}],
         "cases": [{"id": "tank", "character": "fighter", "role": "tank", "reference_cost": 2,

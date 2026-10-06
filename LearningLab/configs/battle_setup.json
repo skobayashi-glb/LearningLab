@@ -28,10 +28,11 @@
   "envelope": {
     "width": 15,
     "height": 9,
-    "units": 64,
+    "units": 256,
     "bases": 8,
-    "hand": 8,
-    "squads": 5
+    "party": 12,
+    "routes": 3,
+    "waypoints": 2
   },
   "cell_size": 3.2,
   "scenarios": [
@@ -61,12 +62,6 @@
       },
       "roster": [
         "shark",
-        "amago",
-        "amago",
-        "shark",
-        "amago",
-        "amago",
-        "shark",
         "amago"
       ],
       "enemy_pool": [
@@ -74,8 +69,6 @@
         "amago"
       ],
       "rules": {
-        "hand_size": 8,
-        "squad_limit": 5,
         "episode_seconds": 90,
         "initial_energy": 5,
         "enemy_initial_energy": 5,
@@ -84,7 +77,11 @@
         "enemy_forecast_seconds": 3,
         "enemy_duplicate_limit": 3,
         "enemy_enabled": true,
-        "energy_recovery_seconds": 3
+        "energy_recovery_seconds": 1,
+        "enemy_squad_limit": 5,
+        "party_size": 12,
+        "route_count": 3,
+        "maximum_waypoints": 2
       },
       "ally_overrides": {}
     },
@@ -114,12 +111,6 @@
       },
       "roster": [
         "shark",
-        "amago",
-        "amago",
-        "shark",
-        "amago",
-        "amago",
-        "shark",
         "amago"
       ],
       "enemy_pool": [
@@ -127,8 +118,6 @@
         "amago"
       ],
       "rules": {
-        "hand_size": 8,
-        "squad_limit": 5,
         "episode_seconds": 90,
         "initial_energy": 5,
         "enemy_initial_energy": 5,
@@ -137,7 +126,11 @@
         "enemy_forecast_seconds": 3,
         "enemy_duplicate_limit": 3,
         "enemy_enabled": true,
-        "energy_recovery_seconds": 3
+        "energy_recovery_seconds": 1,
+        "enemy_squad_limit": 5,
+        "party_size": 12,
+        "route_count": 3,
+        "maximum_waypoints": 2
       },
       "ally_overrides": {}
     },
@@ -167,12 +160,6 @@
       },
       "roster": [
         "shark",
-        "amago",
-        "amago",
-        "shark",
-        "amago",
-        "amago",
-        "shark",
         "amago"
       ],
       "enemy_pool": [
@@ -180,8 +167,6 @@
         "amago"
       ],
       "rules": {
-        "hand_size": 8,
-        "squad_limit": 5,
         "episode_seconds": 90,
         "initial_energy": 5,
         "enemy_initial_energy": 5,
@@ -190,7 +175,11 @@
         "enemy_forecast_seconds": 3,
         "enemy_duplicate_limit": 3,
         "enemy_enabled": true,
-        "energy_recovery_seconds": 3
+        "energy_recovery_seconds": 1,
+        "enemy_squad_limit": 5,
+        "party_size": 12,
+        "route_count": 3,
+        "maximum_waypoints": 2
       },
       "ally_overrides": {}
     }

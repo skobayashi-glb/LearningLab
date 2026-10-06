@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 from .artifacts import write_json
-from .balance import BalanceSearch
+from .balance import BalanceSearch, VERSION as BALANCE_VERSION
 from .config import ExperimentConfig, canonical_hash
 from .export_battle import BattleExporter, enum_array
 
@@ -45,7 +45,7 @@ def design_markdown(audit):
         "- 役割別・強弱別に異なる指標の目標範囲を使い、全員の勝率や性能を同じにしない。",
         "- 状態付与役はダメージより混成編成での拠点保全を重くする。ただし補助貢献の因果推定ではなく代理指標。",
         "- 各キャラを単体編成と混成編成で評価する。混成の他キャラは初期設計値に固定し、評価対象だけに探索値を適用。",
-        "- 最初の出撃で評価対象を優先し、参加しなかったキャラを弱いと誤判定しない。以後は固定の出撃ルール。",
+        "- 最初の出撃で評価対象を優先し、参加しなかったキャラを弱いと誤判定しない。以後は固定パーティの枠順で巡回し、次のキャラのエナジーが貯まるまで待つ。",
         "- 敵は元のゲームデータを固定した別スナップショット。味方の初期再設計・探索値は敵へ波及しない。",
         "- 検証の全体損失または1つでも個別caseの損失が悪化した候補は採用しない。最終確認データは選択に使わない。", "",
         "## 評価上の限界", "",
@@ -118,7 +118,7 @@ def build_campaign(plan, template, exporter=None, strengths=None):
         scenario["ally_overrides"] = {c: {k: profiles[c][k] for k in PROFILE_FIELDS} for c in all_ids}
         scenario["rules"].update(plan["rules_overrides"])
     config = exporter.export(setup)
-    settings = {"version": VERSION, "candidate_budget": plan["candidate_budget"], "search_seed": plan["search_seed"],
+    settings = {"version": BALANCE_VERSION, "candidate_budget": plan["candidate_budget"], "search_seed": plan["search_seed"],
                 "change_weight": plan["change_weight"], "seeds": plan["seeds"], "parameters": [], "cases": [],
                 "character_plan_hash": canonical_hash(plan), "strength_assignments": copy.deepcopy(strengths)}
     for character in active:
@@ -137,10 +137,8 @@ def build_campaign(plan, template, exporter=None, strengths=None):
             "damage_per_energy": target_band(low * multiplier, high * multiplier, role["damage_weight"]),
             "survival_fraction": target_band(role["survival"][0] * support_factor, role["survival"][1], role["survival_weight"]),
             "main_hp_ratio": target_band(role["main_hp"][0] * support_factor, role["main_hp"][1], role["main_hp_weight"])}
-        solo = [character] * plan["solo_copies"]
-        mixed = [character] * plan["mixed_target_copies"]
-        for anchor in plan["mixed_anchors"]:
-            mixed.extend([anchor] * plan["mixed_anchor_copies"])
+        solo = [character]
+        mixed = list(dict.fromkeys([character, *plan["mixed_anchors"]]))
         for mode, roster in (("solo", solo), ("mixed", mixed)):
             settings["cases"].append({"id": f"{character}-{mode}", "character": character,
                 "role": profile["role"], "strength": profile["strength"], "reference_cost": profile["cost"],
