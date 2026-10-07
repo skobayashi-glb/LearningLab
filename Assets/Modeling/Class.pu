@@ -8346,4 +8346,24 @@ package "LearningLab two fixed corridor stages (2026-10-07)" {
     LabCorridorScope .. LabCorridorStages
 }
 
+package "LearningLab single opening wave parameter comparisons (2026-10-07)" {
+    class "SingleWaveEncounter (Python)" as LabSingleWaveEncounter
+    class "OpeningWave (C# data)" as LabOpeningWave
+    IdentityCampaign --> LabSingleWaveEncounter : per-target army-count patterns and audited pools
+    BalanceRoleEvaluator --> LabSingleWaveEncounter : same case and seed produce candidate-independent armies
+    LabSingleWaveEncounter ..> BattleLabData : opening_wave; disabled enemy AI; sampled party
+    BattleLabData *-- LabOpeningWave : optional; normal PPO controls remain separate
+    BattleLabSimulation --> LabOpeningWave : register both armies once at reset; spawn-port queue
+    BalanceRoleEvaluator --> BattleLabAdapter : wait only; no additional sortie decisions
+    note as LabSingleWaveScope
+      Tool 0.3.0: 1v1, 1v3, 3v1, 3v3; target always exposed.
+      Allies and enemies sampled with replacement from audited supported pools.
+      Thirty supported characters; twelve unsupported mechanics remain explicitly excluded.
+      Eight parameter targets remain separate from matchup sampling pools.
+      Enemy baseline stays frozen; nominal cost remains a scoring input without energy gating.
+      Historical cyclic-sortie experiments remain unchanged; regenerate config/run.
+    end note
+    LabSingleWaveScope .. LabSingleWaveEncounter
+}
+
 @enduml

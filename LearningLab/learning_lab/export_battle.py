@@ -186,6 +186,7 @@ class BattleExporter:
                       "roster": entry["roster"], "enemy_pool": entry["enemy_pool"],
                       "initial_units": entry.get("initial_units", [])}
             ids = set(entry["roster"]) | set(entry["enemy_pool"])
+            ids.update(entry.get("definition_pool", []))
             ids.update(u["character"] for u in battle["initial_units"])
             ids.update(c for b in battle["stage"]["bases"] for c in b["garrison"])
             baseline = [self.character(id) for id in sorted(ids)]

@@ -80,6 +80,7 @@ public sealed class BattleSimulation
             u.Transform.position = Grid.World(cell); u.Spawned = true;
         }
         Routes = new(this, r.RouteCount, r.MaximumWaypoints);
+        if (data.OpeningWave != null) DeployOpeningWave(data.OpeningWave);
         if (Squads.Count(s => s.Team == Enemy) > r.EnemySquadLimit)
             throw new ArgumentException("Initial squad count exceeds limit");
     }
@@ -113,7 +114,7 @@ public sealed class BattleSimulation
     public bool CanDeploy(int slot)
     {
         var route = Routes.Current;
-        return !Finished && slot >= 0 && slot < Party.Characters.Count && route != null &&
+        return Data.OpeningWave == null && !Finished && slot >= 0 && slot < Party.Characters.Count && route != null &&
             Definition(Party.Characters[slot], Ally).Cost <= Energy[Ally].Current && Routes.Path(route).Length > 0;
     }
     public void Deploy(int slot)
@@ -127,12 +128,34 @@ public sealed class BattleSimulation
         SpawnSquad(Ally, origin.Id, route.Destination, [character]);
         Routes.Assign(Units[^1], route, Routes.Path(route), rejoin: false);
     }
-    void SpawnSquad(int team, int origin, int destination, IReadOnlyList<string> characters)
+    BattleUnit[] SpawnSquad(int team, int origin, int destination, IReadOnlyList<string> characters)
     {
         var squad = new Squad { Id = nextSquad++, Team = team, Destination = destination, Origin = origin };
         Squads.Add(squad);
-        for (int i = 0; i < characters.Count; i++) Create(characters[i], team, squad.Id, origin, destination, i);
+        var units = characters.Select((character, order) => Create(character, team, squad.Id, origin, destination, order)).ToArray();
         Log("deploy", origin, squad.Id, characters.Count, string.Join(",", characters));
+        return units;
+    }
+    void DeployOpeningWave(OpeningWave wave)
+    {
+        if (Data.Rules.EnemyEnabled || Units.Count > 0 || wave.Ally.Length == 0 || wave.Enemy.Length == 0 ||
+            wave.Ally.Length + wave.Enemy.Length > MaxUnits ||
+            wave.Ally.Any(id => !Party.Characters.Contains(id)) ||
+            wave.Enemy.Any(id => !definitions[Enemy].ContainsKey(id)))
+            throw new ArgumentException("Opening wave requires known nonempty armies, no predeployed units, and disabled enemy AI");
+        var route = Routes.Current;
+        var origin = Routes.Origin(route);
+        var path = route == null ? [] : Routes.Path(route);
+        var enemy = Bases.Single(b => b.Definition.Boss && b.Team == Enemy);
+        var main = Bases.Single(b => b.Definition.Main && b.Team == Ally);
+        int destination = Grid.Index(main.Definition.Cell);
+        if (origin == null || path.Length == 0 || !enemy.SpawnIndices.Any(c => Grid.Reachable(c, destination)))
+            throw new ArgumentException("Opening wave requires connected invasion routes");
+        // Register both armies at time zero. Spawn ports release them as space becomes available.
+        // Energy is not a gate for a prescribed combat comparison; cost remains a scoring input.
+        foreach (var unit in SpawnSquad(Ally, origin.Id, route.Destination, wave.Ally))
+            Routes.Assign(unit, route, path, rejoin: false);
+        SpawnSquad(Enemy, enemy.Id, destination, wave.Enemy);
     }
     BattleUnit Create(string character, int team, int squad, int origin, int destination, int order)
     {

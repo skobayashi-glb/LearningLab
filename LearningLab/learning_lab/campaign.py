@@ -8,6 +8,7 @@ from .artifacts import write_json
 from .balance import BalanceSearch, VERSION as BALANCE_VERSION
 from .config import ExperimentConfig, canonical_hash
 from .export_battle import BattleExporter, enum_array
+from .encounters import SINGLE_WAVE
 
 VERSION = 1
 MINIMUM_STAT = 1
@@ -15,6 +16,7 @@ SCALE_MINIMUM = 0.1
 PROFILE_FIELDS = ("hp", "power", "speed", "cost", "defense")
 DEFAULT_STRENGTH_ASSIGNMENTS = Path(__file__).resolve().parents[1] / "configs/strength_assignments.json"
 ROLE_FLAGS = {"attacker": 1, "tank": 2, "status": 16, "positioning": 64, "support": 12}
+SUPPORTED_CHARACTERS = "supported_characters"
 SAND_STATUS = 4
 STRENGTH_SUPPORT_FACTORS = {"weak": 0.65, "standard": 1, "strong": 1.15, "conditional": 1}
 
@@ -110,17 +112,34 @@ def build_campaign(plan, template, exporter=None, strengths=None):
                       "mechanics": {"role_flags": original["role"], "statuses": enum_array(original.get("appliedStatuses")),
                                     "shape": original["attackShape"]["type"], "range": original["attackRange"]}})
     setup = copy.deepcopy(template)
-    all_ids = sorted(set(active) | set(plan["enemy_pool"]) | set(plan["mixed_anchors"]))
+    one_wave = plan.get("evaluation_mode") == SINGLE_WAVE
+    supported = sorted(p["id"] for p in audit if p["supported"])
+    wave_settings = plan.get("encounters", {})
+    def resolve_pool(value):
+        pool = supported if value == SUPPORTED_CHARACTERS else value
+        if not isinstance(pool, list) or not pool or len(pool) != len(set(pool)) or set(pool) - set(supported):
+            raise ValueError("Encounter pools must explicitly contain supported characters")
+        return pool
+    ally_pool = resolve_pool(wave_settings["ally_pool"]) if one_wave else plan["mixed_anchors"]
+    enemy_pool = resolve_pool(wave_settings["enemy_pool"]) if one_wave else plan["enemy_pool"]
+    all_ids = sorted(set(active) | set(enemy_pool) | set(ally_pool))
     for scenario in setup["scenarios"]:
         # The exporter includes definitions for all roster IDs; the evaluator installs each case roster.
-        scenario["roster"] = all_ids
-        scenario["enemy_pool"] = plan["enemy_pool"]
+        scenario["roster"] = [active[0]] if one_wave else all_ids
+        scenario["definition_pool"] = all_ids
+        scenario["enemy_pool"] = enemy_pool
         scenario["ally_overrides"] = {c: {k: profiles[c][k] for k in PROFILE_FIELDS} for c in all_ids}
         scenario["rules"].update(plan["rules_overrides"])
+        if one_wave:
+            scenario["rules"]["enemy_enabled"] = False
     config = exporter.export(setup)
     settings = {"version": BALANCE_VERSION, "candidate_budget": plan["candidate_budget"], "search_seed": plan["search_seed"],
                 "change_weight": plan["change_weight"], "seeds": plan["seeds"], "parameters": [], "cases": [],
                 "character_plan_hash": canonical_hash(plan), "strength_assignments": copy.deepcopy(strengths)}
+    if one_wave:
+        settings["evaluation_mode"] = SINGLE_WAVE
+        settings["character_sampling"] = {"ally_pool": ally_pool, "enemy_pool": enemy_pool,
+            "unsupported": [{"id": p["id"], "reason": p["reason"]} for p in audit if not p["supported"]]}
     for character in active:
         profile = profiles[character]
         role = plan["role_targets"][profile["role"]]
@@ -139,6 +158,17 @@ def build_campaign(plan, template, exporter=None, strengths=None):
             "main_hp_ratio": target_band(role["main_hp"][0] * support_factor, role["main_hp"][1], role["main_hp_weight"])}
         solo = [character]
         mixed = list(dict.fromkeys([character, *plan["mixed_anchors"]]))
+        if one_wave:
+            patterns = wave_settings["patterns"]
+            if not patterns or len({p["id"] for p in patterns}) != len(patterns):
+                raise ValueError("Single-wave patterns need unique IDs")
+            for pattern in patterns:
+                settings["cases"].append({"id": f"{character}-{pattern['id']}", "character": character,
+                    "role": profile["role"], "strength": profile["strength"], "reference_cost": profile["cost"],
+                    "weight": 1, "roster": [character], "freeze_others": True, "targets": targets,
+                    "encounter": {"ally_count": pattern["ally_count"], "enemy_count": pattern["enemy_count"],
+                                  "ally_pool": ally_pool, "enemy_pool": enemy_pool}})
+            continue
         for mode, roster in (("solo", solo), ("mixed", mixed)):
             settings["cases"].append({"id": f"{character}-{mode}", "character": character,
                 "role": profile["role"], "strength": profile["strength"], "reference_cost": profile["cost"],

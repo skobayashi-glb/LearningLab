@@ -9,9 +9,11 @@ from pathlib import Path
 
 from .artifacts import ExperimentRepository, write_json
 from .config import DISJOINT_FAMILIES, ExperimentConfig, canonical_hash
+from .encounters import CYCLIC_SORTIES, SINGLE_WAVE, SingleWaveEncounter
 
 VERSION = 2
 POLICY_ID = "fixed-party-round-robin-to-default-route-v3-target-first"
+SINGLE_WAVE_POLICY_ID = "one-opening-wave-per-team-then-wait-v1"
 ALLOWED_PARAMETERS = {"hp", "power", "speed", "cost", "defense"}
 INTEGER_PARAMETERS = {"hp", "power", "cost", "defense"}
 DEFENSE_CHANGE_SCALE = 100
@@ -25,6 +27,7 @@ PARTY_CHARACTER = 1
 CHARACTER_TOLERANCE = 0.000001
 ALLY = 0
 DEFAULT_PARTY_SIZE = 12
+DEFAULT_UNIT_CAPACITY = 256
 
 
 def finite(value):
@@ -154,6 +157,9 @@ class BalanceEvaluator:
 
     def validate(self):
         s = self.settings
+        mode = s.get("evaluation_mode", CYCLIC_SORTIES)
+        if mode not in (CYCLIC_SORTIES, SINGLE_WAVE):
+            raise ValueError("Unknown balance evaluation mode")
         if s.get("version") != VERSION or self.config.data["environment_factory"] != "learning_lab.battle:BattleEnvironment":
             raise ValueError("Requires balance v2 and BattleEnvironment")
         if type(s["candidate_budget"]) is not int or s["candidate_budget"] <= 0:
@@ -173,6 +179,7 @@ class BalanceEvaluator:
                 raise ValueError("Seeds must be unique and disjoint between splits")
             used_seeds.update(seeds)
         for case in s["cases"]:
+            encounter = SingleWaveEncounter(case) if mode == SINGLE_WAVE else None
             if not case["role"] or not case["roster"] or case["character"] not in case["roster"]:
                 raise ValueError("Each role case must include its target character in the roster")
             if not finite(case["weight"]) or case["weight"] <= 0 or not case["targets"]:
@@ -195,6 +202,21 @@ class BalanceEvaluator:
                     raise ValueError("Case roster contains unknown characters")
                 if definitions[case["character"]]["cost"] != case["reference_cost"]:
                     raise ValueError("Case reference_cost must match the frozen character cost")
+                if encounter is not None:
+                    limits = case["encounter"]
+                    enemies = {d["id"] for d in battle["enemy_baseline"]}
+                    if set(limits["ally_pool"]) - definitions.keys() or set(limits["enemy_pool"]) - enemies:
+                        raise ValueError("Encounter pools contain undefined characters")
+                    if limits["ally_count"] > battle["rules"].get("party_size", DEFAULT_PARTY_SIZE):
+                        raise ValueError("Opening ally wave exceeds the fixed party capacity")
+                    if limits["ally_count"] + limits["enemy_count"] > self.config.data["environment_options"].get("units", DEFAULT_UNIT_CAPACITY):
+                        raise ValueError("Opening wave exceeds the observation capacity")
+                if battle.get("opening_wave") is not None:
+                    raise ValueError("Balance templates must leave opening waves to the case sampler")
+
+    @property
+    def policy_id(self):
+        return SINGLE_WAVE_POLICY_ID if self.settings.get("evaluation_mode") == SINGLE_WAVE else POLICY_ID
 
     def evaluate(self, candidate: dict, split: str, *, joint: bool = False):
         config = apply_candidate(self.config, candidate)
@@ -203,12 +225,14 @@ class BalanceEvaluator:
         try:
             for case in self.settings["cases"]:
                 case = dict(case, freeze_others=False) if joint else case
+                encounter = SingleWaveEncounter(case) if self.settings.get("evaluation_mode") == SINGLE_WAVE else None
                 episodes = []
                 for original in config.scenarios(split):
                     scenario = prepare_case(self.config, original, case)
                     battle = scenario["parameters"]["battle"]
                     for seed in self.settings["seeds"][split]:
-                        obs = environment.reset(scenario, seed)
+                        current, matchup = encounter.prepare(scenario, seed) if encounter else (scenario, None)
+                        obs = environment.reset(current, seed)
                         required_first = None
                         if case.get("target_first", False):
                             ids = [d["id"] for d in battle["ally_definitions"]]
@@ -216,7 +240,8 @@ class BalanceEvaluator:
                         policy = ScriptedSortiePolicy(environment.spec,
                             battle["rules"].get("party_size", DEFAULT_PARTY_SIZE), required_first)
                         for _ in range(config.data["evaluation"]["max_decisions"]):
-                            transition = environment.step(policy.choose(obs))
+                            action = policy.wait if encounter else policy.choose(obs)
+                            transition = environment.step(action)
                             obs = transition.observation
                             if transition.ended:
                                 break
@@ -232,6 +257,7 @@ class BalanceEvaluator:
                         if not deployed:
                             raise ValueError(f"No exposure for {case['id']}; revise roster, budget or policy")
                         episodes.append({"scenario": scenario["id"], "seed": seed,
+                            "encounter": matchup,
                             "weight": scenario["weight"], "outcome": transition.info["outcome"],
                             "deployed": deployed, "metrics": {
                                 "win_rate": float(transition.info["outcome"] == "victory"),
@@ -266,8 +292,10 @@ class BalanceSearch:
             raise ValueError("Balance artifacts must stay outside Assets")
         repository = ExperimentRepository(directory)
         repository.initialize({"version": VERSION, "config": self.config.data, "settings": self.settings,
-                               "config_hash": self.config.digest, "policy": POLICY_ID,
-                               "search_code_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()})
+                               "config_hash": self.config.digest, "policy": self.evaluator.policy_id,
+                               "evaluation_mode": self.settings.get("evaluation_mode", CYCLIC_SORTIES),
+                               "search_code_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                               "encounter_code_sha256": hashlib.sha256(Path(__file__).with_name("encounters.py").read_bytes()).hexdigest()})
         trials = []
         for index, candidate in enumerate(self.space.candidates(self.settings["candidate_budget"], self.settings["search_seed"])):
             evaluation = self.evaluator.evaluate(candidate, "train")
@@ -298,7 +326,8 @@ class BalanceSearch:
         # Holdout is reported once, after selection; never used to select a different candidate.
         holdout = (self.evaluator.evaluate(recommended, "holdout", joint=True) if requires_joint else
                    self.evaluator.evaluate(recommended, "holdout"))
-        report = {"version": VERSION, "policy": POLICY_ID, "config_hash": self.config.digest,
+        report = {"version": VERSION, "policy": self.evaluator.policy_id, "config_hash": self.config.digest,
+                  "evaluation_mode": self.settings.get("evaluation_mode", CYCLIC_SORTIES),
                   "stage_split_mode": self.config.data.get("stage_split_mode", DISJOINT_FAMILIES),
                   "candidate_count": len(trials), "selected_train_candidate": best["candidate"],
                   "baseline_train_score": trials[0]["score"], "selected_train_score": best["score"],

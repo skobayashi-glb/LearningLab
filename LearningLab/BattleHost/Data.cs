@@ -114,9 +114,15 @@ public sealed class BattleData
     public string[] Roster { get; set; }
     public string[] EnemyPool { get; set; }
     public InitialUnit[] InitialUnits { get; set; } = [];
+    public OpeningWave OpeningWave { get; set; }
     public JsonElement[] StatusDefinitions { get; set; } = [];
     public JsonElement[] ReactionDefinitions { get; set; } = [];
     public JsonElement StatusSettings { get; set; }
+}
+public sealed class OpeningWave
+{
+    public string[] Ally { get; set; } = [];
+    public string[] Enemy { get; set; } = [];
 }
 public sealed class EnergyWallet(int initial, int maximum, float interval)
 {

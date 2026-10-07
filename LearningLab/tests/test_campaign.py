@@ -64,13 +64,12 @@ class CampaignTests(unittest.TestCase):
         self.assertIn("未対応能力あり", design_markdown(audit))
 
     def test_cases_freeze_other_characters_and_do_not_optimize_speed_cost(self):
-        self.assertEqual(len(self.settings["cases"]), 16)
+        self.assertEqual(len(self.settings["cases"]), len(self.plan["active_characters"]) * len(self.plan["encounters"]["patterns"]))
         self.assertEqual(self.settings["version"], 2)
         for case in self.settings["cases"]:
             self.assertEqual(len(case["roster"]), len(set(case["roster"])))
-            if case["id"].endswith("-solo"):
-                self.assertEqual(case["roster"], [case["character"]])
-        self.assertTrue(all(c["freeze_others"] and c["target_first"] for c in self.settings["cases"]))
+            self.assertEqual(case["roster"], [case["character"]])
+        self.assertTrue(all(c["freeze_others"] and c["encounter"] for c in self.settings["cases"]))
         self.assertTrue(all(p["field"] in {"hp", "power"} for p in self.settings["parameters"]))
         self.assertFalse(any(p["character"] == "ammonite" and p["field"] == "power" for p in self.settings["parameters"]))
         battle = self.config["scenarios"][0]["parameters"]["battle"]
@@ -88,7 +87,7 @@ class CampaignTests(unittest.TestCase):
     def test_mixed_case_cannot_improve_by_changing_anchor_stats(self):
         baseline = ExperimentConfig(self.config)
         changed = apply_candidate(baseline, {"amago": {"hp": 100}, "shark": {"hp": 900}})
-        case = next(c for c in self.settings["cases"] if c["id"] == "amago-mixed")
+        case = next(c for c in self.settings["cases"] if c["id"] == "amago-3v3")
         prepared = prepare_case(baseline, changed.data["scenarios"][0], case)
         units = {d["id"]: d for d in prepared["parameters"]["battle"]["ally_definitions"]}
         self.assertEqual(units["amago"]["hp"], 100)

@@ -644,5 +644,32 @@
       "weakness": "展開の遅さと資源拘束が最大",
       "defense": 0
     }
-  ]
+  ],
+  "evaluation_mode": "single-wave",
+  "encounters": {
+    "ally_pool": "supported_characters",
+    "enemy_pool": "supported_characters",
+    "patterns": [
+      {
+        "id": "1v1",
+        "ally_count": 1,
+        "enemy_count": 1
+      },
+      {
+        "id": "1v3",
+        "ally_count": 1,
+        "enemy_count": 3
+      },
+      {
+        "id": "3v1",
+        "ally_count": 3,
+        "enemy_count": 1
+      },
+      {
+        "id": "3v3",
+        "ally_count": 3,
+        "enemy_count": 3
+      }
+    ]
+  }
 }

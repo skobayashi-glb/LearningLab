@@ -58,7 +58,7 @@
   ],
   "cases": [
     {
-      "id": "shark-attacker-cost3",
+      "id": "shark-attacker-cost3-1v1",
       "character": "shark",
       "role": "attacker",
       "reference_cost": 3,
@@ -79,10 +79,130 @@
           "scale": 1,
           "weight": 1
         }
+      },
+      "encounter": {
+        "ally_count": 1,
+        "enemy_count": 1,
+        "ally_pool": [
+          "shark",
+          "amago"
+        ],
+        "enemy_pool": [
+          "shark",
+          "amago"
+        ]
       }
     },
     {
-      "id": "amago-attacker-cost1",
+      "id": "shark-attacker-cost3-1v3",
+      "character": "shark",
+      "role": "attacker",
+      "reference_cost": 3,
+      "weight": 1,
+      "roster": [
+        "shark"
+      ],
+      "targets": {
+        "damage_per_energy": {
+          "min": 4,
+          "max": 8,
+          "scale": 4,
+          "weight": 2
+        },
+        "win_rate": {
+          "min": 0.4,
+          "max": 0.8,
+          "scale": 1,
+          "weight": 1
+        }
+      },
+      "encounter": {
+        "ally_count": 1,
+        "enemy_count": 3,
+        "ally_pool": [
+          "shark",
+          "amago"
+        ],
+        "enemy_pool": [
+          "shark",
+          "amago"
+        ]
+      }
+    },
+    {
+      "id": "shark-attacker-cost3-3v1",
+      "character": "shark",
+      "role": "attacker",
+      "reference_cost": 3,
+      "weight": 1,
+      "roster": [
+        "shark"
+      ],
+      "targets": {
+        "damage_per_energy": {
+          "min": 4,
+          "max": 8,
+          "scale": 4,
+          "weight": 2
+        },
+        "win_rate": {
+          "min": 0.4,
+          "max": 0.8,
+          "scale": 1,
+          "weight": 1
+        }
+      },
+      "encounter": {
+        "ally_count": 3,
+        "enemy_count": 1,
+        "ally_pool": [
+          "shark",
+          "amago"
+        ],
+        "enemy_pool": [
+          "shark",
+          "amago"
+        ]
+      }
+    },
+    {
+      "id": "shark-attacker-cost3-3v3",
+      "character": "shark",
+      "role": "attacker",
+      "reference_cost": 3,
+      "weight": 1,
+      "roster": [
+        "shark"
+      ],
+      "targets": {
+        "damage_per_energy": {
+          "min": 4,
+          "max": 8,
+          "scale": 4,
+          "weight": 2
+        },
+        "win_rate": {
+          "min": 0.4,
+          "max": 0.8,
+          "scale": 1,
+          "weight": 1
+        }
+      },
+      "encounter": {
+        "ally_count": 3,
+        "enemy_count": 3,
+        "ally_pool": [
+          "shark",
+          "amago"
+        ],
+        "enemy_pool": [
+          "shark",
+          "amago"
+        ]
+      }
+    },
+    {
+      "id": "amago-attacker-cost1-1v1",
       "character": "amago",
       "role": "attacker",
       "reference_cost": 1,
@@ -103,7 +223,128 @@
           "scale": 1,
           "weight": 1
         }
+      },
+      "encounter": {
+        "ally_count": 1,
+        "enemy_count": 1,
+        "ally_pool": [
+          "shark",
+          "amago"
+        ],
+        "enemy_pool": [
+          "shark",
+          "amago"
+        ]
+      }
+    },
+    {
+      "id": "amago-attacker-cost1-1v3",
+      "character": "amago",
+      "role": "attacker",
+      "reference_cost": 1,
+      "weight": 1,
+      "roster": [
+        "amago"
+      ],
+      "targets": {
+        "damage_per_energy": {
+          "min": 3,
+          "max": 6,
+          "scale": 3,
+          "weight": 2
+        },
+        "win_rate": {
+          "min": 0.3,
+          "max": 0.7,
+          "scale": 1,
+          "weight": 1
+        }
+      },
+      "encounter": {
+        "ally_count": 1,
+        "enemy_count": 3,
+        "ally_pool": [
+          "shark",
+          "amago"
+        ],
+        "enemy_pool": [
+          "shark",
+          "amago"
+        ]
+      }
+    },
+    {
+      "id": "amago-attacker-cost1-3v1",
+      "character": "amago",
+      "role": "attacker",
+      "reference_cost": 1,
+      "weight": 1,
+      "roster": [
+        "amago"
+      ],
+      "targets": {
+        "damage_per_energy": {
+          "min": 3,
+          "max": 6,
+          "scale": 3,
+          "weight": 2
+        },
+        "win_rate": {
+          "min": 0.3,
+          "max": 0.7,
+          "scale": 1,
+          "weight": 1
+        }
+      },
+      "encounter": {
+        "ally_count": 3,
+        "enemy_count": 1,
+        "ally_pool": [
+          "shark",
+          "amago"
+        ],
+        "enemy_pool": [
+          "shark",
+          "amago"
+        ]
+      }
+    },
+    {
+      "id": "amago-attacker-cost1-3v3",
+      "character": "amago",
+      "role": "attacker",
+      "reference_cost": 1,
+      "weight": 1,
+      "roster": [
+        "amago"
+      ],
+      "targets": {
+        "damage_per_energy": {
+          "min": 3,
+          "max": 6,
+          "scale": 3,
+          "weight": 2
+        },
+        "win_rate": {
+          "min": 0.3,
+          "max": 0.7,
+          "scale": 1,
+          "weight": 1
+        }
+      },
+      "encounter": {
+        "ally_count": 3,
+        "enemy_count": 3,
+        "ally_pool": [
+          "shark",
+          "amago"
+        ],
+        "enemy_pool": [
+          "shark",
+          "amago"
+        ]
       }
     }
-  ]
+  ],
+  "evaluation_mode": "single-wave"
 }
