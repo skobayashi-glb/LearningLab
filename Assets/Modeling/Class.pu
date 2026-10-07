@@ -8326,4 +8326,24 @@ package "LearningLab fixed-party controls (2026-10-06)" {
     LabPartyMigration .. LabRouteBoard
 }
 
+package "LearningLab two fixed corridor stages (2026-10-07)" {
+    artifact "RL_Straight / RL_UnitStaircase (StageDefinition assets)" as LabCorridorStages
+    artifact "battle_setup / defense_training_stages (two maps, all splits)" as LabCorridorSetups
+    BattleLabExporter ..> LabCorridorStages : load saved terrain / rotated enemy footprint and spawn
+    BattleLabExporter ..> LabCorridorSetups : export six scenarios from two exact map assets
+    LabConfig ..> LabCorridorSetups : explicit shared_layouts mode; identical parameters per family
+    LabTrainer --> LabConfig : exclude validation / holdout seeds from training sampler
+    LabEvaluator --> LabConfig : split-specific evaluation seeds
+    BalanceParameterSearch --> LabConfig : preserve shared-layout scope in report
+    note as LabCorridorScope
+      Straight corridor and staircase alternating one cell right, one cell up.
+      One-cell width outside base footprints; no branch, shortcut or terrain randomness.
+      Two fixed layouts shared by train / validation / holdout, with disjoint seeds.
+      This evaluates fixed layouts; it is not unseen-layout generalization.
+      Default disjoint_families mode keeps the existing leakage guard.
+      Previous map results remain historical; export a fresh config/run (tool 0.2.1).
+    end note
+    LabCorridorScope .. LabCorridorStages
+}
+
 @enduml

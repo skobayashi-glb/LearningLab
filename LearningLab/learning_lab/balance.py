@@ -8,7 +8,7 @@ import random
 from pathlib import Path
 
 from .artifacts import ExperimentRepository, write_json
-from .config import ExperimentConfig, canonical_hash
+from .config import DISJOINT_FAMILIES, ExperimentConfig, canonical_hash
 
 VERSION = 2
 POLICY_ID = "fixed-party-round-robin-to-default-route-v3-target-first"
@@ -299,6 +299,7 @@ class BalanceSearch:
         holdout = (self.evaluator.evaluate(recommended, "holdout", joint=True) if requires_joint else
                    self.evaluator.evaluate(recommended, "holdout"))
         report = {"version": VERSION, "policy": POLICY_ID, "config_hash": self.config.digest,
+                  "stage_split_mode": self.config.data.get("stage_split_mode", DISJOINT_FAMILIES),
                   "candidate_count": len(trials), "selected_train_candidate": best["candidate"],
                   "baseline_train_score": trials[0]["score"], "selected_train_score": best["score"],
                   "passed_validation_gate": accepted, "recommended_overrides": recommended,

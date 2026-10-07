@@ -1,0 +1,178 @@
+{
+  "version": 1,
+  "date": "2026-10-07",
+  "scope": "Fixed two-layout functional smoke checks, not full training, game balance evidence or unseen-layout generalization",
+  "stage_split_mode": "shared_layouts",
+  "stage_assets_sha256": {
+    "Assets/Editor/LearningDebugStages/RL_Straight.asset": "41f9704ea9b5570e39fd09578ef489e4296e804f5520dfc3ea727823ae092889",
+    "Assets/Editor/LearningDebugStages/RL_UnitStaircase.asset": "296c8ec51dfe9e49844a1e99acea139759ef6894721fce984d2c36f3b9f4a4e4"
+  },
+  "ppo_evaluation_seeds": {
+    "validation": [
+      2001,
+      2002
+    ],
+    "holdout": [
+      3001,
+      3002
+    ]
+  },
+  "training_excludes_evaluation_seeds": [
+    2001,
+    2002,
+    3001,
+    3002
+  ],
+  "verification_location": "standalone LearningLab repository with bundled Assets only",
+  "control_model": "fixed party, immediate single-unit sortie, persistent invasion routes, one-second energy recovery",
+  "engine_sha256": "14e30dd45b1fcc3f05f8c7d2bdbfc59d4fba7fc337132ef4fe253fd88c87889c",
+  "source_sha256": {
+    "BattleHost/BattleEnvironment.cs": "d5e5bb5af7d7e9b7707d8a3d4928fd1597019b537e1d8c9f0a73a8b55c01db28",
+    "BattleHost/BattleSimulation.cs": "6a62cafc0c1b5da1f6028141863169a66f55a7598408bf9b685ac441d7d7f4a3",
+    "BattleHost/Data.cs": "47acb82ace915ebf729b432662d71e3be380376178ce9962cfd189a2022856d9",
+    "BattleHost/Entities.cs": "a085b6cf666cc9ae01948cb1f24c2e1f7b232d528b19957cbf460ade0fae1d42",
+    "BattleHost/Grid.cs": "880cb420cbdbb5a1e415061339126b0614f517ada28fd03e066d63a50ea9d1fe",
+    "BattleHost/NumericCompatibility.cs": "ac14d666a2d0c184807abb474848858c1c48343548f9e88cf33ca20045cdc2f7",
+    "BattleHost/PartyRouteBoard.cs": "e922e71970d7cf81c12a5c5718608425587bd1fbf7848abe3ca16e57df5d62d9",
+    "BattleHost/Program.cs": "1ccf027baeaf4c5fadc40583f4c021ca0773b8473ff97ebffb6bd0ccb90ca823",
+    "BattleHost/StatusEngine.cs": "af233be1a3fd816cc644ad16556e3aa90270b9e73c40700d955f9c4ee7188569",
+    "configs/balance_targets.json": "fbd0ae55e76d36d73411cb49e6e0e21b424a912f5426028e0d924fd6e98719cf",
+    "configs/battle_setup.json": "6b1dd027c0e0fa60cbc2e67eb0dce9cc93701f3e05ce8cfdc518a80f8ebcabda",
+    "configs/character_balance_plan.json": "4c052ba96648c3358da9201c44c18281b76222ec8bec24d2695642242417435f",
+    "configs/defense_training_plan.json": "0540844e1f2e4611c3cea8334024877020335c329691ac9fc5d168dda388cdad",
+    "configs/defense_training_stages.json": "6b1dd027c0e0fa60cbc2e67eb0dce9cc93701f3e05ce8cfdc518a80f8ebcabda",
+    "configs/demo.json": "aa56a8d0d1fa601f34de36a52d3e8b4584ddc50b4b2c613b68b78aedbbaab573",
+    "configs/strength_assignments.json": "d290e5f009ea4f3cdaf49ab5eb2dee94b79a57df6e334742cc32cb7a1ef49af9",
+    "learning_lab/__init__.py": "181f5a0728cc2c22cedb603986a5c988bd443342134fcd0347b22c8018beec53",
+    "learning_lab/__main__.py": "de46e591649d1d629b71044c63062d3a868f6e7adddd96eefd9e7ef0bb07d357",
+    "learning_lab/artifacts.py": "0f2641a4b4f093be53786abf45d30db5bccb6d2e1a7e1d135a3c76095621b315",
+    "learning_lab/balance.py": "2f53c0ad4d3be2652f6827f290e88ee95d7ed016d502b18aeff9709ef34015f4",
+    "learning_lab/battle.py": "4824e3ea91a641d13687a6ec51b0393699ef7fa1e85983177f16f1819e9b0fee",
+    "learning_lab/campaign.py": "eecf913bbce2b2256a97b8ffe884f0a42b2b352aeb244c6369f41aef412c1e4a",
+    "learning_lab/config.py": "30382746b1defbcc82b215d42041a4fcf4571bbfea87c6f52167b4f570344d54",
+    "learning_lab/contracts.py": "bc84ccc5a433e7871c32a7c253596bacb69bee5b52dfba7a76373fefbd4f1055",
+    "learning_lab/demo.py": "de0b8f05a34891028b8c8456903543a4d06a8bc553e74b9961c35d1e7efc2a09",
+    "learning_lab/demo_server.py": "cbe5e1f4448366a6a5f06fb7e2b40e4889de19a187904b24e94793ae7b5ce215",
+    "learning_lab/evaluation.py": "0f081f59dffb4d3b67987e7a923966e20be7fb94d49e8907e78a4447fb70f8a8",
+    "learning_lab/export_battle.py": "032227bd8146b624556ea9f863a638a725eab8b94c99b7967cce3cd15027d436",
+    "learning_lab/policy.py": "d8706f2d28fbe3d269ecd30cd20ab20b6f3c78042942fa653999ed9473330416",
+    "learning_lab/ppo.py": "2387c73d9ef08f7308921fa184a12c58091e27b5d83bc9b438f7d4933221130b",
+    "learning_lab/rpc.py": "3d16cc4eba613c55fb58f690eb838b73744e8f4fd92a873ff9d463f4f66216fe",
+    "learning_lab/trainer.py": "f9c8287082f011c6072dbe7bd51b7cca0775ecc8386bc29a22ecfe3c88f8208d"
+  },
+  "battle_data_version": 2,
+  "schema_id": "battle-v3-party-routes-15-15-256-8-12-3-2-14E30DD45B1FCC3F05F8C7D2BDBFC59D4FBA7FC337132EF4FE253FD88C87889C",
+  "observation_size": 8597,
+  "action_count": 253,
+  "tests": {
+    "count": 65,
+    "passed": true,
+    "skipped": 0,
+    "release_boundary_passed": true
+  },
+  "parameter_search": {
+    "policy": "fixed-party-round-robin-to-default-route-v3-target-first",
+    "candidate_count": 2,
+    "characters": [
+      "abyssal-sea-dragon",
+      "amago"
+    ],
+    "cases": [
+      {
+        "id": "amago-solo",
+        "roster": [
+          "amago"
+        ]
+      },
+      {
+        "id": "amago-mixed",
+        "roster": [
+          "amago",
+          "shark",
+          "ammonite"
+        ]
+      },
+      {
+        "id": "abyssal-sea-dragon-solo",
+        "roster": [
+          "abyssal-sea-dragon"
+        ]
+      },
+      {
+        "id": "abyssal-sea-dragon-mixed",
+        "roster": [
+          "abyssal-sea-dragon",
+          "shark",
+          "ammonite"
+        ]
+      }
+    ],
+    "seeds": {
+      "train": [
+        10101
+      ],
+      "validation": [
+        11101
+      ],
+      "holdout": [
+        12101
+      ]
+    },
+    "scenarios": [
+      {
+        "id": "straight-train",
+        "split": "train"
+      },
+      {
+        "id": "unit-staircase-train",
+        "split": "train"
+      },
+      {
+        "id": "straight-validation",
+        "split": "validation"
+      },
+      {
+        "id": "unit-staircase-validation",
+        "split": "validation"
+      },
+      {
+        "id": "straight-holdout",
+        "split": "holdout"
+      },
+      {
+        "id": "unit-staircase-holdout",
+        "split": "holdout"
+      }
+    ],
+    "train_episodes": 16,
+    "validation_episodes": 8,
+    "holdout_episodes": 8,
+    "passed_validation_gate": false,
+    "baseline_train_score": 0.028401746986657133,
+    "selected_train_score": 0.028401746986657133,
+    "applied_to_game": false
+  },
+  "ppo": {
+    "decisions": 64,
+    "updates": 2,
+    "weights_changed": true,
+    "checkpoint_continuation_equal": true,
+    "last_metrics": {
+      "policy_loss": -0.0013337871059775352,
+      "value_loss": 0.0480818934738636,
+      "entropy": 3.176173508167267,
+      "decisions": 64,
+      "updates": 2,
+      "episodes": 1,
+      "completed": [
+        {
+          "return": -1.0,
+          "length": 42,
+          "outcome": "defeat",
+          "scenario_id": "straight-train"
+        }
+      ]
+    }
+  },
+  "historical_results_unchanged": true
+}

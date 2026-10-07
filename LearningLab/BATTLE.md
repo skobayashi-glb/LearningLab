@@ -22,13 +22,18 @@ python -m learning_lab replay --config runs/my-battle.json --report runs/my-eval
 
 ステージエディターで次のStageDefinitionを開き、地形・味方拠点・敵拠点を編集して保存できます。
 
-| Asset（Assets/Editor/LearningDebugStages/） | 用途 |
+| Asset（Assets/Editor/LearningDebugStages/） | 形状と用途 |
 |---|---|
-| RL_OpenField.asset | 開けた地形・学習用 |
-| RL_ChokePoint.asset | 通路を絞った地形・検証用 |
-| RL_Detour.asset | 迂回が必要な地形・最終確認用 |
+| RL_Straight.asset | 15×15。1マス幅の一直線、味方(2,7)→敵(12,7) |
+| RL_UnitStaircase.asset | 15×15。右1マス→上1マスの繰り返し、味方(2,2)→敵(12,12) |
 
-自作マップも `stage_asset` を差し替えて利用できます。開発専用マップはEditorフォルダー内へ保存してください。ステージ保存処理はEditor内のマップを製品用StageCatalogに登録しません。マップのコピーや近い派生版は同じ `family` にして、trainとvalidation/holdoutの間で混ぜないでください。
+![現在の2ステージ](docs/corridor_stages.svg)
+
+2026-10-07以降の両setupはこの2枚だけを使用します。階段は平面上の通路形状で、各横段・縦段の長さは1マスです。拠点以外の歩けるセルは分岐・近道のない一本道。敵拠点の3占有セルは終端に確保し、両陣営の出撃口を通路端へ向けています。
+
+同じ2枚をtrain/validation/holdoutで利用するため、`training.stage_split_mode=shared_layouts`を明示します。PPOの`evaluation.split_seeds`はvalidation=2001/2002、holdout=3001/3002で、学習seedから除外します。全分割で同じfamilyのパラメータ一致を検査し、地形の未知性を評価した結果とは呼びません。数値探索はplanの分割別seedを使います。既定の`disjoint_families`モードはfamily重複の拒否を維持します。
+
+旧4マップの過去記録は新しい2枚での成績にはしません。新規実験JSON・runを使用してください。StageDefinitionはEditorフォルダー内に保存し、製品用StageCatalogへ登録しません。
 
 `configs/battle_setup.json` の各scenarioで以下を指定します。
 

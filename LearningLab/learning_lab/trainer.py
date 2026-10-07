@@ -24,7 +24,8 @@ class PpoTrainer:
         self.policy = MaskedActorCritic(
             self.environment.spec, config.data["ppo"]["hidden_size"])
         self.updater = PpoOptimizer(self.policy, config.data["ppo"])
-        self.sampler = ScenarioSampler(config.scenarios("train"), config.data["seed"])
+        self.sampler = ScenarioSampler(config.scenarios("train"), config.data["seed"],
+            excluded_seeds=config.reserved_evaluation_seeds)
         self.decisions = 0
         self.updates = 0
         self.episodes = 0

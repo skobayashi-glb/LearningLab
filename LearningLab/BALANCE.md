@@ -12,6 +12,8 @@ python -m learning_lab.balance --config runs/my-battle.json --settings configs/b
 
 学習済みPPOモデルは不要です。サンプルはサメ・アマゴのHPと攻撃力を探索し、速度・出撃コスト・敵ステータスを固定します。攻撃周期・射程・役割・敵の行動も変更しません。既存のrunへの上書きは拒否します。初版では中断からの再開はなく、完了した候補の記録は残ります。
 
+**現行ステージ（2026-10-07）:** 両setupは一直線・1マス階段の2枚だけを全分割で使います。planのtrain/validation/holdout seedは重複を禁止します。評価は固定地形での敵出撃乱数に対する確認であり、未見地形への汎化を示しません。各分割の試合数は2マップ×seed数×case数です。
+
 ## 役割・コストと評価目標
 
 **強弱の割り当てはユーザーが [strength_assignments.json](configs/strength_assignments.json) で変更できます。** `weak`（弱め）、`standard`（標準）、`strong`（強め）、`conditional`（編成依存）のいずれかを指定します。例として `"shark": "strong"` を `"shark": "weak"` に変更できます。全42体のキーを残してください。

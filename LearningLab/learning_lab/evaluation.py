@@ -4,7 +4,7 @@ from dataclasses import asdict
 import numpy as np
 import torch
 
-from .config import ExperimentConfig, canonical_hash
+from .config import DISJOINT_FAMILIES, ExperimentConfig, canonical_hash
 from .contracts import Observation
 from .policy import MaskedActorCritic
 
@@ -33,7 +33,7 @@ class PolicyEvaluator:
         environment = self.config.create_environment()
         try:
             for scenario in scenarios:
-                for seed in self.config.data["evaluation"]["seeds"]:
+                for seed in self.config.evaluation_seeds(split):
                     rng = np.random.default_rng(seed)
                     observation = environment.reset(scenario, seed)
                     observation.validate(environment.spec)
@@ -82,6 +82,7 @@ class PolicyEvaluator:
         counts = Counter(episode["outcome"] for episode in episodes)
         return {
             "config_hash": self.config.digest, "split": split, "policy": baseline,
+            "stage_split_mode": self.config.data.get("stage_split_mode", DISJOINT_FAMILIES),
             "episode_count": len(episodes), "outcomes": dict(counts),
             "mean_return": float(np.mean([e["return"] for e in episodes])),
             "mean_length": float(np.mean([e["length"] for e in episodes])),

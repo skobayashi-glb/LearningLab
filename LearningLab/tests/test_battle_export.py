@@ -16,7 +16,8 @@ MAX_DECISIONS = 600
 class BattleExportTests(unittest.TestCase):
     def test_editor_maps_real_characters_and_frozen_enemy_snapshot(self):
         setup = json.loads((LAB / "configs/battle_setup.json").read_text())
-        setup["scenarios"][0]["ally_overrides"] = {"shark": {"hp": 120}}
+        for scenario in setup["scenarios"]:
+            scenario["ally_overrides"] = {"shark": {"hp": 120}}
         config = ExperimentConfig(BattleExporter().export(setup))
         battle = config.data["scenarios"][0]["parameters"]["battle"]
         ally = next(d for d in battle["ally_definitions"] if d["id"] == "shark")
