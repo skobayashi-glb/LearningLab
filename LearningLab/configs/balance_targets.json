@@ -22,38 +22,26 @@
     {
       "character": "shark",
       "field": "hp",
-      "values": [
-        54,
-        60,
-        66
-      ]
+      "min": 30,
+      "max": 90
     },
     {
       "character": "shark",
       "field": "power",
-      "values": [
-        11,
-        12,
-        13
-      ]
+      "min": 6,
+      "max": 18
     },
     {
       "character": "amago",
       "field": "hp",
-      "values": [
-        22,
-        24,
-        26
-      ]
+      "min": 12,
+      "max": 36
     },
     {
       "character": "amago",
       "field": "power",
-      "values": [
-        3,
-        4,
-        5
-      ]
+      "min": 2,
+      "max": 6
     }
   ],
   "cases": [
@@ -346,5 +334,16 @@
       }
     }
   ],
-  "evaluation_mode": "single-wave"
+  "evaluation_mode": "single-wave",
+  "search_strategy": "adaptive-distribution",
+  "adaptive": {
+    "learning_rate": 0.05,
+    "initial_std": 1.0,
+    "min_std": 0.15,
+    "max_std": 2.5,
+    "max_abs_mean": 6.0,
+    "reference_rate": 0.1,
+    "entropy_coefficient": 0.01,
+    "max_grad_norm": 5.0
+  }
 }

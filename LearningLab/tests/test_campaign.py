@@ -72,6 +72,11 @@ class CampaignTests(unittest.TestCase):
         self.assertTrue(all(c["freeze_others"] and c["encounter"] for c in self.settings["cases"]))
         self.assertTrue(all(p["field"] in {"hp", "power"} for p in self.settings["parameters"]))
         self.assertFalse(any(p["character"] == "ammonite" and p["field"] == "power" for p in self.settings["parameters"]))
+        self.assertEqual(self.settings["search_strategy"], "adaptive-distribution")
+        self.assertTrue(all("min" in p and "max" in p and "values" not in p for p in self.settings["parameters"]))
+        amago_power = next(p for p in self.settings["parameters"] if p["character"] == "amago" and p["field"] == "power")
+        amago_minimum_power, amago_maximum_power = 2, 4
+        self.assertEqual((amago_power["min"], amago_power["max"]), (amago_minimum_power, amago_maximum_power))
         battle = self.config["scenarios"][0]["parameters"]["battle"]
         ally = next(u for u in battle["ally_definitions"] if u["id"] == "amago")
         enemy = next(u for u in battle["enemy_baseline"] if u["id"] == "amago")

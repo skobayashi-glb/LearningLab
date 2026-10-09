@@ -1,0 +1,859 @@
+{
+  "version": 1,
+  "date": "2026-10-09",
+  "tool_version": "0.4.0",
+  "scope": "Online proposal-learning functional checks, not complete eight-character balance optimization",
+  "verification_location": "standalone LearningLab repository with bundled Assets only",
+  "search_strategy": "adaptive-distribution",
+  "evaluation_mode": "single-wave",
+  "policy": "one-opening-wave-per-team-then-wait-v1",
+  "stage_split_mode": "shared_layouts",
+  "config_hash": "ed0957790ad7b37134af57b2d1b33b576a31d034ea48fc420d9dc7375ca003cf",
+  "settings_hash": "2c3883446c994c6b8cdbced15eb124d7be2670889af328700863e48d310b6b70",
+  "source_sha256": {
+    "BattleHost/BattleEnvironment.cs": "d5e5bb5af7d7e9b7707d8a3d4928fd1597019b537e1d8c9f0a73a8b55c01db28",
+    "BattleHost/BattleSimulation.cs": "d90cadf273100b6ac201315c9b65886c866c8dac065a8b3e5b2788ae50959303",
+    "BattleHost/Data.cs": "4e9ae23fc76142c9cef2de9144bfb581331dded62d65740d6cd4cab8f90db034",
+    "BattleHost/Entities.cs": "a085b6cf666cc9ae01948cb1f24c2e1f7b232d528b19957cbf460ade0fae1d42",
+    "BattleHost/Grid.cs": "880cb420cbdbb5a1e415061339126b0614f517ada28fd03e066d63a50ea9d1fe",
+    "BattleHost/NumericCompatibility.cs": "ac14d666a2d0c184807abb474848858c1c48343548f9e88cf33ca20045cdc2f7",
+    "BattleHost/PartyRouteBoard.cs": "e922e71970d7cf81c12a5c5718608425587bd1fbf7848abe3ca16e57df5d62d9",
+    "BattleHost/Program.cs": "1ccf027baeaf4c5fadc40583f4c021ca0773b8473ff97ebffb6bd0ccb90ca823",
+    "BattleHost/StatusEngine.cs": "af233be1a3fd816cc644ad16556e3aa90270b9e73c40700d955f9c4ee7188569",
+    "configs/balance_targets.json": "a39c90dc74cc24eea5d1b1acd13d5af0dc0cc5849b9ae320d10c12eb7e829353",
+    "configs/battle_setup.json": "6b1dd027c0e0fa60cbc2e67eb0dce9cc93701f3e05ce8cfdc518a80f8ebcabda",
+    "configs/character_balance_plan.json": "63b6053bc4ebb380a5bdf10b6178d070bf23d513272ba93ed80f3881c5cb05d4",
+    "configs/defense_training_plan.json": "d6c8cbe47bb787743dabb460ded4d5aefb13d80c1454943a96cab3cc14ab7afa",
+    "configs/defense_training_stages.json": "6b1dd027c0e0fa60cbc2e67eb0dce9cc93701f3e05ce8cfdc518a80f8ebcabda",
+    "configs/demo.json": "aa56a8d0d1fa601f34de36a52d3e8b4584ddc50b4b2c613b68b78aedbbaab573",
+    "configs/strength_assignments.json": "d290e5f009ea4f3cdaf49ab5eb2dee94b79a57df6e334742cc32cb7a1ef49af9",
+    "learning_lab/__init__.py": "6b3204c1df12972810b423c0c5a0e22fb734877a4d8138dd2ccf93b1528f28ae",
+    "learning_lab/__main__.py": "de46e591649d1d629b71044c63062d3a868f6e7adddd96eefd9e7ef0bb07d357",
+    "learning_lab/adaptive_search.py": "021db6ec8ec87349452c5b29a14c81781cb05680d1289a68b081b0c5dd3f8b13",
+    "learning_lab/artifacts.py": "0f2641a4b4f093be53786abf45d30db5bccb6d2e1a7e1d135a3c76095621b315",
+    "learning_lab/balance.py": "31ad7a8a0d21a842264166fb8cf2cc4f2f53081d4772abd3d925284cdd04e31f",
+    "learning_lab/battle.py": "4824e3ea91a641d13687a6ec51b0393699ef7fa1e85983177f16f1819e9b0fee",
+    "learning_lab/campaign.py": "b4cc35cc0a2fdb6f9de4feda25873341d09e55d665f14af507532f863a96cbbe",
+    "learning_lab/config.py": "30382746b1defbcc82b215d42041a4fcf4571bbfea87c6f52167b4f570344d54",
+    "learning_lab/contracts.py": "bc84ccc5a433e7871c32a7c253596bacb69bee5b52dfba7a76373fefbd4f1055",
+    "learning_lab/demo.py": "de0b8f05a34891028b8c8456903543a4d06a8bc553e74b9961c35d1e7efc2a09",
+    "learning_lab/demo_server.py": "cbe5e1f4448366a6a5f06fb7e2b40e4889de19a187904b24e94793ae7b5ce215",
+    "learning_lab/encounters.py": "59149fab7ff342666c1e24b82f43c6f2228f014e7582400595f7c4ee942edfcc",
+    "learning_lab/evaluation.py": "0f081f59dffb4d3b67987e7a923966e20be7fb94d49e8907e78a4447fb70f8a8",
+    "learning_lab/export_battle.py": "88e0f3cf9bc2f9244546f39b60300ab2e8e58029e217be9813d57f6af7820679",
+    "learning_lab/parameter_space.py": "a1c449bf3498e6f7ca8e344cf11e3871a436014828fe93ffaf38b1b6b1cce2a7",
+    "learning_lab/policy.py": "d8706f2d28fbe3d269ecd30cd20ab20b6f3c78042942fa653999ed9473330416",
+    "learning_lab/ppo.py": "2387c73d9ef08f7308921fa184a12c58091e27b5d83bc9b438f7d4933221130b",
+    "learning_lab/rpc.py": "3d16cc4eba613c55fb58f690eb838b73744e8f4fd92a873ff9d463f4f66216fe",
+    "learning_lab/trainer.py": "f9c8287082f011c6072dbe7bd51b7cca0775ecc8386bc29a22ecfe3c88f8208d"
+  },
+  "tests": {
+    "count": 80,
+    "passed": true,
+    "skipped": 0,
+    "release_boundary_passed": true
+  },
+  "full_campaign_axes": 23,
+  "full_campaign_learning_parameters": 46,
+  "smoke_targets": [
+    "abyssal-sea-dragon",
+    "amago"
+  ],
+  "smoke_axes": [
+    {
+      "character": "amago",
+      "field": "hp",
+      "min": 11,
+      "max": 33
+    },
+    {
+      "character": "amago",
+      "field": "power",
+      "min": 2,
+      "max": 4
+    },
+    {
+      "character": "amago",
+      "field": "defense",
+      "min": 0,
+      "max": 100
+    },
+    {
+      "character": "abyssal-sea-dragon",
+      "field": "hp",
+      "min": 105,
+      "max": 315
+    },
+    {
+      "character": "abyssal-sea-dragon",
+      "field": "power",
+      "min": 54,
+      "max": 162
+    },
+    {
+      "character": "abyssal-sea-dragon",
+      "field": "defense",
+      "min": 0,
+      "max": 100
+    }
+  ],
+  "seeds": {
+    "train": [
+      10101
+    ],
+    "validation": [
+      11101
+    ],
+    "holdout": [
+      12101
+    ]
+  },
+  "candidate_count": 6,
+  "distribution_updates": 5,
+  "episode_counts": {
+    "train": 96,
+    "validation": 32,
+    "holdout": 16,
+    "total": 144
+  },
+  "character_sampling": {
+    "ally_pool": [
+      "abyssal-sea-dragon",
+      "amago",
+      "ammonite",
+      "angelfish",
+      "arowana",
+      "atlantic-tarpon",
+      "bigfin-reef-squid",
+      "blacktip-reef-shark",
+      "blue-shark",
+      "blue-surgeonfish",
+      "blue-whale",
+      "bonito",
+      "bull-shark",
+      "clione",
+      "coelacanth",
+      "cownose-ray",
+      "crocodile",
+      "dolphin",
+      "goblin",
+      "lionfish",
+      "rockfish",
+      "sea-slug",
+      "sea-urchin",
+      "seahorse",
+      "shark",
+      "skeleton_pirate",
+      "stonefish",
+      "sunfish",
+      "viperfish",
+      "wahoo"
+    ],
+    "enemy_pool": [
+      "abyssal-sea-dragon",
+      "amago",
+      "ammonite",
+      "angelfish",
+      "arowana",
+      "atlantic-tarpon",
+      "bigfin-reef-squid",
+      "blacktip-reef-shark",
+      "blue-shark",
+      "blue-surgeonfish",
+      "blue-whale",
+      "bonito",
+      "bull-shark",
+      "clione",
+      "coelacanth",
+      "cownose-ray",
+      "crocodile",
+      "dolphin",
+      "goblin",
+      "lionfish",
+      "rockfish",
+      "sea-slug",
+      "sea-urchin",
+      "seahorse",
+      "shark",
+      "skeleton_pirate",
+      "stonefish",
+      "sunfish",
+      "viperfish",
+      "wahoo"
+    ],
+    "unsupported": [
+      {
+        "id": "anchovy",
+        "reason": "anchovy: movement/target selection is not supported yet"
+      },
+      {
+        "id": "angel-shark",
+        "reason": "angel-shark: movement/target selection is not supported yet"
+      },
+      {
+        "id": "basking-shark",
+        "reason": "basking-shark: position effects/knockback require parity implementation"
+      },
+      {
+        "id": "bluefin-tuna",
+        "reason": "bluefin-tuna: position effects/knockback require parity implementation"
+      },
+      {
+        "id": "bowmouth-guitarfish",
+        "reason": "Sanded contact transmission is not supported"
+      },
+      {
+        "id": "cameroceras",
+        "reason": "Sanded contact transmission is not supported"
+      },
+      {
+        "id": "catfish",
+        "reason": "Sanded contact transmission is not supported"
+      },
+      {
+        "id": "coconut-octopus",
+        "reason": "coconut-octopus: movement/target selection is not supported yet"
+      },
+      {
+        "id": "dugong",
+        "reason": "dugong: movement/target selection is not supported yet"
+      },
+      {
+        "id": "electric-ray",
+        "reason": "electric-ray: movement/target selection is not supported yet"
+      },
+      {
+        "id": "flounder",
+        "reason": "flounder: movement/target selection is not supported yet"
+      },
+      {
+        "id": "whale-shark",
+        "reason": "whale-shark: position effects/knockback require parity implementation"
+      }
+    ]
+  },
+  "baseline_train_score": 11.711979219104398,
+  "selected_train_score": 3.7453903466776635,
+  "passed_validation_gate": false,
+  "applied_to_game": false,
+  "trials": [
+    {
+      "index": 0,
+      "candidate": {
+        "amago": {
+          "hp": 22,
+          "power": 3,
+          "defense": 0
+        },
+        "abyssal-sea-dragon": {
+          "hp": 210,
+          "power": 108,
+          "defense": 0
+        }
+      },
+      "score": 11.711979219104398,
+      "proposal_before": {
+        "updates": 0,
+        "latent_mean": [
+          0.0,
+          0.0,
+          -2.197224577336219,
+          0.0,
+          0.0,
+          -2.197224577336219
+        ],
+        "latent_std": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "reference_score": null,
+        "center_candidate": {
+          "amago": {
+            "hp": 22,
+            "power": 3,
+            "defense": 10
+          },
+          "abyssal-sea-dragon": {
+            "hp": 210,
+            "power": 108,
+            "defense": 10
+          }
+        }
+      },
+      "proposal_after": {
+        "updates": 0,
+        "latent_mean": [
+          0.0,
+          0.0,
+          -2.197224577336219,
+          0.0,
+          0.0,
+          -2.197224577336219
+        ],
+        "latent_std": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "reference_score": 11.711979219104398,
+        "center_candidate": {
+          "amago": {
+            "hp": 22,
+            "power": 3,
+            "defense": 10
+          },
+          "abyssal-sea-dragon": {
+            "hp": 210,
+            "power": 108,
+            "defense": 10
+          }
+        }
+      },
+      "update": null
+    },
+    {
+      "index": 1,
+      "candidate": {
+        "amago": {
+          "hp": 21,
+          "power": 3,
+          "defense": 22
+        },
+        "abyssal-sea-dragon": {
+          "hp": 208,
+          "power": 102,
+          "defense": 8
+        }
+      },
+      "score": 9.655696700064656,
+      "proposal_before": {
+        "updates": 0,
+        "latent_mean": [
+          0.0,
+          0.0,
+          -2.197224577336219,
+          0.0,
+          0.0,
+          -2.197224577336219
+        ],
+        "latent_std": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "reference_score": 11.711979219104398,
+        "center_candidate": {
+          "amago": {
+            "hp": 22,
+            "power": 3,
+            "defense": 10
+          },
+          "abyssal-sea-dragon": {
+            "hp": 210,
+            "power": 108,
+            "defense": 10
+          }
+        }
+      },
+      "proposal_after": {
+        "updates": 1,
+        "latent_mean": [
+          -0.04999998234030701,
+          0.04999999341266544,
+          -2.1472245803073884,
+          -0.04999992057595235,
+          -0.049999987108998015,
+          -2.2472245674692197
+        ],
+        "latent_std": [
+          0.95122942745475,
+          0.951229428083331,
+          0.9512295358458533,
+          0.9512294273772101,
+          0.9512294275300645,
+          0.9512294276516243
+        ],
+        "reference_score": 11.506350967200424,
+        "center_candidate": {
+          "amago": {
+            "hp": 22,
+            "power": 3,
+            "defense": 10
+          },
+          "abyssal-sea-dragon": {
+            "hp": 207,
+            "power": 107,
+            "defense": 10
+          }
+        }
+      },
+      "update": {
+        "update": 1,
+        "train_score": 9.655696700064656,
+        "reference_before": 11.711979219104398,
+        "advantage": -0.17557088179302488,
+        "proposal_loss": 0.9939467719556327,
+        "gradient_norm": 0.39665164446157114,
+        "latent_entropy": 8.513631199228035
+      }
+    },
+    {
+      "index": 2,
+      "candidate": {
+        "amago": {
+          "hp": 22,
+          "power": 2,
+          "defense": 5
+        },
+        "abyssal-sea-dragon": {
+          "hp": 162,
+          "power": 141,
+          "defense": 14
+        }
+      },
+      "score": 3.7453903466776635,
+      "proposal_before": {
+        "updates": 1,
+        "latent_mean": [
+          -0.04999998234030701,
+          0.04999999341266544,
+          -2.1472245803073884,
+          -0.04999992057595235,
+          -0.049999987108998015,
+          -2.2472245674692197
+        ],
+        "latent_std": [
+          0.95122942745475,
+          0.951229428083331,
+          0.9512295358458533,
+          0.9512294273772101,
+          0.9512294275300645,
+          0.9512294276516243
+        ],
+        "reference_score": 11.506350967200424,
+        "center_candidate": {
+          "amago": {
+            "hp": 22,
+            "power": 3,
+            "defense": 10
+          },
+          "abyssal-sea-dragon": {
+            "hp": 207,
+            "power": 107,
+            "defense": 10
+          }
+        }
+      },
+      "proposal_after": {
+        "updates": 2,
+        "latent_mean": [
+          -0.023532652216571318,
+          0.015451488919975394,
+          -2.175211324952279,
+          -0.08750589206761097,
+          -0.014011628092552665,
+          -2.2154426511659007
+        ],
+        "latent_std": [
+          0.9101420610414666,
+          0.9800768493919625,
+          0.9142241330279856,
+          0.9188834588456252,
+          0.9812134891746848,
+          0.9092474234105523
+        ],
+        "reference_score": 10.730254905148147,
+        "center_candidate": {
+          "amago": {
+            "hp": 22,
+            "power": 3,
+            "defense": 10
+          },
+          "abyssal-sea-dragon": {
+            "hp": 205,
+            "power": 108,
+            "defense": 10
+          }
+        }
+      },
+      "update": {
+        "update": 2,
+        "train_score": 3.7453903466776635,
+        "reference_before": 11.506350967200424,
+        "advantage": -0.6744936463910989,
+        "proposal_loss": 5.60457627626319,
+        "gradient_norm": 2.2818732221953235,
+        "latent_entropy": 8.213631332674858
+      }
+    },
+    {
+      "index": 3,
+      "candidate": {
+        "amago": {
+          "hp": 20,
+          "power": 4,
+          "defense": 5
+        },
+        "abyssal-sea-dragon": {
+          "hp": 197,
+          "power": 135,
+          "defense": 15
+        }
+      },
+      "score": 11.519476156083966,
+      "proposal_before": {
+        "updates": 2,
+        "latent_mean": [
+          -0.023532652216571318,
+          0.015451488919975394,
+          -2.175211324952279,
+          -0.08750589206761097,
+          -0.014011628092552665,
+          -2.2154426511659007
+        ],
+        "latent_std": [
+          0.9101420610414666,
+          0.9800768493919625,
+          0.9142241330279856,
+          0.9188834588456252,
+          0.9812134891746848,
+          0.9092474234105523
+        ],
+        "reference_score": 10.730254905148147,
+        "center_candidate": {
+          "amago": {
+            "hp": 22,
+            "power": 3,
+            "defense": 10
+          },
+          "abyssal-sea-dragon": {
+            "hp": 205,
+            "power": 108,
+            "defense": 10
+          }
+        }
+      },
+      "proposal_after": {
+        "updates": 3,
+        "latent_mean": [
+          0.004469976800130962,
+          -0.014281764387553304,
+          -2.1935610703789683,
+          -0.1158381539167303,
+          0.011213676768132456,
+          -2.194880406039914
+        ],
+        "latent_std": [
+          0.8829243813701869,
+          1.0008188966638394,
+          0.9029168753291733,
+          0.9098146428360286,
+          1.0046113551363307,
+          0.8816666135256941
+        ],
+        "reference_score": 10.80917703024173,
+        "center_candidate": {
+          "amago": {
+            "hp": 22,
+            "power": 3,
+            "defense": 10
+          },
+          "abyssal-sea-dragon": {
+            "hp": 204,
+            "power": 108,
+            "defense": 10
+          }
+        }
+      },
+      "update": {
+        "update": 3,
+        "train_score": 11.519476156083966,
+        "reference_before": 10.730254905148147,
+        "advantage": 0.07355102538684032,
+        "proposal_loss": -0.6110368412014188,
+        "gradient_norm": 0.20962809723095654,
+        "latent_entropy": 8.110973584893806
+      }
+    },
+    {
+      "index": 4,
+      "candidate": {
+        "amago": {
+          "hp": 28,
+          "power": 3,
+          "defense": 11
+        },
+        "abyssal-sea-dragon": {
+          "hp": 221,
+          "power": 99,
+          "defense": 22
+        }
+      },
+      "score": 10.66860032224173,
+      "proposal_before": {
+        "updates": 3,
+        "latent_mean": [
+          0.004469976800130962,
+          -0.014281764387553304,
+          -2.1935610703789683,
+          -0.1158381539167303,
+          0.011213676768132456,
+          -2.194880406039914
+        ],
+        "latent_std": [
+          0.8829243813701869,
+          1.0008188966638394,
+          0.9029168753291733,
+          0.9098146428360286,
+          1.0046113551363307,
+          0.8816666135256941
+        ],
+        "reference_score": 10.80917703024173,
+        "center_candidate": {
+          "amago": {
+            "hp": 22,
+            "power": 3,
+            "defense": 10
+          },
+          "abyssal-sea-dragon": {
+            "hp": 204,
+            "power": 108,
+            "defense": 10
+          }
+        }
+      },
+      "proposal_after": {
+        "updates": 4,
+        "latent_mean": [
+          0.03248016030150036,
+          -0.039001514103884645,
+          -2.2085398019341556,
+          -0.13882921491543218,
+          0.031759149232960165,
+          -2.176737644776637
+        ],
+        "latent_std": [
+          0.8620523829323538,
+          1.0185395798128443,
+          0.89256048892874,
+          0.9022715949575913,
+          1.0241445395374524,
+          0.8602270789783218
+        ],
+        "reference_score": 10.79511935944173,
+        "center_candidate": {
+          "amago": {
+            "hp": 22,
+            "power": 3,
+            "defense": 10
+          },
+          "abyssal-sea-dragon": {
+            "hp": 203,
+            "power": 109,
+            "defense": 10
+          }
+        }
+      },
+      "update": {
+        "update": 4,
+        "train_score": 10.66860032224173,
+        "reference_before": 10.80917703024173,
+        "advantage": -0.013005310913744518,
+        "proposal_loss": 0.012526672504063793,
+        "gradient_norm": 0.039419838477989716,
+        "latent_entropy": 8.07195433909059
+      }
+    },
+    {
+      "index": 5,
+      "candidate": {
+        "amago": {
+          "hp": 26,
+          "power": 2,
+          "defense": 24
+        },
+        "abyssal-sea-dragon": {
+          "hp": 168,
+          "power": 146,
+          "defense": 8
+        }
+      },
+      "score": 6.346632326429679,
+      "proposal_before": {
+        "updates": 4,
+        "latent_mean": [
+          0.03248016030150036,
+          -0.039001514103884645,
+          -2.2085398019341556,
+          -0.13882921491543218,
+          0.031759149232960165,
+          -2.176737644776637
+        ],
+        "latent_std": [
+          0.8620523829323538,
+          1.0185395798128443,
+          0.89256048892874,
+          0.9022715949575913,
+          1.0241445395374524,
+          0.8602270789783218
+        ],
+        "reference_score": 10.79511935944173,
+        "center_candidate": {
+          "amago": {
+            "hp": 22,
+            "power": 3,
+            "defense": 10
+          },
+          "abyssal-sea-dragon": {
+            "hp": 203,
+            "power": 109,
+            "defense": 10
+          }
+        }
+      },
+      "proposal_after": {
+        "updates": 5,
+        "latent_mean": [
+          0.06541594142710869,
+          -0.07203108766238579,
+          -2.2019048857803427,
+          -0.16846836800978468,
+          0.06082637209874964,
+          -2.176003187837353
+        ],
+        "latent_std": [
+          0.8396597846966435,
+          1.050486778145076,
+          0.9121760304321318,
+          0.8817886024445478,
+          1.054990013203418,
+          0.8329694759582362
+        ],
+        "reference_score": 10.350270656140525,
+        "center_candidate": {
+          "amago": {
+            "hp": 22,
+            "power": 3,
+            "defense": 10
+          },
+          "abyssal-sea-dragon": {
+            "hp": 201,
+            "power": 110,
+            "defense": 10
+          }
+        }
+      },
+      "update": {
+        "update": 5,
+        "train_score": 6.346632326429679,
+        "reference_before": 10.79511935944173,
+        "advantage": -0.41208317248676574,
+        "proposal_loss": 3.805216388089898,
+        "gradient_norm": 1.8091539336510485,
+        "latent_entropy": 8.040359870126354
+      }
+    }
+  ],
+  "final_distribution": {
+    "updates": 5,
+    "latent_mean": [
+      0.06541594142710869,
+      -0.07203108766238579,
+      -2.2019048857803427,
+      -0.16846836800978468,
+      0.06082637209874964,
+      -2.176003187837353
+    ],
+    "latent_std": [
+      0.8396597846966435,
+      1.050486778145076,
+      0.9121760304321318,
+      0.8817886024445478,
+      1.054990013203418,
+      0.8329694759582362
+    ],
+    "reference_score": 10.350270656140525,
+    "center_candidate": {
+      "amago": {
+        "hp": 22,
+        "power": 3,
+        "defense": 10
+      },
+      "abyssal-sea-dragon": {
+        "hp": 201,
+        "power": 110,
+        "defense": 10
+      }
+    }
+  },
+  "recommended_overrides": {
+    "amago": {
+      "hp": 22,
+      "power": 3,
+      "defense": 0
+    },
+    "abyssal-sea-dragon": {
+      "hp": 210,
+      "power": 108,
+      "defense": 0
+    }
+  },
+  "baseline_validation_loss": 1.7318900255585379,
+  "selected_validation_loss": 1.726458194883201,
+  "holdout_loss": 3.1735175227295658,
+  "joint_validation_loss": null,
+  "standalone_dependency_checks": {
+    "learninglab": true,
+    "towerdefense": true
+  },
+  "evaluated_source_sha256": {
+    "BattleHost/BattleEnvironment.cs": "d5e5bb5af7d7e9b7707d8a3d4928fd1597019b537e1d8c9f0a73a8b55c01db28",
+    "BattleHost/BattleSimulation.cs": "d90cadf273100b6ac201315c9b65886c866c8dac065a8b3e5b2788ae50959303",
+    "BattleHost/Data.cs": "4e9ae23fc76142c9cef2de9144bfb581331dded62d65740d6cd4cab8f90db034",
+    "BattleHost/Entities.cs": "a085b6cf666cc9ae01948cb1f24c2e1f7b232d528b19957cbf460ade0fae1d42",
+    "BattleHost/Grid.cs": "880cb420cbdbb5a1e415061339126b0614f517ada28fd03e066d63a50ea9d1fe",
+    "BattleHost/NumericCompatibility.cs": "ac14d666a2d0c184807abb474848858c1c48343548f9e88cf33ca20045cdc2f7",
+    "BattleHost/PartyRouteBoard.cs": "e922e71970d7cf81c12a5c5718608425587bd1fbf7848abe3ca16e57df5d62d9",
+    "BattleHost/Program.cs": "1ccf027baeaf4c5fadc40583f4c021ca0773b8473ff97ebffb6bd0ccb90ca823",
+    "BattleHost/StatusEngine.cs": "af233be1a3fd816cc644ad16556e3aa90270b9e73c40700d955f9c4ee7188569",
+    "configs/balance_targets.json": "a39c90dc74cc24eea5d1b1acd13d5af0dc0cc5849b9ae320d10c12eb7e829353",
+    "configs/battle_setup.json": "6b1dd027c0e0fa60cbc2e67eb0dce9cc93701f3e05ce8cfdc518a80f8ebcabda",
+    "configs/character_balance_plan.json": "63b6053bc4ebb380a5bdf10b6178d070bf23d513272ba93ed80f3881c5cb05d4",
+    "configs/defense_training_plan.json": "d6c8cbe47bb787743dabb460ded4d5aefb13d80c1454943a96cab3cc14ab7afa",
+    "configs/defense_training_stages.json": "6b1dd027c0e0fa60cbc2e67eb0dce9cc93701f3e05ce8cfdc518a80f8ebcabda",
+    "configs/demo.json": "aa56a8d0d1fa601f34de36a52d3e8b4584ddc50b4b2c613b68b78aedbbaab573",
+    "configs/strength_assignments.json": "d290e5f009ea4f3cdaf49ab5eb2dee94b79a57df6e334742cc32cb7a1ef49af9",
+    "learning_lab/__init__.py": "6b3204c1df12972810b423c0c5a0e22fb734877a4d8138dd2ccf93b1528f28ae",
+    "learning_lab/__main__.py": "de46e591649d1d629b71044c63062d3a868f6e7adddd96eefd9e7ef0bb07d357",
+    "learning_lab/adaptive_search.py": "021db6ec8ec87349452c5b29a14c81781cb05680d1289a68b081b0c5dd3f8b13",
+    "learning_lab/artifacts.py": "0f2641a4b4f093be53786abf45d30db5bccb6d2e1a7e1d135a3c76095621b315",
+    "learning_lab/balance.py": "31ad7a8a0d21a842264166fb8cf2cc4f2f53081d4772abd3d925284cdd04e31f",
+    "learning_lab/battle.py": "4824e3ea91a641d13687a6ec51b0393699ef7fa1e85983177f16f1819e9b0fee",
+    "learning_lab/campaign.py": "b4cc35cc0a2fdb6f9de4feda25873341d09e55d665f14af507532f863a96cbbe",
+    "learning_lab/config.py": "30382746b1defbcc82b215d42041a4fcf4571bbfea87c6f52167b4f570344d54",
+    "learning_lab/contracts.py": "bc84ccc5a433e7871c32a7c253596bacb69bee5b52dfba7a76373fefbd4f1055",
+    "learning_lab/demo.py": "de0b8f05a34891028b8c8456903543a4d06a8bc553e74b9961c35d1e7efc2a09",
+    "learning_lab/demo_server.py": "cbe5e1f4448366a6a5f06fb7e2b40e4889de19a187904b24e94793ae7b5ce215",
+    "learning_lab/encounters.py": "59149fab7ff342666c1e24b82f43c6f2228f014e7582400595f7c4ee942edfcc",
+    "learning_lab/evaluation.py": "0f081f59dffb4d3b67987e7a923966e20be7fb94d49e8907e78a4447fb70f8a8",
+    "learning_lab/export_battle.py": "88e0f3cf9bc2f9244546f39b60300ab2e8e58029e217be9813d57f6af7820679",
+    "learning_lab/parameter_space.py": "88c6494762033e652613d8d31082ec37070e6d244885f76bb21079a2f6e8f741",
+    "learning_lab/policy.py": "d8706f2d28fbe3d269ecd30cd20ab20b6f3c78042942fa653999ed9473330416",
+    "learning_lab/ppo.py": "2387c73d9ef08f7308921fa184a12c58091e27b5d83bc9b438f7d4933221130b",
+    "learning_lab/rpc.py": "3d16cc4eba613c55fb58f690eb838b73744e8f4fd92a873ff9d463f4f66216fe",
+    "learning_lab/trainer.py": "f9c8287082f011c6072dbe7bd51b7cca0775ecc8386bc29a22ecfe3c88f8208d"
+  },
+  "post_verification_changes": [
+    "Removed the redundant trailing blank line from parameter_space.py; executable code unchanged"
+  ]
+}

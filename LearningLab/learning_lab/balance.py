@@ -3,20 +3,17 @@ import argparse
 import copy
 import hashlib
 import json
-import math
-import random
 from pathlib import Path
 
-from .artifacts import ExperimentRepository, write_json
+from .artifacts import CHECKPOINT_VERSION, ExperimentRepository, write_json
 from .config import DISJOINT_FAMILIES, ExperimentConfig, canonical_hash
 from .encounters import CYCLIC_SORTIES, SINGLE_WAVE, SingleWaveEncounter
+from .parameter_space import ParameterSpace, RangeParameterSpace, finite
+from .adaptive_search import AdaptiveProposalLearner, ADAPTIVE_STRATEGY, RANDOM_STRATEGY
 
 VERSION = 2
 POLICY_ID = "fixed-party-round-robin-to-default-route-v3-target-first"
 SINGLE_WAVE_POLICY_ID = "one-opening-wave-per-team-then-wait-v1"
-ALLOWED_PARAMETERS = {"hp", "power", "speed", "cost", "defense"}
-INTEGER_PARAMETERS = {"hp", "power", "cost", "defense"}
-DEFENSE_CHANGE_SCALE = 100
 METRICS = {"win_rate", "main_hp_ratio", "damage_per_energy", "survival_fraction"}
 GLOBAL_FEATURES = 15
 PARTY_FEATURES = 8
@@ -28,71 +25,6 @@ CHARACTER_TOLERANCE = 0.000001
 ALLY = 0
 DEFAULT_PARTY_SIZE = 12
 DEFAULT_UNIT_CAPACITY = 256
-
-
-def finite(value):
-    return type(value) in (int, float) and math.isfinite(value)
-
-
-class ParameterSpace:
-    def __init__(self, config: ExperimentConfig, settings: dict):
-        self.axes = []
-        self.baseline = {}
-        for entry in settings["parameters"]:
-            character, field = entry["character"], entry["field"]
-            if field not in ALLOWED_PARAMETERS:
-                raise ValueError(f"Unsupported parameter: {field}")
-            key = (character, field)
-            if key in self.axes:
-                raise ValueError("Duplicate parameter axis")
-            values = entry["values"]
-            if not values or any(not finite(v) or v < 0 or (v == 0 and field != "defense") for v in values):
-                raise ValueError("Candidates must be positive, except defense may be zero")
-            if field in INTEGER_PARAMETERS and any(type(v) is not int for v in values):
-                raise ValueError("HP/power/cost/defense candidates must be integers")
-            baseline_values = set()
-            for scenario in config.data["scenarios"]:
-                definitions = scenario["parameters"]["battle"]["ally_definitions"]
-                matches = [d for d in definitions if d["id"] == character]
-                if len(matches) != 1:
-                    raise ValueError(f"Every scenario needs one definition for {character}")
-                baseline_values.add(matches[0][field])
-            if len(baseline_values) != 1:
-                raise ValueError("Baseline must be identical across scenarios")
-            baseline = baseline_values.pop()
-            if baseline not in values or len(values) != len(set(values)):
-                raise ValueError("Unique candidate values must include the frozen baseline")
-            self.axes.append(key)
-            self.baseline.setdefault(character, {})[field] = baseline
-        if not self.axes:
-            raise ValueError("At least one parameter is required")
-        self.values = [entry["values"] for entry in settings["parameters"]]
-
-    def candidates(self, budget: int, seed: int):
-        # Sample without replacement, including the baseline even with a budget of one.
-        dimensions = [len(v) for v in self.values]
-        total = math.prod(dimensions)
-        baseline_index = 0
-        for (character, field), values in zip(self.axes, self.values):
-            baseline_index = baseline_index * len(values) + values.index(self.baseline[character][field])
-        rng = random.Random(seed)
-        selected = {baseline_index}
-        yield copy.deepcopy(self.baseline)
-        while len(selected) < min(budget, total):
-            index = rng.randrange(total)
-            if index in selected:
-                continue
-            selected.add(index)
-            candidate = {}
-            for (character, field), values in reversed(list(zip(self.axes, self.values))):
-                index, digit = divmod(index, len(values))
-                candidate.setdefault(character, {})[field] = values[digit]
-            yield candidate
-
-    def change_penalty(self, candidate):
-        return sum(((candidate[c][f] - self.baseline[c][f]) /
-                    (max(DEFENSE_CHANGE_SCALE, self.baseline[c][f]) if f == "defense" else self.baseline[c][f])) ** 2
-                   for c, f in self.axes) / len(self.axes)
 
 
 def apply_candidate(config: ExperimentConfig, candidate: dict) -> ExperimentConfig:
@@ -280,7 +212,13 @@ class BalanceSearch:
     def __init__(self, config, settings):
         self.config, self.settings = config, settings
         self.evaluator = BalanceEvaluator(config, settings)
-        self.space = ParameterSpace(config, settings)
+        self.strategy = settings.get("search_strategy", RANDOM_STRATEGY)
+        if self.strategy not in (RANDOM_STRATEGY, ADAPTIVE_STRATEGY):
+            raise ValueError("Unknown parameter search strategy")
+        adaptive = self.strategy == ADAPTIVE_STRATEGY
+        self.space = (RangeParameterSpace if adaptive else ParameterSpace)(config, settings)
+        self.learner = AdaptiveProposalLearner(self.space, settings.get("adaptive", {}),
+            settings["search_seed"]) if adaptive else None
         covered = {c["character"] for c in settings["cases"]}
         if any(c not in covered for c, _ in self.space.axes):
             raise ValueError("Every adjusted character needs an evaluation case")
@@ -294,17 +232,41 @@ class BalanceSearch:
         repository.initialize({"version": VERSION, "config": self.config.data, "settings": self.settings,
                                "config_hash": self.config.digest, "policy": self.evaluator.policy_id,
                                "evaluation_mode": self.settings.get("evaluation_mode", CYCLIC_SORTIES),
+                               "search_strategy": self.strategy,
+                               "adaptive_options": self.learner.options if self.learner else None,
                                "search_code_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                               "parameter_space_code_sha256": hashlib.sha256(Path(__file__).with_name("parameter_space.py").read_bytes()).hexdigest(),
+                               "adaptive_code_sha256": hashlib.sha256(Path(__file__).with_name("adaptive_search.py").read_bytes()).hexdigest(),
                                "encounter_code_sha256": hashlib.sha256(Path(__file__).with_name("encounters.py").read_bytes()).hexdigest()})
         trials = []
-        for index, candidate in enumerate(self.space.candidates(self.settings["candidate_budget"], self.settings["search_seed"])):
+        candidates = None if self.learner else self.space.candidates(
+            self.settings["candidate_budget"], self.settings["search_seed"])
+        for index in range(self.settings["candidate_budget"]):
+            if self.learner:
+                before = self.learner.describe()
+                candidate = copy.deepcopy(self.space.baseline) if index == 0 else self.learner.ask()
+            else:
+                candidate = next(candidates, None)
+                if candidate is None:
+                    break
             evaluation = self.evaluator.evaluate(candidate, "train")
             score = evaluation["loss"] + self.settings["change_weight"] * self.space.change_penalty(candidate)
             trial = {"index": index, "candidate": candidate, "candidate_hash": canonical_hash(candidate),
                      "score": score, "evaluation": evaluation}
+            if self.learner:
+                if index == 0:
+                    self.learner.initialize_score(score)
+                    update = None
+                else:
+                    update = self.learner.tell(candidate, score)
+                trial.update(proposal_before=before, proposal_after=self.learner.describe(), update=update)
+                repository.save_checkpoint({"version": CHECKPOINT_VERSION, "trial": index,
+                    "config_hash": self.config.digest, "settings_hash": canonical_hash(self.settings),
+                    "learner": self.learner.state_dict()})
             trials.append(trial)
             write_json(directory / f"trial-{index:04d}.json", trial)
-            print(json.dumps({"trial": index, "score": score}), flush=True)
+            print(json.dumps({"trial": index, "score": score,
+                "distribution_updates": self.learner.updates if self.learner else 0}), flush=True)
         best = min(trials, key=lambda t: (t["score"], t["index"]))
         baseline_validation = self.evaluator.evaluate(self.space.baseline, "validation")
         selected_validation = (baseline_validation if best["index"] == 0 else
@@ -328,6 +290,9 @@ class BalanceSearch:
                    self.evaluator.evaluate(recommended, "holdout"))
         report = {"version": VERSION, "policy": self.evaluator.policy_id, "config_hash": self.config.digest,
                   "evaluation_mode": self.settings.get("evaluation_mode", CYCLIC_SORTIES),
+                  "search_strategy": self.strategy,
+                  "distribution_updates": self.learner.updates if self.learner else 0,
+                  "final_distribution": self.learner.describe() if self.learner else None,
                   "stage_split_mode": self.config.data.get("stage_split_mode", DISJOINT_FAMILIES),
                   "candidate_count": len(trials), "selected_train_candidate": best["candidate"],
                   "baseline_train_score": trials[0]["score"], "selected_train_score": best["score"],

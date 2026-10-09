@@ -8366,4 +8366,24 @@ package "LearningLab single opening wave parameter comparisons (2026-10-07)" {
     LabSingleWaveScope .. LabSingleWaveEncounter
 }
 
+package "LearningLab online parameter proposal learning (2026-10-09)" {
+    class "RangeParameterSpace (bounded integer / real domain)" as LabRangeSpace
+    class "AdaptiveProposalLearner (latent Gaussian, score-function / Adam)" as LabAdaptiveProposal
+    LabRangeSpace --|> BalanceParameterSpace : shared baseline validation and change penalty
+    IdentityCampaign --> LabRangeSpace : authored bounds; frozen speed / cost / mechanics
+    BalanceParameterSearch --> LabAdaptiveProposal : ask / full train evaluation / tell before next proposal
+    LabAdaptiveProposal --> LabRangeSpace : sigmoid latent sample and integer decoding
+    BalanceParameterSearch --> BalanceRoleEvaluator : validation / joint validation / final holdout only
+    LabAdaptiveProposal --> LabArtifacts : optimizer, distribution, RNG checkpoint after feedback
+    note as LabAdaptiveScope
+      Tool 0.4.0: learned proposal mean and log standard deviation, no fixed candidate list.
+      One baseline reference evaluation followed by budget minus one distribution updates.
+      Only train scores update the distribution; validation and holdout never backpropagate.
+      Select an evaluated candidate, never the unevaluated distribution center.
+      Existing single opening waves, audited pools and two stages remain fixed.
+      Checkpoints support state restoration; balance CLI resume is not implemented.
+    end note
+    LabAdaptiveScope .. LabAdaptiveProposal
+}
+
 @enduml

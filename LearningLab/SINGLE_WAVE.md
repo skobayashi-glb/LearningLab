@@ -2,6 +2,8 @@
 
 2026-10-07、LearningLab 0.3.0。キャラのパラメータ探索では`evaluation_mode=single-wave`を使います。敵AIやプレイヤー操作の学習は行いません。PPOによる操作学習は別の機能として残します。
 
+0.4.0では数値候補の生成分布を学習し、1候補分のtrain対戦を終了するたびに勾配更新します。対戦の流れは引き継ぎます。[探索モデル・損失](ADAPTIVE_SEARCH.md)。
+
 ## 1試行の流れ
 
 1. 評価対象キャラ、人数パターン、ステージ、seedを決める。
@@ -61,5 +63,7 @@ python -m learning_lab.balance --config runs/defense-single-wave/experiment.json
 旧実験JSON・ログ・checkpointは当時の履歴です。古い設定を読み込んでも自動で単発出撃へ変更しません。今回のC#ホスト変更でengine hashが変わるので、現行ソースから再exportし、新しいrunを作ります。候補をゲームへ自動適用しません。
 
 ## 現在の確認結果
+
+0.4.0の分布学習では80件のテストと144試合、6候補・5更新を確認しました。[adaptive_search_20261009.json](results/adaptive_search_20261009.json)が最新記録です。最良trainスコアは11.71198から3.74539へ下がりましたが、検証条件を通らず基準値を維持しました。以下の0.3.0の結果は移行当時の履歴です。
 
 [single_wave_20261007.json](results/single_wave_20261007.json)に、単独リポジトリでの73件のテストと小規模探索の要約を保存しています。2対象×4パターン、2候補、各分割1seedで、train32・validation32・holdout16、計80試合を確認しました。候補はvalidationで不採用となり、基準値を維持しました。全8対象の本探索や目標帯の確定、ゲームへの適用は実施していません。

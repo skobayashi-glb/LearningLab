@@ -2,6 +2,7 @@
 import argparse
 import copy
 import json
+import math
 from pathlib import Path
 
 from .artifacts import write_json
@@ -9,6 +10,7 @@ from .balance import BalanceSearch, VERSION as BALANCE_VERSION
 from .config import ExperimentConfig, canonical_hash
 from .export_battle import BattleExporter, enum_array
 from .encounters import SINGLE_WAVE
+from .adaptive_search import ADAPTIVE_STRATEGY, RANDOM_STRATEGY
 
 VERSION = 1
 MINIMUM_STAT = 1
@@ -42,17 +44,17 @@ def design_markdown(audit):
         lines.append(f"| {p['id']} | {roles[p['role']]} | {strengths[p['strength']]} | {p['cost']} | {p['hp']} | {p['power']} | {p.get('defense', 0)} | {p['speed']} | {p['identity']} | {p['weakness']} | {status} |")
     lines += ["", "## 自動調整で守る条件", "",
         "- 初期設計で速度・コストを定め、その後の探索では固定する。技・状態・射程・攻撃周期・既存役割も固定。",
-        "- 探索は役割別の狭いHP・攻撃力候補に限定する。壁役は攻撃力を探索せず、HPだけを変える。",
-        "- 防御力の初期値は0。defense_candidatesを明示したキャラだけ、防御力も探索する。通常攻撃だけを軽減し、状態異常・状態反応ダメージは防御を無視。",
+        "- 現行planはHP・攻撃力の範囲内の整数を探索する。各候補のtrain評価後に生成分布の平均・標準偏差を勾配更新する。壁役の攻撃力は固定。",
+        "- 防御力の初期値は0。defense_rangeを明示したキャラだけ防御も探索する。通常攻撃だけを軽減し、状態異常・状態反応ダメージは防御を無視。",
         "- 役割別・強弱別に異なる指標の目標範囲を使い、全員の勝率や性能を同じにしない。",
         "- 状態付与役はダメージより混成編成での拠点保全を重くする。ただし補助貢献の因果推定ではなく代理指標。",
-        "- 各キャラを単体編成と混成編成で評価する。混成の他キャラは初期設計値に固定し、評価対象だけに探索値を適用。",
-        "- 最初の出撃で評価対象を優先し、参加しなかったキャラを弱いと誤判定しない。以後は固定パーティの枠順で巡回し、次のキャラのエナジーが貯まるまで待つ。",
+        "- 1対1・1対3・3対1・3対3で評価し、他の味方は初期値に固定する。対象を必ず1体含め、相方と敵を対応済みプールから抽選する。",
+        "- 両陣営を一度だけ出撃登録する。エナジー支払い・追加出撃・敵AIによる出撃判断は使わない。",
         "- 敵は元のゲームデータを固定した別スナップショット。味方の初期再設計・探索値は敵へ波及しない。",
         "- 検証の全体損失または1つでも個別caseの損失が悪化した候補は採用しない。最終確認データは選択に使わない。", "",
         "## 評価上の限界", "",
         "目標帯は初期仮説であり、少数seedでは適正さも強弱の順位も証明できない。個性の説明文が異なるだけで、プレイ上の非重複を保証するものではない。",
-        "固定操作での自動パラメータ探索を実行する。PPOによる操作AI学習は今回実行しない。",
+        "戦闘の数値評価を使って候補生成分布を学習する。個性・弱点の説明文そのものを損失に変換する機能はない。PPOの操作学習は別機能。",
         "単体と混成の両方を必須とするため、専門的な状態役がどの編成でも強い設計にはしない。役割別の目標自体も結果を見て再検討する。",
         "Unity本体との戦闘一致、移動・隊列・支援等の未対応範囲はLearningLab/BATTLE.mdを参照。", ""]
     return "\n".join(lines)
@@ -136,6 +138,10 @@ def build_campaign(plan, template, exporter=None, strengths=None):
     settings = {"version": BALANCE_VERSION, "candidate_budget": plan["candidate_budget"], "search_seed": plan["search_seed"],
                 "change_weight": plan["change_weight"], "seeds": plan["seeds"], "parameters": [], "cases": [],
                 "character_plan_hash": canonical_hash(plan), "strength_assignments": copy.deepcopy(strengths)}
+    settings["search_strategy"] = plan.get("search_strategy", RANDOM_STRATEGY)
+    adaptive = settings["search_strategy"] == ADAPTIVE_STRATEGY
+    if adaptive:
+        settings["adaptive"] = copy.deepcopy(plan.get("adaptive", {}))
     if one_wave:
         settings["evaluation_mode"] = SINGLE_WAVE
         settings["character_sampling"] = {"ally_pool": ally_pool, "enemy_pool": enemy_pool,
@@ -144,10 +150,22 @@ def build_campaign(plan, template, exporter=None, strengths=None):
         profile = profiles[character]
         role = plan["role_targets"][profile["role"]]
         for field in ("hp", "power"):
-            values = sorted({max(MINIMUM_STAT, round(profile[field] * f)) for f in role[field + "_factors"]} | {profile[field]})
-            if len(values) > 1:
-                settings["parameters"].append({"character": character, "field": field, "values": values})
-        if "defense_candidates" in profile:
+            if adaptive:
+                factors = role[field + "_range_factors"]
+                if len(factors) != 2 or factors[0] > factors[1]:
+                    raise ValueError("Stat range factors require ordered lower and upper bounds")
+                low = max(MINIMUM_STAT, math.ceil(profile[field] * factors[0]))
+                high = max(MINIMUM_STAT, math.floor(profile[field] * factors[1]))
+                if low < high:
+                    settings["parameters"].append({"character": character, "field": field, "min": low, "max": high})
+            else:
+                values = sorted({max(MINIMUM_STAT, round(profile[field] * f)) for f in role[field + "_factors"]} | {profile[field]})
+                if len(values) > 1:
+                    settings["parameters"].append({"character": character, "field": field, "values": values})
+        if adaptive and "defense_range" in profile:
+            low, high = profile["defense_range"]
+            settings["parameters"].append({"character": character, "field": "defense", "min": low, "max": high})
+        elif not adaptive and "defense_candidates" in profile:
             settings["parameters"].append({"character": character, "field": "defense", "values": profile["defense_candidates"]})
         low, high = plan["strength_bands"][profile["strength"]]
         multiplier = role["damage_multiplier"]

@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import unittest
 
-from learning_lab.balance import BalanceEvaluator, ParameterSpace
+from learning_lab.balance import BalanceEvaluator, RangeParameterSpace
 from learning_lab.battle import BattleEnvironment, HOST_DLL
 from learning_lab.campaign import build_campaign
 from learning_lab.config import ExperimentConfig, canonical_hash
@@ -130,7 +130,7 @@ class SingleWaveCampaignTests(unittest.TestCase):
         settings["cases"] = [case for case in settings["cases"] if case["character"] == "amago"]
         settings["seeds"] = {split: seeds[:ONE] for split, seeds in settings["seeds"].items()}
         evaluator = BalanceEvaluator(self.config, settings)
-        baseline = ParameterSpace(self.config, self.settings).baseline
+        baseline = RangeParameterSpace(self.config, self.settings).baseline
         before = self.config.digest
         result = evaluator.evaluate(baseline, "train")
         self.assertEqual(self.config.digest, before)

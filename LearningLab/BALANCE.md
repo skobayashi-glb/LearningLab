@@ -1,6 +1,6 @@
 # キャラのパラメータだけを自動調整する
 
-現行の数値探索は、**両陣営を一度だけ出撃させる固定対戦**です。`evaluation_mode=single-wave`で1対1・1対3・3対1・3対3を評価し、追加出撃や敵AIの出撃判断を使いません。[抽選・出撃・評価の詳細](SINGLE_WAVE.md)。キャラの候補値を戦闘シミュレーションで比較し、役割・コストごとに指定した目標範囲へ近づけます。PPOではなく、離散候補集合からのランダム探索です。大域的な最適解は保証しません。旧実験は当時の出撃方式での履歴であり、新しいcampaignとrunで評価します。
+現行の数値探索は、**両陣営を一度だけ出撃させる固定対戦**です。`evaluation_mode=single-wave`で1対1・1対3・3対1・3対3を評価し、追加出撃や敵AIの出撃判断を使いません。[抽選・出撃・評価の詳細](SINGLE_WAVE.md)。キャラの候補値を戦闘シミュレーションで比較し、役割・コストごとに指定した目標範囲へ近づけます。0.4.0から、数値範囲内の候補を生成し、候補1件のtrain評価後に生成分布の平均・広がりをREINFORCE＋Adamで勾配更新します。次の候補は更新後の分布から生成します。[分布モデル・損失・更新順序](ADAPTIVE_SEARCH.md)。大域的な最適解は保証しません。旧実験は当時の出撃方式での履歴であり、新しいcampaignとrunで評価します。
 
 ## 実行
 
@@ -10,7 +10,7 @@
 python -m learning_lab.balance --config runs/my-battle.json --settings configs/balance_targets.json --run runs/my-balance
 ```
 
-学習済みPPOモデルは不要です。サンプルはサメ・アマゴのHPと攻撃力を探索し、速度・出撃コスト・敵ステータスを固定します。攻撃周期・射程・役割・敵の行動も変更しません。既存のrunへの上書きは拒否します。初版では中断からの再開はなく、完了した候補の記録は残ります。
+学習済みPPOモデルは不要です。サンプルはサメ・アマゴのHPと攻撃力を探索し、速度・出撃コスト・敵ステータスを固定します。攻撃周期・射程・役割・敵の行動も変更しません。既存のrunへの上書きは拒否します。分布・Adam・乱数器をcheckpointへ保存しますが、数値探索CLIの中断再開オプションは未実装です。完了した候補と更新の記録は残ります。
 
 **現行ステージ（2026-10-07）:** 両setupは一直線・1マス階段の2枚だけを全分割で使います。planのtrain/validation/holdout seedは重複を禁止します。評価は固定地形での対戦編成の抽選に対する確認であり、未見地形への汎化を示しません。各分割の試合数は2マップ×seed数×case数です。
 
@@ -20,7 +20,7 @@ python -m learning_lab.balance --config runs/my-battle.json --settings configs/b
 
 自動探索はこのファイルを書き換えず、指定を評価目標として固定します。HPやコスト、役割、技を強弱ラベルから勝手に変換することもありません。変更後はcampaignを新しいディレクトリへ再出力してください。別ファイルを使う場合は `--strengths パス` を指定できます。既存runには影響しません。
 
-防御力は [防御仕様](../Docs/defense_damage_spec.md) に従います。profileの `defense` は固定値、`defense_candidates` を付けた場合だけ探索対象です。防御0も有効な候補です。防御の変更量罰則は基準値と100の大きい方で正規化し、基準0でのゼロ除算を避けます。
+防御力は [防御仕様](../Docs/defense_damage_spec.md) に従います。profileの `defense` は固定値、`defense_range` を付けた場合だけ探索対象です。通常は0〜100、壁役は0〜200の整数を生成します。防御0も有効な候補です。防御の変更量罰則は基準値と100の大きい方で正規化し、基準0でのゼロ除算を避けます。
 
 キャラごとの個性と意図的な強弱を含む設定は `configs/character_balance_plan.json` に追加しました。42体の設計案と、最初に探索する8体を分けています。キャラ別の説明は [設計表](../Docs/rl_character_balance_plan.md)、初回結果は [実験記録](../Docs/rl_character_balance_first_run.md) を参照してください。
 
@@ -29,7 +29,7 @@ python -m learning_lab.campaign --plan configs/character_balance_plan.json --tem
 python -m learning_lab.balance --config runs/character-campaign/experiment.json --settings runs/character-campaign/targets.json --run runs/character-search
 ```
 
-campaignは初期HP・攻撃力・速度・コストを実験用に設定し、敵の元データを固定します。役割・強弱別の目標と、HP/攻撃力の限定候補を生成します。`freeze_others`は他の味方を初期値に固定します。各対象を必ず1体含め、残りの味方・敵を対応済み30種類から等確率の復元抽出で選びます。未対応12種類は理由を監査に残します。8対象×4人数パターンで32caseを作り、Energy残量に関係なく指定した人数だけ時刻0に登録します。
+campaignは初期HP・攻撃力・速度・コストを実験用に設定し、敵の元データを固定します。役割・強弱別の目標と、HP/攻撃力の探索範囲（初期値の50〜150%）を生成します。壁役の攻撃力は固定です。`freeze_others`は他の味方を初期値に固定します。各対象を必ず1体含め、残りの味方・敵を対応済み30種類から等確率の復元抽出で選びます。未対応12種類は理由を監査に残します。8対象×4人数パターンで32caseを作り、Energy残量に関係なく指定した人数だけ時刻0に登録します。
 
 個性は既存の技・状態・射程・攻撃周期と固定速度で維持します。新しい技を作る仕組みや、プレイ上の個性の重複を自動判定する仕組みではありません。初回の目標帯は仮説であり、強弱の割り当てが達成されたかは結果で確認します。
 
@@ -37,8 +37,10 @@ campaignは初期HP・攻撃力・速度・コストを実験用に設定し、�
 
 | 設定 | 意味 |
 |---|---|
-| parameters | 調整するキャラ・項目・許可する値。候補には現行値を必ず含める |
-| candidate_budget | 基準値を含む評価候補数。重複なしで抽選する |
+| parameters | 調整するキャラ・項目・min/max。基準値が範囲内にあることを要求する |
+| search_strategy | 現行はadaptive-distribution。省略した旧設定はrandom-grid |
+| adaptive | 学習率・分布の初期幅・幅の上下限・entropy係数・referenceの更新率など |
+| candidate_budget | 基準値を含む評価候補数。基準値以外を評価するたびに分布を更新する。再出現も許可する |
 | cases[].character / role | 評価対象のキャラと設計上の役割 |
 | reference_cost | 実験開始時のコスト。元データと一致しないとエラー |
 | roster | 評価対象を含む固定パーティ。単発対戦では抽選した味方の種類へ設定する |
