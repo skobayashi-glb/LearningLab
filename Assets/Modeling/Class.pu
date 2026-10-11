@@ -8386,4 +8386,22 @@ package "LearningLab online parameter proposal learning (2026-10-09)" {
     LabAdaptiveScope .. LabAdaptiveProposal
 }
 
+package "Unity Editor authored learning strengths (2026-10-11)" {
+    class "CharacterStrengthWindow (Editor-only)" as LearningStrengthWindow
+    class "CharacterStrengthRepository (validated JSON / atomic save)" as LearningStrengthRepository
+    artifact "LearningLab/configs/strength_assignments.json" as LearningStrengthAssignments
+    CharacterBalanceWindow --> LearningStrengthWindow : open authored strength editor
+    LearningStrengthWindow --> LearningStrengthRepository : load / edit / explicit save
+    LearningStrengthWindow --> UnitDataCollector : display names from ally assets
+    LearningStrengthRepository --> LearningStrengthAssignments : shared source; preserve keys and metadata
+    IdentityCampaign --> LearningStrengthAssignments : --strengths or default file; frozen per new campaign
+    note as LearningStrengthEditorScope
+      weak / standard / strong / conditional per registered character.
+      No game stat mutation or automatic application to existing experiments.
+      Standalone game clones explicitly select the LearningLab JSON location.
+      External edits since load reject save; editor close prompts for unsaved changes.
+    end note
+    LearningStrengthEditorScope .. LearningStrengthWindow
+}
+
 @enduml

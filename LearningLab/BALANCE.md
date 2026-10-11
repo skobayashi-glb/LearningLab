@@ -18,6 +18,10 @@ python -m learning_lab.balance --config runs/my-battle.json --settings configs/b
 
 **強弱の割り当てはユーザーが [strength_assignments.json](configs/strength_assignments.json) で変更できます。** `weak`（弱め）、`standard`（標準）、`strong`（強め）、`conditional`（編成依存）のいずれかを指定します。例として `"shark": "strong"` を `"shark": "weak"` に変更できます。全42体のキーを残してください。
 
+Unity Editorでも設定できます。`Tools > LearningLab > 強弱設定`を開くか、`Tools > Characters > Balance Editor`の「学習の強弱設定」ボタンを使います。全42キャラから弱め・標準・強め・編成依存を選び、「保存」を押すと同じ`strength_assignments.json`へ保存します。キャラ名・IDで検索できます。
+
+ゲームだけをcloneした場合は「JSONを選択」でLearningLabリポジトリ内の`LearningLab/configs/strength_assignments.json`を選びます。保存先を画面に表示し、そのプロジェクトで選んだ場所を覚えます。保存後はcampaignを再生成してください。既存runの凍結設定や、ゲーム本体のHP・攻撃力を直接変更する操作ではありません。
+
 自動探索はこのファイルを書き換えず、指定を評価目標として固定します。HPやコスト、役割、技を強弱ラベルから勝手に変換することもありません。変更後はcampaignを新しいディレクトリへ再出力してください。別ファイルを使う場合は `--strengths パス` を指定できます。既存runには影響しません。
 
 防御力は [防御仕様](../Docs/defense_damage_spec.md) に従います。profileの `defense` は固定値、`defense_range` を付けた場合だけ探索対象です。通常は0〜100、壁役は0〜200の整数を生成します。防御0も有効な候補です。防御の変更量罰則は基準値と100の大きい方で正規化し、基準0でのゼロ除算を避けます。
