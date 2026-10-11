@@ -1,11 +1,27 @@
 import json
 import os
+import time
 from pathlib import Path
 
 import torch
 
 CHECKPOINT_VERSION = 1
 TEMPORARY_SUFFIX = ".tmp"
+REPLACE_ATTEMPTS = 8
+REPLACE_RETRY_SECONDS = 0.01
+REPLACE_BACKOFF = 2
+
+
+def replace_atomically(temporary: Path, destination: Path) -> None:
+    # Windows scanners can briefly hold a completed JSON file without delete sharing.
+    for attempt in range(REPLACE_ATTEMPTS):
+        try:
+            os.replace(temporary, destination)
+            return
+        except PermissionError:
+            if attempt == REPLACE_ATTEMPTS - 1:
+                raise
+            time.sleep(REPLACE_RETRY_SECONDS * REPLACE_BACKOFF ** attempt)
 
 
 def write_json(path: Path, data: object) -> None:
@@ -14,7 +30,7 @@ def write_json(path: Path, data: object) -> None:
     temporary.write_text(
         json.dumps(data, indent=2, ensure_ascii=False, allow_nan=False) + "\n",
         encoding="utf-8")
-    os.replace(temporary, path)
+    replace_atomically(temporary, path)
 
 
 class ExperimentRepository:
@@ -35,7 +51,7 @@ class ExperimentRepository:
         path = self.directory / "checkpoint.pt"
         temporary = path.with_name(path.name + TEMPORARY_SUFFIX)
         torch.save(data, temporary)
-        os.replace(temporary, path)
+        replace_atomically(temporary, path)
         return path
 
     @staticmethod

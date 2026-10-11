@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LearningLab | 学習モニター</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<aside><div class="brand"><span class="mark">L</span> LearningLab</div><div class="side-label">CHARACTER BALANCE</div><a href="#battle" class="nav active">◉ 戦闘フレーム</a><a href="#parameters" class="nav">↗ パラメータの更新</a><a href="#history" class="nav">≡ 評価の記録</a><div class="side-bottom">ローカル学習モニター<br><span>一直線 / 1マス階段</span></div></aside>
+<main>
+<header><div><div class="eyebrow">CHARACTER STAT SEARCH</div><h1>学習の進み方を確認する</h1><p>対戦を見返し、数値と生成分布の変化を追います。</p></div><div class="actions"><span id="state" class="badge">準備中</span><button id="pause">一時停止</button><button id="resume" class="primary">再開</button><button id="stop" class="subtle">停止</button></div></header>
+<div id="error" class="error" hidden></div>
+<section class="metrics"><article><span>評価済み候補</span><strong id="trials">—</strong><small>最初の1件は設計基準値</small></article><article><span>分布の更新回数</span><strong id="updates">0</strong><small>候補の全train対戦後に更新</small></article><article><span>完了した対戦</span><strong id="episodes">0</strong><small id="phase">準備中</small></article><article><span>最良のtrainスコア</span><strong id="best">—</strong><small>小さいほど目標帯に近い</small></article></section>
+<section class="progress-card"><div><b id="progress-title">戦闘ホストを準備しています</b><span id="progress-text">—</span></div><progress id="progress" value="0" max="1"></progress></section>
+<div class="battle-grid" id="battle">
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">BATTLE VIEW</span><h2>戦闘フレーム</h2></div><label class="follow"><input id="follow" type="checkbox" checked> 最新に追従</label></div>
+<div class="frame-toolbar"><select id="episode-select" aria-label="保存した対戦"></select><button id="older">以前の対戦</button></div>
+<div class="canvas-wrap"><canvas id="stage" width="650" height="440"></canvas><div id="empty-frame" class="empty">最初の戦闘フレームを待っています</div></div>
+<div class="scrub"><input id="frame-slider" aria-label="フレームの時刻" type="range" min="0" max="0" value="0"><b id="frame-time">0.00 s</b></div>
+<div class="legend"><span><i class="ally"></i>味方</span><span><i class="enemy"></i>敵</span><span><i class="dead"></i>戦闘不能</span><span>破線の個体：出撃口で待機</span></div>
+<p id="frame-meta" class="caption">戦闘ホストの実座標・HPを俯瞰表示。保存間隔は通常、戦闘時間5秒です。</p>
+<div class="unit-list" id="units"></div></section>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">TRAINING SIGNAL</span><h2>候補の評価</h2></div><span class="mini">trainのみ</span></div><canvas id="scores" width="480" height="290"></canvas><div class="legend"><span><i class="gold"></i>評価スコア</span><span><i class="ally"></i>それまでの最良値</span></div><div class="signal-note"><h3>どのタイミングで更新する？</h3><p>候補1件について、全ケース・地形・seedの対戦を終えてから、分布の中心と広がりを1回更新します。</p><p>悪い結果も次の候補生成に反映します。検証用・最終確認用の対戦は分布を更新しません。</p></div><div id="result" class="result" hidden></div></section>
+</div>
+<section class="panel" id="parameters"><div class="panel-head"><div><span class="eyebrow">PARAMETER DISTRIBUTION</span><h2>数値はどう変わっている？</h2></div><select id="axis-select" aria-label="推移を見るパラメータ"></select></div><canvas id="parameter-chart" width="1000" height="210"></canvas><div class="legend"><span><i class="gold"></i>試した数値</span><span><i class="ally"></i>更新後の生成中心</span><span>薄い帯：中央80%の生成範囲</span></div><div class="table-wrap"><table><thead><tr><th>キャラ / 項目</th><th>設計基準</th><th>今回の評価値</th><th>前の生成中心 → 現在</th><th>中央80%の生成範囲</th><th>許可範囲</th></tr></thead><tbody id="parameter-rows"></tbody></table></div><p class="caption">生成中心は分布の目安です。最終採用は実際に評価した候補を検証して決めます。</p></section>
+<section class="panel" id="history"><div class="panel-head"><div><span class="eyebrow">EVALUATION LOG</span><h2>候補ごとの記録</h2></div></div><div class="table-wrap"><table><thead><tr><th>候補</th><th>train損失</th><th>探索スコア</th><th>分布更新</th><th>advantage</th><th>勾配norm</th></tr></thead><tbody id="history-rows"></tbody></table></div></section>
+<footer><span id="run-path">—</span><span id="updated">—</span></footer>
+</main><script src="/app.js"></script>
+</body></html>

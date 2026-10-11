@@ -10,6 +10,7 @@ from .config import DISJOINT_FAMILIES, ExperimentConfig, canonical_hash
 from .encounters import CYCLIC_SORTIES, SINGLE_WAVE, SingleWaveEncounter
 from .parameter_space import ParameterSpace, RangeParameterSpace, finite
 from .adaptive_search import AdaptiveProposalLearner, ADAPTIVE_STRATEGY, RANDOM_STRATEGY
+from .monitoring import SearchObserver
 
 VERSION = 2
 POLICY_ID = "fixed-party-round-robin-to-default-route-v3-target-first"
@@ -85,6 +86,7 @@ class ScriptedSortiePolicy:
 class BalanceEvaluator:
     def __init__(self, config: ExperimentConfig, settings: dict):
         self.config, self.settings = config, settings
+        self.observer = SearchObserver()
         self.validate()
 
     def validate(self):
@@ -152,6 +154,10 @@ class BalanceEvaluator:
 
     def evaluate(self, candidate: dict, split: str, *, joint: bool = False):
         config = apply_candidate(self.config, candidate)
+        observer = self.observer
+        observer.check()
+        observer.emit("phase", split=split, joint=joint, candidate=candidate,
+            total=len(self.settings["cases"]) * len(config.scenarios(split)) * len(self.settings["seeds"][split]))
         environment = config.create_environment()
         results = []
         try:
@@ -163,18 +169,25 @@ class BalanceEvaluator:
                     scenario = prepare_case(self.config, original, case)
                     battle = scenario["parameters"]["battle"]
                     for seed in self.settings["seeds"][split]:
+                        observer.check()
                         current, matchup = encounter.prepare(scenario, seed) if encounter else (scenario, None)
                         obs = environment.reset(current, seed)
+                        observer.emit("episode_started", scenario=current, case=case, seed=seed, matchup=matchup)
+                        if observer.enabled:
+                            observer.emit("frame", debug=environment.save_state()["debug"], decision=0)
                         required_first = None
                         if case.get("target_first", False):
                             ids = [d["id"] for d in battle["ally_definitions"]]
                             required_first = (ids.index(case["character"]) + 1) / len(ids)
                         policy = ScriptedSortiePolicy(environment.spec,
                             battle["rules"].get("party_size", DEFAULT_PARTY_SIZE), required_first)
-                        for _ in range(config.data["evaluation"]["max_decisions"]):
+                        for decision in range(config.data["evaluation"]["max_decisions"]):
+                            observer.check()
                             action = policy.wait if encounter else policy.choose(obs)
                             transition = environment.step(action)
                             obs = transition.observation
+                            if observer.should_capture(decision + 1, transition.ended):
+                                observer.emit("frame", debug=environment.save_state()["debug"], decision=decision + 1)
                             if transition.ended:
                                 break
                         else:
@@ -196,6 +209,7 @@ class BalanceEvaluator:
                                 "main_hp_ratio": main_hp,
                                 "damage_per_energy": metric["damage"] / (deployed * cost),
                                 "survival_fraction": (deployed - metric["deaths"]) / deployed}})
+                        observer.emit("episode_completed", episode=episodes[-1])
                 total_weight = sum(e["weight"] for e in episodes)
                 means = {name: sum(e["metrics"][name] * e["weight"] for e in episodes) / total_weight for name in METRICS}
                 loss = sum(t["weight"] * (max(t["min"] - means[name], means[name] - t["max"], 0) / t["scale"]) ** 2
@@ -223,7 +237,7 @@ class BalanceSearch:
         if any(c not in covered for c, _ in self.space.axes):
             raise ValueError("Every adjusted character needs an evaluation case")
 
-    def run(self, directory: Path):
+    def run(self, directory: Path, observer=None):
         directory = directory.resolve()
         assets = Path(__file__).resolve().parents[2] / "Assets"
         if directory.is_relative_to(assets.resolve()):
@@ -237,11 +251,20 @@ class BalanceSearch:
                                "search_code_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                                "parameter_space_code_sha256": hashlib.sha256(Path(__file__).with_name("parameter_space.py").read_bytes()).hexdigest(),
                                "adaptive_code_sha256": hashlib.sha256(Path(__file__).with_name("adaptive_search.py").read_bytes()).hexdigest(),
+                               "artifact_code_sha256": hashlib.sha256(Path(__file__).with_name("artifacts.py").read_bytes()).hexdigest(),
+                               "monitoring_code_sha256": hashlib.sha256(Path(__file__).with_name("monitoring.py").read_bytes()).hexdigest(),
+                               "frame_capture_decisions": getattr(observer, "capture_decisions", None),
                                "encounter_code_sha256": hashlib.sha256(Path(__file__).with_name("encounters.py").read_bytes()).hexdigest()})
+        observer = observer or SearchObserver()
+        self.evaluator.observer = observer
+        bounds = getattr(self.space, "bounds", [(min(values), max(values)) for values in self.space.values])
+        observer.emit("started", config=self.config.data, settings=self.settings,
+            baseline=self.space.baseline, axes=self.space.axes, bounds=bounds)
         trials = []
         candidates = None if self.learner else self.space.candidates(
             self.settings["candidate_budget"], self.settings["search_seed"])
         for index in range(self.settings["candidate_budget"]):
+            observer.check()
             if self.learner:
                 before = self.learner.describe()
                 candidate = copy.deepcopy(self.space.baseline) if index == 0 else self.learner.ask()
@@ -249,6 +272,8 @@ class BalanceSearch:
                 candidate = next(candidates, None)
                 if candidate is None:
                     break
+            observer.emit("trial_started", index=index, candidate=candidate,
+                distribution=self.learner.describe() if self.learner else None)
             evaluation = self.evaluator.evaluate(candidate, "train")
             score = evaluation["loss"] + self.settings["change_weight"] * self.space.change_penalty(candidate)
             trial = {"index": index, "candidate": candidate, "candidate_hash": canonical_hash(candidate),
@@ -265,6 +290,7 @@ class BalanceSearch:
                     "learner": self.learner.state_dict()})
             trials.append(trial)
             write_json(directory / f"trial-{index:04d}.json", trial)
+            observer.emit("trial_completed", trial=trial)
             print(json.dumps({"trial": index, "score": score,
                 "distribution_updates": self.learner.updates if self.learner else 0}), flush=True)
         best = min(trials, key=lambda t: (t["score"], t["index"]))
@@ -303,6 +329,7 @@ class BalanceSearch:
                   "holdout": holdout, "applied_to_game": False}
         write_json(directory / "report.json", report)
         write_json(directory / "recommended-config.json", apply_candidate(self.config, recommended).data)
+        observer.emit("completed", report=report)
         return report
 
 

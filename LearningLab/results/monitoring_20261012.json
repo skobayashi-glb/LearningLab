@@ -1,0 +1,258 @@
+{
+  "date": "2026-10-12",
+  "tool_version": "0.5.0",
+  "recorded_at": "2026-10-11T16:56:03.570915+00:00",
+  "not_final_result": true,
+  "verification_workspace": "original working workspace; standalone repository sources synchronized separately",
+  "run": "LearningLab/runs/defense-monitored-search-20261012-r2",
+  "campaign": "LearningLab/runs/defense-monitored-20261012",
+  "evaluation_mode": "single-wave",
+  "search_strategy": "adaptive-distribution",
+  "candidate_budget": 24,
+  "target_characters": [
+    "abyssal-sea-dragon",
+    "amago",
+    "ammonite",
+    "angelfish",
+    "coelacanth",
+    "goblin",
+    "sea-slug",
+    "shark"
+  ],
+  "parameter_axes": 23,
+  "learned_distribution_parameters": 46,
+  "case_count": 32,
+  "maps": [
+    "RL_Straight",
+    "RL_UnitStaircase"
+  ],
+  "seeds": {
+    "train": [
+      10101,
+      10102,
+      10103,
+      10104
+    ],
+    "validation": [
+      11101,
+      11102,
+      11103,
+      11104
+    ],
+    "holdout": [
+      12101,
+      12102,
+      12103,
+      12104
+    ]
+  },
+  "train_matches_per_candidate": 256,
+  "planned_train_matches": 6144,
+  "capture_every_decisions": 10,
+  "nominal_capture_seconds": 5,
+  "rendering": "2D view of actual host debug state, not Unity 3D rendering",
+  "config_hash": "136dbbf35d603a42fae3528f2189330adcb65140708efee004a40636fa70ff3e",
+  "engine_sha256": "4378dccdb2d81a2b355e887f625c7b4db57203bc057ef67294576f74eff965d6",
+  "source_sha256": {
+    "balance.py": "d8f7e0254c59016b40a86d58926a41d2f74baa85684b0d178078cfa91f6af430",
+    "monitoring.py": "580baad24aba8334bc5166b3294684f7790dd5f62c13731a6efdb2a463027837",
+    "artifacts.py": "12e537aa1e1b9f7dfab2c590c03841c7232154bc6dcb73ac3b048f00391dc293",
+    "adaptive_search.py": "021db6ec8ec87349452c5b29a14c81781cb05680d1289a68b081b0c5dd3f8b13",
+    "parameter_space.py": "a1c449bf3498e6f7ca8e344cf11e3871a436014828fe93ffaf38b1b6b1cce2a7",
+    "encounters.py": "59149fab7ff342666c1e24b82f43c6f2228f014e7582400595f7c4ee942edfcc",
+    "dashboard.py": "8c46e38ceece5e33ac766034e77010108e4838bb3e6b6cccd7ccd13e108b7d09",
+    "web/app.js": "d50b2c4789a673fb228963dfa24e689960705154946481748e10a091c97f120c",
+    "web/index.html": "77756dea7b1bdee83516a615a482ac233c095525c313b7f74cb82b0c7dabd46f",
+    "web/style.css": "de74dcdd9c4f53d1cd84deef2ae31789b397b7a7a1d7e7c0df1604bc47ced4dc"
+  },
+  "progress_snapshot": {
+    "state": "running",
+    "completed_trials": 3,
+    "updates": 2,
+    "episode_count": 1020,
+    "trial": 3,
+    "split": "train",
+    "phase_completed": 252,
+    "phase_total": 256,
+    "best_score": 10.517351480293925,
+    "updated_at": "2026-10-11T16:56:03.459528+00:00"
+  },
+  "evaluated_train_history": [
+    {
+      "index": 0,
+      "score": 10.517351480293925,
+      "train_loss": 10.517351480293925,
+      "update": null
+    },
+    {
+      "index": 1,
+      "score": 10.952160188819166,
+      "train_loss": 10.945660916377433,
+      "update": {
+        "update": 1,
+        "train_score": 10.952160188819166,
+        "reference_before": 10.517351480293925,
+        "advantage": 0.04134203457400181,
+        "proposal_loss": -2.0019623574250716,
+        "gradient_norm": 0.5182993035790175,
+        "latent_entropy": 32.63558626370747
+      }
+    },
+    {
+      "index": 2,
+      "score": 14.098331070964718,
+      "train_loss": 14.094861546395785,
+      "update": {
+        "update": 2,
+        "train_score": 14.098331070964718,
+        "reference_before": 10.560832351146448,
+        "advantage": 0.3349640068317391,
+        "proposal_loss": -12.041330063614614,
+        "gradient_norm": 2.8231966987493613,
+        "latent_entropy": 32.8855860781556
+      }
+    }
+  ],
+  "current_distribution_snapshot": {
+    "updates": 2,
+    "latent_mean": [
+      0.021312903887455485,
+      0.01607513622602621,
+      -2.2968392786509852,
+      0.01333425605208944,
+      0.01374712075711651,
+      -2.1095096010450085,
+      0.09666470905920335,
+      -2.21397266367715,
+      0.01535372724441509,
+      0.020146949126045036,
+      -2.2958436970468434,
+      -0.02013166034397231,
+      -0.017740377117641204,
+      -2.224847210923057,
+      -0.09013906657592635,
+      -0.01448270840658255,
+      -2.2929467102179815,
+      0.08773345833876792,
+      -0.09039230933221457,
+      -2.1067788530331684,
+      -0.029918875440307538,
+      -0.08798426123037861,
+      -2.2871767359240565
+    ],
+    "latent_std": [
+      1.095177197083517,
+      1.0968313087123498,
+      0.9470320776277034,
+      1.0217054193419002,
+      1.0157500027740165,
+      1.0138705706416582,
+      0.9806344337166955,
+      1.0760732099331183,
+      1.0962440915649327,
+      0.9050263389195363,
+      0.9810016457954188,
+      0.9867594623227094,
+      1.0970729190526898,
+      0.9780343332686657,
+      1.0130705913202507,
+      1.014583373653205,
+      0.9712955912297773,
+      1.0989892881584882,
+      0.9147720137668395,
+      1.0957326195426669,
+      0.9574655716066913,
+      1.0203989057149494,
+      1.0961467466902275
+    ],
+    "reference_score": 10.914582223128276,
+    "center_candidate": {
+      "amago": {
+        "hp": 22,
+        "power": 3,
+        "defense": 9
+      },
+      "goblin": {
+        "hp": 20,
+        "power": 6,
+        "defense": 11
+      },
+      "ammonite": {
+        "hp": 123,
+        "defense": 20
+      },
+      "shark": {
+        "hp": 60,
+        "power": 12,
+        "defense": 9
+      },
+      "angelfish": {
+        "hp": 30,
+        "power": 3,
+        "defense": 10
+      },
+      "sea-slug": {
+        "hp": 23,
+        "power": 2,
+        "defense": 9
+      },
+      "coelacanth": {
+        "hp": 157,
+        "power": 29,
+        "defense": 11
+      },
+      "abyssal-sea-dragon": {
+        "hp": 208,
+        "power": 106,
+        "defense": 9
+      }
+    }
+  },
+  "unit_tests": {
+    "passed": true,
+    "count": 86,
+    "observed_seconds": 52.053,
+    "monitored_and_unmonitored_evaluation_equal": true,
+    "monitored_and_unmonitored_full_search_report_equal": true
+  },
+  "browser_verification": {
+    "facts": {
+      "title": "LearningLab | 学習モニター",
+      "state": "一時停止中",
+      "parameterRows": 23,
+      "unitChips": 3,
+      "frameSeconds": 9.316666666666666,
+      "frames": 3,
+      "case": "goblin-3v3",
+      "scenario": "unit-staircase-train",
+      "history": 3,
+      "updates": 2,
+      "follow": false,
+      "errorVisible": false
+    },
+    "errors": [],
+    "pauseStable": true,
+    "resumed": true,
+    "current": {
+      "state": "running",
+      "trial": 3,
+      "completed_trials": 3,
+      "updates": 2,
+      "episode_count": 835
+    }
+  },
+  "earlier_attempt": {
+    "run": "LearningLab/runs/defense-monitored-search-20261012",
+    "state": "failed",
+    "completed_matches": 243,
+    "completed_trials": 0,
+    "updates": 0,
+    "failure": "Transient Windows PermissionError while replacing monitor.json",
+    "fix": "Bounded exponential retry of atomic replace and locked frame reads; new run created, old artifacts retained"
+  },
+  "process_restart_resume_supported": false,
+  "in_process_pause_resume_supported": true,
+  "applied_to_game": false,
+  "final_validation_complete": false,
+  "interpretation": "Distribution learning has started; changing parameters and passing checks do not establish optimality. Read the run report after validation and holdout before adoption."
+}

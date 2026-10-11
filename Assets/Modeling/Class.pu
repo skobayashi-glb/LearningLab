@@ -8404,4 +8404,28 @@ package "Unity Editor authored learning strengths (2026-10-11)" {
     LearningStrengthEditorScope .. LearningStrengthWindow
 }
 
+package "LearningLab observed character search (2026-10-12)" {
+    class "SearchObserver (optional hooks)" as LabSearchObserver
+    class "FileSearchMonitor (real-state frames / progress / trial history)" as LabFileMonitor
+    class "SearchControl (condition-based pause / resume / stop)" as LabSearchControl
+    class "DashboardService (HTTP + one search worker)" as LabDashboardService
+    artifact "Loopback WebUI (stage canvas / time scrubber / distribution charts)" as LabDashboardUI
+    LabFileMonitor --|> LabSearchObserver
+    LabFileMonitor *-- LabSearchControl
+    BalanceParameterSearch --> LabSearchObserver : started / trial / completion notifications
+    BalanceRoleEvaluator --> LabSearchObserver : real debug snapshots; checked decision boundaries
+    LabFileMonitor --> LabArtifacts : monitor.json / episodes.jsonl / per-episode frame files
+    LabDashboardService *-- LabFileMonitor
+    LabDashboardService --> BalanceParameterSearch : existing numerical-search workflow
+    LabDashboardUI --> LabDashboardService : loopback JSON APIs / safe controls
+    note as LabDashboardScope
+      Tool 0.5.0: view actual host positions, HP, spawn state and attack state in 2D.
+      Capture initial / sampled / terminal states without changing scores or gradients.
+      Archive frames by episode; scrub historical times with automatic following disabled.
+      Pause/resume keeps the same in-memory episode and optimizer; stop retains completed trials.
+      No process-restart resume or Unity-rendered 3D frames; no game stat application.
+    end note
+    LabDashboardScope .. LabDashboardUI
+}
+
 @enduml
