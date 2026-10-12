@@ -33,7 +33,7 @@
     "viperfish",
     "wahoo"
   ],
-  "candidate_budget": 48,
+  "candidate_budget": 128,
   "search_seed": 23092303,
   "change_weight": 0.08,
   "seeds": {

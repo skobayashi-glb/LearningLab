@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-13",
+  "candidate_count": 128,
+  "character_count": 30,
+  "parameter_count": 64,
+  "updates_per_character_planned": 127,
+  "train_matches_per_candidate": 7200,
+  "train_matches_planned": 921600,
+  "run": "LearningLab/runs/exploratory-search-128-20261013",
+  "url": "http://127.0.0.1:8767",
+  "final_result": false,
+  "snapshot": {
+    "state": "running",
+    "completed_trials": 0,
+    "updates": 0,
+    "episode_count": 115,
+    "updated_at": "2026-10-12T16:31:42.164665+00:00",
+    "error": null
+  },
+  "transition": {
+    "old_run": "C:\\Users\\shoki\\TowerDefense\\LearningLab\\runs\\exploratory-search-20261013",
+    "old_state": "stopped",
+    "old_episode_count": 1992,
+    "old_completed_trials": 0,
+    "old_updates": 0,
+    "new_candidates": 128,
+    "changed_settings": [
+      "candidate_budget",
+      "character_plan_hash"
+    ],
+    "last_frame_saved": true,
+    "new_config_identical": true
+  },
+  "configuration_changes_only": [
+    "candidate_budget",
+    "character_plan_hash"
+  ],
+  "numerical_code_unchanged": true,
+  "previous_verification": "exploratory_search_20261013.json",
+  "applied_to_game": false
+}
