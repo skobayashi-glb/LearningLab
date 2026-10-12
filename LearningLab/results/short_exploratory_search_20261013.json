@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-13",
+  "final_result": false,
+  "run": "LearningLab/runs/short-exploratory-search-20261013",
+  "url": "http://127.0.0.1:8767",
+  "characters": 30,
+  "parameters": 64,
+  "candidates": 3,
+  "updates_per_character_planned": 2,
+  "train_matches": 1440,
+  "validation_and_holdout_matches": 960,
+  "analysis_characters": [
+    "amago",
+    "ammonite",
+    "shark",
+    "crocodile",
+    "abyssal-sea-dragon"
+  ],
+  "analysis_matches": 280,
+  "total_matches_planned": 2680,
+  "estimate_minutes": [
+    15,
+    30
+  ],
+  "analysis_coverage": "limited diagnostic, not exhaustive balance",
+  "previous_run_stopped": true,
+  "transition": {
+    "date": "2026-10-13",
+    "old_run": "C:\\Users\\shoki\\TowerDefense\\LearningLab\\runs\\exploratory-search-128-20261013",
+    "old_state": "stopped",
+    "old_episodes": 4280,
+    "old_updates": 0,
+    "old_completed_trials": 0,
+    "last_frame_saved": true,
+    "new_candidates": 3,
+    "new_characters": 30,
+    "reason": "User requested interruption of long run and shorter execution"
+  },
+  "unchanged_config": true,
+  "changed_settings": [
+    "analysis",
+    "candidate_budget",
+    "character_plan_hash",
+    "search_seed",
+    "seeds"
+  ],
+  "always_joint_validation": true,
+  "applied_to_game": false,
+  "snapshot": {
+    "state": "running",
+    "completed_trials": 0,
+    "updates": 0,
+    "episode_count": 202,
+    "updated_at": "2026-10-12T17:00:02.188303+00:00",
+    "error": null
+  }
+}
