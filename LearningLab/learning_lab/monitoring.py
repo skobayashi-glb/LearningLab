@@ -78,13 +78,15 @@ class FileSearchMonitor(SearchObserver):
         self.active = None
         self.frames = []
         self.started = False
+        self.analysis = None
 
     def should_capture(self, decision, ended=False):
         return ended or decision % self.capture_decisions == 0
 
     def check(self):
+        resume_state = self.status['state'] if self.status['state'] != 'paused' else 'running'
         if self.control.check(lambda: self.publish(state="paused")):
-            self.publish(state="running")
+            self.publish(state=resume_state)
 
     def publish(self, **values):
         with self.lock:
@@ -110,6 +112,8 @@ class FileSearchMonitor(SearchObserver):
                   for (c, f), (low, high) in zip(axes, bounds)],
             capture_decisions=self.capture_decisions, seeds=settings["seeds"],
             cases=len(settings["cases"]), config_hash=canonical_hash(config))
+        self.publish(learning_scope=settings.get('learning_scope', 'shared'),
+            evaluation_mode=settings.get('evaluation_mode'), character_metadata=settings.get('character_metadata', {}))
 
     def on_trial_started(self, index, candidate, distribution):
         self.publish(trial=index, candidate=candidate, distribution=distribution)
@@ -161,9 +165,22 @@ class FileSearchMonitor(SearchObserver):
         compact["train_loss"] = trial["evaluation"]["loss"]
         compact["distribution"] = trial.get("proposal_after")
         compact["update"] = trial.get("update")
+        if 'character_scores' in trial:
+            compact['character_scores'] = trial['character_scores']
         history = [*self.status["history"], compact]
         self.publish(completed_trials=len(history), updates=compact["distribution"]["updates"] if compact["distribution"] else 0,
             history=history, distribution=compact["distribution"], best_score=min(item["score"] for item in history))
 
     def on_completed(self, report):
         self.publish(state="completed", report=report, finished_at=datetime.now(timezone.utc).isoformat())
+
+    def on_analysis_progress(self, completed, total, parameter_version):
+        self.publish(state='analyzing', analysis_progress={'completed':completed,'total':total,'parameter_version':parameter_version})
+
+    def on_analysis(self, data):
+        self.analysis = copy.deepcopy(data)
+        write_json(self.directory / ('roster-analysis-' + data['parameter_version'] + '.json'), data)
+        self.publish(analysis_version=data['parameter_version'])
+
+    def on_state(self, state):
+        self.publish(state=state)

@@ -11,11 +11,14 @@ from .encounters import CYCLIC_SORTIES, SINGLE_WAVE, SingleWaveEncounter
 from .parameter_space import ParameterSpace, RangeParameterSpace, finite
 from .adaptive_search import AdaptiveProposalLearner, ADAPTIVE_STRATEGY, RANDOM_STRATEGY
 from .monitoring import SearchObserver
+from .cost_balance import BUDGET_WAVE, BudgetWaveEncounter, battle_score, LEGS
+from .character_search import PER_CHARACTER, CharacterProposalLearner
+from .validation import preserved_validation
 
 VERSION = 2
 POLICY_ID = "fixed-party-round-robin-to-default-route-v3-target-first"
 SINGLE_WAVE_POLICY_ID = "one-opening-wave-per-team-then-wait-v1"
-METRICS = {"win_rate", "main_hp_ratio", "damage_per_energy", "survival_fraction"}
+METRICS = {"win_rate", "main_hp_ratio", "damage_per_energy", "survival_fraction", "match_score", "enemy_hp_ratio", "team_survival_fraction"}
 GLOBAL_FEATURES = 15
 PARTY_FEATURES = 8
 ENERGY_INDEX = 1
@@ -92,7 +95,7 @@ class BalanceEvaluator:
     def validate(self):
         s = self.settings
         mode = s.get("evaluation_mode", CYCLIC_SORTIES)
-        if mode not in (CYCLIC_SORTIES, SINGLE_WAVE):
+        if mode not in (CYCLIC_SORTIES, SINGLE_WAVE, BUDGET_WAVE):
             raise ValueError("Unknown balance evaluation mode")
         if s.get("version") != VERSION or self.config.data["environment_factory"] != "learning_lab.battle:BattleEnvironment":
             raise ValueError("Requires balance v2 and BattleEnvironment")
@@ -102,6 +105,10 @@ class BalanceEvaluator:
             raise ValueError("search_seed must be nonnegative")
         if not finite(s["change_weight"]) or s["change_weight"] < 0:
             raise ValueError("change_weight must be nonnegative")
+        if 'validation_gate' in s:
+            gate = s['validation_gate']
+            if s.get('learning_scope') != PER_CHARACTER or set(gate) != {'max_case_loss_increase', 'max_character_loss_increase'} or any(not finite(v) or v < 0 for v in gate.values()):
+                raise ValueError('Validation tolerances require per-character learning and nonnegative finite values')
         if not s["cases"] or len({c["id"] for c in s["cases"]}) != len(s["cases"]):
             raise ValueError("Cases must have unique IDs")
         used_seeds = set()
@@ -113,7 +120,7 @@ class BalanceEvaluator:
                 raise ValueError("Seeds must be unique and disjoint between splits")
             used_seeds.update(seeds)
         for case in s["cases"]:
-            encounter = SingleWaveEncounter(case) if mode == SINGLE_WAVE else None
+            encounter = BudgetWaveEncounter(case) if mode == BUDGET_WAVE else SingleWaveEncounter(case) if mode == SINGLE_WAVE else None
             if not case["role"] or not case["roster"] or case["character"] not in case["roster"]:
                 raise ValueError("Each role case must include its target character in the roster")
             if not finite(case["weight"]) or case["weight"] <= 0 or not case["targets"]:
@@ -141,81 +148,96 @@ class BalanceEvaluator:
                     enemies = {d["id"] for d in battle["enemy_baseline"]}
                     if set(limits["ally_pool"]) - definitions.keys() or set(limits["enemy_pool"]) - enemies:
                         raise ValueError("Encounter pools contain undefined characters")
-                    if limits["ally_count"] > battle["rules"].get("party_size", DEFAULT_PARTY_SIZE):
+                    if mode == BUDGET_WAVE:
+                        _, matchup = encounter.prepare(scenario, seeds[0])
+                        enemy_definitions = {d['id']: d for d in battle['enemy_baseline']}
+                        if any(enemy_definitions[c] != definitions[c] for c in limits['enemy_pool']):
+                            raise ValueError('Budget comparison requires frozen copies of the authored ally definitions')
+                        if len(matchup['ally']) + len(matchup['enemy']) > self.config.data['environment_options'].get('units', DEFAULT_UNIT_CAPACITY):
+                            raise ValueError('Budget armies exceed the observation capacity')
+                    elif limits["ally_count"] > battle["rules"].get("party_size", DEFAULT_PARTY_SIZE):
                         raise ValueError("Opening ally wave exceeds the fixed party capacity")
-                    if limits["ally_count"] + limits["enemy_count"] > self.config.data["environment_options"].get("units", DEFAULT_UNIT_CAPACITY):
+                    if mode == SINGLE_WAVE and limits["ally_count"] + limits["enemy_count"] > self.config.data["environment_options"].get("units", DEFAULT_UNIT_CAPACITY):
                         raise ValueError("Opening wave exceeds the observation capacity")
                 if battle.get("opening_wave") is not None:
                     raise ValueError("Balance templates must leave opening waves to the case sampler")
 
     @property
     def policy_id(self):
-        return SINGLE_WAVE_POLICY_ID if self.settings.get("evaluation_mode") == SINGLE_WAVE else POLICY_ID
+        return SINGLE_WAVE_POLICY_ID if self.settings.get("evaluation_mode") in (SINGLE_WAVE, BUDGET_WAVE) else POLICY_ID
 
     def evaluate(self, candidate: dict, split: str, *, joint: bool = False):
         config = apply_candidate(self.config, candidate)
         observer = self.observer
         observer.check()
         observer.emit("phase", split=split, joint=joint, candidate=candidate,
-            total=len(self.settings["cases"]) * len(config.scenarios(split)) * len(self.settings["seeds"][split]))
+            total=len(self.settings["cases"]) * len(config.scenarios(split)) * len(self.settings["seeds"][split]) * (len(LEGS) if self.settings.get("evaluation_mode") == BUDGET_WAVE else 1))
         environment = config.create_environment()
         results = []
         try:
             for case in self.settings["cases"]:
                 case = dict(case, freeze_others=False) if joint else case
-                encounter = SingleWaveEncounter(case) if self.settings.get("evaluation_mode") == SINGLE_WAVE else None
+                mode = self.settings.get('evaluation_mode')
+                encounter = BudgetWaveEncounter(case) if mode == BUDGET_WAVE else SingleWaveEncounter(case) if mode == SINGLE_WAVE else None
                 episodes = []
                 for original in config.scenarios(split):
                     scenario = prepare_case(self.config, original, case)
                     battle = scenario["parameters"]["battle"]
                     for seed in self.settings["seeds"][split]:
-                        observer.check()
-                        current, matchup = encounter.prepare(scenario, seed) if encounter else (scenario, None)
-                        obs = environment.reset(current, seed)
-                        observer.emit("episode_started", scenario=current, case=case, seed=seed, matchup=matchup)
-                        if observer.enabled:
-                            observer.emit("frame", debug=environment.save_state()["debug"], decision=0)
-                        required_first = None
-                        if case.get("target_first", False):
-                            ids = [d["id"] for d in battle["ally_definitions"]]
-                            required_first = (ids.index(case["character"]) + 1) / len(ids)
-                        policy = ScriptedSortiePolicy(environment.spec,
-                            battle["rules"].get("party_size", DEFAULT_PARTY_SIZE), required_first)
-                        for decision in range(config.data["evaluation"]["max_decisions"]):
+                        for leg in LEGS if mode == BUDGET_WAVE else ("forward",):
                             observer.check()
-                            action = policy.wait if encounter else policy.choose(obs)
-                            transition = environment.step(action)
-                            obs = transition.observation
-                            if observer.should_capture(decision + 1, transition.ended):
-                                observer.emit("frame", debug=environment.save_state()["debug"], decision=decision + 1)
-                            if transition.ended:
-                                break
-                        else:
-                            raise RuntimeError("Balance evaluation watchdog exceeded")
-                        state = environment.save_state()["debug"]
-                        main_index = next(i for i, b in enumerate(battle["stage"]["bases"]) if b["main"])
-                        main_hp = max(0, state["bases"][main_index]["hp"]) / battle["stage"]["bases"][main_index]["hp"]
-                        metric = next((m for m in transition.info["metrics"] if m["team"] == ALLY and
-                                       m["character"] == case["character"]), None)
-                        deployed = metric["deployed"] if metric else 0
-                        cost = next(d["cost"] for d in battle["ally_definitions"] if d["id"] == case["character"])
-                        if not deployed:
-                            raise ValueError(f"No exposure for {case['id']}; revise roster, budget or policy")
-                        episodes.append({"scenario": scenario["id"], "seed": seed,
-                            "encounter": matchup,
-                            "weight": scenario["weight"], "outcome": transition.info["outcome"],
-                            "deployed": deployed, "metrics": {
-                                "win_rate": float(transition.info["outcome"] == "victory"),
-                                "main_hp_ratio": main_hp,
-                                "damage_per_energy": metric["damage"] / (deployed * cost),
-                                "survival_fraction": (deployed - metric["deaths"]) / deployed}})
-                        observer.emit("episode_completed", episode=episodes[-1])
+                            current, matchup = encounter.prepare(scenario, seed, leg) if mode == BUDGET_WAVE else encounter.prepare(scenario, seed) if encounter else (scenario, None)
+                            obs = environment.reset(current, seed)
+                            battle = current["parameters"]["battle"]
+                            target_team = matchup.get("target_team", ALLY) if matchup else ALLY
+                            observer.emit("episode_started", scenario=current, case=case, seed=seed, matchup=matchup)
+                            if observer.enabled:
+                                observer.emit("frame", debug=environment.save_state()["debug"], decision=0)
+                            required_first = None
+                            if case.get("target_first", False):
+                                ids = [d["id"] for d in battle["ally_definitions"]]
+                                required_first = (ids.index(case["character"]) + 1) / len(ids)
+                            policy = ScriptedSortiePolicy(environment.spec,
+                                battle["rules"].get("party_size", DEFAULT_PARTY_SIZE), required_first)
+                            for decision in range(config.data["evaluation"]["max_decisions"]):
+                                observer.check()
+                                action = policy.wait if encounter else policy.choose(obs)
+                                transition = environment.step(action)
+                                obs = transition.observation
+                                if observer.should_capture(decision + 1, transition.ended):
+                                    observer.emit("frame", debug=environment.save_state()["debug"], decision=decision + 1)
+                                if transition.ended:
+                                    break
+                            else:
+                                raise RuntimeError("Balance evaluation watchdog exceeded")
+                            state = environment.save_state()["debug"]
+                            main_index = next(i for i, b in enumerate(battle["stage"]["bases"]) if (b["main"] if target_team == ALLY else b["boss"]))
+                            main_hp = max(0, state["bases"][main_index]["hp"]) / battle["stage"]["bases"][main_index]["hp"]
+                            metric = next((m for m in transition.info["metrics"] if m["team"] == target_team and
+                                           m["character"] == case["character"]), None)
+                            deployed = metric["deployed"] if metric else 0
+                            cost = next(d["cost"] for d in battle["ally_definitions"] if d["id"] == case["character"])
+                            if not deployed:
+                                raise ValueError(f"No exposure for {case['id']}; revise roster, budget or policy")
+                            episodes.append({"scenario": scenario["id"], "seed": seed,
+                                "encounter": matchup,
+                                "weight": scenario["weight"], "outcome": transition.info["outcome"],
+                                "deployed": deployed, "metrics": {
+                                    "win_rate": float(transition.info["outcome"] == ("defeat" if target_team != ALLY else "victory")),
+                                    "main_hp_ratio": main_hp,
+                                    "damage_per_energy": metric["damage"] / (deployed * cost),
+                                    "survival_fraction": (deployed - metric["deaths"]) / deployed}})
+                            if mode == BUDGET_WAVE:
+                                episodes[-1]['metrics'].update(battle_score(state, transition.info['metrics'], battle, target_team))
+                            observer.emit("episode_completed", episode=episodes[-1])
                 total_weight = sum(e["weight"] for e in episodes)
-                means = {name: sum(e["metrics"][name] * e["weight"] for e in episodes) / total_weight for name in METRICS}
+                means = {name: sum(e["metrics"][name] * e["weight"] for e in episodes) / total_weight for name in episodes[0]['metrics']}
                 loss = sum(t["weight"] * (max(t["min"] - means[name], means[name] - t["max"], 0) / t["scale"]) ** 2
                            for name, t in case["targets"].items()) / sum(t["weight"] for t in case["targets"].values())
                 results.append({"case": case["id"], "role": case["role"], "reference_cost": case["reference_cost"],
                                 "loss": loss, "weight": case["weight"], "means": means, "episodes": episodes})
+                if self.settings.get('learning_scope') == PER_CHARACTER:
+                    results[-1]['character'] = case['character']
         finally:
             environment.close()
         return {"split": split, "loss": sum(c["loss"] * c["weight"] for c in results) / sum(c["weight"] for c in results),
@@ -233,6 +255,13 @@ class BalanceSearch:
         self.space = (RangeParameterSpace if adaptive else ParameterSpace)(config, settings)
         self.learner = AdaptiveProposalLearner(self.space, settings.get("adaptive", {}),
             settings["search_seed"]) if adaptive else None
+        self.per_character = settings.get('learning_scope') == PER_CHARACTER
+        if self.per_character:
+            if not adaptive or any(p['field'] not in ('hp', 'power', 'defense') for p in settings['parameters']):
+                raise ValueError('Per-character learning adjusts only HP, power and defense with fixed costs')
+            if not all(case.get('freeze_others') for case in settings['cases']):
+                raise ValueError('Independent feedback requires frozen companions')
+            self.learner = CharacterProposalLearner(config, settings, self.space)
         covered = {c["character"] for c in settings["cases"]}
         if any(c not in covered for c, _ in self.space.axes):
             raise ValueError("Every adjusted character needs an evaluation case")
@@ -254,12 +283,21 @@ class BalanceSearch:
                                "artifact_code_sha256": hashlib.sha256(Path(__file__).with_name("artifacts.py").read_bytes()).hexdigest(),
                                "monitoring_code_sha256": hashlib.sha256(Path(__file__).with_name("monitoring.py").read_bytes()).hexdigest(),
                                "frame_capture_decisions": getattr(observer, "capture_decisions", None),
+                               "cost_balance_code_sha256": hashlib.sha256(Path(__file__).with_name('cost_balance.py').read_bytes()).hexdigest(),
+                               "character_search_code_sha256": hashlib.sha256(Path(__file__).with_name('character_search.py').read_bytes()).hexdigest(),
+                               "roster_analysis_code_sha256": hashlib.sha256(Path(__file__).with_name('roster_analysis.py').read_bytes()).hexdigest(),
                                "encounter_code_sha256": hashlib.sha256(Path(__file__).with_name("encounters.py").read_bytes()).hexdigest()})
         observer = observer or SearchObserver()
         self.evaluator.observer = observer
         bounds = getattr(self.space, "bounds", [(min(values), max(values)) for values in self.space.values])
         observer.emit("started", config=self.config.data, settings=self.settings,
             baseline=self.space.baseline, axes=self.space.axes, bounds=bounds)
+        analyzer = None
+        if self.settings.get('analysis', {}).get('enabled'):
+            from .roster_analysis import RosterAnalyzer
+            analyzer = RosterAnalyzer(self.config, self.settings)
+            analyzer.run(self.space.baseline, observer=observer, parameter_version='baseline', include_pairs=False)
+            observer.emit('state', state='running')
         trials = []
         candidates = None if self.learner else self.space.candidates(
             self.settings["candidate_budget"], self.settings["search_seed"])
@@ -276,14 +314,19 @@ class BalanceSearch:
                 distribution=self.learner.describe() if self.learner else None)
             evaluation = self.evaluator.evaluate(candidate, "train")
             score = evaluation["loss"] + self.settings["change_weight"] * self.space.change_penalty(candidate)
+            character_scores = self.learner.scores(evaluation, candidate, self.settings['change_weight']) if self.per_character else None
+            if character_scores is not None:
+                score = sum(character_scores.values()) / len(character_scores)
             trial = {"index": index, "candidate": candidate, "candidate_hash": canonical_hash(candidate),
                      "score": score, "evaluation": evaluation}
+            if character_scores is not None:
+                trial['character_scores'] = character_scores
             if self.learner:
                 if index == 0:
-                    self.learner.initialize_score(score)
+                    self.learner.initialize_score(character_scores if self.per_character else score)
                     update = None
                 else:
-                    update = self.learner.tell(candidate, score)
+                    update = self.learner.tell(candidate, character_scores if self.per_character else score)
                 trial.update(proposal_before=before, proposal_after=self.learner.describe(), update=update)
                 repository.save_checkpoint({"version": CHECKPOINT_VERSION, "trial": index,
                     "config_hash": self.config.digest, "settings_hash": canonical_hash(self.settings),
@@ -294,22 +337,24 @@ class BalanceSearch:
             print(json.dumps({"trial": index, "score": score,
                 "distribution_updates": self.learner.updates if self.learner else 0}), flush=True)
         best = min(trials, key=lambda t: (t["score"], t["index"]))
+        best_by_character = None
+        if self.per_character:
+            best_by_character = {c: min(trials, key=lambda t: (t['character_scores'][c], t['index'])) for c in self.learner.learners}
+            best = {'index': max(t['index'] for t in best_by_character.values()),
+                    'candidate': {c: t['candidate'][c] for c, t in best_by_character.items()},
+                    'score': sum(t['character_scores'][c] for c, t in best_by_character.items()) / len(best_by_character)}
         baseline_validation = self.evaluator.evaluate(self.space.baseline, "validation")
         selected_validation = (baseline_validation if best["index"] == 0 else
                                self.evaluator.evaluate(best["candidate"], "validation"))
-        baseline_case_losses = {c["case"]: c["loss"] for c in baseline_validation["cases"]}
-        cases_preserved = all(c["loss"] <= baseline_case_losses[c["case"]]
-                              for c in selected_validation["cases"])
-        accepted = (best["index"] != 0 and selected_validation["loss"] <= baseline_validation["loss"]
-                    and cases_preserved)
+        gate = self.settings.get('validation_gate')
+        accepted = best['index'] != 0 and preserved_validation(baseline_validation, selected_validation, gate)
         passed_individual_validation = accepted
         requires_joint = any(case.get("freeze_others", False) for case in self.settings["cases"])
         joint_validation = None
         if accepted and requires_joint:
             joint_validation = self.evaluator.evaluate(best["candidate"], "validation", joint=True)
             # Baseline values are identical in isolated and joint evaluation.
-            accepted = joint_validation["loss"] <= baseline_validation["loss"] and all(
-                c["loss"] <= baseline_case_losses[c["case"]] for c in joint_validation["cases"])
+            accepted = preserved_validation(baseline_validation, joint_validation, gate)
         recommended = best["candidate"] if accepted else self.space.baseline
         # Holdout is reported once, after selection; never used to select a different candidate.
         holdout = (self.evaluator.evaluate(recommended, "holdout", joint=True) if requires_joint else
@@ -327,8 +372,14 @@ class BalanceSearch:
                   "joint_validation": joint_validation, "holdout_joint": requires_joint,
                   "baseline_validation": baseline_validation, "selected_validation": selected_validation,
                   "holdout": holdout, "applied_to_game": False}
+        if best_by_character:
+            report.update(learning_scope=PER_CHARACTER,
+                selected_train_trials={c: t['index'] for c, t in best_by_character.items()},
+                validation_gate=gate, authored_costs={d['id']: d['cost'] for d in self.config.data['scenarios'][0]['parameters']['battle']['ally_definitions']})
         write_json(directory / "report.json", report)
         write_json(directory / "recommended-config.json", apply_candidate(self.config, recommended).data)
+        if analyzer:
+            analyzer.run(recommended, observer=observer, parameter_version='recommended' if recommended != self.space.baseline else 'baseline')
         observer.emit("completed", report=report)
         return report
 

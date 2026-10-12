@@ -27,7 +27,7 @@ public sealed class Rules
     public float DecisionSeconds { get; set; } = 0.5f;
     public float EpisodeSeconds { get; set; } = 180;
     public int InitialEnergy { get; set; } = 5;
-    public int MaxEnergy { get; set; } = 20;
+    public int MaxEnergy { get; set; } = 30;
     public float EnergyRecoverySeconds { get; set; } = PartyControls.EnergyRecoverySeconds;
     public int PartySize { get; set; } = PartyControls.PartySize;
     public int RouteCount { get; set; } = PartyControls.RouteCount;

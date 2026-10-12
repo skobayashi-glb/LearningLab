@@ -17,7 +17,7 @@ MAXIMUM_BODY_BYTES = 1024
 DEFAULT_EPISODE_LIMIT = 100
 MAXIMUM_EPISODE_LIMIT = 500
 STATIC_FILES = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"),
-                "/style.css": ("style.css", "text/css")}
+                "/analysis.js": ('analysis.js', 'text/javascript'), "/style.css": ("style.css", "text/css")}
 WEB_DIRECTORY = Path(__file__).with_name("web")
 
 
@@ -83,6 +83,10 @@ def handler_for(service):
                     return self.send(200, (WEB_DIRECTORY / name).read_bytes(), kind)
                 if request.path == "/api/status":
                     return self.send(200, service.monitor.snapshot())
+                if request.path == '/api/analysis':
+                    with service.monitor.lock:
+                        analysis = service.monitor.analysis
+                        return self.send(200, {k:v for k,v in analysis.items() if k != 'records'} if analysis else None)
                 if request.path == "/api/episodes":
                     query = parse_qs(request.query)
                     offset = max(0, int(query.get("offset", [0])[0]))

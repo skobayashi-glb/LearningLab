@@ -1,0 +1,321 @@
+{
+  "training": {
+    "version": 1,
+    "seed": 31415,
+    "ppo": {
+      "rollout_steps": 256,
+      "epochs": 4,
+      "minibatch_size": 64,
+      "hidden_size": 64,
+      "learning_rate": 0.0003,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "entropy_coefficient": 0.01,
+      "value_coefficient": 0.5,
+      "max_grad_norm": 0.5,
+      "epsilon": 1e-08,
+      "torch_threads": 1
+    },
+    "evaluation": {
+      "seeds": [
+        2001,
+        2002
+      ],
+      "max_decisions": 5000,
+      "split_seeds": {
+        "validation": [
+          2001,
+          2002
+        ],
+        "holdout": [
+          3001,
+          3002
+        ]
+      }
+    },
+    "stage_split_mode": "shared_layouts"
+  },
+  "envelope": {
+    "width": 15,
+    "height": 15,
+    "units": 256,
+    "bases": 8,
+    "party": 12,
+    "routes": 3,
+    "waypoints": 2
+  },
+  "cell_size": 3.2,
+  "scenarios": [
+    {
+      "id": "straight-train",
+      "family": "straight",
+      "split": "train",
+      "stage_asset": "Assets/Editor/LearningDebugStages/RL_Straight.asset",
+      "main_base": {
+        "hp": 60,
+        "footprint": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "spawn_slots": [
+          {
+            "x": 1,
+            "y": 0
+          }
+        ]
+      },
+      "roster": [
+        "shark",
+        "amago"
+      ],
+      "enemy_pool": [
+        "shark",
+        "amago"
+      ],
+      "rules": {
+        "episode_seconds": 90,
+        "initial_energy": 5,
+        "enemy_initial_energy": 5,
+        "max_energy": 30,
+        "enemy_decision_seconds": 8,
+        "enemy_forecast_seconds": 3,
+        "enemy_duplicate_limit": 3,
+        "enemy_enabled": true,
+        "energy_recovery_seconds": 1,
+        "enemy_squad_limit": 5,
+        "party_size": 12,
+        "route_count": 3,
+        "maximum_waypoints": 2
+      },
+      "ally_overrides": {}
+    },
+    {
+      "id": "unit-staircase-train",
+      "family": "unit-staircase",
+      "split": "train",
+      "stage_asset": "Assets/Editor/LearningDebugStages/RL_UnitStaircase.asset",
+      "main_base": {
+        "hp": 60,
+        "footprint": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "spawn_slots": [
+          {
+            "x": 1,
+            "y": 0
+          }
+        ]
+      },
+      "roster": [
+        "shark",
+        "amago"
+      ],
+      "enemy_pool": [
+        "shark",
+        "amago"
+      ],
+      "rules": {
+        "episode_seconds": 90,
+        "initial_energy": 5,
+        "enemy_initial_energy": 5,
+        "max_energy": 30,
+        "enemy_decision_seconds": 8,
+        "enemy_forecast_seconds": 3,
+        "enemy_duplicate_limit": 3,
+        "enemy_enabled": true,
+        "energy_recovery_seconds": 1,
+        "enemy_squad_limit": 5,
+        "party_size": 12,
+        "route_count": 3,
+        "maximum_waypoints": 2
+      },
+      "ally_overrides": {}
+    },
+    {
+      "id": "straight-validation",
+      "family": "straight",
+      "split": "validation",
+      "stage_asset": "Assets/Editor/LearningDebugStages/RL_Straight.asset",
+      "main_base": {
+        "hp": 60,
+        "footprint": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "spawn_slots": [
+          {
+            "x": 1,
+            "y": 0
+          }
+        ]
+      },
+      "roster": [
+        "shark",
+        "amago"
+      ],
+      "enemy_pool": [
+        "shark",
+        "amago"
+      ],
+      "rules": {
+        "episode_seconds": 90,
+        "initial_energy": 5,
+        "enemy_initial_energy": 5,
+        "max_energy": 30,
+        "enemy_decision_seconds": 8,
+        "enemy_forecast_seconds": 3,
+        "enemy_duplicate_limit": 3,
+        "enemy_enabled": true,
+        "energy_recovery_seconds": 1,
+        "enemy_squad_limit": 5,
+        "party_size": 12,
+        "route_count": 3,
+        "maximum_waypoints": 2
+      },
+      "ally_overrides": {}
+    },
+    {
+      "id": "unit-staircase-validation",
+      "family": "unit-staircase",
+      "split": "validation",
+      "stage_asset": "Assets/Editor/LearningDebugStages/RL_UnitStaircase.asset",
+      "main_base": {
+        "hp": 60,
+        "footprint": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "spawn_slots": [
+          {
+            "x": 1,
+            "y": 0
+          }
+        ]
+      },
+      "roster": [
+        "shark",
+        "amago"
+      ],
+      "enemy_pool": [
+        "shark",
+        "amago"
+      ],
+      "rules": {
+        "episode_seconds": 90,
+        "initial_energy": 5,
+        "enemy_initial_energy": 5,
+        "max_energy": 30,
+        "enemy_decision_seconds": 8,
+        "enemy_forecast_seconds": 3,
+        "enemy_duplicate_limit": 3,
+        "enemy_enabled": true,
+        "energy_recovery_seconds": 1,
+        "enemy_squad_limit": 5,
+        "party_size": 12,
+        "route_count": 3,
+        "maximum_waypoints": 2
+      },
+      "ally_overrides": {}
+    },
+    {
+      "id": "straight-holdout",
+      "family": "straight",
+      "split": "holdout",
+      "stage_asset": "Assets/Editor/LearningDebugStages/RL_Straight.asset",
+      "main_base": {
+        "hp": 60,
+        "footprint": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "spawn_slots": [
+          {
+            "x": 1,
+            "y": 0
+          }
+        ]
+      },
+      "roster": [
+        "shark",
+        "amago"
+      ],
+      "enemy_pool": [
+        "shark",
+        "amago"
+      ],
+      "rules": {
+        "episode_seconds": 90,
+        "initial_energy": 5,
+        "enemy_initial_energy": 5,
+        "max_energy": 30,
+        "enemy_decision_seconds": 8,
+        "enemy_forecast_seconds": 3,
+        "enemy_duplicate_limit": 3,
+        "enemy_enabled": true,
+        "energy_recovery_seconds": 1,
+        "enemy_squad_limit": 5,
+        "party_size": 12,
+        "route_count": 3,
+        "maximum_waypoints": 2
+      },
+      "ally_overrides": {}
+    },
+    {
+      "id": "unit-staircase-holdout",
+      "family": "unit-staircase",
+      "split": "holdout",
+      "stage_asset": "Assets/Editor/LearningDebugStages/RL_UnitStaircase.asset",
+      "main_base": {
+        "hp": 60,
+        "footprint": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "spawn_slots": [
+          {
+            "x": 1,
+            "y": 0
+          }
+        ]
+      },
+      "roster": [
+        "shark",
+        "amago"
+      ],
+      "enemy_pool": [
+        "shark",
+        "amago"
+      ],
+      "rules": {
+        "episode_seconds": 90,
+        "initial_energy": 5,
+        "enemy_initial_energy": 5,
+        "max_energy": 30,
+        "enemy_decision_seconds": 8,
+        "enemy_forecast_seconds": 3,
+        "enemy_duplicate_limit": 3,
+        "enemy_enabled": true,
+        "energy_recovery_seconds": 1,
+        "enemy_squad_limit": 5,
+        "party_size": 12,
+        "route_count": 3,
+        "maximum_waypoints": 2
+      },
+      "ally_overrides": {}
+    }
+  ]
+}

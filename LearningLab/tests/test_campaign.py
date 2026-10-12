@@ -18,6 +18,7 @@ class CampaignPolicyTests(unittest.TestCase):
     def test_user_strength_file_is_authoritative_without_changing_parameters(self):
         plan = json.loads((LAB / "configs/character_balance_plan.json").read_text(encoding="utf-8"))
         strengths = json.loads(DEFAULT_STRENGTH_ASSIGNMENTS.read_text(encoding="utf-8"))
+        strengths.pop('costs', None)  # Legacy strength-only files preserve the plan's authored costs.
         strengths["assignments"]["shark"] = "weak"
         changed = apply_strength_assignments(plan, strengths)
         source = next(p for p in plan["profiles"] if p["id"] == "shark")
@@ -58,7 +59,8 @@ class CampaignTests(unittest.TestCase):
         audit = self.audit
         self.assertEqual(len(audit), 42)
         self.assertEqual(len({p["identity"] for p in audit}), len(audit))
-        for predicate in (lambda p: p["cost"] <= 2, lambda p: p["cost"] >= 6):
+        low_cost_maximum, high_cost_minimum = 5, 15
+        for predicate in (lambda p: p["cost"] <= low_cost_maximum, lambda p: p["cost"] >= high_cost_minimum):
             self.assertTrue({"weak", "strong"}.issubset({p["strength"] for p in audit if predicate(p)}))
         self.assertEqual(sum(p["active"] for p in audit), 8)
         self.assertIn("未対応能力あり", design_markdown(audit))

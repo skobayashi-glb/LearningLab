@@ -11,6 +11,8 @@ from .config import ExperimentConfig, canonical_hash
 from .export_battle import BattleExporter, enum_array
 from .encounters import SINGLE_WAVE
 from .adaptive_search import ADAPTIVE_STRATEGY, RANDOM_STRATEGY
+from .cost_balance import BUDGET_WAVE, MAXIMUM_COST, validate_costs
+from .character_search import PER_CHARACTER
 
 VERSION = 1
 MINIMUM_STAT = 1
@@ -70,6 +72,10 @@ def apply_strength_assignments(plan, strengths):
         raise ValueError("Unknown strength; use weak/standard/strong/conditional")
     for profile in plan["profiles"]:
         profile["strength"] = assignments[profile["id"]]
+    if 'costs' in strengths:
+        validate_costs(strengths['costs'], expected)
+        for profile in plan['profiles']:
+            profile['cost'] = strengths['costs'][profile['id']]
     return plan
 
 
@@ -114,7 +120,8 @@ def build_campaign(plan, template, exporter=None, strengths=None):
                       "mechanics": {"role_flags": original["role"], "statuses": enum_array(original.get("appliedStatuses")),
                                     "shape": original["attackShape"]["type"], "range": original["attackRange"]}})
     setup = copy.deepcopy(template)
-    one_wave = plan.get("evaluation_mode") == SINGLE_WAVE
+    budget_wave = plan.get('evaluation_mode') == BUDGET_WAVE
+    one_wave = plan.get("evaluation_mode") in (SINGLE_WAVE, BUDGET_WAVE)
     supported = sorted(p["id"] for p in audit if p["supported"])
     wave_settings = plan.get("encounters", {})
     def resolve_pool(value):
@@ -135,6 +142,11 @@ def build_campaign(plan, template, exporter=None, strengths=None):
         if one_wave:
             scenario["rules"]["enemy_enabled"] = False
     config = exporter.export(setup)
+    if budget_wave:
+        validate_costs({c: p['cost'] for c, p in profiles.items()}, profiles)
+        for scenario in config['scenarios']:
+            battle = scenario['parameters']['battle']
+            battle['enemy_baseline'] = copy.deepcopy(battle['ally_definitions'])
     settings = {"version": BALANCE_VERSION, "candidate_budget": plan["candidate_budget"], "search_seed": plan["search_seed"],
                 "change_weight": plan["change_weight"], "seeds": plan["seeds"], "parameters": [], "cases": [],
                 "character_plan_hash": canonical_hash(plan), "strength_assignments": copy.deepcopy(strengths)}
@@ -143,9 +155,14 @@ def build_campaign(plan, template, exporter=None, strengths=None):
     if adaptive:
         settings["adaptive"] = copy.deepcopy(plan.get("adaptive", {}))
     if one_wave:
-        settings["evaluation_mode"] = SINGLE_WAVE
+        settings["evaluation_mode"] = plan['evaluation_mode']
         settings["character_sampling"] = {"ally_pool": ally_pool, "enemy_pool": enemy_pool,
             "unsupported": [{"id": p["id"], "reason": p["reason"]} for p in audit if not p["supported"]]}
+    if budget_wave:
+        settings.update(learning_scope=PER_CHARACTER, validation_gate=copy.deepcopy(plan['validation_gate']),
+                        analysis=copy.deepcopy(plan.get('analysis', {})), maximum_cost=MAXIMUM_COST)
+        settings['character_metadata'] = {p['id']:{key:p[key] for key in ('role','strength','cost','identity','weakness')}
+                                          for p in audit if p['supported']}
     for character in active:
         profile = profiles[character]
         role = plan["role_targets"][profile["role"]]
@@ -174,6 +191,9 @@ def build_campaign(plan, template, exporter=None, strengths=None):
             "damage_per_energy": target_band(low * multiplier, high * multiplier, role["damage_weight"]),
             "survival_fraction": target_band(role["survival"][0] * support_factor, role["survival"][1], role["survival_weight"]),
             "main_hp_ratio": target_band(role["main_hp"][0] * support_factor, role["main_hp"][1], role["main_hp_weight"])}
+        if budget_wave:
+            low, high = plan['budget_strength_targets'][profile['strength']]
+            targets = {'match_score': target_band(low, high, 1)}
         solo = [character]
         mixed = list(dict.fromkeys([character, *plan["mixed_anchors"]]))
         if one_wave:
@@ -181,11 +201,14 @@ def build_campaign(plan, template, exporter=None, strengths=None):
             if not patterns or len({p["id"] for p in patterns}) != len(patterns):
                 raise ValueError("Single-wave patterns need unique IDs")
             for pattern in patterns:
+                encounter = ({'pattern': pattern['id'], 'budget': wave_settings['budget'],
+                              'ally_pool': ally_pool, 'enemy_pool': enemy_pool} if budget_wave else
+                             {'ally_count': pattern['ally_count'], 'enemy_count': pattern['enemy_count'],
+                              'ally_pool': ally_pool, 'enemy_pool': enemy_pool})
                 settings["cases"].append({"id": f"{character}-{pattern['id']}", "character": character,
                     "role": profile["role"], "strength": profile["strength"], "reference_cost": profile["cost"],
                     "weight": 1, "roster": [character], "freeze_others": True, "targets": targets,
-                    "encounter": {"ally_count": pattern["ally_count"], "enemy_count": pattern["enemy_count"],
-                                  "ally_pool": ally_pool, "enemy_pool": enemy_pool}})
+                    "encounter": encounter})
             continue
         for mode, roster in (("solo", solo), ("mixed", mixed)):
             settings["cases"].append({"id": f"{character}-{mode}", "character": character,

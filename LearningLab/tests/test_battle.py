@@ -37,7 +37,7 @@ def battle_scenario():
                                "cell": [1, 3], "footprint": [[1, 3]], "spawn_cells": [[2, 3]], "garrison": []},
                               {"id": "boss", "team": 1, "main": False, "boss": True, "hp": 20,
                                "cell": [10, 3], "footprint": [[10, 3]], "spawn_cells": [[9, 3]], "garrison": []}]},
-                "rules": {"initial_energy": 20, "enemy_initial_energy": 20,
+                "rules": {"initial_energy": 20, "enemy_initial_energy": 20, "max_energy": 20,
                           "enemy_enabled": False, "episode_seconds": 60},
                 "roster": ["fighter"], "enemy_pool": ["fighter"],
                 "ally_definitions": [ally], "enemy_baseline": [enemy]}}}

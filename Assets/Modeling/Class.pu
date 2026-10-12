@@ -8428,4 +8428,32 @@ package "LearningLab observed character search (2026-10-12)" {
     LabDashboardScope .. LabDashboardUI
 }
 
+package "Authored costs and character-specific budget learning (2026-10-12)" {
+    class "BudgetArmyBuilder (exact budget / unique party capacity)" as LabBudgetArmyBuilder
+    class "BudgetWaveEncounter (shared opponents / reversed legs)" as LabBudgetWaveEncounter
+    class "CharacterProposalLearner (one Adam and RNG per character)" as LabCharacterProposalLearner
+    class "preserved_validation (aggregate / character / case tolerances)" as LabBudgetValidation
+    class "RosterAnalyzer (measured matchup / pair advantage / selection rate)" as LabRosterAnalyzer
+    LabBudgetWaveEncounter --> LabBudgetArmyBuilder : identical spent budget on both sides
+    BalanceRoleEvaluator --> LabBudgetWaveEncounter : target included; opponents independent of target
+    BalanceParameterSearch --> LabCharacterProposalLearner : only the corresponding character score updates its optimizer
+    LabCharacterProposalLearner --> LabAdaptiveProposal : per-character range, optimizer and checkpoint state
+    BalanceParameterSearch --> LabBudgetValidation : same rule for isolated and combined validation
+    BalanceParameterSearch --> LabRosterAnalyzer : separate analysis seeds; never train or adopt from analysis
+    LabRosterAnalyzer --> LabBudgetArmyBuilder : affordable focused and paired armies
+    LabRosterAnalyzer --> LabFileMonitor : measured cells / records / partial progress
+    LabDashboardUI --> LabDashboardService : analysis API / cost scatter / matchup / roster advantage / adoption
+    LearningStrengthRepository --> LearningStrengthAssignments : authored costs 1 to 20 alongside strengths
+    SortieEnergyPlan --> SortieEnergyWallet : character cost max 20; energy capacity 30
+    note as LabBudgetScope
+      Tool 0.6.0. Low 1-5, middle 8-12, high 15-20 authored cost tiers.
+      Equal budget 30; one opening registration, no deployment timing AI.
+      Enemy reference is a frozen copy of authored ally mechanics and statistics.
+      Two reversed legs separate actor strength from side advantages.
+      Roster selection rate is not player usage; pair advantage is not isolated causal synergy.
+      Missing or unaffordable measurements are blank, never zero.
+    end note
+    LabBudgetScope .. LabRosterAnalyzer
+}
+
 @enduml

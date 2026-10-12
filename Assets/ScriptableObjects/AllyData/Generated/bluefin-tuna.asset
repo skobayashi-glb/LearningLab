@@ -17,7 +17,7 @@ MonoBehaviour:
   maxHp: 76
   attackPower: 20
   moveSpeed: 2.25
-  deployCost: 6
+  deployCost: 12
   role: 1
   costTier: 1
   attackTime: 0.19

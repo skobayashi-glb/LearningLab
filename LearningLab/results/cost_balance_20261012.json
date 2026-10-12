@@ -1,0 +1,193 @@
+{
+  "date": "2026-10-12",
+  "version": "0.6.0",
+  "recorded_at": "2026-10-12T08:06:50.398762+00:00",
+  "verification_scope": "small integration run, not final eight-character tuning",
+  "authored_costs": {
+    "abyssal-sea-dragon": 20,
+    "amago": 1,
+    "ammonite": 4,
+    "anchovy": 2,
+    "angel-shark": 10,
+    "angelfish": 3,
+    "arowana": 12,
+    "atlantic-tarpon": 8,
+    "basking-shark": 18,
+    "bigfin-reef-squid": 9,
+    "blacktip-reef-shark": 12,
+    "blue-shark": 8,
+    "blue-surgeonfish": 3,
+    "blue-whale": 18,
+    "bluefin-tuna": 12,
+    "bonito": 4,
+    "bowmouth-guitarfish": 12,
+    "bull-shark": 15,
+    "cameroceras": 9,
+    "catfish": 11,
+    "clione": 3,
+    "coconut-octopus": 12,
+    "coelacanth": 12,
+    "cownose-ray": 4,
+    "crocodile": 12,
+    "dolphin": 9,
+    "dugong": 12,
+    "electric-ray": 10,
+    "flounder": 2,
+    "goblin": 2,
+    "lionfish": 12,
+    "rockfish": 10,
+    "sea-slug": 3,
+    "sea-urchin": 4,
+    "seahorse": 4,
+    "shark": 8,
+    "skeleton_pirate": 4,
+    "stonefish": 5,
+    "sunfish": 12,
+    "viperfish": 3,
+    "wahoo": 12,
+    "whale-shark": 20
+  },
+  "energy_capacity": 30,
+  "cost_tiers": {
+    "low": [
+      1,
+      5
+    ],
+    "middle": [
+      8,
+      12
+    ],
+    "high": [
+      15,
+      20
+    ]
+  },
+  "unit_tests": {
+    "passed": true,
+    "count": 93,
+    "seconds": 126.425
+  },
+  "csharp_checks": {
+    "passed": true,
+    "unity_source_build_errors": 0,
+    "authoring_repository_checks": 16
+  },
+  "small_run": {
+    "run": "runs/cost-role-smoke-20261012",
+    "characters": [
+      "amago",
+      "shark",
+      "coelacanth"
+    ],
+    "candidates": 2,
+    "updates_per_character": 1,
+    "combat_matches": 144,
+    "analysis_matches": 108,
+    "passed_validation_gate": true,
+    "applied_to_game": false,
+    "authored_cost_snapshot": {
+      "abyssal-sea-dragon": 20,
+      "amago": 1,
+      "ammonite": 4,
+      "angelfish": 3,
+      "arowana": 12,
+      "atlantic-tarpon": 8,
+      "bigfin-reef-squid": 9,
+      "blacktip-reef-shark": 12,
+      "blue-shark": 8,
+      "blue-surgeonfish": 3,
+      "blue-whale": 18,
+      "bonito": 4,
+      "bull-shark": 15,
+      "clione": 3,
+      "coelacanth": 12,
+      "cownose-ray": 4,
+      "crocodile": 17,
+      "dolphin": 9,
+      "goblin": 2,
+      "lionfish": 12,
+      "rockfish": 10,
+      "sea-slug": 3,
+      "sea-urchin": 4,
+      "seahorse": 4,
+      "shark": 8,
+      "skeleton_pirate": 4,
+      "stonefish": 5,
+      "sunfish": 12,
+      "viperfish": 3,
+      "wahoo": 12
+    }
+  },
+  "browser": {
+    "facts": {
+      "state": "完了",
+      "parameters": 9,
+      "characters": 3,
+      "strengths": 3,
+      "adoption": 3,
+      "matchupCells": 9,
+      "synergyCells": 9,
+      "budget": 30,
+      "measured": 72,
+      "errorVisible": false,
+      "scope": "per-character",
+      "context": "両軍の合計コスト 30 · 採用版 · 測定完了 · 両陣営を入れ替えて比較 · 72試合 · 分析専用seed（学習・採否には使いません）"
+    },
+    "errors": [],
+    "screenshot": "RepositoryWorkspace/cost-dashboard-20261012.png"
+  },
+  "analysis": {
+    "exact_equal_cost": true,
+    "reversed_legs": true,
+    "self_matchup_score": 0.5,
+    "measured_pair_rows": 3,
+    "not_player_usage": true,
+    "not_causal_synergy": true,
+    "self_matchup_scope": "Identical fixed baseline armies only; adopted candidates are compared against fixed baseline opponents."
+  },
+  "main_run": {
+    "run": "runs/cost-search-role-final-20261012",
+    "candidate_budget": 24,
+    "characters": 9,
+    "status": "running",
+    "planned_train_matches": 6912,
+    "not_final_result": true,
+    "campaign": "runs/cost-campaign-role-final-20261012-r2",
+    "parameter_axes": 25,
+    "snapshot": {
+      "analysis_progress": {
+        "completed": 648,
+        "total": 648,
+        "parameter_version": "baseline"
+      },
+      "completed_trials": 0,
+      "updates": 0,
+      "episode_count": 45,
+      "error": null
+    }
+  },
+  "engine_sha256": "c43841740f5468ed9c3fd96d1ede0f0b96a7a59a16aabe2d69130e6c6fb5ddd4",
+  "source_sha256": {
+    "balance.py": "53add56c447851b26b03a668af81a71bc08c65b8f78e41fb5f423eb41142db70",
+    "cost_balance.py": "a14474f8a0122f709e82e6efd8f539d25f7d9c5465dffd40d298133182586d99",
+    "character_search.py": "181a5565d7a2c1f2e89b15ecda5c070bb9652f77c66793f02a08928f870344ea",
+    "roster_analysis.py": "b74aa3239bdbcaf12600b65ba9719d96d42f29c679e200073697ac69c7f8e657",
+    "validation.py": "f8bd2200852b6bd4cfed4c8e7ce026cbeb0afc4d15616bd48dab0e758d1d7fe5",
+    "campaign.py": "d8a8cb12dc6d6e099455671d86d5b4956e34841aec42f91444e2cbb4666031e9",
+    "monitoring.py": "7df8f0569f87e464edf1062f4f25c671b8a3b91f17e1a6b971a5e27cc8653395",
+    "dashboard.py": "4a679d5e5692825089fbb2a8353fc46daa90bc409323782b1f31b924e4415ca9"
+  },
+  "cost_assignment_method": "Individual role/mechanics design delegated by user; crocodile explicitly middle cost 12",
+  "tier_counts": {
+    "low": 16,
+    "middle": 21,
+    "high": 5
+  },
+  "revision_note": "Small-run proof precedes final crocodile cost change from 17 to 12 and inclusion as ninth target. Final campaign generated and verified separately; no final nine-character result is claimed.",
+  "standalone_checks": {
+    "learninglab_host_build": true,
+    "cost_tests_passed": 7,
+    "game_authoring_checks": 16,
+    "source_dependencies_resolved": true
+  }
+}
