@@ -17,6 +17,8 @@ from .character_search import PER_CHARACTER
 VERSION = 1
 MINIMUM_STAT = 1
 SCALE_MINIMUM = 0.1
+CASE_WEIGHT = 1.0
+BUDGET_OPTION_FIELDS = ('opponent_sampling', 'enemy_patterns', 'shuffle_spawn_order')
 PROFILE_FIELDS = ("hp", "power", "speed", "cost", "defense")
 DEFAULT_STRENGTH_ASSIGNMENTS = Path(__file__).resolve().parents[1] / "configs/strength_assignments.json"
 ROLE_FLAGS = {"attacker": 1, "tank": 2, "status": 16, "positioning": 64, "support": 12}
@@ -161,6 +163,8 @@ def build_campaign(plan, template, exporter=None, strengths=None):
     if budget_wave:
         settings.update(learning_scope=PER_CHARACTER, validation_gate=copy.deepcopy(plan['validation_gate']),
                         analysis=copy.deepcopy(plan.get('analysis', {})), maximum_cost=MAXIMUM_COST)
+        if 'always_joint_validation' in plan:
+            settings['always_joint_validation'] = plan['always_joint_validation']
         settings['character_metadata'] = {p['id']:{key:p[key] for key in ('role','strength','cost','identity','weakness')}
                                           for p in audit if p['supported']}
     for character in active:
@@ -205,9 +209,15 @@ def build_campaign(plan, template, exporter=None, strengths=None):
                               'ally_pool': ally_pool, 'enemy_pool': enemy_pool} if budget_wave else
                              {'ally_count': pattern['ally_count'], 'enemy_count': pattern['enemy_count'],
                               'ally_pool': ally_pool, 'enemy_pool': enemy_pool})
+                case_targets = copy.deepcopy(targets)
+                if budget_wave:
+                    encounter.update({key: copy.deepcopy(wave_settings[key]) for key in BUDGET_OPTION_FIELDS if key in wave_settings})
+                    if 'target_max' in pattern:
+                        case_targets['match_score']['max'] = pattern['target_max']
+                    # Keep the original normalization when lifting the upper limit.
                 settings["cases"].append({"id": f"{character}-{pattern['id']}", "character": character,
                     "role": profile["role"], "strength": profile["strength"], "reference_cost": profile["cost"],
-                    "weight": 1, "roster": [character], "freeze_others": True, "targets": targets,
+                    "weight": pattern.get('weight', CASE_WEIGHT), "roster": [character], "freeze_others": True, "targets": case_targets,
                     "encounter": encounter})
             continue
         for mode, roster in (("solo", solo), ("mixed", mixed)):

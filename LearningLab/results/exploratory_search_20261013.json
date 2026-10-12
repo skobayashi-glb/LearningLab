@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-13",
+  "tool_version": "0.7.0",
+  "verification": {
+    "python_tests": 100,
+    "seconds": 84.919,
+    "passed": true,
+    "standalone_added_tests": 7,
+    "standalone_seconds": 15.51,
+    "standalone_checks": [
+      "LearningLab",
+      "TowerDefense"
+    ],
+    "browser": {
+      "state": "学習中",
+      "parameters": 64,
+      "characters": 30,
+      "budget": 48,
+      "archiveStride": 16,
+      "policy": "学習対象 30種類を同時に変更して最終検証します。採用は同時変更後の平均損失で判定し、個別の編成の突出・悪化も記録します。 過去フレームは16試合ごとに保存し、最新試合は常に表示します。",
+      "errorVisible": false,
+      "frames": 2,
+      "joint": true,
+      "acceptance": "aggregate"
+    }
+  },
+  "real_host_smoke": {
+    "characters": [
+      "amago",
+      "shark",
+      "crocodile"
+    ],
+    "candidate_count": 2,
+    "updates": 1,
+    "episodes": 144,
+    "archived_frames": 72,
+    "joint_validation_loss": 3.7210905349794237,
+    "passed_validation_gate": true,
+    "applied_to_game": false
+  },
+  "historical_candidate_joint_audit": {
+    "characters": 9,
+    "baseline_loss": 1.3908666288901745,
+    "joint_loss": 0.7448531204453875,
+    "aggregate_passed": true,
+    "historical_adoption_changed": false
+  },
+  "main_run": {
+    "path": "LearningLab/runs/exploratory-search-20261013",
+    "url": "http://127.0.0.1:8767",
+    "character_count": 30,
+    "parameter_count": 64,
+    "candidate_count": 48,
+    "updates_per_character_planned": 47,
+    "train_matches_per_candidate": 7200,
+    "train_matches_planned": 345600,
+    "archive_stride": 16,
+    "capture_decisions": 40,
+    "final_result": false,
+    "snapshot": {
+      "updated_at": "2026-10-12T16:22:38.422243+00:00",
+      "state": "running",
+      "completed_trials": 0,
+      "updates": 0,
+      "episode_count": 786,
+      "trial": 0,
+      "error": null
+    }
+  },
+  "source_sha256": {
+    "learning_lab\\adaptive_search.py": "021db6ec8ec87349452c5b29a14c81781cb05680d1289a68b081b0c5dd3f8b13",
+    "learning_lab\\artifacts.py": "12e537aa1e1b9f7dfab2c590c03841c7232154bc6dcb73ac3b048f00391dc293",
+    "learning_lab\\balance.py": "a85473b335ac24f5dc40902100739060ac4c7d79f9389bf79ee3f51204fd81ea",
+    "learning_lab\\battle.py": "4824e3ea91a641d13687a6ec51b0393699ef7fa1e85983177f16f1819e9b0fee",
+    "learning_lab\\campaign.py": "4df7ba6c300c9feb381752a269105fe98e70efbbe21bbdcfbed9c59aa301810f",
+    "learning_lab\\character_search.py": "181a5565d7a2c1f2e89b15ecda5c070bb9652f77c66793f02a08928f870344ea",
+    "learning_lab\\config.py": "30382746b1defbcc82b215d42041a4fcf4571bbfea87c6f52167b4f570344d54",
+    "learning_lab\\contracts.py": "bc84ccc5a433e7871c32a7c253596bacb69bee5b52dfba7a76373fefbd4f1055",
+    "learning_lab\\cost_balance.py": "ce297c0a8e7e196d1d3b20eed97f6c531d16ae9f7ec3043f83866a671b37034f",
+    "learning_lab\\dashboard.py": "0d426bea195142aa77b5e2c01e7b0d81965277453f9346520f6883ae600be530",
+    "learning_lab\\demo.py": "de0b8f05a34891028b8c8456903543a4d06a8bc553e74b9961c35d1e7efc2a09",
+    "learning_lab\\demo_server.py": "cbe5e1f4448366a6a5f06fb7e2b40e4889de19a187904b24e94793ae7b5ce215",
+    "learning_lab\\encounters.py": "59149fab7ff342666c1e24b82f43c6f2228f014e7582400595f7c4ee942edfcc",
+    "learning_lab\\evaluation.py": "0f081f59dffb4d3b67987e7a923966e20be7fb94d49e8907e78a4447fb70f8a8",
+    "learning_lab\\export_battle.py": "88e0f3cf9bc2f9244546f39b60300ab2e8e58029e217be9813d57f6af7820679",
+    "learning_lab\\monitoring.py": "5ecef1e613dfb0aa53722fec5d455c0e61e83d62d1a53ba82a99080b9035feb6",
+    "learning_lab\\parameter_space.py": "a1c449bf3498e6f7ca8e344cf11e3871a436014828fe93ffaf38b1b6b1cce2a7",
+    "learning_lab\\policy.py": "d8706f2d28fbe3d269ecd30cd20ab20b6f3c78042942fa653999ed9473330416",
+    "learning_lab\\ppo.py": "2387c73d9ef08f7308921fa184a12c58091e27b5d83bc9b438f7d4933221130b",
+    "learning_lab\\roster_analysis.py": "8db24ece5f088dd4964632f76548d7ac6ac6fc9413904f745fb058d010e0279c",
+    "learning_lab\\rpc.py": "3d16cc4eba613c55fb58f690eb838b73744e8f4fd92a873ff9d463f4f66216fe",
+    "learning_lab\\trainer.py": "f9c8287082f011c6072dbe7bd51b7cca0775ecc8386bc29a22ecfe3c88f8208d",
+    "learning_lab\\validation.py": "879f7d67ee75f18c70254b23584b22b2ed9ac7fa18242cbdc5ae6bb51fe290e5",
+    "learning_lab\\__init__.py": "0a7288399499943251d0c02a7a4545f412cc21b03f32e1e5623e826bc6a3acd2",
+    "learning_lab\\__main__.py": "de46e591649d1d629b71044c63062d3a868f6e7adddd96eefd9e7ef0bb07d357"
+  }
+}

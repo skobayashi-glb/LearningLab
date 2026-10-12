@@ -14,6 +14,10 @@ MIDPOINT = 0.5
 TIMEOUT_BASE_WEIGHT = 0.25
 TIMEOUT_SURVIVAL_WEIGHT = 0.25
 LEGS = ('forward', 'reverse')
+FOCUSED = 'focused'
+MIXED = 'mixed'
+RANDOM_OPPONENT = 'random'
+BALANCED_OPPONENT = 'balanced'
 
 
 def reverse_scenario(scenario):
@@ -94,6 +98,13 @@ class BudgetWaveEncounter:
                 raise ValueError("Budget encounter pools must be unique and nonempty")
         if case['character'] not in self.settings['ally_pool']:
             raise ValueError("Budget case must expose its target")
+        if self.settings.get('opponent_sampling', RANDOM_OPPONENT) not in (RANDOM_OPPONENT, BALANCED_OPPONENT):
+            raise ValueError('Unknown opponent sampling policy')
+        patterns = self.settings.get('enemy_patterns', [FOCUSED])
+        if not isinstance(patterns, list) or not patterns or len(set(patterns)) != len(patterns) or set(patterns) - {FOCUSED, MIXED}:
+            raise ValueError('Enemy patterns must be unique focused / mixed values')
+        if type(self.settings.get('shuffle_spawn_order', False)) is not bool:
+            raise ValueError('shuffle_spawn_order must be a boolean')
 
     def prepare(self, scenario, seed, leg='forward'):
         if leg not in LEGS:
@@ -105,17 +116,28 @@ class BudgetWaveEncounter:
         # Opponent schedule never depends on target ID, layout or candidate values.
         shared = {'seed': seed, 'pattern': self.settings['pattern'], 'budget': builder.budget}
         enemy_rng = random.Random(int(canonical_hash(shared), HASH_BASE))
-        enemy_target = enemy_rng.choice(sorted(self.settings['enemy_pool']))
-        enemies = builder.build(self.settings['enemy_pool'], enemy_rng, [enemy_target], focused=True)
+        enemy_pool = sorted(self.settings['enemy_pool'])
+        balanced = self.settings.get('opponent_sampling', RANDOM_OPPONENT) == BALANCED_OPPONENT
+        enemy_target = enemy_pool[seed % len(enemy_pool)] if balanced else enemy_rng.choice(enemy_pool)
+        enemy_patterns = self.settings.get('enemy_patterns', [FOCUSED])
+        enemy_pattern = enemy_rng.choice(enemy_patterns) if len(enemy_patterns) > 1 else enemy_patterns[0]
+        enemies = builder.build(self.settings['enemy_pool'], enemy_rng, [enemy_target], focused=enemy_pattern == FOCUSED)
         ally_rng = random.Random(int(canonical_hash(shared | {'target': self.case['character']}), HASH_BASE))
         allies = builder.build(self.settings['ally_pool'], ally_rng, [self.case['character']],
                                focused=self.settings['pattern'] == 'focused')
+        if self.settings.get('shuffle_spawn_order', False):
+            enemy_rng.shuffle(enemies)
+            ally_rng.shuffle(allies)
         battle['roster'] = list(dict.fromkeys(allies))
         battle['rules']['enemy_enabled'] = False
         battle['opening_wave'] = {'ally': allies, 'enemy': enemies}
         metadata = {'seed': seed, 'ally': allies, 'enemy': enemies, 'budget': builder.budget,
                         'ally_cost': sum(costs[c] for c in allies), 'enemy_cost': sum(costs[c] for c in enemies),
                         'opponent': enemy_target, 'pattern': self.settings['pattern'], 'leg':leg, 'target_team':0}
+        if 'enemy_patterns' in self.settings or balanced or self.settings.get('shuffle_spawn_order', False):
+            metadata.update(enemy_pattern=enemy_pattern,
+                            opponent_sampling=self.settings.get('opponent_sampling', RANDOM_OPPONENT),
+                            shuffle_spawn_order=self.settings.get('shuffle_spawn_order', False))
         if leg == 'reverse':
             result = reverse_scenario(result)
             metadata['ally'], metadata['enemy'] = enemies, allies

@@ -2,6 +2,7 @@
 import copy
 from itertools import combinations
 import random
+from collections import defaultdict
 
 from .artifacts import write_json
 from .config import canonical_hash
@@ -97,7 +98,7 @@ class RosterAnalyzer:
                                 'leg_outcomes':leg_outcomes, 'wins':int(leg_outcomes[0]=='victory')+int(leg_outcomes[1]=='defeat')})
                             if observer:
                                 observer.emit('analysis_progress', completed=len(records)*len(LEGS), total=total, parameter_version=parameter_version)
-                if observer:
+                if observer and opponent == self.characters[-1]:
                     observer.emit('analysis', data=self.summarize(records, total, parameter_version, partial=True))
         finally:
             environment.close()
@@ -110,8 +111,12 @@ class RosterAnalyzer:
     def summarize(self, records, total, parameter_version, partial):
         solo = {}
         matchups, strengths, synergy = [], [], []
+        by_team, by_context = defaultdict(list), defaultdict(list)
+        for record in records:
+            by_team[tuple(record['team'])].append(record)
+            by_context[(record['opponent'], record['scenario'], record['seed'])].append(record)
         for character in self.characters:
-            rows = [r for r in records if r['team'] == [character]]
+            rows = by_team[(character,)]
             wins = sum(r['wins'] for r in rows)
             solo[character] = { (r['opponent'],r['scenario'],r['seed']): r['score'] for r in rows }
             strengths.append({'character':character,'cost':self.costs[character], 'score':mean([r['score'] for r in rows]),
@@ -125,20 +130,16 @@ class RosterAnalyzer:
                 synergy.append({'left':left,'right':right,'delta':None,'trials':0,'reason':'budget exceeded'})
                 continue
             deltas = []
-            for r in records:
-                if r['team'] != [left,right]:
-                    continue
+            for r in by_team[(left, right)]:
                 key = (r['opponent'],r['scenario'],r['seed'])
                 if key in solo[left] and key in solo[right]:
                     deltas.append(r['score'] - max(solo[left][key],solo[right][key]))
             synergy.append({'left':left,'right':right,'delta':mean(deltas),'trials':len(deltas)*len(LEGS)})
         adoption = {c:0.0 for c in self.characters}
-        contexts = {(r['opponent'],r['scenario'],r['seed']) for r in records}
         # Compare only complete candidate sets, including affordable pairs.
         expected = len(self.characters) + sum(self.costs[a]+self.costs[b]<=self.builder.budget for a,b in combinations(self.characters,2))
         complete = 0
-        for context in contexts:
-            rows = [r for r in records if (r['opponent'],r['scenario'],r['seed']) == context]
+        for rows in by_context.values():
             if len(rows) != expected:
                 continue
             best = max(r['score'] for r in rows)

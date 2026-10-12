@@ -7,7 +7,7 @@
 <header><div><div class="eyebrow">CHARACTER STAT SEARCH</div><h1>学習の進み方を確認する</h1><p>対戦を見返し、数値と生成分布の変化を追います。</p></div><div class="actions"><span id="state" class="badge">準備中</span><button id="pause">一時停止</button><button id="resume" class="primary">再開</button><button id="stop" class="subtle">停止</button></div></header>
 <div id="error" class="error" hidden></div>
 <section class="panel" id="roster"><div class="panel-head"><div><span class="eyebrow">COST & ROSTER VALUE</span><h2>同じ予算で、どのキャラが役立つ？</h2></div><span id="analysis-progress" class="mini">比較測定を待っています</span></div>
-<p class="caption" id="analysis-context">実測した同額編成の成績を表示します。未試験は空欄です。</p>
+<p class="caption" id="analysis-context">編成分析が終わると、実測した同額編成の成績を表示します。今回の長期実行では探索・検証の後に測定します。学習中の戦闘とパラメータの更新は下の画面で確認できます。</p>
 <div class="analysis-grid"><div><h3>コストと同額編成の成績</h3><canvas id="cost-chart" width="600" height="300"></canvas><div class="table-wrap"><table><thead><tr><th>キャラ</th><th>コスト / 役割</th><th>成績</th><th>勝率 / 参考幅</th><th>試合数</th></tr></thead><tbody id="strength-rows"></tbody></table></div></div>
 <div><h3>試験した候補編成への採用率</h3><div id="adoption-bars"></div><p class="caption">同じ相手・地形・予算で最も成績がよい試験編成を選んだ頻度です。同点は等分します。ランダム登場率やプレイヤー使用率とは異なります。</p></div></div>
 <div class="analysis-grid"><div><h3>同額編成の相性</h3><div class="table-wrap" id="matchup-map"></div></div><div><h3>ペア編成の上積み</h3><div class="table-wrap" id="synergy-map"></div></div></div>
@@ -15,6 +15,7 @@
 <section class="panel" id="character-learning"><div class="panel-head"><div><span class="eyebrow">CHARACTER FEEDBACK</span><h2>キャラごとの評価と分布更新</h2></div></div><div class="table-wrap"><table><thead><tr><th>キャラ</th><th>意図する強弱</th><th>コスト</th><th>基準スコア</th><th>直近</th><th>最良</th><th>更新回数</th></tr></thead><tbody id="character-feedback"></tbody></table></div><p class="caption">同額対戦では0〜1の対戦成績を目標帯に近づけます。ここに表示する損失は小さいほどよく、各キャラの評価で該当キャラの分布だけを更新します。目標帯は初期仮説です。</p></section>
 <section class="metrics"><article><span>評価済み候補</span><strong id="trials">—</strong><small>最初の1件は設計基準値</small></article><article><span>分布の更新回数</span><strong id="updates">0</strong><small>候補の全train対戦後に更新</small></article><article><span>完了した対戦</span><strong id="episodes">0</strong><small id="phase">準備中</small></article><article><span>最良のtrainスコア</span><strong id="best">—</strong><small>小さいほど目標帯に近い</small></article></section>
 <section class="progress-card"><div><b id="progress-title">戦闘ホストを準備しています</b><span id="progress-text">—</span></div><progress id="progress" value="0" max="1"></progress></section>
+<p id="experiment-policy" class="caption"></p>
 <div class="battle-grid" id="battle">
 <section class="panel"><div class="panel-head"><div><span class="eyebrow">BATTLE VIEW</span><h2>戦闘フレーム</h2></div><label class="follow"><input id="follow" type="checkbox" checked> 最新に追従</label></div>
 <div class="frame-toolbar"><select id="episode-select" aria-label="保存した対戦"></select><button id="older">以前の対戦</button></div>

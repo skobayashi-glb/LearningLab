@@ -13,7 +13,7 @@ from .adaptive_search import AdaptiveProposalLearner, ADAPTIVE_STRATEGY, RANDOM_
 from .monitoring import SearchObserver
 from .cost_balance import BUDGET_WAVE, BudgetWaveEncounter, battle_score, LEGS
 from .character_search import PER_CHARACTER, CharacterProposalLearner
-from .validation import preserved_validation
+from .validation import preserved_validation, ValidationPolicy, AGGREGATE
 
 VERSION = 2
 POLICY_ID = "fixed-party-round-robin-to-default-route-v3-target-first"
@@ -106,9 +106,11 @@ class BalanceEvaluator:
         if not finite(s["change_weight"]) or s["change_weight"] < 0:
             raise ValueError("change_weight must be nonnegative")
         if 'validation_gate' in s:
-            gate = s['validation_gate']
-            if s.get('learning_scope') != PER_CHARACTER or set(gate) != {'max_case_loss_increase', 'max_character_loss_increase'} or any(not finite(v) or v < 0 for v in gate.values()):
-                raise ValueError('Validation tolerances require per-character learning and nonnegative finite values')
+            ValidationPolicy(s['validation_gate'])
+            if s.get('learning_scope') != PER_CHARACTER:
+                raise ValueError('Validation policies require per-character learning')
+        if type(s.get('always_joint_validation', False)) is not bool:
+            raise ValueError('always_joint_validation must be a boolean')
         if not s["cases"] or len({c["id"] for c in s["cases"]}) != len(s["cases"]):
             raise ValueError("Cases must have unique IDs")
         used_seeds = set()
@@ -283,6 +285,7 @@ class BalanceSearch:
                                "artifact_code_sha256": hashlib.sha256(Path(__file__).with_name("artifacts.py").read_bytes()).hexdigest(),
                                "monitoring_code_sha256": hashlib.sha256(Path(__file__).with_name("monitoring.py").read_bytes()).hexdigest(),
                                "frame_capture_decisions": getattr(observer, "capture_decisions", None),
+                               "frame_archive_stride": getattr(observer, 'archive_stride', None),
                                "cost_balance_code_sha256": hashlib.sha256(Path(__file__).with_name('cost_balance.py').read_bytes()).hexdigest(),
                                "character_search_code_sha256": hashlib.sha256(Path(__file__).with_name('character_search.py').read_bytes()).hexdigest(),
                                "roster_analysis_code_sha256": hashlib.sha256(Path(__file__).with_name('roster_analysis.py').read_bytes()).hexdigest(),
@@ -296,7 +299,8 @@ class BalanceSearch:
         if self.settings.get('analysis', {}).get('enabled'):
             from .roster_analysis import RosterAnalyzer
             analyzer = RosterAnalyzer(self.config, self.settings)
-            analyzer.run(self.space.baseline, observer=observer, parameter_version='baseline', include_pairs=False)
+            if self.settings['analysis'].get('initial_focused', True):
+                analyzer.run(self.space.baseline, observer=observer, parameter_version='baseline', include_pairs=False)
             observer.emit('state', state='running')
         trials = []
         candidates = None if self.learner else self.space.candidates(
@@ -350,11 +354,13 @@ class BalanceSearch:
         accepted = best['index'] != 0 and preserved_validation(baseline_validation, selected_validation, gate)
         passed_individual_validation = accepted
         requires_joint = any(case.get("freeze_others", False) for case in self.settings["cases"])
+        always_joint = self.settings.get('always_joint_validation', False)
         joint_validation = None
-        if accepted and requires_joint:
+        if (accepted and requires_joint) or always_joint:
             joint_validation = self.evaluator.evaluate(best["candidate"], "validation", joint=True)
             # Baseline values are identical in isolated and joint evaluation.
-            accepted = preserved_validation(baseline_validation, joint_validation, gate)
+            joint_accepted = preserved_validation(baseline_validation, joint_validation, gate)
+            accepted = best['index'] != 0 and joint_accepted and (accepted or ValidationPolicy(gate).mode == AGGREGATE)
         recommended = best["candidate"] if accepted else self.space.baseline
         # Holdout is reported once, after selection; never used to select a different candidate.
         holdout = (self.evaluator.evaluate(recommended, "holdout", joint=True) if requires_joint else
@@ -376,6 +382,12 @@ class BalanceSearch:
             report.update(learning_scope=PER_CHARACTER,
                 selected_train_trials={c: t['index'] for c, t in best_by_character.items()},
                 validation_gate=gate, authored_costs={d['id']: d['cost'] for d in self.config.data['scenarios'][0]['parameters']['battle']['ally_definitions']})
+        if always_joint:
+            report.update(always_joint_validation=True,
+                validation_decision=ValidationPolicy(gate).assess(baseline_validation, joint_validation),
+                individual_validation_diagnostics=ValidationPolicy(gate).assess(baseline_validation, selected_validation),
+                adjusted_characters=sorted(best['candidate']),
+                frozen_characters=sorted({d['id'] for d in self.config.data['scenarios'][0]['parameters']['battle']['ally_definitions']} - best['candidate'].keys()))
         write_json(directory / "report.json", report)
         write_json(directory / "recommended-config.json", apply_candidate(self.config, recommended).data)
         if analyzer:

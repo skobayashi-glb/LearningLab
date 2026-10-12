@@ -4,11 +4,15 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 import threading
+from time import monotonic
 
 from .artifacts import write_json
 from .config import canonical_hash
 
 DEFAULT_CAPTURE_DECISIONS = 10
+DEFAULT_ARCHIVE_STRIDE = 1
+STATUS_PERSIST_SECONDS = 1.0
+ANALYSIS_PERSIST_SECONDS = 10.0
 DEFAULT_TICKS_PER_SECOND = 60
 DEFAULT_TICK_SECONDS = 1 / DEFAULT_TICKS_PER_SECOND
 RECENT_EPISODE_LIMIT = 100
@@ -65,11 +69,15 @@ class SearchControl:
 class FileSearchMonitor(SearchObserver):
     enabled = True
 
-    def __init__(self, directory: Path, capture_decisions=DEFAULT_CAPTURE_DECISIONS):
+    def __init__(self, directory: Path, capture_decisions=DEFAULT_CAPTURE_DECISIONS,
+                 archive_stride=DEFAULT_ARCHIVE_STRIDE):
         if type(capture_decisions) is not int or capture_decisions <= 0:
             raise ValueError("Capture interval must be a positive number of decisions")
         self.directory = directory.resolve()
         self.capture_decisions = capture_decisions
+        if type(archive_stride) is not int or archive_stride < DEFAULT_ARCHIVE_STRIDE:
+            raise ValueError('Archive stride must be a positive number of episodes')
+        self.archive_stride = archive_stride
         self.control = SearchControl()
         self.lock = threading.RLock()
         self.status = {"state": "starting", "completed_trials": 0, "updates": 0,
@@ -79,6 +87,8 @@ class FileSearchMonitor(SearchObserver):
         self.frames = []
         self.started = False
         self.analysis = None
+        self.last_status_persist = 0.0
+        self.last_analysis_persist = 0.0
 
     def should_capture(self, decision, ended=False):
         return ended or decision % self.capture_decisions == 0
@@ -90,14 +100,25 @@ class FileSearchMonitor(SearchObserver):
 
     def publish(self, **values):
         with self.lock:
+            state_changed = 'state' in values and values['state'] != self.status.get('state')
             self.status.update(values)
             self.status["updated_at"] = datetime.now(timezone.utc).isoformat()
-            if self.started:
+            now = monotonic()
+            if self.started and (state_changed or 'history' in values or
+                                 now - self.last_status_persist >= STATUS_PERSIST_SECONDS):
                 write_json(self.directory / "monitor.json", self.status)
+                self.last_status_persist = now
 
     def snapshot(self):
         with self.lock:
             return copy.deepcopy(self.status)
+
+    def frame_snapshot(self, episode_id):
+        with self.lock:
+            if self.active is None or self.active['id'] != episode_id:
+                return None
+            return copy.deepcopy({key: value for key, value in self.active.items() if key != 'definitions'}
+                                 | {'frames': self.frames})
 
     def emit(self, event, **data):
         with self.lock:
@@ -111,9 +132,11 @@ class FileSearchMonitor(SearchObserver):
             axes=[{"character": c, "field": f, "min": low, "max": high}
                   for (c, f), (low, high) in zip(axes, bounds)],
             capture_decisions=self.capture_decisions, seeds=settings["seeds"],
-            cases=len(settings["cases"]), config_hash=canonical_hash(config))
+            archive_stride=self.archive_stride, cases=len(settings["cases"]), config_hash=canonical_hash(config))
         self.publish(learning_scope=settings.get('learning_scope', 'shared'),
-            evaluation_mode=settings.get('evaluation_mode'), character_metadata=settings.get('character_metadata', {}))
+            evaluation_mode=settings.get('evaluation_mode'), character_metadata=settings.get('character_metadata', {}),
+            always_joint_validation=settings.get('always_joint_validation', False),
+            validation_policy=settings.get('validation_gate', {}).get('mode', 'preserved'))
 
     def on_trial_started(self, index, candidate, distribution):
         self.publish(trial=index, candidate=candidate, distribution=distribution)
@@ -133,6 +156,7 @@ class FileSearchMonitor(SearchObserver):
             "definitions": {str(team): {unit["id"]: unit for unit in definitions}
                 for team, definitions in enumerate((battle["ally_definitions"], battle["enemy_baseline"]))}}
         self.frames = []
+        self.active['frames_archived'] = episode_id % self.archive_stride == 0
         self.publish(active_episode={key: self.active[key] for key in
             ("id", "trial", "split", "case", "character", "scenario", "seed", "encounter")}, latest_episode=episode_id)
 
@@ -146,14 +170,16 @@ class FileSearchMonitor(SearchObserver):
         frame = {"tick": debug["tick"], "seconds": debug["tick"] * self.active["tick_seconds"],
                  "decision": decision, "outcome": debug["outcome"], "units": units, "bases": debug["bases"]}
         self.frames.append(frame)
-        write_json(self.directory / "frames" / f"episode-{self.active['id']:06d}.json",
-            {key: value for key, value in self.active.items() if key != "definitions"} | {"frames": self.frames})
+        if self.active['frames_archived']:
+            write_json(self.directory / "frames" / f"episode-{self.active['id']:06d}.json",
+                {key: value for key, value in self.active.items() if key != "definitions"} | {"frames": self.frames})
         self.publish(latest_tick=debug["tick"], simulation_seconds=frame["seconds"], frame_count=len(self.frames))
 
     def on_episode_completed(self, episode):
         record = {key: self.active[key] for key in
             ("id", "trial", "split", "joint", "case", "character", "scenario", "seed", "encounter")}
-        record.update(outcome=episode["outcome"], metrics=episode["metrics"], frame_count=len(self.frames))
+        record.update(outcome=episode["outcome"], metrics=episode["metrics"], frame_count=len(self.frames),
+                      frames_archived=self.active['frames_archived'])
         with (self.directory / "episodes.jsonl").open("a", encoding="utf-8") as stream:
             stream.write(json.dumps(record, ensure_ascii=False, allow_nan=False) + "\n")
         recent = [*self.status["recent_episodes"], record][-RECENT_EPISODE_LIMIT:]
@@ -178,8 +204,11 @@ class FileSearchMonitor(SearchObserver):
         self.publish(state='analyzing', analysis_progress={'completed':completed,'total':total,'parameter_version':parameter_version})
 
     def on_analysis(self, data):
-        self.analysis = copy.deepcopy(data)
-        write_json(self.directory / ('roster-analysis-' + data['parameter_version'] + '.json'), data)
+        self.analysis = copy.deepcopy({key: value for key, value in data.items() if key != 'records'})
+        now = monotonic()
+        if not data['partial'] or now - self.last_analysis_persist >= ANALYSIS_PERSIST_SECONDS:
+            write_json(self.directory / ('roster-analysis-' + data['parameter_version'] + '.json'), data)
+            self.last_analysis_persist = now
         self.publish(analysis_version=data['parameter_version'])
 
     def on_state(self, state):

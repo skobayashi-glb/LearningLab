@@ -1,0 +1,91 @@
+{
+  "run": "LearningLab\\runs\\cost-search-role-final-20261012",
+  "passed_validation_gate": false,
+  "applied_to_game": false,
+  "validation_improvement_percent": 40.64010654195997,
+  "failed_cases": [
+    {
+      "case": "ammonite-mixed",
+      "before_loss": 0.42611882716049354,
+      "after_loss": 0.47744261188271586,
+      "increase": 0.05132378472222232,
+      "before_score": 0.40208333333333335,
+      "after_score": 0.3963541666666667
+    },
+    {
+      "case": "shark-mixed",
+      "before_loss": 0.5017361111111115,
+      "after_loss": 0.7060667438271607,
+      "increase": 0.20433063271604923,
+      "before_score": 0.34375,
+      "after_score": 0.32395833333333335
+    },
+    {
+      "case": "sea-slug-focused",
+      "before_loss": 0.0,
+      "after_loss": 1.1215398341049398,
+      "increase": 1.1215398341049398,
+      "before_score": 0.5484375,
+      "after_score": 0.7588541666666667
+    }
+  ],
+  "failed_characters": [
+    "sea-slug"
+  ],
+  "coverage": {
+    "train_baseline": {
+      "episodes": 288,
+      "opponent_centers": [
+        "abyssal-sea-dragon",
+        "arowana",
+        "blacktip-reef-shark",
+        "bonito",
+        "clione",
+        "coelacanth",
+        "sunfish"
+      ],
+      "timeouts": 75
+    },
+    "validation_baseline": {
+      "episodes": 288,
+      "opponent_centers": [
+        "abyssal-sea-dragon",
+        "angelfish",
+        "arowana",
+        "blue-shark",
+        "bonito",
+        "bull-shark",
+        "coelacanth",
+        "shark"
+      ],
+      "timeouts": 77
+    },
+    "validation_selected": {
+      "episodes": 288,
+      "opponent_centers": [
+        "abyssal-sea-dragon",
+        "angelfish",
+        "arowana",
+        "blue-shark",
+        "bonito",
+        "bull-shark",
+        "coelacanth",
+        "shark"
+      ],
+      "timeouts": 73
+    },
+    "holdout_baseline": {
+      "episodes": 288,
+      "opponent_centers": [
+        "ammonite",
+        "angelfish",
+        "atlantic-tarpon",
+        "blue-whale",
+        "shark"
+      ],
+      "timeouts": 135
+    }
+  },
+  "report": "C:\\Users\\shoki\\TowerDefense\\LearningLab\\results\\cost_balance_analysis_20261013.md",
+  "figure": "C:\\Users\\shoki\\TowerDefense\\LearningLab\\results\\cost_balance_analysis_20261013.png"
+}

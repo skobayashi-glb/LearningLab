@@ -9,7 +9,7 @@ from urllib.parse import parse_qs, urlsplit
 
 from .balance import BalanceSearch
 from .config import ExperimentConfig
-from .monitoring import DEFAULT_CAPTURE_DECISIONS, FileSearchMonitor, SearchStopped
+from .monitoring import DEFAULT_CAPTURE_DECISIONS, DEFAULT_ARCHIVE_STRIDE, FileSearchMonitor, SearchStopped
 
 HOST = "127.0.0.1"
 DEFAULT_PORT = 8765
@@ -22,9 +22,10 @@ WEB_DIRECTORY = Path(__file__).with_name("web")
 
 
 class DashboardService:
-    def __init__(self, config, settings, directory, capture_decisions=DEFAULT_CAPTURE_DECISIONS):
+    def __init__(self, config, settings, directory, capture_decisions=DEFAULT_CAPTURE_DECISIONS,
+                 archive_stride=DEFAULT_ARCHIVE_STRIDE):
         self.search = BalanceSearch(config, settings)
-        self.monitor = FileSearchMonitor(directory, capture_decisions)
+        self.monitor = FileSearchMonitor(directory, capture_decisions, archive_stride)
         self.thread = None
 
     def start(self):
@@ -45,13 +46,18 @@ class DashboardService:
     def episodes(self, offset, limit):
         path = self.monitor.directory / "episodes.jsonl"
         records = []
+        total = 0
         if path.exists():
-            for line in path.read_text(encoding="utf-8").splitlines():
-                try:
-                    records.append(json.loads(line))
-                except json.JSONDecodeError:
-                    continue  # An append may still be in progress; read the completed lines only.
-        return {"total": len(records), "episodes": records[offset:offset + limit]}
+            with path.open(encoding='utf-8') as stream:
+                for line in stream:
+                    try:
+                        record = json.loads(line)
+                    except json.JSONDecodeError:
+                        continue  # An append may still be in progress.
+                    if offset <= total < offset + limit:
+                        records.append(record)
+                    total += 1
+        return {"total": total, "episodes": records}
 
 
 def handler_for(service):
@@ -98,7 +104,12 @@ def handler_for(service):
                         raise ValueError("Episode ID must be nonnegative")
                     path = service.monitor.directory / "frames" / f"episode-{episode_id:06d}.json"
                     with service.monitor.lock:
-                        data = path.read_bytes()
+                        if path.exists():
+                            data = path.read_bytes()
+                        else:
+                            data = service.monitor.frame_snapshot(episode_id)
+                            if data is None:
+                                raise FileNotFoundError('Frame not archived')
                     return self.send(200, data)
                 return self.send(404, {"error": "Not found"})
             except FileNotFoundError:
@@ -135,12 +146,14 @@ def main():
     parser.add_argument("--run", type=Path, required=True)
     parser.add_argument("--port", type=int, default=DEFAULT_PORT)
     parser.add_argument("--capture-every", type=int, default=DEFAULT_CAPTURE_DECISIONS)
+    parser.add_argument('--archive-every', type=int, default=DEFAULT_ARCHIVE_STRIDE,
+                        help='Archive one episode in N; always serve the current episode live')
     args = parser.parse_args()
     # Reject an occupied run before starting any worker or opening the port.
     if args.run.exists() and any(args.run.iterdir()):
         raise FileExistsError("Use a fresh run directory; dashboard restart does not resume a stopped process")
     service = DashboardService(ExperimentConfig.load(args.config),
-        json.loads(args.settings.read_text(encoding="utf-8-sig")), args.run, args.capture_every)
+        json.loads(args.settings.read_text(encoding="utf-8-sig")), args.run, args.capture_every, args.archive_every)
     server = ThreadingHTTPServer((HOST, args.port), handler_for(service))
     print(f"Dashboard: http://{HOST}:{server.server_port}", flush=True)
     service.start()

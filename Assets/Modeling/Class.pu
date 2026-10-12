@@ -8456,4 +8456,21 @@ package "Authored costs and character-specific budget learning (2026-10-12)" {
     LabBudgetScope .. LabRosterAnalyzer
 }
 
+package "Exploratory roster search and unconditional joint validation (2026-10-13)" {
+    class "ValidationPolicy (preserved / aggregate assessment)" as LabValidationPolicy
+    BalanceParameterSearch --> LabValidationPolicy : joint loss is decisive; isolated regressions remain diagnostics
+    LabBudgetValidation --> LabValidationPolicy : legacy function delegates without changing old policies
+    LabBudgetWaveEncounter --> LabBudgetArmyBuilder : balanced opponent centers; mixed enemies; reproducible shuffled orders
+    LabDashboardService --> LabFileMonitor : read live frames for every episode
+    LabFileMonitor --> LabArtifacts : archive sampled episodes; throttle persisted progress
+    LabDashboardUI --> LabDashboardService : show archive stride and all-target validation scope
+    note as LabExploratoryScope
+      Tool 0.7.0: authored cost stays fixed; focused armies have no upper score penalty.
+      Thirty supported characters are searched and jointly validated, twelve remain excluded.
+      Individual validation never skips requested joint evaluation.
+      New runs keep disjoint seeds and frozen enemy references; no automatic game stat application.
+    end note
+    LabExploratoryScope .. LabValidationPolicy
+}
+
 @enduml
