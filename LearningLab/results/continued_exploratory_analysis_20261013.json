@@ -1,0 +1,815 @@
+{
+  "run": "LearningLab\\runs\\continued-exploratory-search-20261013",
+  "state": "completed",
+  "duration_seconds": 5115.068511,
+  "finished_jst": "2026-10-13T17:29:19.309921+09:00",
+  "candidate_count": 24,
+  "new_candidates": 21,
+  "updates_per_character": 23,
+  "new_updates": 21,
+  "evaluation_matches_this_run": 13920,
+  "analysis_matches_this_run": 280,
+  "changed_characters": 24,
+  "baseline_train_score": 2.9837982253086417,
+  "selected_per_character_train_score": 2.1005266557594084,
+  "best_evaluated_trial": 22,
+  "best_evaluated_trial_score": 2.6748291356926583,
+  "last_trial_score": 3.092047851249405,
+  "baseline_validation_loss": 0.4602233484841178,
+  "individual_validation_loss": 0.4874882852687756,
+  "joint_validation_loss": 0.6712609511638375,
+  "joint_loss_increase_percent": 45.85547503724763,
+  "holdout_baseline_loss": 1.7958819605195482,
+  "passed_validation_gate": false,
+  "applied_to_game": false,
+  "cost_changes_since_run": {
+    "sea-urchin": {
+      "run_cost": 4,
+      "current_cost": 3
+    },
+    "shark": {
+      "run_cost": 8,
+      "current_cost": 3
+    }
+  },
+  "trial_scores": [
+    {
+      "index": 0,
+      "score": 2.9837982253086417
+    },
+    {
+      "index": 1,
+      "score": 2.99255618758498
+    },
+    {
+      "index": 2,
+      "score": 3.072127729240882
+    },
+    {
+      "index": 3,
+      "score": 3.1407458566703323
+    },
+    {
+      "index": 4,
+      "score": 3.053989953379449
+    },
+    {
+      "index": 5,
+      "score": 2.971023356030864
+    },
+    {
+      "index": 6,
+      "score": 2.8604332176373193
+    },
+    {
+      "index": 7,
+      "score": 3.0035492267234667
+    },
+    {
+      "index": 8,
+      "score": 2.913493135268596
+    },
+    {
+      "index": 9,
+      "score": 2.9092187390976223
+    },
+    {
+      "index": 10,
+      "score": 2.893158181425813
+    },
+    {
+      "index": 11,
+      "score": 3.0079961690711223
+    },
+    {
+      "index": 12,
+      "score": 2.905317915340414
+    },
+    {
+      "index": 13,
+      "score": 2.89200275499954
+    },
+    {
+      "index": 14,
+      "score": 2.979524617123049
+    },
+    {
+      "index": 15,
+      "score": 2.960091953092132
+    },
+    {
+      "index": 16,
+      "score": 2.9935066555939707
+    },
+    {
+      "index": 17,
+      "score": 2.7781500081886907
+    },
+    {
+      "index": 18,
+      "score": 2.7656622769119115
+    },
+    {
+      "index": 19,
+      "score": 2.9495065376101333
+    },
+    {
+      "index": 20,
+      "score": 2.8387732006333333
+    },
+    {
+      "index": 21,
+      "score": 2.8628132395664236
+    },
+    {
+      "index": 22,
+      "score": 2.6748291356926583
+    },
+    {
+      "index": 23,
+      "score": 3.092047851249405
+    }
+  ],
+  "characters": [
+    {
+      "character": "abyssal-sea-dragon",
+      "cost": 20,
+      "initial_parameters": {
+        "hp": 210,
+        "power": 108,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 223,
+        "power": 67,
+        "defense": 12
+      },
+      "changed": true,
+      "selected_trial": 14,
+      "baseline_validation_loss": 0.0,
+      "individual_validation_loss": 0.0,
+      "joint_validation_loss": 0.0,
+      "joint_loss_delta": 0.0
+    },
+    {
+      "character": "amago",
+      "cost": 1,
+      "initial_parameters": {
+        "hp": 22,
+        "power": 3,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 17,
+        "power": 3,
+        "defense": 2
+      },
+      "changed": true,
+      "selected_trial": 17,
+      "baseline_validation_loss": 0.05793065200617277,
+      "individual_validation_loss": 0.08802324459876541,
+      "joint_validation_loss": 0.0861328125,
+      "joint_loss_delta": 0.028202160493827233
+    },
+    {
+      "character": "ammonite",
+      "cost": 4,
+      "initial_parameters": {
+        "hp": 120,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 79,
+        "defense": 27
+      },
+      "changed": true,
+      "selected_trial": 1,
+      "baseline_validation_loss": 0.5483338155864195,
+      "individual_validation_loss": 0.6704595871913577,
+      "joint_validation_loss": 0.7105251736111107,
+      "joint_loss_delta": 0.1621913580246912
+    },
+    {
+      "character": "angelfish",
+      "cost": 3,
+      "initial_parameters": {
+        "hp": 30,
+        "power": 3,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 39,
+        "power": 3,
+        "defense": 42
+      },
+      "changed": true,
+      "selected_trial": 1,
+      "baseline_validation_loss": 0.0014179747781635744,
+      "individual_validation_loss": 0.0,
+      "joint_validation_loss": 0.0,
+      "joint_loss_delta": -0.0014179747781635744
+    },
+    {
+      "character": "arowana",
+      "cost": 12,
+      "initial_parameters": {
+        "hp": 68,
+        "power": 58
+      },
+      "selected_parameters": {
+        "hp": 59,
+        "power": 34
+      },
+      "changed": true,
+      "selected_trial": 21,
+      "baseline_validation_loss": 0.6620756172839506,
+      "individual_validation_loss": 0.19926697530864151,
+      "joint_validation_loss": 0.1557098765432095,
+      "joint_loss_delta": -0.5063657407407411
+    },
+    {
+      "character": "atlantic-tarpon",
+      "cost": 8,
+      "initial_parameters": {
+        "hp": 54,
+        "power": 8
+      },
+      "selected_parameters": {
+        "hp": 36,
+        "power": 7
+      },
+      "changed": true,
+      "selected_trial": 22,
+      "baseline_validation_loss": 2.5691840277777773,
+      "individual_validation_loss": 2.589245756172839,
+      "joint_validation_loss": 2.882118055555554,
+      "joint_loss_delta": 0.3129340277777768
+    },
+    {
+      "character": "bigfin-reef-squid",
+      "cost": 9,
+      "initial_parameters": {
+        "hp": 88,
+        "power": 4
+      },
+      "selected_parameters": {
+        "hp": 81,
+        "power": 4
+      },
+      "changed": true,
+      "selected_trial": 22,
+      "baseline_validation_loss": 0.15679253472222215,
+      "individual_validation_loss": 0.15740801022376535,
+      "joint_validation_loss": 0.15740801022376535,
+      "joint_loss_delta": 0.0006154755015432001
+    },
+    {
+      "character": "blacktip-reef-shark",
+      "cost": 12,
+      "initial_parameters": {
+        "hp": 86,
+        "power": 32
+      },
+      "selected_parameters": {
+        "hp": 63,
+        "power": 24
+      },
+      "changed": true,
+      "selected_trial": 21,
+      "baseline_validation_loss": 0.0,
+      "individual_validation_loss": 0.03472222222222222,
+      "joint_validation_loss": 0.014670138888888897,
+      "joint_loss_delta": 0.014670138888888897
+    },
+    {
+      "character": "blue-shark",
+      "cost": 8,
+      "initial_parameters": {
+        "hp": 44,
+        "power": 11
+      },
+      "selected_parameters": {
+        "hp": 35,
+        "power": 8
+      },
+      "changed": true,
+      "selected_trial": 13,
+      "baseline_validation_loss": 0.0019585503472222187,
+      "individual_validation_loss": 0.0870466820987654,
+      "joint_validation_loss": 0.06296537422839504,
+      "joint_loss_delta": 0.061006823881172824
+    },
+    {
+      "character": "blue-surgeonfish",
+      "cost": 3,
+      "initial_parameters": {
+        "hp": 26,
+        "power": 9
+      },
+      "selected_parameters": {
+        "hp": 29,
+        "power": 11
+      },
+      "changed": true,
+      "selected_trial": 9,
+      "baseline_validation_loss": 0.08888888888888903,
+      "individual_validation_loss": 0.018672839506172885,
+      "joint_validation_loss": 0.11249999999999982,
+      "joint_loss_delta": 0.02361111111111079
+    },
+    {
+      "character": "blue-whale",
+      "cost": 18,
+      "initial_parameters": {
+        "hp": 340
+      },
+      "selected_parameters": {
+        "hp": 247
+      },
+      "changed": true,
+      "selected_trial": 5,
+      "baseline_validation_loss": 0.22578125000000018,
+      "individual_validation_loss": 0.4643614969135805,
+      "joint_validation_loss": 0.5980034722222226,
+      "joint_loss_delta": 0.37222222222222245
+    },
+    {
+      "character": "bonito",
+      "cost": 4,
+      "initial_parameters": {
+        "hp": 22,
+        "power": 10
+      },
+      "selected_parameters": {
+        "hp": 17,
+        "power": 7
+      },
+      "changed": true,
+      "selected_trial": 5,
+      "baseline_validation_loss": 0.9239028742283949,
+      "individual_validation_loss": 1.2361496913580243,
+      "joint_validation_loss": 2.287509645061728,
+      "joint_loss_delta": 1.363606770833333
+    },
+    {
+      "character": "bull-shark",
+      "cost": 15,
+      "initial_parameters": {
+        "hp": 136,
+        "power": 64
+      },
+      "selected_parameters": {
+        "hp": 136,
+        "power": 64
+      },
+      "changed": false,
+      "selected_trial": 0,
+      "baseline_validation_loss": 0.0,
+      "individual_validation_loss": 0.0,
+      "joint_validation_loss": 0.0,
+      "joint_loss_delta": 0.0
+    },
+    {
+      "character": "clione",
+      "cost": 3,
+      "initial_parameters": {
+        "hp": 18,
+        "power": 14
+      },
+      "selected_parameters": {
+        "hp": 18,
+        "power": 14
+      },
+      "changed": false,
+      "selected_trial": 0,
+      "baseline_validation_loss": 0.11406792534722217,
+      "individual_validation_loss": 0.11406792534722217,
+      "joint_validation_loss": 0.11406792534722217,
+      "joint_loss_delta": 0.0
+    },
+    {
+      "character": "coelacanth",
+      "cost": 12,
+      "initial_parameters": {
+        "hp": 154,
+        "power": 30,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 114,
+        "power": 27,
+        "defense": 31
+      },
+      "changed": true,
+      "selected_trial": 10,
+      "baseline_validation_loss": 0.0,
+      "individual_validation_loss": 0.007834201388888875,
+      "joint_validation_loss": 0.11990981867283959,
+      "joint_loss_delta": 0.11990981867283959
+    },
+    {
+      "character": "cownose-ray",
+      "cost": 4,
+      "initial_parameters": {
+        "hp": 46,
+        "power": 6
+      },
+      "selected_parameters": {
+        "hp": 66,
+        "power": 9
+      },
+      "changed": true,
+      "selected_trial": 19,
+      "baseline_validation_loss": 0.40929783950617316,
+      "individual_validation_loss": 0.037075617283950625,
+      "joint_validation_loss": 0.037075617283950625,
+      "joint_loss_delta": -0.3722222222222225
+    },
+    {
+      "character": "crocodile",
+      "cost": 12,
+      "initial_parameters": {
+        "hp": 190,
+        "power": 84
+      },
+      "selected_parameters": {
+        "hp": 151,
+        "power": 52
+      },
+      "changed": true,
+      "selected_trial": 6,
+      "baseline_validation_loss": 1.9531249999999993,
+      "individual_validation_loss": 2.0879925009645057,
+      "joint_validation_loss": 2.068244237075617,
+      "joint_loss_delta": 0.11511923707561755
+    },
+    {
+      "character": "dolphin",
+      "cost": 9,
+      "initial_parameters": {
+        "hp": 60,
+        "power": 7
+      },
+      "selected_parameters": {
+        "hp": 60,
+        "power": 7
+      },
+      "changed": false,
+      "selected_trial": 0,
+      "baseline_validation_loss": 0.35502507716049364,
+      "individual_validation_loss": 0.35502507716049364,
+      "joint_validation_loss": 2.1953028549382707,
+      "joint_loss_delta": 1.840277777777777
+    },
+    {
+      "character": "goblin",
+      "cost": 2,
+      "initial_parameters": {
+        "hp": 20,
+        "power": 6,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 20,
+        "power": 6,
+        "defense": 0
+      },
+      "changed": false,
+      "selected_trial": 0,
+      "baseline_validation_loss": 0.8282600308641971,
+      "individual_validation_loss": 0.8282600308641971,
+      "joint_validation_loss": 1.406963734567901,
+      "joint_loss_delta": 0.5787037037037038
+    },
+    {
+      "character": "lionfish",
+      "cost": 12,
+      "initial_parameters": {
+        "hp": 108,
+        "power": 29
+      },
+      "selected_parameters": {
+        "hp": 89,
+        "power": 16
+      },
+      "changed": true,
+      "selected_trial": 10,
+      "baseline_validation_loss": 0.054979263117283884,
+      "individual_validation_loss": 0.3366222993827159,
+      "joint_validation_loss": 0.33010223765432084,
+      "joint_loss_delta": 0.27512297453703694
+    },
+    {
+      "character": "rockfish",
+      "cost": 10,
+      "initial_parameters": {
+        "hp": 90,
+        "power": 22
+      },
+      "selected_parameters": {
+        "hp": 95,
+        "power": 24
+      },
+      "changed": true,
+      "selected_trial": 1,
+      "baseline_validation_loss": 0.08342013888888884,
+      "individual_validation_loss": 0.0,
+      "joint_validation_loss": 0.0,
+      "joint_loss_delta": -0.08342013888888884
+    },
+    {
+      "character": "sea-slug",
+      "cost": 3,
+      "initial_parameters": {
+        "hp": 24,
+        "power": 2,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 30,
+        "power": 1,
+        "defense": 28
+      },
+      "changed": true,
+      "selected_trial": 14,
+      "baseline_validation_loss": 1.2651427469135812,
+      "individual_validation_loss": 1.634076605902779,
+      "joint_validation_loss": 2.244753689236112,
+      "joint_loss_delta": 0.9796109423225308
+    },
+    {
+      "character": "sea-urchin",
+      "cost": 4,
+      "initial_parameters": {
+        "hp": 88
+      },
+      "selected_parameters": {
+        "hp": 104
+      },
+      "changed": true,
+      "selected_trial": 22,
+      "baseline_validation_loss": 0.015239800347222198,
+      "individual_validation_loss": 0.013744815779320971,
+      "joint_validation_loss": 0.013744815779320971,
+      "joint_loss_delta": -0.0014949845679012273
+    },
+    {
+      "character": "seahorse",
+      "cost": 4,
+      "initial_parameters": {
+        "hp": 54,
+        "power": 2
+      },
+      "selected_parameters": {
+        "hp": 36,
+        "power": 2
+      },
+      "changed": true,
+      "selected_trial": 8,
+      "baseline_validation_loss": 1.6140625,
+      "individual_validation_loss": 1.4815706983024686,
+      "joint_validation_loss": 2.3336829668209873,
+      "joint_loss_delta": 0.7196204668209873
+    },
+    {
+      "character": "shark",
+      "cost": 8,
+      "initial_parameters": {
+        "hp": 60,
+        "power": 12,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 79,
+        "power": 12,
+        "defense": 68
+      },
+      "changed": true,
+      "selected_trial": 4,
+      "baseline_validation_loss": 0.21122926311728393,
+      "individual_validation_loss": 0.5612099729938277,
+      "joint_validation_loss": 0.618733121141976,
+      "joint_loss_delta": 0.407503858024692
+    },
+    {
+      "character": "skeleton_pirate",
+      "cost": 4,
+      "initial_parameters": {
+        "hp": 42,
+        "power": 6
+      },
+      "selected_parameters": {
+        "hp": 42,
+        "power": 6
+      },
+      "changed": false,
+      "selected_trial": 0,
+      "baseline_validation_loss": 1.3854263117283958,
+      "individual_validation_loss": 1.3854263117283958,
+      "joint_validation_loss": 1.3854263117283958,
+      "joint_loss_delta": 0.0
+    },
+    {
+      "character": "stonefish",
+      "cost": 5,
+      "initial_parameters": {
+        "hp": 34,
+        "power": 20
+      },
+      "selected_parameters": {
+        "hp": 34,
+        "power": 20
+      },
+      "changed": false,
+      "selected_trial": 0,
+      "baseline_validation_loss": 0.010824170524691364,
+      "individual_validation_loss": 0.010824170524691364,
+      "joint_validation_loss": 0.004668209876543221,
+      "joint_loss_delta": -0.006155960648148143
+    },
+    {
+      "character": "sunfish",
+      "cost": 12,
+      "initial_parameters": {
+        "hp": 250
+      },
+      "selected_parameters": {
+        "hp": 192
+      },
+      "changed": true,
+      "selected_trial": 5,
+      "baseline_validation_loss": 0.0,
+      "individual_validation_loss": 0.0,
+      "joint_validation_loss": 0.0,
+      "joint_loss_delta": 0.0
+    },
+    {
+      "character": "viperfish",
+      "cost": 3,
+      "initial_parameters": {
+        "hp": 22,
+        "power": 2
+      },
+      "selected_parameters": {
+        "hp": 24,
+        "power": 2
+      },
+      "changed": true,
+      "selected_trial": 1,
+      "baseline_validation_loss": 0.14830246913580242,
+      "individual_validation_loss": 0.14830246913580242,
+      "joint_validation_loss": 0.14830246913580242,
+      "joint_loss_delta": 0.0
+    },
+    {
+      "character": "wahoo",
+      "cost": 12,
+      "initial_parameters": {
+        "hp": 82,
+        "power": 31
+      },
+      "selected_parameters": {
+        "hp": 53,
+        "power": 26
+      },
+      "changed": true,
+      "selected_trial": 14,
+      "baseline_validation_loss": 0.12203173225308647,
+      "individual_validation_loss": 0.07725935570987649,
+      "joint_validation_loss": 0.04930796682098763,
+      "joint_loss_delta": -0.07272376543209885
+    }
+  ],
+  "baseline_roster_strengths": [
+    {
+      "character": "amago",
+      "cost": 1,
+      "score": 0.2945833333333333,
+      "trials": 20,
+      "wins": 0,
+      "win_rate": 0.0,
+      "win_interval": [
+        -1.3877787807814457e-17,
+        0.16113012549493322
+      ]
+    },
+    {
+      "character": "ammonite",
+      "cost": 4,
+      "score": 0.215,
+      "trials": 20,
+      "wins": 0,
+      "win_rate": 0.0,
+      "win_interval": [
+        -1.3877787807814457e-17,
+        0.16113012549493322
+      ]
+    },
+    {
+      "character": "shark",
+      "cost": 8,
+      "score": 0.5602083333333334,
+      "trials": 20,
+      "wins": 7,
+      "win_rate": 0.35,
+      "win_interval": [
+        0.18118954786794464,
+        0.5671494897805354
+      ]
+    },
+    {
+      "character": "crocodile",
+      "cost": 12,
+      "score": 0.6641666666666667,
+      "trials": 20,
+      "wins": 8,
+      "win_rate": 0.4,
+      "win_interval": [
+        0.21880396741419272,
+        0.613422057684794
+      ]
+    },
+    {
+      "character": "abyssal-sea-dragon",
+      "cost": 20,
+      "score": 0.7660416666666666,
+      "trials": 20,
+      "wins": 11,
+      "win_rate": 0.55,
+      "win_interval": [
+        0.3420820083075997,
+        0.7418049791429071
+      ]
+    }
+  ],
+  "baseline_roster_synergy": [
+    {
+      "left": "amago",
+      "right": "ammonite",
+      "delta": 0.25083333333333335,
+      "trials": 20
+    },
+    {
+      "left": "amago",
+      "right": "shark",
+      "delta": -0.05437500000000001,
+      "trials": 20
+    },
+    {
+      "left": "amago",
+      "right": "crocodile",
+      "delta": -0.20916666666666667,
+      "trials": 20
+    },
+    {
+      "left": "amago",
+      "right": "abyssal-sea-dragon",
+      "delta": -0.21312499999999995,
+      "trials": 20
+    },
+    {
+      "left": "ammonite",
+      "right": "shark",
+      "delta": 0.08979166666666664,
+      "trials": 20
+    },
+    {
+      "left": "ammonite",
+      "right": "crocodile",
+      "delta": 0.3358333333333333,
+      "trials": 20
+    },
+    {
+      "left": "ammonite",
+      "right": "abyssal-sea-dragon",
+      "delta": -0.06604166666666667,
+      "trials": 20
+    },
+    {
+      "left": "shark",
+      "right": "crocodile",
+      "delta": -0.29291666666666666,
+      "trials": 20
+    },
+    {
+      "left": "shark",
+      "right": "abyssal-sea-dragon",
+      "delta": -0.19520833333333337,
+      "trials": 20
+    },
+    {
+      "left": "crocodile",
+      "right": "abyssal-sea-dragon",
+      "delta": null,
+      "trials": 0,
+      "reason": "budget exceeded"
+    }
+  ],
+  "limitations": [
+    "Training uses frozen companions and two opponent-center species; joint evaluation is final validation only.",
+    "Per-character best scores are assembled across trials, not the measured joint train score.",
+    "Validation conditions differ from the previous short run; direct loss comparison is invalid.",
+    "Holdout and roster analysis evaluate retained baseline, not selected candidate improvement.",
+    "Current sea-urchin and shark costs were changed after this run was frozen."
+  ]
+}
