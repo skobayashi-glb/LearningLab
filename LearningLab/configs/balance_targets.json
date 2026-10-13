@@ -46,10 +46,10 @@
   ],
   "cases": [
     {
-      "id": "shark-attacker-cost8-1v1",
+      "id": "shark-attacker-cost3-1v1",
       "character": "shark",
       "role": "attacker",
-      "reference_cost": 8,
+      "reference_cost": 3,
       "weight": 1,
       "roster": [
         "shark"
@@ -82,10 +82,10 @@
       }
     },
     {
-      "id": "shark-attacker-cost8-1v3",
+      "id": "shark-attacker-cost3-1v3",
       "character": "shark",
       "role": "attacker",
-      "reference_cost": 8,
+      "reference_cost": 3,
       "weight": 1,
       "roster": [
         "shark"
@@ -118,10 +118,10 @@
       }
     },
     {
-      "id": "shark-attacker-cost8-3v1",
+      "id": "shark-attacker-cost3-3v1",
       "character": "shark",
       "role": "attacker",
-      "reference_cost": 8,
+      "reference_cost": 3,
       "weight": 1,
       "roster": [
         "shark"
@@ -154,10 +154,10 @@
       }
     },
     {
-      "id": "shark-attacker-cost8-3v3",
+      "id": "shark-attacker-cost3-3v3",
       "character": "shark",
       "role": "attacker",
-      "reference_cost": 8,
+      "reference_cost": 3,
       "weight": 1,
       "roster": [
         "shark"
