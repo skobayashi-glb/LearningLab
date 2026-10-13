@@ -141,6 +141,10 @@ class FileSearchMonitor(SearchObserver):
     def on_trial_started(self, index, candidate, distribution):
         self.publish(trial=index, candidate=candidate, distribution=distribution)
 
+    def on_continuation(self, data):
+        self.publish(continued_from=data['source_run'], inherited_trials=data['inherited_trials'],
+                     inherited_updates=data['inherited_updates'])
+
     def on_phase(self, split, total, joint, candidate):
         self.publish(split=split, joint=joint, candidate=candidate, phase_total=total, phase_completed=0)
 

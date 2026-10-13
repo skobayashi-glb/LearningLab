@@ -1,0 +1,497 @@
+{
+  "run": "LearningLab\\runs\\short-exploratory-search-20261013",
+  "state": "completed",
+  "duration_seconds": 920.73792,
+  "finished_jst": "2026-10-13T02:14:17.695304+09:00",
+  "candidate_count": 3,
+  "updates_per_character": 2,
+  "evaluation_matches": 2400,
+  "analysis_matches": 280,
+  "changed_characters": [
+    "abyssal-sea-dragon",
+    "amago",
+    "ammonite",
+    "angelfish",
+    "bigfin-reef-squid",
+    "blue-shark",
+    "blue-surgeonfish",
+    "bonito",
+    "coelacanth",
+    "crocodile",
+    "lionfish",
+    "rockfish",
+    "viperfish"
+  ],
+  "retained_initial_characters": 17,
+  "baseline_validation_loss": 5.329986175411522,
+  "joint_validation_loss": 5.335155606995884,
+  "joint_loss_increase_percent": 0.09698771092896408,
+  "passed_validation_gate": false,
+  "applied_to_game": false,
+  "characters": [
+    {
+      "character": "abyssal-sea-dragon",
+      "cost": 20,
+      "baseline_parameters": {
+        "hp": 210,
+        "power": 108,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 241,
+        "power": 58,
+        "defense": 21
+      },
+      "selected_trial": 2,
+      "baseline_validation_loss": 0.18904320987654313,
+      "joint_validation_loss": 4.355555555555554
+    },
+    {
+      "character": "amago",
+      "cost": 1,
+      "baseline_parameters": {
+        "hp": 22,
+        "power": 3,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 25,
+        "power": 4,
+        "defense": 15
+      },
+      "selected_trial": 1,
+      "baseline_validation_loss": 5.177777777777777,
+      "joint_validation_loss": 5.177777777777777
+    },
+    {
+      "character": "ammonite",
+      "cost": 4,
+      "baseline_parameters": {
+        "hp": 120,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 79,
+        "defense": 27
+      },
+      "selected_trial": 1,
+      "baseline_validation_loss": 8.679359567901233,
+      "joint_validation_loss": 8.679359567901233
+    },
+    {
+      "character": "angelfish",
+      "cost": 3,
+      "baseline_parameters": {
+        "hp": 30,
+        "power": 3,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 39,
+        "power": 3,
+        "defense": 42
+      },
+      "selected_trial": 1,
+      "baseline_validation_loss": 0.798003472222222,
+      "joint_validation_loss": 0.8236111111111107
+    },
+    {
+      "character": "arowana",
+      "cost": 12,
+      "baseline_parameters": {
+        "hp": 68,
+        "power": 58
+      },
+      "selected_parameters": {
+        "hp": 68,
+        "power": 58
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 7.76543209876543,
+      "joint_validation_loss": 6.777777777777777
+    },
+    {
+      "character": "atlantic-tarpon",
+      "cost": 8,
+      "baseline_parameters": {
+        "hp": 54,
+        "power": 8
+      },
+      "selected_parameters": {
+        "hp": 54,
+        "power": 8
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 7.002469135802468,
+      "joint_validation_loss": 7.002469135802468
+    },
+    {
+      "character": "bigfin-reef-squid",
+      "cost": 9,
+      "baseline_parameters": {
+        "hp": 88,
+        "power": 4
+      },
+      "selected_parameters": {
+        "hp": 96,
+        "power": 3
+      },
+      "selected_trial": 1,
+      "baseline_validation_loss": 0.9585262345679011,
+      "joint_validation_loss": 0.9585262345679011
+    },
+    {
+      "character": "blacktip-reef-shark",
+      "cost": 12,
+      "baseline_parameters": {
+        "hp": 86,
+        "power": 32
+      },
+      "selected_parameters": {
+        "hp": 86,
+        "power": 32
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 7.294444444444444,
+      "joint_validation_loss": 7.294444444444444
+    },
+    {
+      "character": "blue-shark",
+      "cost": 8,
+      "baseline_parameters": {
+        "hp": 44,
+        "power": 11
+      },
+      "selected_parameters": {
+        "hp": 38,
+        "power": 15
+      },
+      "selected_trial": 1,
+      "baseline_validation_loss": 0.7569444444444442,
+      "joint_validation_loss": 0.7569444444444442
+    },
+    {
+      "character": "blue-surgeonfish",
+      "cost": 3,
+      "baseline_parameters": {
+        "hp": 26,
+        "power": 9
+      },
+      "selected_parameters": {
+        "hp": 35,
+        "power": 9
+      },
+      "selected_trial": 1,
+      "baseline_validation_loss": 8.411111111111108,
+      "joint_validation_loss": 8.411111111111108
+    },
+    {
+      "character": "blue-whale",
+      "cost": 18,
+      "baseline_parameters": {
+        "hp": 340
+      },
+      "selected_parameters": {
+        "hp": 340
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 6.36172839506173,
+      "joint_validation_loss": 6.36172839506173
+    },
+    {
+      "character": "bonito",
+      "cost": 4,
+      "baseline_parameters": {
+        "hp": 22,
+        "power": 10
+      },
+      "selected_parameters": {
+        "hp": 19,
+        "power": 12
+      },
+      "selected_trial": 2,
+      "baseline_validation_loss": 6.385802469135801,
+      "joint_validation_loss": 6.385802469135801
+    },
+    {
+      "character": "bull-shark",
+      "cost": 15,
+      "baseline_parameters": {
+        "hp": 136,
+        "power": 64
+      },
+      "selected_parameters": {
+        "hp": 136,
+        "power": 64
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 9.977777777777776,
+      "joint_validation_loss": 9.977777777777776
+    },
+    {
+      "character": "clione",
+      "cost": 3,
+      "baseline_parameters": {
+        "hp": 18,
+        "power": 14
+      },
+      "selected_parameters": {
+        "hp": 18,
+        "power": 14
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 1.0069444444444442,
+      "joint_validation_loss": 1.0069444444444442
+    },
+    {
+      "character": "coelacanth",
+      "cost": 12,
+      "baseline_parameters": {
+        "hp": 154,
+        "power": 30,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 209,
+        "power": 26,
+        "defense": 28
+      },
+      "selected_trial": 2,
+      "baseline_validation_loss": 4.999999999999998,
+      "joint_validation_loss": 2.222222222222222
+    },
+    {
+      "character": "cownose-ray",
+      "cost": 4,
+      "baseline_parameters": {
+        "hp": 46,
+        "power": 6
+      },
+      "selected_parameters": {
+        "hp": 46,
+        "power": 6
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 3.8580246913580276,
+      "joint_validation_loss": 1.4500000000000006
+    },
+    {
+      "character": "crocodile",
+      "cost": 12,
+      "baseline_parameters": {
+        "hp": 190,
+        "power": 84
+      },
+      "selected_parameters": {
+        "hp": 203,
+        "power": 65
+      },
+      "selected_trial": 1,
+      "baseline_validation_loss": 1.0722222222222222,
+      "joint_validation_loss": 2.855555555555555
+    },
+    {
+      "character": "dolphin",
+      "cost": 9,
+      "baseline_parameters": {
+        "hp": 60,
+        "power": 7
+      },
+      "selected_parameters": {
+        "hp": 60,
+        "power": 7
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 7.844444444444443,
+      "joint_validation_loss": 7.844444444444443
+    },
+    {
+      "character": "goblin",
+      "cost": 2,
+      "baseline_parameters": {
+        "hp": 20,
+        "power": 6,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 20,
+        "power": 6,
+        "defense": 0
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 7.067013888888889,
+      "joint_validation_loss": 7.067013888888889
+    },
+    {
+      "character": "lionfish",
+      "cost": 12,
+      "baseline_parameters": {
+        "hp": 108,
+        "power": 29
+      },
+      "selected_parameters": {
+        "hp": 143,
+        "power": 33
+      },
+      "selected_trial": 1,
+      "baseline_validation_loss": 5.96111111111111,
+      "joint_validation_loss": 5.96111111111111
+    },
+    {
+      "character": "rockfish",
+      "cost": 10,
+      "baseline_parameters": {
+        "hp": 90,
+        "power": 22
+      },
+      "selected_parameters": {
+        "hp": 95,
+        "power": 24
+      },
+      "selected_trial": 1,
+      "baseline_validation_loss": 8.411111111111108,
+      "joint_validation_loss": 8.411111111111108
+    },
+    {
+      "character": "sea-slug",
+      "cost": 3,
+      "baseline_parameters": {
+        "hp": 24,
+        "power": 2,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 24,
+        "power": 2,
+        "defense": 0
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 5.474729938271606,
+      "joint_validation_loss": 5.474729938271606
+    },
+    {
+      "character": "sea-urchin",
+      "cost": 4,
+      "baseline_parameters": {
+        "hp": 88
+      },
+      "selected_parameters": {
+        "hp": 88
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 8.411111111111108,
+      "joint_validation_loss": 8.411111111111108
+    },
+    {
+      "character": "seahorse",
+      "cost": 4,
+      "baseline_parameters": {
+        "hp": 54,
+        "power": 2
+      },
+      "selected_parameters": {
+        "hp": 54,
+        "power": 2
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 4.82133487654321,
+      "joint_validation_loss": 5.399112654320988
+    },
+    {
+      "character": "shark",
+      "cost": 8,
+      "baseline_parameters": {
+        "hp": 60,
+        "power": 12,
+        "defense": 0
+      },
+      "selected_parameters": {
+        "hp": 60,
+        "power": 12,
+        "defense": 0
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 5.363580246913583,
+      "joint_validation_loss": 5.138888888888891
+    },
+    {
+      "character": "skeleton_pirate",
+      "cost": 4,
+      "baseline_parameters": {
+        "hp": 42,
+        "power": 6
+      },
+      "selected_parameters": {
+        "hp": 42,
+        "power": 6
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 7.105709876543213,
+      "joint_validation_loss": 7.105709876543213
+    },
+    {
+      "character": "stonefish",
+      "cost": 5,
+      "baseline_parameters": {
+        "hp": 34,
+        "power": 20
+      },
+      "selected_parameters": {
+        "hp": 34,
+        "power": 20
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 9.027777777777775,
+      "joint_validation_loss": 9.027777777777775
+    },
+    {
+      "character": "sunfish",
+      "cost": 12,
+      "baseline_parameters": {
+        "hp": 250
+      },
+      "selected_parameters": {
+        "hp": 250
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 0.6941358024691358,
+      "joint_validation_loss": 0.6941358024691358
+    },
+    {
+      "character": "viperfish",
+      "cost": 3,
+      "baseline_parameters": {
+        "hp": 22,
+        "power": 2
+      },
+      "selected_parameters": {
+        "hp": 24,
+        "power": 2
+      },
+      "selected_trial": 1,
+      "baseline_validation_loss": 0.9941358024691356,
+      "joint_validation_loss": 0.9941358024691356
+    },
+    {
+      "character": "wahoo",
+      "cost": 12,
+      "baseline_parameters": {
+        "hp": 82,
+        "power": 31
+      },
+      "selected_parameters": {
+        "hp": 82,
+        "power": 31
+      },
+      "selected_trial": 0,
+      "baseline_validation_loss": 8.027777777777777,
+      "joint_validation_loss": 8.027777777777777
+    }
+  ],
+  "limitations": [
+    "Only two proposal updates",
+    "Train opponents: ammonite and shark; validation opponent: coelacanth; holdout opponent: blue-whale",
+    "Holdout measures the retained baseline, not a candidate improvement",
+    "Separate roster analysis covers five baseline character-centered armies, not individual duels"
+  ]
+}

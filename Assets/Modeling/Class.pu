@@ -8473,4 +8473,20 @@ package "Exploratory roster search and unconditional joint validation (2026-10-1
     LabExploratoryScope .. LabValidationPolicy
 }
 
+package "Exact proposal continuation in a fresh run (2026-10-13)" {
+    class "SearchContinuation (validated source checkpoint and trial prefix)" as LabSearchContinuation
+    BalanceParameterSearch --> LabSearchContinuation : restore RNG / Adam / distributions; retain measured candidates
+    LabSearchContinuation --> LabArtifacts : weights-only checkpoint; immutable source manifest and trial hashes
+    LabSearchContinuation --> LabCharacterProposalLearner : exact optimizer state restoration
+    LabDashboardService --> BalanceParameterSearch : optional --continue-from; fresh destination only
+    BalanceParameterSearch --> LabFileMonitor : inherited trial and update counts
+    note as LabContinuationScope
+      Tool 0.7.1. Frozen battle config and train conditions must match.
+      Only budget, metadata, analysis and validation / holdout seeds may change.
+      Source run remains unchanged; inherited episodes stay in their source archive.
+      Continuing uses no prior validation or holdout losses as optimizer feedback.
+    end note
+    LabContinuationScope .. LabSearchContinuation
+}
+
 @enduml

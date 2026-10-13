@@ -14,6 +14,7 @@ from .monitoring import SearchObserver
 from .cost_balance import BUDGET_WAVE, BudgetWaveEncounter, battle_score, LEGS
 from .character_search import PER_CHARACTER, CharacterProposalLearner
 from .validation import preserved_validation, ValidationPolicy, AGGREGATE
+from .search_continuation import SearchContinuation, TRIAL_INCREMENT
 
 VERSION = 2
 POLICY_ID = "fixed-party-round-robin-to-default-route-v3-target-first"
@@ -268,13 +269,14 @@ class BalanceSearch:
         if any(c not in covered for c, _ in self.space.axes):
             raise ValueError("Every adjusted character needs an evaluation case")
 
-    def run(self, directory: Path, observer=None):
+    def run(self, directory: Path, observer=None, *, continue_from=None):
         directory = directory.resolve()
         assets = Path(__file__).resolve().parents[2] / "Assets"
         if directory.is_relative_to(assets.resolve()):
             raise ValueError("Balance artifacts must stay outside Assets")
+        continuation = SearchContinuation(continue_from, self.config, self.settings, self.learner) if continue_from else None
         repository = ExperimentRepository(directory)
-        repository.initialize({"version": VERSION, "config": self.config.data, "settings": self.settings,
+        manifest = {"version": VERSION, "config": self.config.data, "settings": self.settings,
                                "config_hash": self.config.digest, "policy": self.evaluator.policy_id,
                                "evaluation_mode": self.settings.get("evaluation_mode", CYCLIC_SORTIES),
                                "search_strategy": self.strategy,
@@ -289,7 +291,11 @@ class BalanceSearch:
                                "cost_balance_code_sha256": hashlib.sha256(Path(__file__).with_name('cost_balance.py').read_bytes()).hexdigest(),
                                "character_search_code_sha256": hashlib.sha256(Path(__file__).with_name('character_search.py').read_bytes()).hexdigest(),
                                "roster_analysis_code_sha256": hashlib.sha256(Path(__file__).with_name('roster_analysis.py').read_bytes()).hexdigest(),
-                               "encounter_code_sha256": hashlib.sha256(Path(__file__).with_name("encounters.py").read_bytes()).hexdigest()})
+                               "encounter_code_sha256": hashlib.sha256(Path(__file__).with_name("encounters.py").read_bytes()).hexdigest(),
+                               "continuation_code_sha256": hashlib.sha256(Path(__file__).with_name('search_continuation.py').read_bytes()).hexdigest()}
+        if continuation:
+            manifest['continuation'] = continuation.metadata
+        repository.initialize(manifest)
         observer = observer or SearchObserver()
         self.evaluator.observer = observer
         bounds = getattr(self.space, "bounds", [(min(values), max(values)) for values in self.space.values])
@@ -302,10 +308,18 @@ class BalanceSearch:
             if self.settings['analysis'].get('initial_focused', True):
                 analyzer.run(self.space.baseline, observer=observer, parameter_version='baseline', include_pairs=False)
             observer.emit('state', state='running')
-        trials = []
+        trials = copy.deepcopy(continuation.trials) if continuation else []
+        if continuation:
+            continuation.copy_trials(directory)
+            repository.save_checkpoint({'version': CHECKPOINT_VERSION, 'trial': len(trials) - TRIAL_INCREMENT,
+                'config_hash': self.config.digest, 'settings_hash': canonical_hash(self.settings),
+                'learner': self.learner.state_dict()})
+            observer.emit('continuation', data=continuation.metadata)
+            for trial in trials:
+                observer.emit('trial_completed', trial=trial)
         candidates = None if self.learner else self.space.candidates(
             self.settings["candidate_budget"], self.settings["search_seed"])
-        for index in range(self.settings["candidate_budget"]):
+        for index in range(len(trials), self.settings["candidate_budget"]):
             observer.check()
             if self.learner:
                 before = self.learner.describe()
@@ -378,6 +392,8 @@ class BalanceSearch:
                   "joint_validation": joint_validation, "holdout_joint": requires_joint,
                   "baseline_validation": baseline_validation, "selected_validation": selected_validation,
                   "holdout": holdout, "applied_to_game": False}
+        if continuation:
+            report['continuation'] = continuation.metadata
         if best_by_character:
             report.update(learning_scope=PER_CHARACTER,
                 selected_train_trials={c: t['index'] for c, t in best_by_character.items()},
@@ -401,9 +417,10 @@ def main():
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--settings", type=Path, required=True)
     parser.add_argument("--run", type=Path, required=True)
+    parser.add_argument('--continue-from', type=Path, help='Inherit a checkpoint and trials into a fresh run')
     args = parser.parse_args()
     settings = json.loads(args.settings.read_text(encoding="utf-8-sig"))
-    report = BalanceSearch(ExperimentConfig.load(args.config), settings).run(args.run)
+    report = BalanceSearch(ExperimentConfig.load(args.config), settings).run(args.run, continue_from=args.continue_from)
     print(json.dumps({"passed_validation_gate": report["passed_validation_gate"],
                       "recommended_overrides": report["recommended_overrides"]}))
 

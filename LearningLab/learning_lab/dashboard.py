@@ -23,10 +23,11 @@ WEB_DIRECTORY = Path(__file__).with_name("web")
 
 class DashboardService:
     def __init__(self, config, settings, directory, capture_decisions=DEFAULT_CAPTURE_DECISIONS,
-                 archive_stride=DEFAULT_ARCHIVE_STRIDE):
+                 archive_stride=DEFAULT_ARCHIVE_STRIDE, continue_from=None):
         self.search = BalanceSearch(config, settings)
         self.monitor = FileSearchMonitor(directory, capture_decisions, archive_stride)
         self.thread = None
+        self.continue_from = continue_from
 
     def start(self):
         if self.thread is not None:
@@ -36,7 +37,7 @@ class DashboardService:
 
     def run(self):
         try:
-            self.search.run(self.monitor.directory, observer=self.monitor)
+            self.search.run(self.monitor.directory, observer=self.monitor, continue_from=self.continue_from)
         except SearchStopped as error:
             self.monitor.publish(state="stopped", message=str(error))
         except Exception as error:
@@ -148,12 +149,14 @@ def main():
     parser.add_argument("--capture-every", type=int, default=DEFAULT_CAPTURE_DECISIONS)
     parser.add_argument('--archive-every', type=int, default=DEFAULT_ARCHIVE_STRIDE,
                         help='Archive one episode in N; always serve the current episode live')
+    parser.add_argument('--continue-from', type=Path, help='Inherit completed trials and optimizer state into a fresh run')
     args = parser.parse_args()
     # Reject an occupied run before starting any worker or opening the port.
     if args.run.exists() and any(args.run.iterdir()):
         raise FileExistsError("Use a fresh run directory; dashboard restart does not resume a stopped process")
     service = DashboardService(ExperimentConfig.load(args.config),
-        json.loads(args.settings.read_text(encoding="utf-8-sig")), args.run, args.capture_every, args.archive_every)
+        json.loads(args.settings.read_text(encoding="utf-8-sig")), args.run, args.capture_every, args.archive_every,
+        args.continue_from)
     server = ThreadingHTTPServer((HOST, args.port), handler_for(service))
     print(f"Dashboard: http://{HOST}:{server.server_port}", flush=True)
     service.start()
